@@ -1,4 +1,3 @@
-# main.py
 from config.logging_config import setup_logging
 setup_logging()
 import logging
@@ -13,27 +12,21 @@ from hardware.hx711_sensor import HX711Sensor
 from views.main_window import MainWindow
 from utils.futter_loader import lade_heu_als_dataclasses
 
-heuliste = lade_heu_als_dataclasses("heu_eigen_2025.csv")
-if heuliste:
-    heu = heuliste[0]  # Erstes Heu-Objekt
-    print(heu.name, heu.trockenmasse)
-
-
 def main():
     # 1. Hardware initialisieren
     sensor = HX711Sensor(data_pin=5, clock_pin=6)  # GPIO-Pins anpassen
 
-    # 2. Heu-Dateien aus dem data-Ordner laden
-    heu_namen = finde_heu_dateien()
-
+    # 2. Heu-Objekte laden (aus einer Datei)
+    heuliste = lade_heu_als_dataclasses("heu_eigen_2025.csv")
+    # Optional: weitere Daten laden (Heulage, Pferde...)
 
     # 3. PyQt-Anwendung starten
     app = QApplication(sys.argv)
-    window = MainWindow(sensor, heu_namen=heu_namen)
+    window = MainWindow(sensor, heu_namen=[heu.name for heu in heuliste])  # Übergib ggf. die Namen
     window.show()
 
     # 4. Testdaten laden (optional/nur für Entwicklung)
-    if True:  # Auf False setzen für Produktivbetrieb
+    if True:
         pferd = Pferd(name="Blitz", gewicht=500, alter=8)
         heulage = Heulage(
             name="Heulage 2024", trockenmasse=60.0, rohprotein=14.0, rohfaser=24.0,

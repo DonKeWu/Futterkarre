@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="/icons">
+    <file>Reload.png</file>
+    <file>Sim.png</file>
+    <file>Next.png</file>
+    <file>Back.png</file>
+    <file>Display.png</file>
+    <file>Calib.png</file>
+    <file>Gear.png</file>
+  </qresource>
+</RCC>
