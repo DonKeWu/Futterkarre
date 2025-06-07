@@ -1,11 +1,13 @@
+# main.py
+
 import sys
 from datetime import datetime
 from PyQt5.QtWidgets import QApplication
 from models import Pferd, Heulage
-from controllers import FütterungController
+from controllers.fuetterung_controller import FütterungController
 from hardware.hx711_sensor import HX711Sensor
 from views.main_window import MainWindow
-
+from utils.futter_loader import lade_heu_aus_csv, lade_heulage_aus_csv  # Optional, wenn du CSV laden willst
 
 def main():
     # 1. Hardware initialisieren
@@ -29,7 +31,7 @@ def main():
 
     sys.exit(app.exec_())
 
-
 if __name__ == "__main__":
     main()
+
 
