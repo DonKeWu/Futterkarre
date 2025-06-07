@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StartSeite</class>
+ <widget class="QWidget" name="StartSeite">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>601</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Futterkarre 1.0</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #fdffe0;</string>
+  </property>
+  <widget class="QLabel" name="label_title">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>150</y>
+     <width>1024</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>1024</width>
+     <height>80</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1024</width>
+     <height>80</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>64</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #222;</string>
+   </property>
+   <property name="text">
+    <string>Futterkarre 2.0</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_start">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>360</y>
+     <width>300</width>
+     <height>120</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>300</width>
+     <height>120</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>300</width>
+     <height>100</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>40</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QPushButton {
+    background-color: #b0cfa5;
+    color: #ffffff;
+    border-radius: 18px;
+    min-width: 300px;
+    min-height: 120px;
+}
+QPushButton:hover {
+    background-color: #8FBC8F;
+    color: #f5f5b5;
+}
+        </string>
+   </property>
+   <property name="text">
+    <string>START</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
