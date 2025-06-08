@@ -1,3 +1,5 @@
+# main.py (Ausschnitt)
+
 from config.logging_config import setup_logging
 setup_logging()
 import logging
@@ -10,7 +12,8 @@ from config.app_config import AppConfig
 from datetime import datetime
 from models import Pferd, Heulage
 from controllers.fuetterung_controller import FütterungController
-from hardware.hx711_sensor import HX711Sensor
+
+from hardware.sensor_switch import SensorManager
 from views.main_window import MainWindow
 from utils.futter_loader import lade_heu_als_dataclasses
 
@@ -27,17 +30,18 @@ QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 from PyQt5.QtWidgets import QApplication
 
 def main():
-    # 1. Hardware initialisieren
-    sensor = HX711Sensor(data_pin=5, clock_pin=6)  # GPIO-Pins anpassen
-
-    # 2. Heu-Objekte laden (aus einer Datei)
+    sensor = HX711Sensor(data_pin=5, clock_pin=6)
+    sensor_manager = SensorManager()
     heuliste = lade_heu_als_dataclasses("heu_eigen_2025.csv")
-    # Optional: weitere Daten laden (Heulage, Pferde...)
+    heulage_liste = lade_heulage_als_dataclasses("heulage_eigen_2025.csv")
+    pferde_liste = lade_pferde_als_dataclasses("pferde.csv")
 
     # 3. PyQt-Anwendung starten
     app = QApplication(sys.argv)
-    window = MainWindow(sensor, heu_namen=[heu.name for heu in heuliste])  # Übergib ggf. die Namen
+    # Übergib alle Listen an MainWindow, nicht nur Heu!
+    window = MainWindow(sensor, heuliste=heuliste, heulage_liste=heulage_liste, pferde_liste=pferde_liste)
     window.show()
+    sys.exit(app.exec_())
 
     # 4. Testdaten laden (optional/nur für Entwicklung)
     if True:
