@@ -1,6 +1,7 @@
 # views/einstellungen_seite.py
 import os
 import logging
+import views.icons.icons_rc
 from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QTimer
@@ -10,9 +11,10 @@ import hardware.fu_sim as fu_sim
 logger = logging.getLogger(__name__)
 
 class EinstellungenSeite(QWidget):
-    def __init__(self, parent, sensor_manager):
-        super().__init__(parent)
+    def __init__(self, sensor_manager):
+        super().__init__()
         self.sensor_manager = sensor_manager
+        self.navigation = None  # Wird von MainWindow gesetzt
         logger.info("EinstellungenSeite wird initialisiert")
 
         # UI-Datei laden
@@ -26,7 +28,6 @@ class EinstellungenSeite(QWidget):
         # Buttons als Schalter konfigurieren
         self.btn_simulation_toggle.setCheckable(True)
         self.btn_simulation_toggle.setChecked(False)
-
         self.btn_fu_sim_toggle.setCheckable(True)
         self.btn_fu_sim_toggle.setChecked(False)
 
@@ -35,10 +36,17 @@ class EinstellungenSeite(QWidget):
         self.btn_fu_sim_toggle.clicked.connect(self.toggle_fu_simulation)
         self.btn_back.clicked.connect(self.zurueck_geklickt)
 
-        # Timer für Gewichtsanzeige
+        # Timer erstellen, aber NICHT starten
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_weight)
+
+    def start_timer(self):
+        """Startet Timer nur wenn Seite aktiv ist"""
         self.timer.start(1000)
+
+    def stop_timer(self):
+        """Stoppt Timer"""
+        self.timer.stop()
 
     def toggle_hx_simulation(self, checked):
         hx711_sim.setze_simulation(checked)
@@ -49,11 +57,12 @@ class EinstellungenSeite(QWidget):
         logger.info(f"Fütterungs-Simulation: {'aktiviert' if checked else 'deaktiviert'}")
 
     def zurueck_geklickt(self):
+        """EINFACHE Navigation - KEIN Parent-Chaos!"""
         logger.info("Zurück-Button geklickt - Navigation zur Auswahl-Seite")
-        if self.parent():
-            self.parent().show_status("auswahl")
+        if self.navigation:
+            self.navigation.show_status("auswahl")
         else:
-            logger.warning("Parent-Objekt nicht verfügbar für Navigation")
+            logger.error("Navigation nicht verfügbar!")
 
     def update_weight(self):
         try:
@@ -62,23 +71,3 @@ class EinstellungenSeite(QWidget):
         except Exception as e:
             logger.error(f"Fehler beim Wiegen: {e}")
             self.label_gewicht.setText("Fehler beim Wiegen!")
-
-if __name__ == "__main__":
-    import sys
-    from PyQt5.QtWidgets import QApplication
-    import random
-
-    app = QApplication(sys.argv)
-    
-    class DummySensor:
-        def read_weight(self):
-            if hx711_sim.USE_SIMULATION:
-                return round(random.uniform(10, 100), 2)
-            else:
-                return 25.7
-
-    window = EinstellungenSeite(None, DummySensor())
-    window.resize(1024, 600)
-    window.show()
-
-    sys.exit(app.exec_())

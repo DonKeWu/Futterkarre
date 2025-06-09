@@ -1,5 +1,6 @@
 # views/main_window.py
 import logging
+import views.icons.icons_rc
 from PyQt5.QtWidgets import QMainWindow, QStackedWidget
 from PyQt5.QtCore import QTimer
 
@@ -7,15 +8,14 @@ from views.start import StartSeite
 from views.fuettern_seite import FuetternSeite
 from views.auswahl_seite import AuswahlSeite
 from views.einstellungen_seite import EinstellungenSeite
-from views.beladen_seite import BeladenSeite  # Neue Klasse statt create_load_screen
+from views.beladen_seite import BeladenSeite
 
 logger = logging.getLogger(__name__)
-
 
 class MainWindow(QMainWindow):
     def __init__(self, sensor_manager, heu_namen=None):
         super().__init__()
-        self.sensor_manager = sensor_manager  # Statt sensor
+        self.sensor_manager = sensor_manager
         self.heu_namen = heu_namen if heu_namen is not None else []
         logger.info("MainWindow wird initialisiert")
         self.init_ui()
@@ -26,47 +26,40 @@ class MainWindow(QMainWindow):
 
         self.stacked_widget = QStackedWidget()
 
-        # Seiten anlegen (alle als Klassen)
+        # Seiten anlegen - OHNE Parent-Verwirrung!
         self.start_screen = StartSeite()
-        self.auswahl_seite = AuswahlSeite(parent=self)
-        self.beladen_seite = BeladenSeite(parent=self, sensor_manager=self.sensor_manager)
-        self.fuettern_seite = FuetternSeite(parent=self)
-        self.einstellungen_seite = EinstellungenSeite(parent=self, sensor_manager=self.sensor_manager)
+        self.auswahl_seite = AuswahlSeite()
+        self.beladen_seite = BeladenSeite(sensor_manager=self.sensor_manager)
+        self.fuettern_seite = FuetternSeite()
+        self.einstellungen_seite = EinstellungenSeite(sensor_manager=self.sensor_manager)
+
+        # Navigation Manager für alle Seiten setzen -----------------------------------------------------------
+
+        for seite in [self.start_screen, self.auswahl_seite, self.beladen_seite, self.fuettern_seite,
+                      self.einstellungen_seite]:
+            seite.navigation = self
 
         # Seiten zum Stack hinzufügen
-        self.stacked_widget.addWidget(self.start_screen)  # Index 0
-        self.stacked_widget.addWidget(self.auswahl_seite)  # Index 1
-        self.stacked_widget.addWidget(self.beladen_seite)  # Index 2
-        self.stacked_widget.addWidget(self.fuettern_seite)  # Index 3
-        self.stacked_widget.addWidget(self.einstellungen_seite)  # Index 4
+        self.stacked_widget.addWidget(self.start_screen)
+        self.stacked_widget.addWidget(self.auswahl_seite)
+        self.stacked_widget.addWidget(self.beladen_seite)
+        self.stacked_widget.addWidget(self.fuettern_seite)
+        self.stacked_widget.addWidget(self.einstellungen_seite)
 
         self.setCentralWidget(self.stacked_widget)
         self.show_status("start")
-
-        # Navigation verbinden
         self.connect_navigation()
 
     def connect_navigation(self):
-        """Verbindet alle Navigations-Events"""
-        # Start → Auswahl
-        self.start_screen.btn_start.clicked.connect(lambda: self.show_status("auswahl"))
+        """Alle Seiten verwenden jetzt self.navigation - KEINE manuelle Verbindung nötig!"""
+        pass
 
-        # Beladen → Füttern
-        self.beladen_seite.btn_beladung_abgeschlossen.clicked.connect(
-            lambda: self.show_status("fuettern")
-        )
-
-        # Füttern Navigation
-        self.fuettern_seite.btn_naechstes_pferd.clicked.connect(
-            lambda: self.show_status("start")  # Zurück zum Start
-        )
-        self.fuettern_seite.btn_nachladen.clicked.connect(
-            lambda: self.show_status("beladen")
-        )
-
-    def show_status(self, status):
-        """Zentrale Navigation zwischen Seiten"""
+    def show_status(self, status, context=None):
+        """Zentrale Navigation zwischen Seiten - JETZT mit Kontext!"""
         logger.info(f"Wechsel zu Status: {status}")
+
+        # Timer stoppen bei Seitenwechsel - WICHTIG!
+        self.stop_all_timers()
 
         if status == "start":
             self.stacked_widget.setCurrentWidget(self.start_screen)
@@ -74,12 +67,27 @@ class MainWindow(QMainWindow):
             self.stacked_widget.setCurrentWidget(self.auswahl_seite)
         elif status == "beladen":
             self.stacked_widget.setCurrentWidget(self.beladen_seite)
+            # WICHTIG: Kontext an Beladen-Seite übergeben
+            if context:
+                self.beladen_seite.set_context(context)
+            self.beladen_seite.start_timer()  # Timer nur bei aktiver Seite
         elif status == "fuettern":
             self.stacked_widget.setCurrentWidget(self.fuettern_seite)
+            # WICHTIG: Kontext an Füttern-Seite übergeben
+            if context:
+                self.fuettern_seite.restore_context(context)
         elif status == "einstellungen":
             self.stacked_widget.setCurrentWidget(self.einstellungen_seite)
+            self.einstellungen_seite.start_timer()  # Timer nur bei aktiver Seite
 
-    # Methoden für AuswahlSeite
+    def stop_all_timers(self):
+        """Stoppt alle Timer - verhindert Dauerschleifen"""
+        if hasattr(self.beladen_seite, 'timer'):
+            self.beladen_seite.timer.stop()
+        if hasattr(self.einstellungen_seite, 'timer'):
+            self.einstellungen_seite.timer.stop()
+
+    # Einfache Navigation-Methoden
     def zeige_heu_futter(self):
         self.show_status("fuettern")
 
@@ -91,3 +99,4 @@ class MainWindow(QMainWindow):
 
     def zeige_einstellungen(self):
         self.show_status("einstellungen")
+

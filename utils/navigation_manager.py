@@ -1,13 +1,4 @@
-# views/auswahl_seite.py
-import logging
-import views.icons.icons_rc
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget
-from pathlib import Path
-
-logger = logging.getLogger(__name__)
-
-
+# views/auswahl_seite.py - Alternative mit Navigation
 class AuswahlSeite(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -28,8 +19,6 @@ class AuswahlSeite(QWidget):
             self.btn_to_side_fu_laden.clicked.connect(self.zu_beladen)
         if hasattr(self, 'btn_to_side_settings'):
             self.btn_to_side_settings.clicked.connect(self.zu_einstellungen)
-
-        logger.info("AuswahlSeite Buttons verbunden")
 
     def zu_heu_futter(self):
         if self.navigation:

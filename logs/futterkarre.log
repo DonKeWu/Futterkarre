@@ -2,3 +2,121 @@
 2025-06-09 07:38:50,576 [INFO] views.main_window: MainWindow wird initialisiert
 2025-06-09 09:46:34,053 [INFO] __main__: Futterkarre 2.0 startet
 2025-06-09 09:46:34,066 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 12:51:30,287 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 12:51:30,287 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 12:51:30,310 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 12:51:30,315 [ERROR] __main__: Kritischer Fehler in main(): 'AuswahlSeite' object has no attribute 'btn_to_side_fu_heu'
+2025-06-09 13:25:08,834 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 13:25:08,835 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 13:25:08,849 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 13:25:08,851 [ERROR] __main__: Kritischer Fehler in main(): 'AuswahlSeite' object has no attribute 'btn_to_side_fu_heu'
+2025-06-09 13:34:12,949 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 13:34:12,949 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 13:34:12,975 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 13:34:12,980 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 13:34:12,984 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 13:34:13,019 [INFO] __main__: MainWindow gestartet
+2025-06-09 13:34:13,019 [ERROR] __main__: Kritischer Fehler in main(): type object 'AppConfig' has no attribute 'DEBUG_MODE'
+2025-06-09 13:38:34,633 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 13:38:34,633 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 13:38:34,650 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 13:38:34,652 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 13:38:34,655 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 13:38:34,689 [INFO] __main__: MainWindow gestartet
+2025-06-09 13:38:34,689 [INFO] __main__: Testdaten geladen
+2025-06-09 13:38:37,002 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 13:38:51,505 [INFO] views.main_window: Wechsel zu Status: einstellungen
+2025-06-09 13:38:55,961 [INFO] views.einstellungen_seite: HX711 Simulation: aktiviert
+2025-06-09 13:38:58,862 [INFO] views.einstellungen_seite: Zurück-Button geklickt - Navigation zur Auswahl-Seite
+2025-06-09 13:52:24,166 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 13:52:24,166 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 13:52:24,219 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 13:52:24,229 [ERROR] __main__: Kritischer Fehler in main(): BeladenSeite.__init__() missing 1 required positional argument: 'parent'
+2025-06-09 14:04:06,759 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 14:04:06,759 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 14:04:06,791 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 14:04:06,799 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 14:04:06,804 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 14:04:06,841 [INFO] __main__: MainWindow gestartet
+2025-06-09 14:04:06,841 [INFO] __main__: Testdaten geladen
+2025-06-09 14:04:13,676 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 14:05:29,049 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 14:05:29,049 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 14:05:29,068 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 14:05:29,070 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 14:05:29,073 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 14:05:29,102 [INFO] __main__: MainWindow gestartet
+2025-06-09 14:05:29,102 [INFO] __main__: Testdaten geladen
+2025-06-09 14:05:35,979 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 14:10:20,656 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 14:10:20,656 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 14:10:20,678 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 14:10:20,690 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 14:10:20,697 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 14:10:20,731 [INFO] __main__: MainWindow gestartet
+2025-06-09 14:10:20,731 [INFO] __main__: Testdaten geladen
+2025-06-09 14:10:22,019 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 14:44:33,458 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 14:44:33,458 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 14:44:33,471 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 14:44:33,474 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-06-09 14:44:33,474 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 14:44:33,476 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 14:44:33,510 [INFO] __main__: MainWindow gestartet
+2025-06-09 14:44:33,510 [INFO] __main__: Testdaten geladen
+2025-06-09 14:44:40,621 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 14:44:47,619 [INFO] views.main_window: Wechsel zu Status: einstellungen
+2025-06-09 14:44:50,494 [INFO] views.einstellungen_seite: HX711 Simulation: aktiviert
+2025-06-09 14:44:53,264 [INFO] views.einstellungen_seite: Zurück-Button geklickt - Navigation zur Auswahl-Seite
+2025-06-09 14:44:53,264 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 14:44:58,972 [INFO] views.main_window: Wechsel zu Status: beladen
+2025-06-09 14:45:09,328 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-06-09 14:45:09,329 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-06-09 14:45:24,292 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 15:04:40,423 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 15:04:40,423 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 15:04:40,445 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 15:04:40,460 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-06-09 15:04:40,461 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 15:04:40,471 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 15:04:40,510 [INFO] __main__: MainWindow gestartet
+2025-06-09 15:04:40,510 [INFO] __main__: Testdaten geladen
+2025-06-09 15:04:41,958 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 15:04:46,104 [INFO] views.main_window: Wechsel zu Status: einstellungen
+2025-06-09 15:04:48,775 [INFO] views.einstellungen_seite: Zurück-Button geklickt - Navigation zur Auswahl-Seite
+2025-06-09 15:04:48,776 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 15:04:51,801 [INFO] views.main_window: Wechsel zu Status: einstellungen
+2025-06-09 15:05:07,736 [INFO] views.einstellungen_seite: HX711 Simulation: aktiviert
+2025-06-09 15:05:20,016 [INFO] views.einstellungen_seite: Fütterungs-Simulation: aktiviert
+2025-06-09 15:05:31,511 [INFO] views.einstellungen_seite: Fütterungs-Simulation: deaktiviert
+2025-06-09 15:18:06,598 [INFO] views.einstellungen_seite: Zurück-Button geklickt - Navigation zur Auswahl-Seite
+2025-06-09 15:18:06,598 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 15:18:08,764 [INFO] views.main_window: Wechsel zu Status: einstellungen
+2025-06-09 15:18:28,144 [INFO] views.einstellungen_seite: Zurück-Button geklickt - Navigation zur Auswahl-Seite
+2025-06-09 15:18:28,144 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 15:18:29,782 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-06-09 15:19:52,440 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 15:19:55,438 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 15:19:57,317 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-06-09 15:47:50,341 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 15:47:50,341 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 15:47:50,360 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 15:47:50,368 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-06-09 15:47:50,368 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-06-09 15:47:50,375 [INFO] views.main_window: Wechsel zu Status: start
+2025-06-09 15:47:50,408 [INFO] __main__: MainWindow gestartet
+2025-06-09 15:47:50,408 [INFO] __main__: Testdaten geladen
+2025-06-09 15:47:51,869 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-06-09 15:47:53,147 [INFO] views.main_window: Wechsel zu Status: beladen
+2025-06-09 15:47:58,517 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-06-09 15:47:58,518 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-06-09 15:59:29,104 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 15:59:29,104 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 15:59:29,134 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 15:59:29,142 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-06-09 15:59:29,143 [ERROR] __main__: Kritischer Fehler in main(): 'BeladenSeite' object has no attribute 'create_ui_in_code'
+2025-06-09 16:00:17,343 [INFO] __main__: Sensor Manager initialisiert
+2025-06-09 16:00:17,343 [INFO] __main__: 1 Heu-Einträge geladen
+2025-06-09 16:00:17,356 [INFO] views.main_window: MainWindow wird initialisiert
+2025-06-09 16:00:17,367 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-06-09 16:00:17,367 [ERROR] __main__: Kritischer Fehler in main(): 'BeladenSeite' object has no attribute 'create_ui_in_code'

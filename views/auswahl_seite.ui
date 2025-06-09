@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color: #fdffe0;</string>
   </property>
-  <widget class="QPushButton" name="btn_heulage">
+  <widget class="QPushButton" name="btn_to_side_fu_heulage">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -70,7 +70,7 @@ QPushButton:hover {
     <string>HEULAGE</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_heu">
+  <widget class="QPushButton" name="btn_to_side_fu_heu">
    <property name="enabled">
     <bool>true</bool>
    </property>
@@ -174,7 +174,7 @@ color: #fdffe0;
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_settings">
+  <widget class="QPushButton" name="btn_to_side_settings">
    <property name="geometry">
     <rect>
      <x>965</x>
@@ -201,7 +201,7 @@ color: #fdffe0;
     </size>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_laden">
+  <widget class="QPushButton" name="btn_to_side_fu_laden">
    <property name="geometry">
     <rect>
      <x>290</x>
