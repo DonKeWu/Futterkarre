@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fc8e8f2-4e61-448b-9c8d-0b20172a4add" name="Changes" comment="aufbau">
-      <change afterPath="$PROJECT_DIR$/views/beladen_seite.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/test_einstellungen_seite.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/test_fuettern_seite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/logging_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/logging_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/hx711_sensor.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/hx711_sensor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hardware/sensor_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/hardware/sensor_manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hardware/sensor_switch.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tree.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tree.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/einstellungen_seite.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/einstellungen_seite.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/einstellungen_seite.ui" beforeDir="false" afterPath="$PROJECT_DIR$/views/einstellungen_seite.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/main_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/views/main_window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +124,7 @@
       <workItem from="1749355267515" duration="595000" />
       <workItem from="1749355979533" duration="6899000" />
       <workItem from="1749365093578" duration="15530000" />
-      <workItem from="1749442117263" duration="5253000" />
+      <workItem from="1749442117263" duration="5725000" />
     </task>
     <task id="LOCAL-00001" summary="aufbau">
       <option name="closed" value="true" />
@@ -177,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749375969703</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="aufbau">
+      <option name="closed" value="true" />
+      <created>1749447842487</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1749447842487</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,8 +196,8 @@
     <option name="LAST_COMMIT_MESSAGE" value="aufbau" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Futterwagen_2$main.coverage" NAME="main Coverage Results" MODIFIED="1749389618781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Futterwagen_2$einstellungen_seite.coverage" NAME="einstellungen_seite Coverage Results" MODIFIED="1749447326831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
+    <SUITE FILE_PATH="coverage/Futterwagen_2$main.coverage" NAME="main Coverage Results" MODIFIED="1749447530169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Futterwagen_2$einstellungen_seite.coverage" NAME="einstellungen_seite Coverage Results" MODIFIED="1749447484530" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
     <SUITE FILE_PATH="coverage/Futterwagen_2$.coverage" NAME=" Coverage Results" MODIFIED="1749390006990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/views" />
   </component>
 </project>
