@@ -21,6 +21,9 @@
 │   ├── __init__.py
 │   ├── sensor_interface.py
 │   └── sensor_manager.py
+├── logs
+│   ├── debug.log
+│   └── futterkarre.log
 ├── main.py
 ├── main.txt
 ├── models
@@ -66,4 +69,4 @@
     ├── test_einstellungen_seite.py
     └── test_fuettern_seite.py
 
-10 directories, 57 files
+11 directories, 59 files
