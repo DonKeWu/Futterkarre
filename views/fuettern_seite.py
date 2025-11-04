@@ -1,11 +1,11 @@
-# views/fuettern_seite.py - Erweiterte Gewichts-Simulation
+# views/fuettern_seite.py - Vereinfachte Version ohne separate Simulation
 import os
 import logging
 import views.icons.icons_rc
 from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QTimer
-import hardware.fu_sim as fu_sim
+import hardware.hx711_sim as hx711_sim
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +26,9 @@ class FuetternSeite(QWidget):
         self.aktuelles_pferd = None
         self.letztes_gewicht = 0.0
         self.gewaehlter_futtertyp = "heu"
+        
+        # Futter-Daten Variablen (HINZUGEFÜGT)
+        self.aktuelle_futter_daten = None
 
         # UI laden
         self.load_ui_or_fallback()
@@ -46,11 +49,7 @@ class FuetternSeite(QWidget):
 
     def connect_buttons(self):
         """Verbindet alle Buttons"""
-        # Fütterungs-Simulation Button
-        if hasattr(self, 'btn_h_fu_sim'):
-            self.btn_h_fu_sim.clicked.connect(self.simuliere_fuetterung)
-
-        # Navigation Buttons
+        # Navigation Buttons (Fütterungs-Simulation entfernt)
         if hasattr(self, 'btn_back'):
             self.btn_back.clicked.connect(self.zurueck_zur_auswahl)
         if hasattr(self, 'btn_settings'):
@@ -92,71 +91,150 @@ class FuetternSeite(QWidget):
         self.aktuelles_pferd = pferd
 
         try:
-            # ECHTE Pferd-Daten anzeigen mit Null-Prüfung
+            # ECHTE Pferd-Daten anzeigen - Box-Nummer getrennt vom Namen
+            if hasattr(self, 'label_box') and hasattr(pferd, 'box'):
+                # Box-Nummer in separates Label
+                self.label_box.setText(f"Box {pferd.box}")
+                
             if hasattr(self, 'label_rgv_name') and hasattr(pferd, 'name'):
+                # Nur noch der Name ohne Box-Nummer
                 self.label_rgv_name.setText(pferd.name)
+                
             if hasattr(self, 'label_rgv_alter') and hasattr(pferd, 'alter'):
                 self.label_rgv_alter.setText(f"{pferd.alter} Jahre")
             if hasattr(self, 'label_rgv_gewicht') and hasattr(pferd, 'gewicht'):
                 self.label_rgv_gewicht.setText(f"{pferd.gewicht} kg")
 
-            logger.info(f"Pferd-Daten angezeigt: {pferd.name}, {pferd.alter} Jahre, {pferd.gewicht} kg")
+            logger.info(f"Pferd-Daten angezeigt: Box {getattr(pferd, 'box', '?')} - {pferd.name}, {pferd.alter} Jahre, {pferd.gewicht} kg")
 
         except Exception as e:
             logger.error(f"Fehler beim Anzeigen der Pferd-Daten: {e}")
+
+    def zeige_futter_analysewerte(self, futter_daten, gefuetterte_menge_kg=5.0):
+        """Zeigt Futter-Analysewerte als absolute Mengen basierend auf gefütterter Menge"""
+        if not futter_daten:
+            logger.warning("Keine Futter-Daten übergeben")
+            return
+            
+        self.aktuelle_futter_daten = futter_daten
+        
+        try:
+            # ABSOLUTE MENGEN berechnen (Prozent * gefütterte Menge)
+            trockensubstanz_g = (futter_daten.trockenmasse / 100.0) * gefuetterte_menge_kg * 1000
+            rohprotein_g = (futter_daten.rohprotein / 100.0) * gefuetterte_menge_kg * 1000
+            rohfaser_g = (futter_daten.rohfaser / 100.0) * gefuetterte_menge_kg * 1000
+            gesamtzucker_g = (futter_daten.gesamtzucker / 100.0) * gefuetterte_menge_kg * 1000
+            fruktan_g = (futter_daten.fruktan / 100.0) * gefuetterte_menge_kg * 1000
+            me_pferd_total = (futter_daten.me_pferd / 100.0) * gefuetterte_menge_kg * 100  # MJ
+            pcv_xp_g = (futter_daten.pcv_xp / 100.0) * gefuetterte_menge_kg * 1000
+            feuchte_g = ((100.0 - futter_daten.trockenmasse) / 100.0) * gefuetterte_menge_kg * 1000
+            
+            # ERNÄHRUNGSPHYSIOLOGISCHE Kontrolle (nur die 3 wichtigsten Werte)
+            pferd_gewicht = getattr(self.aktuelles_pferd, 'gewicht', 500) if hasattr(self, 'aktuelles_pferd') else 500
+            self.update_naehrwert_labels_mit_kontrolle(rohprotein_g, rohfaser_g, fruktan_g, pferd_gewicht)
+                
+            logger.info(f"Futter-Analysewerte für {gefuetterte_menge_kg:.1f}kg {futter_daten.name} berechnet")
+            logger.info(f"Beispiel: Rohprotein {rohprotein_g:.0f}g ({futter_daten.rohprotein:.1f}% von {gefuetterte_menge_kg:.1f}kg)")
+            
+        except Exception as e:
+            logger.error(f"Fehler beim Berechnen der Futter-Analysewerte: {e}")
+            
+    def update_naehrwert_labels_mit_kontrolle(self, rohprotein_g, rohfaser_g, fruktan_g, pferd_gewicht_kg):
+        """Aktualisiert Nährwert-Labels mit ernährungsphysiologischer Farbkontrolle (reduziert auf 3 Werte)"""
+        
+        # ERNÄHRUNGSPHYSIOLOGISCHE RICHTWERTE pro 100kg Körpergewicht/Tag
+        # Reduziert auf die 3 wichtigsten Werte: Rohprotein, Rohfaser, Fruktan
+        richtwerte_pro_100kg = {
+            'rohfaser_min': 1000,    # 1.0kg Rohfaser (Mindestbedarf)
+            'rohfaser_max': 1500,    # 1.5kg Rohfaser (Obergrenze)
+            'rohprotein_min': 500,   # 0.5kg Eiweiß (Mindestbedarf Ruhepferd)  
+            'rohprotein_max': 800,   # 0.8kg Eiweiß (Obergrenze Arbeitspferd)
+            'fruktan_max': 50        # 0.05kg Fruktan (max. empfohlen - Hufrehe-Risiko)
+        }
+        
+        # Berechne Richtwerte für das spezifische Pferd
+        gewicht_faktor = pferd_gewicht_kg / 100.0
+        richtwerte = {k: v * gewicht_faktor for k, v in richtwerte_pro_100kg.items()}
+        
+        # Futter-Analysewerte mit Farbkontrolle anzeigen (nur die 3 wichtigsten)
+        if hasattr(self, 'label_h_rohprotein'):
+            farbe = self.get_naehrwert_farbe(rohprotein_g, 
+                                           richtwerte['rohprotein_min'], 
+                                           richtwerte['rohprotein_max'])
+            self.label_h_rohprotein.setText(f"{rohprotein_g:.0f}g")
+            self.label_h_rohprotein.setStyleSheet(f"color: {farbe}; font-weight: bold;")
+            
+        if hasattr(self, 'label_h_rohfaser'):
+            farbe = self.get_naehrwert_farbe(rohfaser_g, 
+                                           richtwerte['rohfaser_min'], 
+                                           richtwerte['rohfaser_max'])
+            self.label_h_rohfaser.setText(f"{rohfaser_g:.0f}g")
+            self.label_h_rohfaser.setStyleSheet(f"color: {farbe}; font-weight: bold;")
+            
+        # FRUKTAN - nur Obergrenze prüfen (viel = gefährlich bei Hufrehe)
+        if hasattr(self, 'label_h_fruktan'):
+            if fruktan_g > richtwerte['fruktan_max']:
+                farbe = "red"  # Zu viel Fruktan = Hufrehe-Risiko
+            elif fruktan_g > richtwerte['fruktan_max'] * 0.7:
+                farbe = "orange"  # Vorsicht bei hohem Fruktan
+            else:
+                farbe = "green"  # Fruktan OK
+            self.label_h_fruktan.setText(f"{fruktan_g:.0f}g")
+            self.label_h_fruktan.setStyleSheet(f"color: {farbe}; font-weight: bold;")
+            
+    def get_naehrwert_farbe(self, ist_wert, min_wert, max_wert):
+        """Gibt Farbe basierend auf ernährungsphysiologischen Richtwerten zurück"""
+        if ist_wert < min_wert:
+            return "#FFA500"  # Orange - zu wenig
+        elif ist_wert > max_wert:  
+            return "#FF0000"  # Rot - zu viel (kritisch!)
+        else:
+            return "#00FF00"  # Grün - optimal
 
     def set_karre_gewicht(self, gewicht):
         """Setzt das Karre-Gewicht (von Beladen-Seite)"""
         self.karre_gewicht = gewicht
         self.start_gewicht = gewicht
-        logger.info(f"Karre-Gewicht gesetzt: {gewicht:.2f} kg")
+        logger.info(f"Karre-Gewicht von Beladen-Seite übernommen: {gewicht:.2f} kg")
         self.update_gewichts_anzeigen()
 
-    def simuliere_fuetterung(self):
-        """Simuliert eine Fütterung - reduziert Karre-Gewicht"""
-        if self.karre_gewicht <= 0:
-            logger.warning("Karre ist leer - Nachladen erforderlich!")
-            return
-
-        # Fütterungsmenge simulieren (1-4 kg)
-        import random
-        fuetter_menge = random.uniform(1.0, 4.0)
-
-        # Karre-Gewicht reduzieren
-        if fuetter_menge > self.karre_gewicht:
-            fuetter_menge = self.karre_gewicht  # Nicht mehr entnehmen als vorhanden
-
-        self.karre_gewicht -= fuetter_menge
-        self.entnommenes_gewicht = fuetter_menge
-
-        logger.info(f"Fütterung simuliert: {fuetter_menge:.2f} kg entnommen, Karre-Rest: {self.karre_gewicht:.2f} kg")
-
-        # Anzeigen aktualisieren
-        self.update_gewichts_anzeigen()
-
-        # Fütterungs-Simulation aktivieren
-        fu_sim.setze_simulation(True)
+    # Simuliere_fuetterung entfernt - wird jetzt automatisch über btn_next_rgv gehandhabt
 
     def update_gewichts_anzeigen(self):
-        """Aktualisiert alle Gewichts-Anzeigen"""
-        # Karre-Gewicht anzeigen
-        if hasattr(self, 'label_karre_gewicht_anzeigen'):
-            self.label_karre_gewicht_anzeigen.setText(f"{self.karre_gewicht:.2f}")
+        """Aktualisiert alle Gewichts-Anzeigen - verwendet sensor_manager"""
+        try:
+            # Einheitliche Gewichtsquelle: sensor_manager
+            # Im Simulation-Modus: hx711_sim workflow simulation
+            # Im Produktiv-Modus: echte Hardware
+            if hasattr(self, 'navigation') and hasattr(self.navigation, 'sensor_manager'):
+                aktuelles_gewicht = self.navigation.sensor_manager.read_weight()
+                self.karre_gewicht = aktuelles_gewicht
+            
+            # Karre-Gewicht anzeigen
+            if hasattr(self, 'label_karre_gewicht_anzeigen'):
+                self.label_karre_gewicht_anzeigen.setText(f"{self.karre_gewicht:.2f}")
 
-        # Entnommenes Gewicht anzeigen - KORRIGIERTES LABEL!
-        if hasattr(self, 'label_fu_entnommen'):  # ✅ KORREKT: Neuer Label-Name
-            self.label_fu_entnommen.setText(f"{self.entnommenes_gewicht:.2f}")
+            # Entnommenes Gewicht anzeigen
+            if hasattr(self, 'label_fu_entnommen'):
+                self.label_fu_entnommen.setText(f"{self.entnommenes_gewicht:.2f}")
 
-        # Debug-Ausgabe
-        print(f"DEBUG: Karre-Gewicht: {self.karre_gewicht:.2f} kg")
-        print(f"DEBUG: Entnommen: {self.entnommenes_gewicht:.2f} kg")
+            # Debug-Ausgabe
+            print(f"DEBUG: Karre-Gewicht: {self.karre_gewicht:.2f} kg")
+            print(f"DEBUG: Entnommen: {self.entnommenes_gewicht:.2f} kg")
+            
+        except Exception as e:
+            logger.error(f"Fehler beim Aktualisieren der Gewichtsanzeige: {e}")
         print(f"DEBUG: Label 'label_fu_entnommen' aktualisiert")
 
     def update_displays(self):
-        """Echtzeit-Updates für alle Anzeigen"""
+        """Echtzeit-Updates für alle Anzeigen INKLUSIVE Ernährungscontrolling"""
         try:
             # Gewichts-Anzeigen aktualisieren
             self.update_gewichts_anzeigen()
+
+            # ECHTZEIT-ERNÄHRUNGSCONTROLLING: Analysewerte mit aktueller Entnahme neu berechnen
+            if hasattr(self, 'aktuelle_futter_daten') and self.aktuelle_futter_daten and self.entnommenes_gewicht > 0:
+                self.zeige_futter_analysewerte(self.aktuelle_futter_daten, self.entnommenes_gewicht)
 
             # Zellen-Anzeigen (falls HX711 aktiv)
             if hasattr(self, 'navigation') and self.navigation:
@@ -219,11 +297,25 @@ class FuetternSeite(QWidget):
             self.navigation.show_status("beladen", context)
 
     def naechstes_pferd(self):
-        """Wechselt zum nächsten Pferd"""
+        """Wechselt zum nächsten Pferd und triggert automatische Simulation"""
+        # Simulation: 4.5kg automatisch entnehmen
+        if hx711_sim.ist_simulation_aktiv():
+            hx711_sim.pferd_gefuettert()  # Automatische 4.5kg Entnahme
+            self.entnommenes_gewicht = 4.5  # Für Anzeige
+            logger.info("Simulation: 4.5kg automatisch entnommen")
+            
+            # Futter-Analysewerte mit tatsächlicher Menge aktualisieren
+            if self.aktuelle_futter_daten:
+                self.zeige_futter_analysewerte(self.aktuelle_futter_daten, self.entnommenes_gewicht)
+        
+        # Zum nächsten Pferd wechseln
         if self.navigation:
             naechstes_pferd = self.navigation.naechstes_pferd()
             if naechstes_pferd:
                 self.zeige_pferd_daten(naechstes_pferd)
+        
+        # Anzeigen aktualisieren
+        self.update_gewichts_anzeigen()
 
     def zurueck_zur_auswahl(self):
         if self.navigation:

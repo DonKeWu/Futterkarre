@@ -17,15 +17,25 @@ def lade_pferde_als_dataclasses(dateiname: str) -> List[Pferd]:
         reader = csv.DictReader(csvfile)
         for row in reader:
             if validate_pferd(row):
-                pferd = Pferd(
-                    name=row['Name'],  # Großgeschrieben
-                    gewicht=float(row['Gewicht']),  # Großgeschrieben
-                    alter=int(row['Alter']),  # Großgeschrieben
-                    notizen=row.get('Notizen', '')
-                )
-                pferde_liste.append(pferd)
+                # Nur aktive Pferde laden (leere Boxen überspringen)
+                aktiv = row.get('Aktiv', 'true').lower() == 'true'
+                if aktiv and row.get('Name'):  # Name muss vorhanden sein
+                    pferd = Pferd(
+                        name=row['Name'],  # Großgeschrieben
+                        gewicht=float(row['Gewicht']),  # Großgeschrieben
+                        alter=int(row['Alter']),  # Großgeschrieben
+                        box=int(row.get('Box', row.get('Folge', 1))),  # Box-Nummer
+                        aktiv=aktiv,
+                        notizen=row.get('Notizen', '')
+                    )
+                    pferde_liste.append(pferd)
+                else:
+                    logger.info(f"Leere Box übersprungen: Box {row.get('Box', '?')}")
             else:
                 logger.warning(f"Ungültige Pferdedaten übersprungen: {row}")
+    
+    # Nach Box-Nummer sortieren
+    pferde_liste.sort(key=lambda p: p.box)
     return pferde_liste
 
 def lade_heu_als_dataclasses(dateiname: str) -> List[Heu]:

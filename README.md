@@ -202,13 +202,39 @@ python main.py --debug
 
 ---
 
-## 📝 **Changelog**
+## � **Aktueller Deployment-Status**
+
+### **📡 SSH-Verbindung zu Raspberry Pi 5 (4. Nov 2025)**
+```bash
+# Aktuelle Sitzung:
+daniel@Ubuntu24041LTS → ssh daniel@raspberry5
+# Status: ✅ Verbunden
+# Pi-Version: Linux raspberry5 6.12.47+rpt-rpi-2712 (Debian Bookworm)
+# Python: 3.11.2 ✅ | Git: 2.39.5 ✅
+```
+
+### **🔄 Repository-Synchronisation:**
+- **Ubuntu-Entwicklung:** aktueller Stand (main branch)
+- **Raspberry Pi:** Repository vorhanden, aber divergiert (30 vs 1 commits)
+- **Nächste Schritte:** Git-Synchronisation + virtuelle Umgebung + Dependencies
+
+### **💻 Deployment-Pipeline:**
+1. **Ubuntu ↔ RPi5 Git-Sync** (aktuell in Arbeit)
+2. **Python venv Setup** auf Raspberry Pi
+3. **PyQt5 + Dependencies** Installation  
+4. **Hardware-Tests** mit echten HX711-Sensoren
+5. **Autostart-Konfiguration** für Produktiveinsatz
+
+---
+
+## �📝 **Changelog**
 
 ### **v2.0.x - Aktuelle Entwicklung**
 - ✨ Hardware-Simulation verbessert
 - 🐛 Gewichtssynchronisation korrigiert  
 - 📝 Umfassende Code-Analyse
 - 🔧 .gitignore optimiert
+- 🚀 **SSH-Deployment** zu Raspberry Pi 5 eingeleitet
 
 ### **v1.x - Legacy**
 - 🎯 Grundlegende PyQt5-Implementation

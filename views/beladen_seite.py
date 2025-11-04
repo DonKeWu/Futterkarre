@@ -140,29 +140,42 @@ class BeladenSeite(QWidget):
             f"Beladen-Seite: Kontext erhalten - Pferd {self.pferd_nummer}, Restgewicht: {self.restgewicht:.2f} kg")
 
     def beladen_fertig(self):
-        """Navigation zurück zur Füttern-Seite MIT korrekter Gewichts-Addition"""
+        """Navigation zurück zur Füttern-Seite mit Simulation-Support"""
         if self.navigation:
             try:
+                # Import hier um Zirkular-Import zu vermeiden
+                import hardware.hx711_sim as hx711_sim
+                
+                # Simulation: Karre automatisch auf 35kg beladen
+                if hx711_sim.ist_simulation_aktiv():
+                    hx711_sim.karre_beladen()  # Automatisch auf 35kg
+                    logger.info("Simulation: Karre automatisch auf 35kg beladen")
+                
+                # Aktuelles Gewicht lesen (Simulation oder Hardware)
                 aktuelles_gewicht = self.sensor_manager.read_weight()
 
-                # KORRIGIERT: Gewicht addieren, nicht überschreiben!
-                if self.restgewicht > 0:
-                    # Nachladen: Altes Gewicht + neues Gewicht
-                    gesamtgewicht = self.restgewicht + aktuelles_gewicht
+                # Für Simulation: Immer Neubeladung (35kg)
+                # Für Hardware: Additive Beladung wie bisher
+                if hx711_sim.ist_simulation_aktiv():
+                    gesamtgewicht = aktuelles_gewicht  # Simulation: direkter Wert
                     nachgeladen = aktuelles_gewicht
-                    logger.info(
-                        f"Nachladen: {self.restgewicht:.2f} kg + {aktuelles_gewicht:.2f} kg = {gesamtgewicht:.2f} kg")
+                    logger.info(f"Simulation: Beladen auf {gesamtgewicht:.2f} kg")
                 else:
-                    # Erstmaliges Beladen
-                    gesamtgewicht = aktuelles_gewicht
-                    nachgeladen = aktuelles_gewicht
-                    logger.info(f"Erstmaliges Beladen: {gesamtgewicht:.2f} kg")
+                    # HARDWARE: Additive Beladung wie bisher
+                    if self.restgewicht > 0:
+                        gesamtgewicht = self.restgewicht + aktuelles_gewicht
+                        nachgeladen = aktuelles_gewicht
+                        logger.info(f"Hardware: Nachladen {self.restgewicht:.2f} + {aktuelles_gewicht:.2f} = {gesamtgewicht:.2f} kg")
+                    else:
+                        gesamtgewicht = aktuelles_gewicht
+                        nachgeladen = aktuelles_gewicht
+                        logger.info(f"Hardware: Erstmaliges Beladen {gesamtgewicht:.2f} kg")
 
-                self.context['neues_gewicht'] = gesamtgewicht  # KORRIGIERT: Gesamtgewicht
+                self.context['neues_gewicht'] = gesamtgewicht
                 self.context['nachgeladen'] = nachgeladen
                 self.context['futtertyp'] = self.gewaehlter_futtertyp
 
-                logger.info(f"Beladen abgeschlossen: {nachgeladen:.2f} kg nachgeladen, Gesamt: {gesamtgewicht:.2f} kg")
+                logger.info(f"Beladen abgeschlossen: Gesamt {gesamtgewicht:.2f} kg")
                 self.navigation.show_status("fuettern", self.context)
 
             except Exception as e:
@@ -232,35 +245,4 @@ class BeladenSeite(QWidget):
             if hasattr(self, 'label_karre_gewicht'):
                 self.label_karre_gewicht.setText(f"{gewicht:.2f}")
 
-    def simuliere_fuetterung(self):
-        """Simuliert eine Fütterung - reduziert Karre-Gewicht"""
-        print(f"DEBUG: Fütterung gestartet - Karre-Gewicht vorher: {self.karre_gewicht:.2f} kg")
-
-        if self.karre_gewicht <= 0:
-            logger.warning("Karre ist leer - Nachladen erforderlich!")
-            print("DEBUG: Karre ist leer!")
-            return
-
-        # Fütterungsmenge simulieren (1-4 kg)
-        import random
-        fuetter_menge = random.uniform(1.0, 4.0)
-
-        # Karre-Gewicht reduzieren
-        if fuetter_menge > self.karre_gewicht:
-            fuetter_menge = self.karre_gewicht  # Nicht mehr entnehmen als vorhanden
-
-        self.karre_gewicht -= fuetter_menge
-        self.entnommenes_gewicht = fuetter_menge
-
-        print(f"DEBUG: {fuetter_menge:.2f} kg entnommen")
-        print(f"DEBUG: Karre-Gewicht nachher: {self.karre_gewicht:.2f} kg")
-        print(f"DEBUG: Entnommenes Gewicht: {self.entnommenes_gewicht:.2f} kg")
-
-        logger.info(f"Fütterung simuliert: {fuetter_menge:.2f} kg entnommen, Karre-Rest: {self.karre_gewicht:.2f} kg")
-
-        # Anzeigen aktualisieren
-        self.update_gewichts_anzeigen()
-
-        # Fütterungs-Simulation aktivieren
-        fu_sim.setze_simulation(True)
-
+    # simuliere_fuetterung entfernt - nicht mehr nötig mit vereinfachter Simulation

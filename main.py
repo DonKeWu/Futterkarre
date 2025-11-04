@@ -33,14 +33,11 @@ def main():
         # 2. Simulation aktivieren für Entwicklung
         if AppConfig.DEBUG_MODE:
             import hardware.hx711_sim as hx711_sim
-            import hardware.fu_sim as fu_sim
             hx711_sim.setze_simulation(True)
-            fu_sim.setze_simulation(True)
-            logger.info("Simulationen aktiviert")
+            logger.info("HX711-Simulation aktiviert")
 
             # DEBUG: Sofort testen
             print(f"DEBUG: HX711 aktiv? {hx711_sim.ist_simulation_aktiv()}")
-            print(f"DEBUG: FU aktiv? {fu_sim.ist_simulation_aktiv()}")
 
         # 3. PyQt-Anwendung starten - OHNE Daten zu laden!
         app = QApplication(sys.argv)

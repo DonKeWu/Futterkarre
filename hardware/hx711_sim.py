@@ -1,9 +1,41 @@
-# hardware/hx711_sim.py - KORRIGIERTE VERSION
+# hardware/hx711_sim.py - VEREINFACHTE WORKFLOW-SIMULATION
 import random
 import sys
 
-# Nur EINE Variable!
+# Simulation-Steuerung
 USE_SIMULATION = False
+
+# Workflow-Simulation - FESTE WERTE für Testing
+class WorkflowSimulation:
+    def __init__(self):
+        self.karre_gewicht = 35.0          # Startgewicht (fest)
+        self.entnahme_pro_pferd = 4.5      # Entnahme pro Pferd (fest)
+        self.ist_beladen = True            # Karre-Status
+        
+    def get_weight(self):
+        """Gibt aktuelles Simulationsgewicht zurück mit kleinen Schwankungen"""
+        if not self.ist_beladen:
+            return 0.0
+        # Kleine realistische Schwankungen
+        schwankung = random.uniform(-0.1, 0.1)
+        return max(0.0, self.karre_gewicht + schwankung)
+    
+    def pferd_gefuettert(self):
+        """Automatische 4.5kg Entnahme bei 'Weiter'-Button"""
+        self.karre_gewicht -= self.entnahme_pro_pferd
+        if self.karre_gewicht <= 0:
+            self.karre_gewicht = 0.0
+            self.ist_beladen = False
+        print(f"Simulation: 4.5kg entnommen, Rest: {self.karre_gewicht:.1f}kg")
+    
+    def karre_beladen(self):
+        """Automatisches Nachladen auf 35kg"""
+        self.karre_gewicht = 35.0
+        self.ist_beladen = True
+        print(f"Simulation: Karre beladen auf {self.karre_gewicht}kg")
+
+# Globale Workflow-Simulation
+_workflow_sim = WorkflowSimulation()
 
 def setze_simulation(enabled: bool):
     """Schaltet Simulation ein/aus"""
@@ -16,17 +48,27 @@ def ist_simulation_aktiv():
     return USE_SIMULATION
 
 def simuliere_gewicht():
-    """Simuliert realistisches Karrengewicht (15-45kg)"""
-    return round(random.uniform(15.0, 45.0), 2)
+    """Workflow-realistische Gewichtssimulation"""
+    return _workflow_sim.get_weight()
+
+def pferd_gefuettert():
+    """Wird vom 'Weiter'-Button aufgerufen"""
+    _workflow_sim.pferd_gefuettert()
+
+def karre_beladen():
+    """Wird vom 'Beladen bestätigen'-Button aufgerufen"""
+    _workflow_sim.karre_beladen()
 
 def lese_einzelzellen():
     """Simuliert 4 einzelne Wägezellen für Debugging"""
     if USE_SIMULATION:
-        return [round(random.uniform(3.0, 12.0), 2) for _ in range(4)]
+        gewicht = _workflow_sim.get_weight()
+        # Gewicht auf 4 Zellen aufteilen
+        basis = gewicht / 4.0
+        return [round(basis + random.uniform(-0.5, 0.5), 2) for _ in range(4)]
     else:
         return [0.0, 0.0, 0.0, 0.0]
 
-# Kompatibilitätsfunktion
 def lese_gewicht():
     """Kompatibilitätsfunktion für alten Code"""
     if USE_SIMULATION:

@@ -5,17 +5,30 @@ logger = logging.getLogger(__name__)
 
 def validate_pferd(pferd: dict) -> bool:
     """Validiert die wichtigsten Felder eines Pferds."""
+    # Für leere Boxen ist Name optional
+    aktiv = pferd.get('Aktiv', 'true').lower() == 'true'
+    
+    if not aktiv:
+        # Leere Box - nur Box-Nummer erforderlich
+        return 'Box' in pferd or 'Folge' in pferd
+    
+    # Aktive Pferde benötigen alle Felder
     required_fields = ['Name', 'Gewicht', 'Alter']
     for field in required_fields:
-        if field not in pferd:
+        if field not in pferd or not pferd[field]:
             logger.error(f"Fehlendes Feld in Pferdedaten: {field}")
             return False
-    if not isinstance(pferd['Gewicht'], (int, float)) or pferd['Gewicht'] <= 0:
-        logger.error(f"Ungültiges Gewicht: {pferd['Gewicht']}")
+            
+    try:
+        gewicht = float(pferd['Gewicht'])
+        alter = int(pferd['Alter'])
+        if gewicht <= 0 or alter <= 0:
+            logger.error(f"Ungültige Werte: Gewicht={gewicht}, Alter={alter}")
+            return False
+    except (ValueError, TypeError):
+        logger.error(f"Konvertierungsfehler bei Pferdedaten: {pferd}")
         return False
-    if not isinstance(pferd['Alter'], int) or pferd['Alter'] <= 0:
-        logger.error(f"Ungültiges Alter: {pferd['Alter']}")
-        return False
+        
     return True
 
 def validate_heu(heu: dict) -> bool:

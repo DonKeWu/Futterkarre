@@ -1,4 +1,4 @@
-# views/einstellungen_seite.py
+# views/einstellungen_seite.py - Vereinfachte Einstellungen
 import os
 import logging
 
@@ -6,7 +6,6 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QTimer
 import hardware.hx711_sim as hx711_sim
-import hardware.fu_sim as fu_sim
 
 logger = logging.getLogger(__name__)
 
@@ -21,15 +20,12 @@ class EinstellungenSeite(QWidget):
         ui_path = os.path.join(os.path.dirname(__file__), "einstellungen_seite.ui")
         uic.loadUi(ui_path, self)
 
-        # Simulationen standardmäßig AUS
-        hx711_sim.setze_simulation(False)
-        fu_sim.setze_simulation(False)
+        # Standard-Simulation EIN (für Development)
+        hx711_sim.setze_simulation(True)
 
-        # Buttons als Schalter konfigurieren
+        # Nur noch ein Simulation-Button
         self.btn_simulation_toggle.setCheckable(True)
-        self.btn_simulation_toggle.setChecked(False)
-        self.btn_fu_sim_toggle.setCheckable(True)
-        self.btn_fu_sim_toggle.setChecked(False)
+        self.btn_simulation_toggle.setChecked(True)  # Standard: AN
 
         # Events verbinden
         self.connect_buttons()
@@ -50,9 +46,7 @@ class EinstellungenSeite(QWidget):
         hx711_sim.setze_simulation(checked)
         logger.info(f"HX711 Simulation: {'aktiviert' if checked else 'deaktiviert'}")
 
-    def toggle_fu_simulation(self, checked):
-        fu_sim.setze_simulation(checked)
-        logger.info(f"Fütterungs-Simulation: {'aktiviert' if checked else 'deaktiviert'}")
+    # toggle_fu_simulation entfernt - nur noch eine Simulation
 
     def zurueck_geklickt(self):
         """INTELLIGENTE Navigation - geht zur vorherigen Seite zurück"""
@@ -68,11 +62,10 @@ class EinstellungenSeite(QWidget):
 
     def connect_buttons(self):
         """Verbindet ALLE Buttons der Seite"""
-        # Bestehende Buttons
+        # Nur noch HX711-Simulation Button
         self.btn_simulation_toggle.clicked.connect(self.toggle_hx_simulation)
-        self.btn_fu_sim_toggle.clicked.connect(self.toggle_fu_simulation)
 
-        # BACK-BUTTON VERBINDEN - DAS FEHLTE!
+        # BACK-BUTTON VERBINDEN
         self.btn_back.clicked.connect(self.zurueck_geklickt)
 
         # NEUER Button für Futter-Konfiguration

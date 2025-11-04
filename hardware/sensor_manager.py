@@ -1,23 +1,15 @@
-# hardware/sensor_manager.py - KORRIGIERTE VERSION
+# hardware/sensor_manager.py - VEREINFACHTE VERSION
 import hardware.hx711_sim as hx711_sim
-import hardware.fu_sim as fu_sim
 import sys
 
 class SmartSensorManager:
     def read_weight(self) -> float:
         """Liest Gewicht: Simulation oder echte Hardware"""
 
-        # KORRIGIERT: Verwende ist_simulation_aktiv() statt USE_SIMULATION
+        # Vereinfacht: Nur HX711-Simulation oder echte Hardware
         if hx711_sim.ist_simulation_aktiv():
-            # Simulation aktiv
-            if fu_sim.ist_simulation_aktiv():
-                return fu_sim.get_sim_weight()  # Fütterungssimulation
-            else:
-                # HX711-Simulation - zufällige Werte
-                import random
-                gewicht = round(random.uniform(15.0, 45.0), 2)
-                print(f"HX711-Simulation: {gewicht} kg")  # Debug
-                return gewicht
+            # Simulation aktiv - workflow-realistische Werte
+            return hx711_sim.simuliere_gewicht()
         else:
             # PRODUKTIVBETRIEB - echte Hardware
             try:

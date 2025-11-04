@@ -560,8 +560,8 @@ QPushButton:hover {
   <widget class="QLabel" name="txt_rohprotein">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>470</y>
+     <x>300</x>
+     <y>480</y>
      <width>111</width>
      <height>30</height>
     </rect>
@@ -597,8 +597,8 @@ QPushButton:hover {
   <widget class="QLabel" name="txt_h_rohfaser">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>470</y>
+     <x>320</x>
+     <y>510</y>
      <width>111</width>
      <height>30</height>
     </rect>
@@ -631,11 +631,48 @@ QPushButton:hover {
     <string>Rohfaser:</string>
    </property>
   </widget>
+  <widget class="QLabel" name="txt_h_gesamtzucker">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>480</y>
+     <width>141</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Gesamtzucker:</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="txt_h_fruktan">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>470</y>
+     <x>580</x>
+     <y>510</y>
      <width>141</width>
      <height>30</height>
     </rect>
@@ -666,6 +703,80 @@ QPushButton:hover {
    </property>
    <property name="text">
     <string>Fruktan:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="txt_h_pcvxp">
+   <property name="geometry">
+    <rect>
+     <x>800</x>
+     <y>510</y>
+     <width>141</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>pcvXP:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="txt_h_me_pferd">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>480</y>
+     <width>141</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>ME-Pferd:</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_h_reload">
@@ -865,10 +976,10 @@ QPushButton:hover {
   <widget class="QLabel" name="label_h_rohprotein">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>500</y>
+     <x>410</x>
+     <y>480</y>
      <width>101</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -892,7 +1003,7 @@ QPushButton:hover {
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>30</pointsize>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="text">
@@ -902,10 +1013,10 @@ QPushButton:hover {
   <widget class="QLabel" name="label_h_rohfaser">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>500</y>
+     <x>410</x>
+     <y>510</y>
      <width>101</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -929,7 +1040,44 @@ QPushButton:hover {
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>30</pointsize>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>0.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_h_gesamtzucker">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>480</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>600</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="text">
@@ -939,10 +1087,10 @@ QPushButton:hover {
   <widget class="QLabel" name="label_h_fruktan">
    <property name="geometry">
     <rect>
-     <x>750</x>
-     <y>500</y>
+     <x>660</x>
+     <y>510</y>
      <width>101</width>
-     <height>41</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -966,7 +1114,81 @@ QPushButton:hover {
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>30</pointsize>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>0.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_h_me_pferd">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>480</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>600</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>0.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_h_pcvxp">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>510</y>
+     <width>161</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>600</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>15</pointsize>
     </font>
    </property>
    <property name="text">
@@ -997,6 +1219,160 @@ QPushButton:hover {
      <width>40</width>
      <height>40</height>
     </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="txt_h_rohfaser_2">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>510</y>
+     <width>111</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Feuchte:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="txt_Trockensubstanz">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>480</y>
+     <width>111</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Tr.-Masse:</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_h_trsub">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>480</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>600</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>0.00</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_h_feuchte">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>510</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>600</width>
+     <height>300</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>0.00</string>
    </property>
   </widget>
   <widget class="QLabel" name="txt_kg_2">
@@ -1133,7 +1509,10 @@ QPushButton:hover {
   <zorder>line_1</zorder>
   <zorder>txt_rohprotein</zorder>
   <zorder>txt_h_rohfaser</zorder>
+  <zorder>txt_h_gesamtzucker</zorder>
   <zorder>txt_h_fruktan</zorder>
+  <zorder>txt_h_pcvxp</zorder>
+  <zorder>txt_h_me_pferd</zorder>
   <zorder>btn_h_reload</zorder>
   <zorder>txt_zelle2</zorder>
   <zorder>txt_zelle1</zorder>
@@ -1141,8 +1520,15 @@ QPushButton:hover {
   <zorder>txt_zelle3</zorder>
   <zorder>label_h_rohprotein</zorder>
   <zorder>label_h_rohfaser</zorder>
+  <zorder>label_h_gesamtzucker</zorder>
   <zorder>label_h_fruktan</zorder>
+  <zorder>label_h_me_pferd</zorder>
+  <zorder>label_h_pcvxp</zorder>
   <zorder>btn_fu_sim</zorder>
+  <zorder>txt_h_rohfaser_2</zorder>
+  <zorder>txt_Trockensubstanz</zorder>
+  <zorder>label_h_trsub</zorder>
+  <zorder>label_h_feuchte</zorder>
   <zorder>txt_kg_2</zorder>
   <zorder>label_fu_entnommen</zorder>
   <zorder>label_karre_gewicht_anzeigen</zorder>
