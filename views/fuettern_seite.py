@@ -70,7 +70,7 @@ class FuetternSeite(QWidget):
         self.label_rgv_alter = QLabel("-- Jahre")
         self.label_rgv_gewicht = QLabel("-- kg")
         self.label_karre_gewicht_anzeigen = QLabel("0.00")
-        self.label_h_gewichtanzeige = QLabel("0.00")
+        self.label_fu_entnommen = QLabel("0.00")
 
         # Buttons
         self.btn_h_fu_sim = QPushButton("Fütterung simulieren")
@@ -118,9 +118,9 @@ class FuetternSeite(QWidget):
             logger.warning("Karre ist leer - Nachladen erforderlich!")
             return
 
-        # Fütterungsmenge simulieren (2-4 kg)
+        # Fütterungsmenge simulieren (1-4 kg)
         import random
-        fuetter_menge = random.uniform(2.0, 4.0)
+        fuetter_menge = random.uniform(1.0, 4.0)
 
         # Karre-Gewicht reduzieren
         if fuetter_menge > self.karre_gewicht:
@@ -143,9 +143,14 @@ class FuetternSeite(QWidget):
         if hasattr(self, 'label_karre_gewicht_anzeigen'):
             self.label_karre_gewicht_anzeigen.setText(f"{self.karre_gewicht:.2f}")
 
-        # Entnommenes Gewicht anzeigen
-        if hasattr(self, 'label_h_gewichtanzeige'):
-            self.label_h_gewichtanzeige.setText(f"{self.entnommenes_gewicht:.2f}")
+        # Entnommenes Gewicht anzeigen - KORRIGIERTES LABEL!
+        if hasattr(self, 'label_fu_entnommen'):  # ✅ KORREKT: Neuer Label-Name
+            self.label_fu_entnommen.setText(f"{self.entnommenes_gewicht:.2f}")
+
+        # Debug-Ausgabe
+        print(f"DEBUG: Karre-Gewicht: {self.karre_gewicht:.2f} kg")
+        print(f"DEBUG: Entnommen: {self.entnommenes_gewicht:.2f} kg")
+        print(f"DEBUG: Label 'label_fu_entnommen' aktualisiert")
 
     def update_displays(self):
         """Echtzeit-Updates für alle Anzeigen"""

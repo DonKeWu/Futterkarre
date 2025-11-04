@@ -140,17 +140,31 @@ class BeladenSeite(QWidget):
             f"Beladen-Seite: Kontext erhalten - Pferd {self.pferd_nummer}, Restgewicht: {self.restgewicht:.2f} kg")
 
     def beladen_fertig(self):
-        """Navigation zurück zur Füttern-Seite MIT Kontext"""
+        """Navigation zurück zur Füttern-Seite MIT korrekter Gewichts-Addition"""
         if self.navigation:
             try:
                 aktuelles_gewicht = self.sensor_manager.read_weight()
-                self.context['neues_gewicht'] = aktuelles_gewicht
-                self.context['nachgeladen'] = aktuelles_gewicht - self.restgewicht
+
+                # KORRIGIERT: Gewicht addieren, nicht überschreiben!
+                if self.restgewicht > 0:
+                    # Nachladen: Altes Gewicht + neues Gewicht
+                    gesamtgewicht = self.restgewicht + aktuelles_gewicht
+                    nachgeladen = aktuelles_gewicht
+                    logger.info(
+                        f"Nachladen: {self.restgewicht:.2f} kg + {aktuelles_gewicht:.2f} kg = {gesamtgewicht:.2f} kg")
+                else:
+                    # Erstmaliges Beladen
+                    gesamtgewicht = aktuelles_gewicht
+                    nachgeladen = aktuelles_gewicht
+                    logger.info(f"Erstmaliges Beladen: {gesamtgewicht:.2f} kg")
+
+                self.context['neues_gewicht'] = gesamtgewicht  # KORRIGIERT: Gesamtgewicht
+                self.context['nachgeladen'] = nachgeladen
                 self.context['futtertyp'] = self.gewaehlter_futtertyp
 
-                logger.info(
-                    f"Beladen abgeschlossen: {self.context['nachgeladen']:.2f} kg {self.gewaehlter_futtertyp} nachgeladen")
+                logger.info(f"Beladen abgeschlossen: {nachgeladen:.2f} kg nachgeladen, Gesamt: {gesamtgewicht:.2f} kg")
                 self.navigation.show_status("fuettern", self.context)
+
             except Exception as e:
                 logger.error(f"Fehler beim Lesen des Gewichts: {e}")
                 self.navigation.show_status("fuettern", self.context)
@@ -217,3 +231,36 @@ class BeladenSeite(QWidget):
 
             if hasattr(self, 'label_karre_gewicht'):
                 self.label_karre_gewicht.setText(f"{gewicht:.2f}")
+
+    def simuliere_fuetterung(self):
+        """Simuliert eine Fütterung - reduziert Karre-Gewicht"""
+        print(f"DEBUG: Fütterung gestartet - Karre-Gewicht vorher: {self.karre_gewicht:.2f} kg")
+
+        if self.karre_gewicht <= 0:
+            logger.warning("Karre ist leer - Nachladen erforderlich!")
+            print("DEBUG: Karre ist leer!")
+            return
+
+        # Fütterungsmenge simulieren (1-4 kg)
+        import random
+        fuetter_menge = random.uniform(1.0, 4.0)
+
+        # Karre-Gewicht reduzieren
+        if fuetter_menge > self.karre_gewicht:
+            fuetter_menge = self.karre_gewicht  # Nicht mehr entnehmen als vorhanden
+
+        self.karre_gewicht -= fuetter_menge
+        self.entnommenes_gewicht = fuetter_menge
+
+        print(f"DEBUG: {fuetter_menge:.2f} kg entnommen")
+        print(f"DEBUG: Karre-Gewicht nachher: {self.karre_gewicht:.2f} kg")
+        print(f"DEBUG: Entnommenes Gewicht: {self.entnommenes_gewicht:.2f} kg")
+
+        logger.info(f"Fütterung simuliert: {fuetter_menge:.2f} kg entnommen, Karre-Rest: {self.karre_gewicht:.2f} kg")
+
+        # Anzeigen aktualisieren
+        self.update_gewichts_anzeigen()
+
+        # Fütterungs-Simulation aktivieren
+        fu_sim.setze_simulation(True)
+

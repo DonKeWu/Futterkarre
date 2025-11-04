@@ -1396,7 +1396,7 @@ QPushButton:hover {
     <string>kg</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_h_gewichtanzeige">
+  <widget class="QLabel" name="label_fu_entnommen">
    <property name="geometry">
     <rect>
      <x>150</x>
@@ -1493,7 +1493,7 @@ QPushButton:hover {
   <zorder>label_h_trsub</zorder>
   <zorder>label_h_feuchte</zorder>
   <zorder>txt_kg_2</zorder>
-  <zorder>label_h_gewichtanzeige</zorder>
+  <zorder>label_fu_entnommen</zorder>
   <zorder>label_karre_gewicht_anzeigen</zorder>
  </widget>
  <resources>

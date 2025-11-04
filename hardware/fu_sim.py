@@ -10,6 +10,10 @@ def setze_simulation(enabled: bool):
     USE_SIMULATION = enabled
     print(f"Fütterungs-Simulation: {'Ein' if enabled else 'Aus'}")
 
+def ist_simulation_aktiv():
+    """Prüft ob Fütterungs-Simulation aktiv ist"""
+    return USE_SIMULATION
+
 def simuliere_fuetterung(menge_kg: float = 1.0):
     """Simuliert Fütterung durch Gewichtsreduktion"""
     global current_weight

@@ -38,6 +38,10 @@ def main():
             fu_sim.setze_simulation(True)
             logger.info("Simulationen aktiviert")
 
+            # DEBUG: Sofort testen
+            print(f"DEBUG: HX711 aktiv? {hx711_sim.ist_simulation_aktiv()}")
+            print(f"DEBUG: FU aktiv? {fu_sim.ist_simulation_aktiv()}")
+
         # 3. PyQt-Anwendung starten - OHNE Daten zu laden!
         app = QApplication(sys.argv)
         window = MainWindow(sensor_manager)  # Keine heu_namen mehr!
