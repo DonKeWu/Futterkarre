@@ -37,7 +37,8 @@ TARE_SAMPLES = 15  # Number of samples for tare operation
 MEASUREMENT_SAMPLES = 10  # Number of samples for weight measurement
 
 # Simulation mode (for development without hardware)
-SIMULATION_MODE = False  # Set to True for testing without hardware
+# Can be overridden by environment variable: FUTTERKARRE_SIMULATION=1
+SIMULATION_MODE = os.getenv('FUTTERKARRE_SIMULATION', 'False').lower() in ('true', '1', 'yes')
 
 # GPIO Configuration
 GPIO_MODE = "BCM"  # BCM pin numbering

@@ -69,7 +69,8 @@ class DataManager:
                 writer.writerow(horse.to_dict())
             return True
         except Exception as e:
-            print(f"Error adding horse: {e}")
+            import logging
+            logging.error(f"Error adding horse: {e}")
             return False
     
     def update_horse(self, horse: Horse) -> bool:
@@ -95,7 +96,8 @@ class DataManager:
                     writer.writerow(h.to_dict())
             return True
         except Exception as e:
-            print(f"Error updating horse: {e}")
+            import logging
+            logging.error(f"Error updating horse: {e}")
             return False
     
     def delete_horse(self, horse_id: int) -> bool:
@@ -111,7 +113,8 @@ class DataManager:
                     writer.writerow(h.to_dict())
             return True
         except Exception as e:
-            print(f"Error deleting horse: {e}")
+            import logging
+            logging.error(f"Error deleting horse: {e}")
             return False
     
     def get_next_horse_id(self) -> int:
@@ -150,7 +153,8 @@ class DataManager:
                 writer.writerow(record.to_dict())
             return True
         except Exception as e:
-            print(f"Error adding feed record: {e}")
+            import logging
+            logging.error(f"Error adding feed record: {e}")
             return False
     
     def _get_next_record_id(self) -> int:

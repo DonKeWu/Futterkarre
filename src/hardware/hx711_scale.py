@@ -94,8 +94,7 @@ class HX711Scale(ScaleInterface):
             # Get current raw reading
             raw_value = self.hx.get_value(times=settings.MEASUREMENT_SAMPLES)
             
-            # Calculate new reference unit
-            # reference_unit = raw_value / (known_weight * 1000)  # Convert kg to grams
+            # Calculate new reference unit (convert kg to grams)
             self.reference_unit = raw_value / (known_weight * 1000)
             self.hx.set_reference_unit(self.reference_unit)
             

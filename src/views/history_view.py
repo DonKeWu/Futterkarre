@@ -178,7 +178,10 @@ class HistoryView(QWidget):
             
             # Horse name
             horse = self.controller.get_horse(record.horse_id)
-            horse_name = horse.name if horse else f"ID: {record.horse_id}"
+            if horse and horse.name:
+                horse_name = horse.name
+            else:
+                horse_name = f"ID: {record.horse_id}"
             self.history_table.setItem(row, 1, QTableWidgetItem(horse_name))
             
             # Feed type
