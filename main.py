@@ -12,16 +12,17 @@ from config.app_config import AppConfig
 from hardware.sensor_manager import SmartSensorManager
 from views.main_window import MainWindow
 
-# DPI-Einstellungen
-os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = AppConfig.QT_AUTO_SCREEN_SCALE_FACTOR
-os.environ["QT_ENABLE_HIGHDPI_SCALING"] = AppConfig.QT_ENABLE_HIGHDPI_SCALING
-os.environ["QT_SCALE_FACTOR"] = AppConfig.QT_SCALE_FACTOR
+# DPI-Einstellungen - KOMPLETT DEAKTIVIERT für native Skalierung
+# os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "0"
+# os.environ["QT_ENABLE_HIGHDPI_SCALING"] = "0"
+# os.environ["QT_SCALE_FACTOR"] = "1.0"
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication
 
-QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
-QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
+# KEINE DPI-Skalierung mehr - natürliche Größe
+# QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
+# QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_UseHighDpiPixmaps, True)
 
 
 def main():
