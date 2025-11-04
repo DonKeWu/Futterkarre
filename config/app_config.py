@@ -18,9 +18,9 @@ class AppConfig:
     DATA_PATH = "data/"
     LOGS_PATH = "logs/"
 
-    # UI-Einstellungen - RESPONSIVE für alle Bildschirmgrößen
-    WINDOW_WIDTH = 1024   # Basis-Breite
-    WINDOW_HEIGHT = 768   # Basis-Höhe (wird automatisch angepasst)
+    # UI-Einstellungen - Raspberry Pi Touch Display 2 (Landscape)
+    WINDOW_WIDTH = 1280   # Native Breite (Landscape)
+    WINDOW_HEIGHT = 720   # Native Höhe (Landscape)
     TOUCH_OPTIMIZED = True
 
 

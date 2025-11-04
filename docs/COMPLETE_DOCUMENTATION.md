@@ -25,17 +25,34 @@
 - **Touch-optimiert:** Große Buttons für Finger-Bedienung
 
 ### Display-Größen Support
-- ✅ **800x480** (Raspberry Pi Touch Display)
+- ✅ **1280x720** (Raspberry Pi Touch Display 2 - Landscape)
+- ✅ **720x1280** (Raspberry Pi Touch Display 2 - Portrait)  
+- ✅ **800x480** (Raspberry Pi Touch Display v1)
 - ✅ **1024x600** (Industrie-Touchscreens)
 - ✅ **1920x1080** (Standard-Monitore)
 - ✅ **Beliebige Auflösungen** (Auto-Scaling)
 
-### UI-Einstellungen
+### Hardware-Display: Raspberry Pi Touch Display 2
+```
+Artikelnummer:    RPI-7LCD2
+Displaygröße:     7 Zoll (diagonal)
+Auflösung:        720 (RGB) × 1280 Pixel (Portrait)
+                  1280 × 720 Pixel (Landscape - verwendet)
+Aktive Fläche:    86,94 mm × 154,56 mm
+Touch-Panel:      True Multi-Touch kapazitiv (5 Finger)
+Oberflächenbehandlung: Anti-Glanz
+Abmessungen:      189,32 mm × 120,24 mm × ~7mm
+Gewicht:          0.3kg
+Anschluss:        DSI-Port + GPIO-Stromversorgung
+Produktlebensdauer: Mindestens bis Januar 2030
+```
+
+### UI-Einstellungen (Optimiert für RPi Touch Display 2)
 ```python
-# main.py - Optimale Konfiguration
-window.showFullScreen()  # Vollbild erzwingen
-setMinimumSize(800, 600)  # Minimum für Touch
-resize(1024, 768)  # Basis-Größe
+# main.py - Optimale Konfiguration für 1280x720 Landscape
+window.showFullScreen()     # Vollbild erzwingen
+setMinimumSize(1280, 720)   # Native Auflösung des Displays
+resize(1280, 720)           # Exakte Display-Größe
 ```
 
 ---
