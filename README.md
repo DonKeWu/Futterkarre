@@ -1,4 +1,4 @@
-# 🚜 Futterkarre 2.0 - Intelligente Futterwaage für Pferde
+# 🚜 Futterkarre 1.2 - Intelligente Futterwaage für Pferde
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
 [![PyQt5](https://img.shields.io/badge/GUI-PyQt5-green.svg)](https://pypi.org/project/PyQt5/)
