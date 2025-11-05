@@ -5,87 +5,136 @@ import logging
 from models.pferd import Pferd
 from models.futter import Heu, Heulage
 from utils.validation import validate_pferd, validate_heu, validate_heulage
+from utils.csv_validator import csv_validator
 
 logger = logging.getLogger(__name__)
 
 DATA_DIR = (Path(__file__).parent.parent / "data").resolve()
 
 def lade_pferde_als_dataclasses(dateiname: str) -> List[Pferd]:
+    """Lädt Pferde mit robuster CSV-Validierung"""
     pfad = DATA_DIR / dateiname
+    
+    # CSV-Validierung
+    validation_result = csv_validator.validate_csv_file(pfad, 'pferde')
+    
+    if not validation_result['success']:
+        logger.error(f"CSV-Validierung fehlgeschlagen für {dateiname}: {validation_result['error']}")
+        logger.warning("Verwende Fallback-Pferd")
+        fallback_data = csv_validator.get_fallback_data('pferde')
+        return [Pferd(**data) for data in fallback_data]
+    
+    # Warnungen loggen
+    for warning in validation_result['warnings']:
+        logger.warning(warning)
+    
+    # Fehler loggen (aber trotzdem gültige Zeilen verwenden)
+    for error in validation_result['errors']:
+        logger.error(error)
+    
     pferde_liste = []
-    with pfad.open(newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            if validate_pferd(row):
-                # Nur aktive Pferde laden (leere Boxen überspringen)
-                aktiv = row.get('Aktiv', 'true').lower() == 'true'
-                if aktiv and row.get('Name'):  # Name muss vorhanden sein
-                    pferd = Pferd(
-                        name=row['Name'],  # Großgeschrieben
-                        gewicht=float(row['Gewicht']),  # Großgeschrieben
-                        alter=int(row['Alter']),  # Großgeschrieben
-                        box=int(row.get('Box', row.get('Folge', 1))),  # Box-Nummer
-                        aktiv=aktiv,
-                        notizen=row.get('Notizen', '')
-                    )
-                    pferde_liste.append(pferd)
-                else:
-                    logger.info(f"Leere Box übersprungen: Box {row.get('Box', '?')}")
-            else:
-                logger.warning(f"Ungültige Pferdedaten übersprungen: {row}")
+    # Fallback, wenn validation_result noch altes Format hat
+    data_key = 'data' if 'data' in validation_result else 'valid_rows'
+    for row_data in validation_result[data_key]:
+        # Nur aktive Pferde mit Namen laden
+        if row_data.get('Aktiv', 'true').lower() == 'true' and row_data.get('Name'):
+            pferd = Pferd(
+                name=row_data['Name'],
+                gewicht=float(row_data['Gewicht']),
+                alter=int(row_data['Alter']),
+                box=int(row_data.get('Box', row_data.get('Folge', 1))),
+                aktiv=True,
+                notizen=row_data.get('Notizen', '')
+            )
+            pferde_liste.append(pferd)
+        else:
+            logger.info(f"Leere Box übersprungen: Box {row_data.get('Box', '?')}")
     
     # Nach Box-Nummer sortieren
     pferde_liste.sort(key=lambda p: p.box)
+    logger.info(f"{len(pferde_liste)} Pferde erfolgreich geladen mit CSV-Validierung")
     return pferde_liste
 
 def lade_heu_als_dataclasses(dateiname: str) -> List[Heu]:
+    """Lädt Heu mit robuster CSV-Validierung"""
     pfad = DATA_DIR / dateiname
+    
+    # CSV-Validierung
+    validation_result = csv_validator.validate_csv_file(pfad, 'heu')
+    
+    if not validation_result['success']:
+        logger.error(f"CSV-Validierung fehlgeschlagen für {dateiname}: {validation_result['error']}")
+        logger.warning("Verwende Fallback-Heu")
+        fallback_data = csv_validator.get_fallback_data('heu')
+        return [Heu(name=pfad.stem, **data) for data in fallback_data]
+    
+    # Warnungen und Fehler loggen
+    for warning in validation_result['warnings']:
+        logger.warning(warning)
+    for error in validation_result['errors']:
+        logger.error(error)
+    
     heu_liste = []
-    with pfad.open(newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            if validate_heu(row):
-                heu = Heu(
-                    name=pfad.stem,
-                    trockenmasse=float(row['Trockensubstanz']),
-                    rohprotein=float(row['Rohprotein']),
-                    rohfaser=float(row['Rohfaser']),
-                    gesamtzucker=float(row['Gesamtzucker']),
-                    fruktan=float(row['Fruktan']),
-                    me_pferd=float(row['ME-Pferd']),
-                    pcv_xp=float(row.get('pcv_XP', 0)),
-                    herkunft=row.get('Herkunft'),
-                    jahrgang=int(row.get('Jahrgang', 2025)),
-                    staubarm=None  # Optional, falls vorhanden
-                )
-                heu_liste.append(heu)
-            else:
-                logger.warning(f"Ungültige Heudaten übersprungen: {row}")
+    # Fallback, wenn validation_result noch altes Format hat
+    data_key = 'data' if 'data' in validation_result else 'valid_rows'
+    for row_data in validation_result[data_key]:
+        heu = Heu(
+            name=pfad.stem,  # Dateiname als Heu-Name
+            trockenmasse=float(row_data['Trockensubstanz']),
+            rohprotein=float(row_data['Rohprotein']),
+            rohfaser=float(row_data['Rohfaser']),
+            gesamtzucker=float(row_data['Gesamtzucker']),
+            fruktan=float(row_data['Fruktan']),
+            me_pferd=float(row_data['ME-Pferd']),
+            pcv_xp=float(row_data.get('pcv_XP', 0)),
+            herkunft=row_data.get('Herkunft', 'Eigen'),
+            jahrgang=int(row_data.get('Jahrgang', 2025)),
+            staubarm=None  # Optional
+        )
+        heu_liste.append(heu)
+    
+    logger.info(f"{len(heu_liste)} Heu-Einträge erfolgreich geladen mit CSV-Validierung")
     return heu_liste
 
 def lade_heulage_als_dataclasses(dateiname: str) -> List[Heulage]:
+    """Lädt Heulage mit robuster CSV-Validierung"""
     pfad = DATA_DIR / dateiname
+    
+    # CSV-Validierung
+    validation_result = csv_validator.validate_csv_file(pfad, 'heulage')
+    
+    if not validation_result['success']:
+        logger.error(f"CSV-Validierung fehlgeschlagen für {dateiname}: {validation_result['error']}")
+        logger.warning("Verwende Fallback-Heulage")
+        fallback_data = csv_validator.get_fallback_data('heulage')
+        return [Heulage(name=pfad.stem, **data) for data in fallback_data]
+    
+    # Warnungen und Fehler loggen
+    for warning in validation_result['warnings']:
+        logger.warning(warning)
+    for error in validation_result['errors']:
+        logger.error(error)
+    
     heulage_liste = []
-    with pfad.open(newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            if validate_heulage(row):
-                heulage = Heulage(
-                    name=pfad.stem,
-                    trockenmasse=float(row['Trockensubstanz']),
-                    rohprotein=float(row['Rohprotein']),
-                    rohfaser=float(row['Rohfaser']),
-                    gesamtzucker=float(row['Gesamtzucker']),
-                    fruktan=float(row['Fruktan']),
-                    me_pferd=float(row['ME-Pferd']),
-                    pcv_xp=float(row.get('pcv_XP', 0)),
-                    herkunft=row.get('Herkunft'),
-                    jahrgang=int(row.get('Jahrgang', 2025)),
-                    ph_wert=float(row.get('pH-Wert', 0)),
-                    siliergrad=row.get('Siliergrad')
-                )
-                heulage_liste.append(heulage)
-            else:
-                logger.warning(f"Ungültige Heulagedaten übersprungen: {row}")
+    # Fallback, wenn validation_result noch altes Format hat
+    data_key = 'data' if 'data' in validation_result else 'valid_rows'
+    for row_data in validation_result[data_key]:
+        heulage = Heulage(
+            name=pfad.stem,  # Dateiname als Heulage-Name
+            trockenmasse=float(row_data['Trockensubstanz']),
+            rohprotein=float(row_data['Rohprotein']),
+            rohfaser=float(row_data['Rohfaser']),
+            gesamtzucker=float(row_data['Gesamtzucker']),
+            fruktan=float(row_data['Fruktan']),
+            me_pferd=float(row_data['ME-Pferd']),
+            pcv_xp=float(row_data.get('pcv_XP', 0)),
+            herkunft=row_data.get('Herkunft', 'Eigen'),
+            jahrgang=int(row_data.get('Jahrgang', 2025)),
+            ph_wert=float(row_data.get('pH-Wert', 4.5)),
+            siliergrad=row_data.get('Siliergrad', 'gut')
+        )
+        heulage_liste.append(heulage)
+    
+    logger.info(f"{len(heulage_liste)} Heulage-Einträge erfolgreich geladen mit CSV-Validierung")
     return heulage_liste
 
