@@ -25,6 +25,10 @@ class FutterKonfiguration(QWidget):
 
         # UI AUS DATEI LADEN (statt init_ui)
         self.load_ui_or_fallback()
+        
+        # Feste Fenstergröße für Touchscreen
+        self.setFixedSize(1024, 600)
+        
         self.lade_verfuegbare_dateien()
         self.connect_buttons()
 

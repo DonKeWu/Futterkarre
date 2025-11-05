@@ -31,6 +31,9 @@ class BeladenSeite(QWidget):
             logger.warning("beladen_seite.ui nicht gefunden - verwende Fallback")
             self.create_ui_in_code()
 
+        # Feste Fenstergröße für Touchscreen
+        self.setFixedSize(1024, 600)
+
         # Timer erstellen
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_weight)

@@ -20,6 +20,9 @@ class EinstellungenSeite(QWidget):
         ui_path = os.path.join(os.path.dirname(__file__), "einstellungen_seite.ui")
         uic.loadUi(ui_path, self)
 
+        # Feste Fenstergröße für Touchscreen
+        self.setFixedSize(1024, 600)
+
         # Standard-Simulation EIN (für Development)
         hx711_sim.setze_simulation(True)
 

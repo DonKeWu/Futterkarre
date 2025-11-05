@@ -18,6 +18,9 @@ class FuetterungAbschluss(QWidget):
         except Exception as e:
             logger.error(f"Fehler beim Laden der UI: {e}")
             
+        # Feste Fenstergröße für Touchscreen
+        self.setFixedSize(1024, 600)
+            
         self.connect_buttons()
         
     def connect_buttons(self):

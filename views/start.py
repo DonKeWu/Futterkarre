@@ -15,6 +15,9 @@ class StartSeite(QWidget):
         ui_path = os.path.join(current_dir, 'start.ui')
         uic.loadUi(ui_path, self)
 
+        # Feste Fenstergröße für Touchscreen
+        self.setFixedSize(1024, 600)
+
         # Button verbinden
         self.btn_start.clicked.connect(self.zu_auswahl)
 

@@ -15,6 +15,9 @@ class AuswahlSeite(QWidget):
         ui_path = Path(__file__).parent / "auswahl_seite.ui"
         uic.loadUi(str(ui_path), self)
 
+        # Feste Fenstergröße für Touchscreen
+        self.setFixedSize(1024, 600)
+
         # Buttons verbinden - aber erst nach dem UI-Laden!
         self.connect_buttons()
 
