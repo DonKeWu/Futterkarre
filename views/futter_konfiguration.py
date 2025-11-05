@@ -64,6 +64,9 @@ class FutterKonfiguration(QtWidgets.QWidget):
         
         # Daten
         self.verfuegbare_dateien = []
+        self.verfuegbare_heu_dateien = []
+        self.verfuegbare_heulage_dateien = []
+        self.verfuegbare_pellets_dateien = []
         self.aktuelle_daten = {}
         self.gewahlte_datei = ""
         
