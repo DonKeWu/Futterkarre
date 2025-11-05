@@ -2834,3 +2834,161 @@
 2025-11-04 20:00:17,943 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
 2025-11-04 20:00:17,954 [INFO] views.main_window: Wechsel zu Status: start
 2025-11-04 20:00:17,969 [INFO] __main__: MainWindow gestartet mit Y-Offset: 60px
+2025-11-04 20:09:40,383 [INFO] __main__: Sensor Manager initialisiert
+2025-11-04 20:09:40,383 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-04 20:09:40,408 [INFO] utils.futter_loader: Leere Box übersprungen: Box 11
+2025-11-04 20:09:40,408 [INFO] utils.futter_loader: Leere Box übersprungen: Box 15
+2025-11-04 20:09:40,408 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-04 20:09:40,408 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-04 20:09:40,408 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-04 20:09:40,408 [INFO] views.main_window: MainWindow wird initialisiert
+2025-11-04 20:09:40,415 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-04 20:09:40,418 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-04 20:09:40,418 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-04 20:09:40,418 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-04 20:09:40,426 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-04 20:09:40,426 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-11-04 20:09:40,429 [INFO] views.einstellungen_seite: Futter-Konfigurations-Button verbunden
+2025-11-04 20:09:40,430 [INFO] views.einstellungen_seite: Alle Einstellungs-Buttons verbunden
+2025-11-04 20:09:40,431 [INFO] views.futter_konfiguration: futter_konfiguration.ui erfolgreich geladen
+2025-11-04 20:09:40,431 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-04 20:09:40,432 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-04 20:09:40,448 [INFO] views.main_window: Wechsel zu Status: start
+2025-11-04 20:09:40,467 [INFO] __main__: MainWindow gestartet mit Y-Offset: 60px
+2025-11-04 20:09:52,937 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-11-04 20:09:52,937 [INFO] views.main_window: Vorherige Seite gespeichert: start
+2025-11-04 20:10:04,583 [INFO] views.main_window: Wechsel zu Status: beladen
+2025-11-04 20:10:04,583 [INFO] views.main_window: Vorherige Seite gespeichert: auswahl
+2025-11-04 20:10:07,767 [INFO] views.beladen_seite: Simulation: Karre automatisch auf 35kg beladen
+2025-11-04 20:10:07,767 [INFO] views.beladen_seite: Simulation: Beladen auf 35.04 kg
+2025-11-04 20:10:07,767 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 35.04 kg
+2025-11-04 20:10:07,767 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-11-04 20:10:07,767 [INFO] views.main_window: Vorherige Seite gespeichert: beladen
+2025-11-04 20:10:07,768 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 35.04 kg
+2025-11-04 20:10:07,768 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 35.04 kg
+2025-11-04 20:10:07,768 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 1 - Midnight, 12 Jahre, 350.0 kg
+2025-11-04 20:10:07,768 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:07,768 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:07,768 [INFO] views.main_window: Heu-Analysewerte angezeigt für: heu_eigen_2025
+2025-11-04 20:10:11,051 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:11,051 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:11,052 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:11,052 [INFO] views.main_window: Wechsel zu Box 2: Delight
+2025-11-04 20:10:11,052 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 2 - Delight, 3 Jahre, 280.0 kg
+2025-11-04 20:10:11,542 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:11,542 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:11,543 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:11,543 [INFO] views.main_window: Wechsel zu Box 3: Maverick
+2025-11-04 20:10:11,543 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 3 - Maverick, 5 Jahre, 400.0 kg
+2025-11-04 20:10:11,922 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:11,923 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:11,923 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:11,923 [INFO] views.main_window: Wechsel zu Box 4: Rondo
+2025-11-04 20:10:11,923 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 4 - Rondo, 12 Jahre, 520.0 kg
+2025-11-04 20:10:12,236 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:12,236 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:12,236 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:12,237 [INFO] views.main_window: Wechsel zu Box 5: Maranello
+2025-11-04 20:10:12,237 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 5 - Maranello, 20 Jahre, 450.0 kg
+2025-11-04 20:10:12,521 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:12,521 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:12,521 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:12,521 [INFO] views.main_window: Wechsel zu Box 6: Salute
+2025-11-04 20:10:12,521 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 6 - Salute, 4 Jahre, 300.0 kg
+2025-11-04 20:10:12,768 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:12,768 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:12,768 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:12,768 [INFO] views.main_window: Wechsel zu Box 7: Calli
+2025-11-04 20:10:12,768 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 7 - Calli, 10 Jahre, 450.0 kg
+2025-11-04 20:10:13,028 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:13,028 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:13,028 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:13,028 [INFO] views.main_window: Wechsel zu Box 8: Karl
+2025-11-04 20:10:13,028 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 8 - Karl, 15 Jahre, 300.0 kg
+2025-11-04 20:10:13,553 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:13,554 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:13,554 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:13,554 [INFO] views.main_window: Wechsel zu Box 9: Furore
+2025-11-04 20:10:13,554 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 9 - Furore, 12 Jahre, 500.0 kg
+2025-11-04 20:10:14,900 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:14,900 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:14,900 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:14,900 [INFO] views.main_window: Wechsel zu Box 10: Nabo
+2025-11-04 20:10:14,900 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 10 - Nabo, 8 Jahre, 300.0 kg
+2025-11-04 20:10:18,796 [INFO] views.fuettern_seite: Simulation: 4.5kg automatisch entnommen
+2025-11-04 20:10:18,796 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:18,796 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:18,797 [INFO] views.main_window: Wechsel zu Box 12: Shadow
+2025-11-04 20:10:18,797 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 12 - Shadow, 10 Jahre, 580.0 kg
+2025-11-04 20:10:20,870 [INFO] views.main_window: Wechsel zu Status: beladen
+2025-11-04 20:10:20,870 [INFO] views.main_window: Vorherige Seite gespeichert: fuettern
+2025-11-04 20:10:20,871 [INFO] views.beladen_seite: Beladen-Seite: Kontext erhalten - Pferd 1, Restgewicht: 0.00 kg
+2025-11-04 20:10:26,577 [INFO] views.beladen_seite: Simulation: Karre automatisch auf 35kg beladen
+2025-11-04 20:10:26,577 [INFO] views.beladen_seite: Simulation: Beladen auf 35.01 kg
+2025-11-04 20:10:26,577 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 35.01 kg
+2025-11-04 20:10:26,577 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-11-04 20:10:26,577 [INFO] views.main_window: Vorherige Seite gespeichert: beladen
+2025-11-04 20:10:26,577 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 35.01 kg
+2025-11-04 20:10:26,577 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 12 - Shadow, 10 Jahre, 580.0 kg
+2025-11-04 20:10:26,577 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 35.01 kg
+2025-11-04 20:10:26,578 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 12 - Shadow, 10 Jahre, 580.0 kg
+2025-11-04 20:10:26,578 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:10:26,578 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:10:26,578 [INFO] views.main_window: Heu-Analysewerte angezeigt für: heu_eigen_2025
+2025-11-04 20:14:18,623 [INFO] __main__: Sensor Manager initialisiert
+2025-11-04 20:14:18,623 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-04 20:14:18,645 [INFO] utils.futter_loader: Leere Box übersprungen: Box 11
+2025-11-04 20:14:18,645 [INFO] utils.futter_loader: Leere Box übersprungen: Box 15
+2025-11-04 20:14:18,645 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-04 20:14:18,645 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-04 20:14:18,645 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-04 20:14:18,645 [INFO] views.main_window: MainWindow wird initialisiert
+2025-11-04 20:14:18,652 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-04 20:14:18,654 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-04 20:14:18,654 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-04 20:14:18,654 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-04 20:14:18,660 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-04 20:14:18,660 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-11-04 20:14:18,665 [INFO] views.einstellungen_seite: Futter-Konfigurations-Button verbunden
+2025-11-04 20:14:18,665 [INFO] views.einstellungen_seite: Alle Einstellungs-Buttons verbunden
+2025-11-04 20:14:18,666 [INFO] views.futter_konfiguration: futter_konfiguration.ui erfolgreich geladen
+2025-11-04 20:14:18,666 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-04 20:14:18,667 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-04 20:14:18,678 [INFO] views.main_window: Wechsel zu Status: start
+2025-11-04 20:14:18,692 [INFO] __main__: MainWindow gestartet mit Y-Offset: 60px
+2025-11-04 20:14:27,733 [INFO] views.main_window: Wechsel zu Status: auswahl
+2025-11-04 20:14:27,733 [INFO] views.main_window: Vorherige Seite gespeichert: start
+2025-11-04 20:14:37,683 [INFO] views.main_window: Wechsel zu Status: beladen
+2025-11-04 20:14:37,683 [INFO] views.main_window: Vorherige Seite gespeichert: auswahl
+2025-11-04 20:15:21,266 [INFO] views.beladen_seite: Simulation: Karre automatisch auf 35kg beladen
+2025-11-04 20:15:21,266 [INFO] views.beladen_seite: Simulation: Beladen auf 35.04 kg
+2025-11-04 20:15:21,266 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 35.04 kg
+2025-11-04 20:15:21,266 [INFO] views.main_window: Wechsel zu Status: fuettern
+2025-11-04 20:15:21,266 [INFO] views.main_window: Vorherige Seite gespeichert: beladen
+2025-11-04 20:15:21,267 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 35.04 kg
+2025-11-04 20:15:21,267 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 35.04 kg
+2025-11-04 20:15:21,267 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 1 - Midnight, 12 Jahre, 350.0 kg
+2025-11-04 20:15:21,267 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heu_eigen_2025 berechnet
+2025-11-04 20:15:21,267 [INFO] views.fuettern_seite: Beispiel: Rohprotein 387g (8.6% von 4.5kg)
+2025-11-04 20:15:21,267 [INFO] views.main_window: Heu-Analysewerte angezeigt für: heu_eigen_2025
+2025-11-05 06:28:14,781 [INFO] __main__: Sensor Manager initialisiert
+2025-11-05 06:28:14,781 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-05 06:28:14,803 [INFO] utils.futter_loader: Leere Box übersprungen: Box 11
+2025-11-05 06:28:14,803 [INFO] utils.futter_loader: Leere Box übersprungen: Box 15
+2025-11-05 06:28:14,803 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-05 06:28:14,803 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-05 06:28:14,803 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-05 06:28:14,803 [INFO] views.main_window: MainWindow wird initialisiert
+2025-11-05 06:28:14,820 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-05 06:28:14,823 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-05 06:28:14,823 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-05 06:28:14,823 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-05 06:28:14,829 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-05 06:28:14,829 [INFO] views.einstellungen_seite: EinstellungenSeite wird initialisiert
+2025-11-05 06:28:14,833 [INFO] views.einstellungen_seite: Futter-Konfigurations-Button verbunden
+2025-11-05 06:28:14,833 [INFO] views.einstellungen_seite: Alle Einstellungs-Buttons verbunden
+2025-11-05 06:28:14,837 [INFO] views.futter_konfiguration: futter_konfiguration.ui erfolgreich geladen
+2025-11-05 06:28:14,837 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-05 06:28:14,838 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-05 06:28:14,853 [INFO] views.main_window: Wechsel zu Status: start
+2025-11-05 06:28:14,870 [INFO] __main__: MainWindow gestartet mit Y-Offset: 60px

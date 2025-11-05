@@ -11,8 +11,38 @@ NC='\033[0m' # No Color
 echo -e "${BLUE}🚜 Futterkarre - Git Update & Start${NC}"
 echo "============================================"
 
-# Wechsel zum Projektverzeichnis
-cd /home/daniel/Projekte/Futterkarre-2
+# Wechsel zum Projektverzeichnis - ANPASSBAR!
+PROJECT_DIR="/home/daniel/Projekte/Futterkarre-2"
+
+# Prüfe ob Verzeichnis existiert, sonst alternative Pfade probieren
+if [ ! -d "$PROJECT_DIR" ]; then
+    echo -e "${RED}❌ Projektverzeichnis nicht gefunden: $PROJECT_DIR${NC}"
+    echo -e "${BLUE}🔍 Suche nach alternativen Pfaden...${NC}"
+    
+    # Alternative Pfade probieren
+    ALT_PATHS=(
+        "/home/daniel/Dokumente/HOF/Futterwagen/Python/Futterkarre-2"
+        "/home/daniel/Futterkarre-2"
+        "/home/daniel/Desktop/Futterkarre-2"
+        "$(pwd)"
+    )
+    
+    for path in "${ALT_PATHS[@]}"; do
+        if [ -d "$path" ] && [ -f "$path/main.py" ]; then
+            PROJECT_DIR="$path"
+            echo -e "${GREEN}✅ Projekt gefunden in: $PROJECT_DIR${NC}"
+            break
+        fi
+    done
+    
+    if [ ! -f "$PROJECT_DIR/main.py" ]; then
+        echo -e "${RED}❌ main.py nicht gefunden! Bitte Pfad manuell anpassen.${NC}"
+        echo "Aktuelle Position: $(pwd)"
+        exit 1
+    fi
+fi
+
+cd "$PROJECT_DIR"
 
 # Git Status prüfen
 echo -e "${BLUE}📋 Git Status prüfen...${NC}"

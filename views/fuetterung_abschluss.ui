@@ -14,8 +14,8 @@
    <string>Fütterung Abgeschlossen</string>
   </property>
   <property name="styleSheet">
-   <string>QWidget {
-    background-color: #2E3440;
+   <string notr="true">QWidget {
+    ;
     color: #D8DEE9;
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
 }
@@ -74,8 +74,8 @@ QPushButton:pressed {
   <widget class="QLabel" name="label_titel">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>30</y>
+     <x>206</x>
+     <y>80</y>
      <width>924</width>
      <height>80</height>
     </rect>
@@ -84,7 +84,7 @@ QPushButton:pressed {
     <string>font-size: 32px; font-weight: bold; color: #88C0D0;</string>
    </property>
    <property name="text">
-    <string>[OK] Fütterung erfolgreich abgeschlossen!</string>
+    <string notr="true">Fütterung erfolgreich abgeschlossen!</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -93,14 +93,14 @@ QPushButton:pressed {
   <widget class="QFrame" name="frame_zusammenfassung">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>130</y>
+     <x>256</x>
+     <y>180</y>
      <width>824</width>
      <height>300</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string>QFrame { border: 2px solid #4C566A; border-radius: 12px; background-color: #3B4252; }</string>
+    <string notr="true">QFrame { border: 2px solid #4C566A; border-radius: 12px;}</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Box</enum>
@@ -269,8 +269,8 @@ QPushButton:pressed {
   <widget class="QPushButton" name="btn_neue_fuetterung">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>480</y>
+     <x>306</x>
+     <y>530</y>
      <width>300</width>
      <height>84</height>
     </rect>
@@ -279,14 +279,14 @@ QPushButton:pressed {
     <string>background-color: #A3BE8C;</string>
    </property>
    <property name="text">
-    <string>[+] Neue Fütterung</string>
+    <string>🔄 Neue Fütterung</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_zum_start">
    <property name="geometry">
     <rect>
-     <x>574</x>
-     <y>480</y>
+     <x>730</x>
+     <y>530</y>
      <width>300</width>
      <height>84</height>
     </rect>

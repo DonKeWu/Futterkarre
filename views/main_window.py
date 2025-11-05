@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QMainWindow, QStackedWidget
 from PyQt5.QtCore import QTimer
 from PyQt5 import QtCore
 
-from views.start import StartSeite  # DIESER IMPORT FEHLT!
+from views.start import StartSeite
 from views.fuettern_seite import FuetternSeite
 from views.auswahl_seite import AuswahlSeite
 from views.einstellungen_seite import EinstellungenSeite
