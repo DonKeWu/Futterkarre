@@ -135,9 +135,9 @@
   <widget class="QLabel" name="label_rgv_gewicht">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>200</x>
      <y>270</y>
-     <width>100</width>
+     <width>150</width>
      <height>30</height>
     </rect>
    </property>
@@ -155,7 +155,7 @@
    </property>
    <property name="maximumSize">
     <size>
-     <width>100</width>
+     <width>150</width>
      <height>30</height>
     </size>
    </property>
@@ -174,7 +174,7 @@
     <rect>
      <x>40</x>
      <y>270</y>
-     <width>121</width>
+     <width>161</width>
      <height>30</height>
     </rect>
    </property>
@@ -203,7 +203,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Gewicht:</string>
+    <string>Gewicht ca.:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_rgv_alter">
@@ -736,8 +736,8 @@ QPushButton:hover {
   <widget class="QLabel" name="label_fu_entnommen">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>290</y>
+     <x>460</x>
+     <y>300</y>
      <width>661</width>
      <height>251</height>
     </rect>
@@ -745,7 +745,7 @@ QPushButton:hover {
    <property name="font">
     <font>
      <family>URW Gothic</family>
-     <pointsize>150</pointsize>
+     <pointsize>200</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
