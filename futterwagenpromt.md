@@ -15,4 +15,19 @@
 - Der Raspberry Pi holt sich das Repository per Befehl direkt aus GitHub (z.B. mit `git clone` oder `git pull`).
 - Änderungen werden immer zuerst auf dem Ubuntu-Rechner gemacht und dann per Git synchronisiert.
 
+**Versionierungs-System (WICHTIG!):**
+- Vor JEDEM Git-Upload muss die Versionsnummer erhöht werden
+- Aktuelle Version: 1.4.0
+- Bei kleinen Fixes/Bugfixes: Patch-Version erhöhen (1.4.0 → 1.4.1)
+- Bei neuen Features: Minor-Version erhöhen (1.4.0 → 1.5.0)  
+- Bei größeren Änderungen: Major-Version erhöhen (1.4.0 → 2.0.0)
+
+**Versionierungs-Workflow:**
+1. VERSION-Datei bearbeiten (z.B. "1.4.1")
+2. __init__.py aktualisieren (__version__ = "1.4.1")
+3. Git Commit mit Versionsnummer: "🏷️ Version 1.4.1 - Bugfix XYZ"
+4. Git Tag erstellen: git tag -a v1.4.1 -m "Beschreibung"
+5. Push mit Tags: git push origin main --tags
+6. Pi5 per SSH updaten: git pull origin main
+
 **Merke:** Immer diese Regeln beachten, wenn du Anweisungen für den Raspberry Pi gibst!

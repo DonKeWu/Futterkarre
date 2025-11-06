@@ -115,6 +115,9 @@ class FuetternSeite(QWidget):
         self.label_rgv_name = QLabel("Kein Pferd gewählt")
         self.label_rgv_alter = QLabel("-- Jahre")
         self.label_rgv_gewicht = QLabel("-- kg")
+        # Neue Labels mit Einheiten
+        self.label_rgv_alter_jahre = QLabel("-- Jahre")
+        self.label_rgv_gewicht_kg = QLabel("-- kg")
         self.label_karre_gewicht_anzeigen = QLabel("0.00")
         self.label_fu_entnommen = QLabel("0.00")
 
@@ -156,6 +159,12 @@ class FuetternSeite(QWidget):
                 self.label_rgv_alter.setText(f"{pferd.alter} Jahre")
             if hasattr(self, 'label_rgv_gewicht') and hasattr(pferd, 'gewicht'):
                 self.label_rgv_gewicht.setText(f"{pferd.gewicht} kg")
+            
+            # Neue Labels mit Einheiten (aus .ui-Datei)
+            if hasattr(self, 'label_rgv_alter_jahre') and hasattr(pferd, 'alter'):
+                self.label_rgv_alter_jahre.setText(f"{pferd.alter} Jahre")
+            if hasattr(self, 'label_rgv_gewicht_kg') and hasattr(pferd, 'gewicht'):
+                self.label_rgv_gewicht_kg.setText(f"{pferd.gewicht} kg")
 
             logger.info(f"Pferd-Daten angezeigt: Box {getattr(pferd, 'box', '?')} - {pferd.name}, {pferd.alter} Jahre, {pferd.gewicht} kg")
 
