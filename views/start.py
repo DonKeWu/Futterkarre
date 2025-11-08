@@ -1,28 +1,22 @@
 # views/start.py
 import os
+import sys
 import views.icons.icons_rc
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget
+
+# Basis-Widget importieren
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.base_ui_widget import BaseViewWidget
 
 
-class StartSeite(QWidget):
+class StartSeite(BaseViewWidget):
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.navigation = None  # Wird von MainWindow gesetzt
-
-        # Ermittle den absoluten Pfad zur start.ui relativ zu diesem Skript
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        ui_path = os.path.join(current_dir, 'start.ui')
-        uic.loadUi(ui_path, self)
-
-        # Vollbild für PiTouch2 (1280x720) - komplette Display-Nutzung
-        self.setFixedSize(1280, 720)
+        # BaseViewWidget mit UI-Datei initialisieren
+        super().__init__(parent, ui_filename="start.ui", page_name="start")
         
-        # Position: oben links (0,0) - Display vollständig nutzen
-        self.move(0, 0)
-
-        # Button verbinden
-        self.btn_start.clicked.connect(self.zu_auswahl)
+        # Spezielle Buttons verbinden
+        self.connect_buttons_safe({
+            "btn_start": self.zu_auswahl
+        })
         
         # Version anzeigen
         self.load_and_display_version()

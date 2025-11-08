@@ -1,27 +1,22 @@
 # views/auswahl_seite.py
+import os
+import sys
 import logging
 import views.icons.icons_rc
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget
-from pathlib import Path
+
+# Basis-Widget importieren
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
 
 
-class AuswahlSeite(QWidget):
+class AuswahlSeite(BaseViewWidget):
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.navigation = None  # Wird von MainWindow gesetzt
-        ui_path = Path(__file__).parent / "auswahl_seite.ui"
-        uic.loadUi(str(ui_path), self)
-
-        # Vollbild für PiTouch2 (1280x720) - komplette Display-Nutzung
-        self.setFixedSize(1280, 720)
+        # BaseViewWidget mit UI-Datei initialisieren  
+        super().__init__(parent, ui_filename="auswahl_seite.ui", page_name="auswahl")
         
-        # Position: oben links (0,0) - Display vollständig nutzen
-        self.move(0, 0)
-
-        # Buttons verbinden - aber erst nach dem UI-Laden!
+        # Spezielle Buttons verbinden
         self.connect_buttons()
 
     def connect_buttons(self):

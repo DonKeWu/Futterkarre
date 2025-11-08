@@ -537,6 +537,14 @@ class EinstellungenSeite(QtWidgets.QWidget):
         
         logger.debug("EinstellungenSeite angezeigt")
     
+    def zurueck_geklickt(self):
+        """Zurück-Button geklickt - zur Hauptseite"""
+        logger.info("Zurück-Button geklickt - zurück zur Hauptseite")
+        if hasattr(self.parent(), 'show_start_seite'):
+            self.parent().show_start_seite()
+        else:
+            logger.warning("Parent hat keine show_start_seite Methode")
+    
     def hideEvent(self, event):
         """Wird aufgerufen wenn Seite versteckt wird"""
         super().hideEvent(event)
