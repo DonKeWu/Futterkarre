@@ -50,9 +50,6 @@ class FuetternSeite(QWidget):
         self.move(0, 0)
         
         self.connect_buttons()
-        
-        # UI Labels bereinigen
-        self.clear_textlabels()
 
         # Timer für Echtzeit-Updates
         self.timer = QTimer()
@@ -139,23 +136,25 @@ class FuetternSeite(QWidget):
         self.setLayout(layout)
 
     def clear_textlabels(self):
-        """Entfernt alle 'TextLabel' Standard-Texte beim UI-Laden"""
+        """Entfernt nur die wirklich leeren 'TextLabel' Standard-Texte beim UI-Laden"""
         try:
-            # Alle Labels durchgehen und "TextLabel" ersetzen
-            all_labels = [attr for attr in dir(self) if attr.startswith('label_')]
+            # NUR die Labels mit "TextLabel" Text bereinigen, NICHT alle Labels!
             cleared_count = 0
             
-            for label_name in all_labels:
-                label_obj = getattr(self, label_name)
-                if hasattr(label_obj, 'text') and label_obj.text() == "TextLabel":
-                    label_obj.setText("")  # Leeren statt TextLabel anzeigen
-                    cleared_count += 1
-                    logger.debug(f"TextLabel geleert in {label_name}")
+            # Spezifische Labels die "TextLabel" enthalten können
+            potential_textlabels = ['label_rgv_name', 'label_rgv_alter', 'label_rgv_gewicht', 
+                                   'label_rgv_alter_jahre', 'label_rgv_gewicht_kg', 'label_box']
+            
+            for label_name in potential_textlabels:
+                if hasattr(self, label_name):
+                    label_obj = getattr(self, label_name)
+                    if hasattr(label_obj, 'text') and label_obj.text() == "TextLabel":
+                        label_obj.setText("--")  # Platzhalter statt leer
+                        cleared_count += 1
+                        logger.debug(f"TextLabel ersetzt in {label_name}")
             
             if cleared_count > 0:
                 logger.info(f"✅ {cleared_count} TextLabels beim UI-Laden bereinigt")
-            else:
-                logger.debug("Keine TextLabels zum Bereinigen gefunden")
                 
         except Exception as e:
             logger.error(f"❌ Fehler beim Bereinigen der TextLabels: {e}")
@@ -197,22 +196,7 @@ class FuetternSeite(QWidget):
             if hasattr(self, 'label_rgv_gewicht_kg'):
                 self.label_rgv_gewicht_kg.setText(f"{pferd.gewicht} kg")
 
-            # WICHTIG: Alle "TextLabel" überschreiben
-            all_labels = [attr for attr in dir(self) if attr.startswith('label_')]
-            for label_name in all_labels:
-                label_obj = getattr(self, label_name)
-                if hasattr(label_obj, 'text') and label_obj.text() == "TextLabel":
-                    if 'name' in label_name.lower():
-                        label_obj.setText(pferd.name)
-                    elif 'box' in label_name.lower():
-                        label_obj.setText(f"Box {pferd.box}")
-                    elif 'alter' in label_name.lower():
-                        label_obj.setText(f"{pferd.alter} Jahre")
-                    elif 'gewicht' in label_name.lower():
-                        label_obj.setText(f"{pferd.gewicht} kg")
-                    else:
-                        label_obj.setText("")  # Leeren statt TextLabel
-                    logger.debug(f"TextLabel ersetzt in {label_name}")
+            # KEINE automatische TextLabel Bereinigung hier - das macht die UI kaputt!
 
             logger.info(f"✅ Pferd-Daten erfolgreich angezeigt: Box {pferd.box} - {pferd.name}, {pferd.alter} Jahre, {pferd.gewicht} kg")
 
