@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# 🚀 Futterkarre GUI Starten 
-# Einfach antippen am Desktop!
+# 🚀 EINFACH: Futterkarre GUI starten
+# Ausführen: cd ~/Futterkarre && ./pi5_start_futterkarre.sh
 
-echo "🚀 Futterkarre wird gestartet..."
+echo "🚀 Futterkarre GUI starten..."
 
-cd /home/daniel/Futterkarre
+# Aktueller Ordner (sollte ~/Futterkarre sein)
+echo "📍 Aktueller Ordner: $(pwd)"
 
-# Git pull (falls Repository OK ist)
-echo "📥 Updates holen..."
-git pull origin main 2>/dev/null || echo "⚠️ Git pull fehlgeschlagen - Repository OK?"
+# Updates holen
+echo "📥 Updates holen..."  
+git pull origin main
 
-# PyQt5 GUI starten
-echo "🖥️ GUI wird gestartet..."
+# GUI starten
+echo "🖥️ GUI starten..."
 python3 main.py
 
 echo "👋 Futterkarre beendet."

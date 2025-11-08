@@ -1,24 +1,20 @@
 #!/bin/bash
 
-# 🔧 Pi5 Git Repository Reparatur
-# Einfach antippen am Desktop!
+# 🔧 EINFACH: Komplette Futterkarre neu laden
+# Ausführen: cd ~/Futterkarre && ./pi5_git_fix.sh
 
-echo "🔧 Git Repository reparieren..."
+echo "🔧 Futterkarre komplett neu laden..."
 
-cd /home/daniel
+# Ins Home-Verzeichnis
+cd ~
 
-# Korruptes Repository sichern
-if [ -d "Futterkarre" ]; then
-    echo "📦 Backup von korruptem Repository..."
-    mv Futterkarre Futterkarre_corrupt_$(date +%H%M)
-fi
+# Alles löschen und neu
+echo "�️ Alten Futterkarre-Ordner löschen..."
+rm -rf Futterkarre
 
-# Frisch klonen
-echo "📥 Frisches Repository klonen..."
+# Frisch klonen  
+echo "📥 Frisch von GitHub laden..."
 git clone https://github.com/DonKeWu/Futterkarre.git
 
-echo "✅ Repository repariert!"
-echo "💡 Jetzt 'Futterkarre Starten' antippen!"
-
-# 3 Sekunden warten damit man es lesen kann
-sleep 3
+echo "✅ Fertig! Futterkarre ist sauber!"
+echo "💡 Jetzt: cd ~/Futterkarre && ./pi5_start_futterkarre.sh"
