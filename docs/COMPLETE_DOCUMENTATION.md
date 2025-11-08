@@ -1,6 +1,6 @@
-# 🚜 Futterkarre 1.4.0 - Komplette Dokumentation
+# 🚜 Futterkarre 1.5.0 - Komplette Dokumentation
 
-**Intelligente Futterwaage für Pferde mit Raspberry Pi 5 + Touch-Display**
+**Intelligente Futterwaage für Pferde mit Raspberry Pi 5 + Touch-Display (Hardware-Only)**
 
 ---
 
@@ -21,14 +21,14 @@
 
 ## 🚀 Software-Architektur
 
-### Aktuelle Implementierung (Stand: 5. November 2025)
+### Aktuelle Implementierung (Stand: 8. November 2025)
 
 **✅ Vollständig implementiert:**
-- **WeightManager Singleton:** Zentrale Gewichtsverwaltung
+- **WeightManager Hardware-Only:** Zentrale Gewichtsverwaltung für echte HX711-Sensoren
 - **CSV-Validierung:** Robuste Datenvalidierung mit Fallback
 - **HEU-Button Feature:** Separate Heu/Heulage Tracking
 - **Fullscreen UI:** Optimiert für PiTouch2 (1280x720)
-- **Simulation System:** Realistische Hardware-Simulation
+- **Hardware-Ready System:** Simulation komplett entfernt für Live-Deployment
 
 **🔄 In Entwicklung:**
 - **Timer-Management:** Zentralisierung aller UI-Timer
@@ -42,10 +42,9 @@ Futterkarre-2/
 ├── controllers/             # Business Logic
 ├── data/                    # CSV-Daten (Pferde, Futter)
 ├── hardware/                # Hardware-Abstraktionen
-│   ├── weight_manager.py    # ⭐ Zentrale Gewichtsverwaltung
+│   ├── weight_manager.py    # ⭐ Zentrale Gewichtsverwaltung (Hardware-Only)
 │   ├── sensor_manager.py    # Legacy-Wrapper
-│   ├── hx711_real.py       # Echte Hardware
-│   └── hx711_sim.py        # Simulation
+│   └── hx711_real.py       # Echte HX711-Hardware
 ├── models/                  # Datenmodelle
 ├── utils/                   # Hilfsfunktionen
 │   ├── csv_validator.py    # ⭐ CSV-Validierung
@@ -58,12 +57,13 @@ Futterkarre-2/
 
 ## ⚖️ WeightManager System
 
-### Zentrale Gewichtsverwaltung (Singleton)
+### Zentrale Hardware-Gewichtsverwaltung (Singleton)
 
 **Problem gelöst:**
 - Inkonsistente Gewichtsverwaltung zwischen UI-Komponenten
-- Manuelle Simulation/Hardware-Umschaltung
+- Hardware-Abstraktion für 4x HX711-Sensoren
 - Timer-basiertes Polling für UI-Updates
+- Resource-optimierte Hardware-only Architektur
 
 **Implementierung:**
 ```python
@@ -72,29 +72,29 @@ from hardware.weight_manager import get_weight_manager
 # Zentraler Zugriff
 wm = get_weight_manager()
 
-# Gewicht lesen (Auto-Hardware/Simulation)
+# Gewicht lesen (direkt von HX711-Hardware)
 weight = wm.read_weight()
 
 # Observer für UI-Updates registrieren
 wm.register_observer("ui_component", callback_function)
 
-# Simulation steuern
-wm.set_simulation_mode(True)
-wm.simulate_weight_change(-4.5)  # 4.5kg entfernen
+# Hardware-Kalibrierung
+wm.tare_scale()  # Nullpunkt setzen
 ```
 
 **Features:**
 - ✅ **Singleton Pattern:** Eine Instanz für gesamte Anwendung
-- ✅ **Auto-Erkennung:** Hardware vs. Simulation automatisch
+- ✅ **Hardware-Only:** Direkte HX711-Integration ohne Simulation-Overhead
 - ✅ **Observer-Pattern:** Event-basierte UI-Updates
 - ✅ **Robuste Fehlerbehandlung:** Automatischer Fallback
 - ✅ **State-Management:** Zentraler Gewichtszustand
-- ✅ **Kalibrierung:** Nullpunkt setzen, Einzelzellen lesen
+- ✅ **Hardware-Kalibrierung:** Echte Nullpunkt-Kalibrierung
 
 **Integration:**
-- `FuetternSeite`: Automatische Gewichtsupdates
-- `BeladenSeite`: Einheitliche Gewichtsquelle  
+- `FuetternSeite`: Automatische Gewichtsupdates von echter Hardware
+- `BeladenSeite`: Einheitliche Hardware-Gewichtsquelle  
 - `sensor_manager`: Legacy-Wrapper für Kompatibilität
+- Direkter Zugriff auf 4x HX711-Sensoren über GPIO
 
 ---
 
@@ -325,16 +325,18 @@ class Futter:
 ### ✅ Phase 1: Grundsystem (Abgeschlossen)
 - [x] PyQt5-GUI mit Touch-Optimierung
 - [x] CSV-Datenbank (30 Pferde + Futtersorten)
-- [x] HX711-Simulation für Entwicklung
+- [x] Hardware-Ready WeightManager (Simulation entfernt)
 - [x] MVC-Architektur
 - [x] GitHub-Repository + Deployment-Pipeline
 
 ### 🚧 Phase 2: Hardware-Integration (Aktuell)
 - [x] Raspberry Pi 5 Setup
 - [x] Fullscreen UI ohne Verzerrung
-- [ ] Echte HX711-Sensoren anschließen
-- [ ] Kalibrierung-Interface
-- [ ] Robuste Gewichtsmessung
+- [x] Hardware-Only WeightManager implementiert
+- [x] Simulation komplett entfernt für Performance
+- [ ] Echte HX711-Sensoren physisch anschließen
+- [ ] Live-Hardware-Kalibrierung
+- [ ] Robuste Gewichtsmessung im Feldeinsatz
 
 ### 🔮 Phase 3: Produktionsreife (Q1 2026)
 - [ ] Wetter-/Schmutzresistentes Gehäuse
@@ -423,18 +425,19 @@ sudo raspi-config → Advanced → GL Driver
 
 ---
 
-*Diese Dokumentation fasst alle Einzeldokumente zusammen und wird kontinuierlich aktualisiert. Letztes Update: 5. November 2025* 🚜✨
+*Diese Dokumentation fasst alle Einzeldokumente zusammen und wird kontinuierlich aktualisiert. Letztes Update: 8. November 2025 - Hardware-Ready Version 1.5.0* 🚜✨
 
 ---
 
-## 🎯 Aktuelle Entwicklungsstand (5. November 2025)
+## 🎯 Aktuelle Entwicklungsstand (8. November 2025)
 
 ### ✅ **Abgeschlossen:**
-1. **WeightManager Singleton** - Zentrale Gewichtsverwaltung implementiert
+1. **WeightManager Hardware-Only** - Zentrale Gewichtsverwaltung ohne Simulation-Overhead
 2. **CSV-Validierung** - Robuste Datenvalidierung mit Fallback-Mechanismen  
 3. **HEU-Button Feature** - Separate Heu/Heulage Statistiken
 4. **Fullscreen UI** - Optimiert für PiTouch2 (1280x720)
 5. **Display-Konfiguration** - SSH + VNC Setup für Entwicklung
+6. **Simulation-Entfernung** - Komplette Code-Bereinigung für Live-Hardware
 
 ### 🔄 **In Bearbeitung:**
 - **Timer-Management** - Zentralisierung aller UI-Timer (nächste Priorität)
@@ -442,7 +445,8 @@ sudo raspi-config → Advanced → GL Driver
 ### 📋 **Noch offen:**
 - Futter-Konfiguration Integration
 - Hardware-Beschaffung RPi5-System
+- Live-Hardware-Tests mit echten HX711-Sensoren
 
-**Repository:** https://github.com/DonKeWu/Futterkarre-1.2  
-**Commits:** 34c1080 (CSV-Validierung), c0f6aef (WeightManager)  
-**Status:** Produktionsreif für Pi-Deployment
+**Repository:** https://github.com/DonKeWu/Futterkarre  
+**Version:** v1.5.0 (Hardware-Ready)  
+**Status:** Bereit für Hardware-Deployment und Live-Tests
