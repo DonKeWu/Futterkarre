@@ -264,9 +264,12 @@ class MainWindow(QMainWindow):
     # === NAVIGATION METHODEN ===
     def zeige_heu_futter(self):
         """Zeigt Heu-Fütterung mit echten Pferd- und Futter-Daten"""
+        # WICHTIG: Pferde-Index auf 0 setzen für neue Fütterungsrunde
+        self.aktueller_pferd_index = 0
+        logger.info(f"Heu-Fütterung gestartet - Index auf {self.aktueller_pferd_index} zurückgesetzt")
+        
         # STATISTIK: Bei erster Pferd-Fütterung zurücksetzen
-        if self.aktueller_pferd_index == 0:
-            self.reset_statistiken()
+        self.reset_statistiken()
             
         aktuelles_pferd = self.get_aktuelles_pferd()
         self.show_status("fuettern")
@@ -295,9 +298,12 @@ class MainWindow(QMainWindow):
 
     def zeige_heulage_futter(self):
         """Zeigt Heulage-Fütterung mit echten Pferd- und Futter-Daten"""
+        # WICHTIG: Pferde-Index auf 0 setzen für neue Fütterungsrunde
+        self.aktueller_pferd_index = 0
+        logger.info(f"Heulage-Fütterung gestartet - Index auf {self.aktueller_pferd_index} zurückgesetzt")
+        
         # STATISTIK: Bei erster Pferd-Fütterung zurücksetzen
-        if self.aktueller_pferd_index == 0:
-            self.reset_statistiken()
+        self.reset_statistiken()
             
         aktuelles_pferd = self.get_aktuelles_pferd()
         self.show_status("fuettern")

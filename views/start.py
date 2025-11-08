@@ -40,18 +40,18 @@ class StartSeite(QWidget):
                 with open(version_path, 'r', encoding='utf-8') as f:
                     version = f.read().strip()
                 
-                # Version-Label suchen und setzen
+                # Version-Label suchen und setzen mit "Futterkarre" Text
                 if hasattr(self, 'label_version'):
-                    self.label_version.setText(f"Version {version}")
+                    self.label_version.setText(f"Futterkarre {version}")
                 elif hasattr(self, 'lblVersion'):
-                    self.lblVersion.setText(f"Version {version}")
+                    self.lblVersion.setText(f"Futterkarre {version}")
                 else:
                     # Fallback: Version im Window-Titel anzeigen
-                    self.setWindowTitle(f"Futterkarre 2.0 - Version {version}")
+                    self.setWindowTitle(f"Futterkarre - Version {version}")
             else:
                 # Fallback wenn VERSION-Datei nicht existiert
                 if hasattr(self, 'label_version'):
-                    self.label_version.setText("Version unbekannt")
+                    self.label_version.setText("Futterkarre - Version unbekannt")
                     
         except Exception as e:
             print(f"Fehler beim Laden der Version: {e}")
