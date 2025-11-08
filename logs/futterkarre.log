@@ -3089,3 +3089,1272 @@
 2025-11-05 16:14:37,567 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
 2025-11-05 16:14:37,567 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
 2025-11-05 16:14:37,567 [ERROR] __main__: Kritischer Fehler in main(): 'FutterKonfiguration' object has no attribute 'verfuegbare_pellet_dateien'
+2025-11-06 07:17:39,550 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-06 07:17:39,550 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-06 07:17:39,630 [INFO] __main__: Sensor Manager initialisiert
+2025-11-06 07:17:39,630 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-06 07:17:39,676 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-06 07:17:39,676 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-06 07:17:39,676 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-06 07:17:39,677 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-06 07:17:39,677 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-06 07:17:39,678 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-06 07:17:39,678 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 07:17:39,678 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 07:17:39,678 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 07:17:39,678 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 07:17:39,678 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-06 07:17:39,678 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-06 07:17:39,678 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-06 07:17:39,678 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-06 07:17:39,678 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-06 07:17:39,678 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 07:17:39,678 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-06 07:17:39,679 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-06 07:17:39,679 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-06 07:17:39,679 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-06 07:17:39,679 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 07:17:39,679 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-06 07:17:39,679 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-06 07:17:39,700 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-06 07:17:39,702 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-06 07:17:39,703 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-06 07:17:39,703 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-06 07:17:39,703 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-06 07:17:39,709 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-06 07:17:39,709 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-06 07:17:39,709 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-06 07:17:39,709 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-06 07:17:39,709 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-06 07:17:39,713 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-06 07:17:39,715 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-06 07:17:39,716 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-06 07:17:39,716 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-06 07:17:39,716 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-06 07:17:39,716 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-06 07:17:39,717 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-06 07:17:39,717 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-06 07:17:39,739 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-06 07:17:39,739 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 07:17:39,739 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-06 07:17:39,758 [INFO] __main__: MainWindow gestartet im Vollbild-Modus (kompletter Bildschirm)
+2025-11-06 07:17:42,806 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-06 07:17:42,806 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 07:17:42,806 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-06 07:17:44,742 [INFO] views.main_window: Fütterungsstatistiken zurückgesetzt
+2025-11-06 07:17:44,743 [INFO] views.main_window: Navigation: fuettern mit Kontext: None
+2025-11-06 07:17:44,743 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 07:17:44,743 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-06 07:17:44,743 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 1 - Midnight, 12 Jahre, 350.0 kg
+2025-11-06 07:17:44,743 [INFO] views.fuettern_seite: Futter-Analysewerte für 4.5kg heulage_eigen_2025 berechnet
+2025-11-06 07:17:44,743 [INFO] views.fuettern_seite: Beispiel: Rohprotein 544g (12.1% von 4.5kg)
+2025-11-06 07:17:44,743 [INFO] views.main_window: Heulage-Daten angezeigt: heulage_eigen_2025 für 4.5kg
+2025-11-06 07:17:44,744 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-06 07:17:44,744 [INFO] views.main_window: Heulage-Fütterung gestartet für: Midnight
+2025-11-06 07:17:46,776 [INFO] views.fuettern_seite: EXIT-Button gedrückt - Anwendung wird beendet
+2025-11-06 22:02:21,216 [WARNING] hardware.weight_manager: HX711 Hardware nicht verfügbar: No module named 'hx711'
+2025-11-06 22:02:21,218 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-06 22:02:21,218 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-06 22:02:21,273 [INFO] __main__: Sensor Manager initialisiert
+2025-11-06 22:02:21,273 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-06 22:02:21,292 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-06 22:02:21,292 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-06 22:02:21,292 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-06 22:02:21,292 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-06 22:02:21,292 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-06 22:02:21,293 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-06 22:02:21,293 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:02:21,293 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:02:21,293 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:02:21,293 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:02:21,293 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-06 22:02:21,293 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-06 22:02:21,293 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:02:21,293 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-06 22:02:21,294 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-06 22:02:21,294 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:02:21,294 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-06 22:02:21,294 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-06 22:02:21,294 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-06 22:02:21,294 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-06 22:02:21,294 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:02:21,294 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-06 22:02:21,294 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-06 22:02:21,308 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-06 22:02:21,310 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-06 22:02:21,311 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-06 22:02:21,311 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-06 22:02:21,311 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-06 22:02:21,317 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-06 22:02:21,317 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-06 22:02:21,317 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-06 22:02:21,317 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-06 22:02:21,317 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-06 22:02:21,321 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-06 22:02:21,327 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-06 22:02:21,327 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-06 22:02:21,327 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-06 22:02:21,327 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-06 22:02:21,327 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-06 22:02:21,328 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-06 22:02:21,328 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-06 22:02:21,339 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-06 22:02:21,339 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:02:21,340 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-06 22:02:21,357 [INFO] __main__: MainWindow gestartet im Vollbild-Modus (kompletter Bildschirm)
+2025-11-06 22:02:24,580 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-06 22:02:24,580 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:02:24,580 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-06 22:02:28,228 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-06 22:02:28,228 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:02:28,228 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:02:31,952 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-06 22:02:31,952 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-06 22:02:31,952 [INFO] views.beladen_seite: Simulation: Beladen auf 34.98 kg
+2025-11-06 22:02:31,952 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 34.98 kg
+2025-11-06 22:02:31,952 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 34.97639590734204, 'nachgeladen': 34.97639590734204, 'futtertyp': 'heu'}
+2025-11-06 22:02:31,952 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:02:31,952 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-06 22:02:37,213 [INFO] views.main_window: Navigation: einstellungen mit Kontext: None
+2025-11-06 22:02:37,213 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:02:37,214 [INFO] utils.timer_manager: Aktive Seite gewechselt: einstellungen
+2025-11-06 22:02:37,214 [INFO] views.main_window: Seite gewechselt zu: einstellungen
+2025-11-06 22:02:43,163 [INFO] views.einstellungen_seite: Zurück-Button geklickt
+2025-11-06 22:02:43,164 [INFO] views.main_window: Back-Button: Aktuell=einstellungen, Zurück zu=fuettern
+2025-11-06 22:02:43,164 [INFO] views.main_window: Navigation-History: fuettern → einstellungen
+2025-11-06 22:02:43,164 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 34.97639590734204, 'nachgeladen': 34.97639590734204, 'futtertyp': 'heu'}
+2025-11-06 22:02:43,164 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:02:43,164 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-06 22:03:07,649 [INFO] views.fuettern_seite: EXIT-Button gedrückt - Anwendung wird beendet
+2025-11-06 22:32:51,639 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-06 22:32:51,639 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-06 22:32:51,698 [INFO] __main__: Sensor Manager initialisiert
+2025-11-06 22:32:51,698 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-06 22:32:51,726 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-06 22:32:51,726 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-06 22:32:51,726 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-06 22:32:51,728 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-06 22:32:51,728 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-06 22:32:51,730 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-06 22:32:51,730 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:32:51,730 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:32:51,730 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:32:51,730 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:32:51,730 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-06 22:32:51,730 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-06 22:32:51,730 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:32:51,730 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-06 22:32:51,730 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-06 22:32:51,730 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:32:51,730 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-06 22:32:51,731 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-06 22:32:51,731 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-06 22:32:51,731 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-06 22:32:51,731 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:32:51,731 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-06 22:32:51,731 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-06 22:32:51,754 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-06 22:32:51,756 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-06 22:32:51,756 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-06 22:32:51,756 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-06 22:32:51,756 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-06 22:32:51,763 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-06 22:32:51,763 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-06 22:32:51,763 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-06 22:32:51,763 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-06 22:32:51,763 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-06 22:32:51,767 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-06 22:32:51,770 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-06 22:32:51,770 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-06 22:32:51,770 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-06 22:32:51,770 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-06 22:32:51,770 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-06 22:32:51,771 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-06 22:32:51,771 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-06 22:32:51,795 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-06 22:32:51,795 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:32:51,795 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-06 22:32:51,818 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-06 22:32:58,123 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-06 22:32:58,124 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:32:58,124 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-06 22:32:59,546 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-06 22:32:59,546 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:32:59,546 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-06 22:32:59,546 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:33:14,547 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-06 22:33:14,547 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-06 22:33:14,547 [INFO] views.beladen_seite: Simulation: Beladen auf 34.58 kg
+2025-11-06 22:33:14,548 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 34.58 kg
+2025-11-06 22:33:14,548 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 34.58130765556748, 'nachgeladen': 34.58130765556748, 'futtertyp': 'heu'}
+2025-11-06 22:33:14,548 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:33:14,548 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-06 22:33:14,548 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-06 22:34:01,391 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 34.58130765556748, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-06 22:34:01,391 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:34:01,391 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-06 22:34:01,391 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:34:04,529 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-06 22:34:04,529 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-06 22:34:04,529 [INFO] views.beladen_seite: Simulation: Beladen auf 70.23 kg
+2025-11-06 22:34:04,529 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 70.23 kg
+2025-11-06 22:34:04,529 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 70.22959996576228, 'nachgeladen': 70.22959996576228, 'futtertyp': 'heu'}
+2025-11-06 22:34:04,529 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:34:04,529 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-06 22:34:45,571 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-06 22:34:45,571 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-06 22:36:34,771 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-06 22:36:34,771 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-06 22:36:34,809 [INFO] __main__: Sensor Manager initialisiert
+2025-11-06 22:36:34,810 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-06 22:36:34,821 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-06 22:36:34,821 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-06 22:36:34,821 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-06 22:36:34,821 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-06 22:36:34,821 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-06 22:36:34,822 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-06 22:36:34,822 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:36:34,822 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:36:34,822 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:36:34,822 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:36:34,822 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-06 22:36:34,822 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-06 22:36:34,822 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:36:34,822 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-06 22:36:34,822 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-06 22:36:34,822 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:36:34,822 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-06 22:36:34,823 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-06 22:36:34,823 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-06 22:36:34,823 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-06 22:36:34,823 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:36:34,823 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-06 22:36:34,823 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-06 22:36:34,829 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-06 22:36:34,832 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-06 22:36:34,832 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-06 22:36:34,832 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-06 22:36:34,832 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-06 22:36:34,838 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-06 22:36:34,838 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-06 22:36:34,838 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-06 22:36:34,838 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-06 22:36:34,838 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-06 22:36:34,841 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-06 22:36:34,844 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-06 22:36:34,844 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-06 22:36:34,844 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-06 22:36:34,844 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-06 22:36:34,844 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-06 22:36:34,845 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-06 22:36:34,845 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-06 22:36:34,856 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-06 22:36:34,856 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:36:34,856 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-06 22:36:34,874 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-06 22:36:37,330 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-06 22:36:37,330 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:36:37,331 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-06 22:36:40,686 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-06 22:36:40,686 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:36:40,686 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-06 22:36:40,686 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:36:46,720 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-06 22:36:46,720 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-06 22:36:46,720 [INFO] views.beladen_seite: Simulation: Beladen auf 34.59 kg
+2025-11-06 22:36:46,720 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 34.59 kg
+2025-11-06 22:36:46,720 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 34.589890791489026, 'nachgeladen': 34.589890791489026, 'futtertyp': 'heu'}
+2025-11-06 22:36:46,730 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:36:46,730 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-06 22:36:46,731 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-06 22:36:51,653 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 34.589890791489026, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-06 22:36:51,653 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:36:51,653 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-06 22:36:51,653 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:39:50,127 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-06 22:39:50,127 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-06 22:39:50,153 [INFO] __main__: Sensor Manager initialisiert
+2025-11-06 22:39:50,153 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-06 22:39:50,173 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-06 22:39:50,173 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-06 22:39:50,173 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-06 22:39:50,173 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-06 22:39:50,173 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-06 22:39:50,174 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-06 22:39:50,174 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:39:50,174 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:39:50,174 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:39:50,174 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:39:50,174 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-06 22:39:50,174 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-06 22:39:50,174 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:39:50,174 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-06 22:39:50,174 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-06 22:39:50,174 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:39:50,174 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-06 22:39:50,174 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-06 22:39:50,174 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-06 22:39:50,174 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-06 22:39:50,175 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:39:50,175 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-06 22:39:50,175 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-06 22:39:50,181 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-06 22:39:50,184 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-06 22:39:50,184 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-06 22:39:50,184 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-06 22:39:50,184 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-06 22:39:50,189 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-06 22:39:50,190 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-06 22:39:50,190 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-06 22:39:50,190 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-06 22:39:50,190 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-06 22:39:50,193 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-06 22:39:50,195 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-06 22:39:50,195 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-06 22:39:50,195 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-06 22:39:50,195 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-06 22:39:50,195 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-06 22:39:50,196 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-06 22:39:50,196 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-06 22:39:50,207 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-06 22:39:50,207 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:39:50,207 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-06 22:39:50,222 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-06 22:39:55,124 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-06 22:39:55,124 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:39:55,124 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-06 22:39:58,400 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-06 22:39:58,400 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:39:58,400 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-06 22:39:58,400 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:45:15,043 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-06 22:45:15,043 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-06 22:45:15,072 [INFO] __main__: Sensor Manager initialisiert
+2025-11-06 22:45:15,072 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-06 22:45:15,082 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-06 22:45:15,082 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-06 22:45:15,082 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-06 22:45:15,083 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-06 22:45:15,083 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-06 22:45:15,083 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-06 22:45:15,083 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:45:15,083 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:45:15,083 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-06 22:45:15,083 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-06 22:45:15,083 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-06 22:45:15,083 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-06 22:45:15,083 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:45:15,083 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-06 22:45:15,084 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-06 22:45:15,084 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:45:15,084 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-06 22:45:15,084 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-06 22:45:15,084 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-06 22:45:15,084 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-06 22:45:15,084 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-06 22:45:15,084 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-06 22:45:15,084 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-06 22:45:15,090 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-06 22:45:15,093 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-06 22:45:15,093 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-06 22:45:15,093 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-06 22:45:15,093 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-06 22:45:15,099 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-06 22:45:15,099 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-06 22:45:15,099 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-06 22:45:15,099 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-06 22:45:15,099 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-06 22:45:15,103 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-06 22:45:15,105 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-06 22:45:15,105 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-06 22:45:15,105 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-06 22:45:15,105 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-06 22:45:15,105 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-06 22:45:15,106 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-06 22:45:15,106 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-06 22:45:15,117 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-06 22:45:15,117 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:45:15,117 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-06 22:45:15,131 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-06 22:45:17,847 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-06 22:45:17,848 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:45:17,848 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-06 22:45:19,640 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-06 22:45:19,640 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-06 22:45:19,640 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-06 22:45:19,640 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-06 22:45:19,640 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-06 22:45:19,640 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-06 22:45:33,926 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-06 22:45:33,926 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-06 22:45:33,926 [INFO] views.beladen_seite: Simulation: Beladen auf 35.22 kg
+2025-11-06 22:45:33,926 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 35.22 kg
+2025-11-06 22:45:33,926 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 35.221914375746664, 'nachgeladen': 35.221914375746664, 'futtertyp': 'heu'}
+2025-11-06 22:45:33,926 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-06 22:45:33,926 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-06 22:45:33,927 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-06 22:45:33,927 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-06 22:45:33,927 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 07:45:20,354 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-07 07:45:20,355 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-07 07:45:20,440 [INFO] __main__: Sensor Manager initialisiert
+2025-11-07 07:45:20,440 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-07 07:45:20,485 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-07 07:45:20,485 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-07 07:45:20,485 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-07 07:45:20,486 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-07 07:45:20,486 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-07 07:45:20,487 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-07 07:45:20,487 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 07:45:20,487 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 07:45:20,487 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 07:45:20,487 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 07:45:20,487 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-07 07:45:20,487 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-07 07:45:20,487 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-07 07:45:20,487 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-07 07:45:20,487 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-07 07:45:20,487 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 07:45:20,487 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-07 07:45:20,487 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-07 07:45:20,487 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-07 07:45:20,487 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-07 07:45:20,488 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 07:45:20,488 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-07 07:45:20,488 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-07 07:45:20,507 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-07 07:45:20,509 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-07 07:45:20,509 [INFO] views.beladen_seite: TimerManager Timer für BeladenSeite registriert
+2025-11-07 07:45:20,509 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-07 07:45:20,509 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-07 07:45:20,516 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-07 07:45:20,516 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-07 07:45:20,516 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-07 07:45:20,516 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-07 07:45:20,516 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-07 07:45:20,523 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-07 07:45:20,526 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-07 07:45:20,526 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-07 07:45:20,526 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-07 07:45:20,526 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-07 07:45:20,526 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-07 07:45:20,527 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-07 07:45:20,527 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-07 07:45:20,550 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-07 07:45:20,550 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 07:45:20,550 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-07 07:45:20,571 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-07 07:45:24,235 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-07 07:45:24,236 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 07:45:24,236 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-07 07:45:27,345 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-07 07:45:27,345 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 07:45:27,345 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-07 07:45:27,345 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 07:45:27,346 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 07:45:27,346 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 07:45:33,220 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 07:45:33,220 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 07:45:33,220 [INFO] views.beladen_seite: Simulation: Beladen auf 33.87 kg
+2025-11-07 07:45:33,220 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 33.87 kg
+2025-11-07 07:45:33,220 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 33.87004864358904, 'nachgeladen': 33.87004864358904, 'futtertyp': 'heu'}
+2025-11-07 07:45:33,220 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 07:45:33,220 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-07 07:45:33,221 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 07:45:33,221 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 07:45:33,221 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 07:45:41,608 [INFO] views.fuettern_seite: EXIT-Button gedrückt - Anwendung wird beendet
+2025-11-07 07:55:27,553 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-07 07:55:27,553 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-07 07:55:27,582 [INFO] __main__: Sensor Manager initialisiert
+2025-11-07 07:55:27,582 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-07 07:55:27,606 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-07 07:55:27,606 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-07 07:55:27,606 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-07 07:55:27,607 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-07 07:55:27,607 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-07 07:55:27,607 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-07 07:55:27,608 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 07:55:27,608 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 07:55:27,608 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 07:55:27,608 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 07:55:27,608 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-07 07:55:27,608 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-07 07:55:27,608 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-07 07:55:27,608 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-07 07:55:27,608 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-07 07:55:27,608 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 07:55:27,608 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-07 07:55:27,608 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-07 07:55:27,608 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-07 07:55:27,608 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-07 07:55:27,608 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 07:55:27,608 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-07 07:55:27,608 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-07 07:55:27,615 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-07 07:55:27,621 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-07 07:55:27,622 [INFO] views.beladen_seite: 🎯 TimerManager Timer für BeladenSeite registriert
+2025-11-07 07:55:27,622 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-07 07:55:27,622 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-07 07:55:27,638 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-07 07:55:27,638 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-07 07:55:27,638 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-07 07:55:27,638 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-07 07:55:27,638 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-07 07:55:27,648 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-07 07:55:27,650 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-07 07:55:27,650 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-07 07:55:27,651 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-07 07:55:27,651 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-07 07:55:27,651 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-07 07:55:27,652 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-07 07:55:27,652 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-07 07:55:27,663 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-07 07:55:27,663 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 07:55:27,663 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-07 07:55:27,679 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-07 07:55:30,718 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-07 07:55:30,718 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 07:55:30,718 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-07 07:55:32,092 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-07 07:55:32,092 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 07:55:32,092 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-07 07:55:32,093 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 07:55:32,093 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 07:55:32,093 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:02:06,481 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-07 08:02:06,481 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-07 08:02:06,510 [INFO] __main__: Sensor Manager initialisiert
+2025-11-07 08:02:06,510 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-07 08:02:06,538 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-07 08:02:06,538 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-07 08:02:06,538 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-07 08:02:06,538 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-07 08:02:06,538 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-07 08:02:06,539 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-07 08:02:06,539 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 08:02:06,539 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 08:02:06,539 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 08:02:06,539 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 08:02:06,539 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-07 08:02:06,539 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-07 08:02:06,539 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:02:06,539 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-07 08:02:06,540 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-07 08:02:06,540 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:02:06,540 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-07 08:02:06,540 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-07 08:02:06,540 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-07 08:02:06,540 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-07 08:02:06,540 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:02:06,540 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-07 08:02:06,540 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-07 08:02:06,547 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-07 08:02:06,549 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-07 08:02:06,550 [INFO] views.beladen_seite: 🎯 TimerManager Timer für BeladenSeite registriert
+2025-11-07 08:02:06,550 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-07 08:02:06,550 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-07 08:02:06,556 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-07 08:02:06,556 [INFO] views.fuettern_seite: WeightManager Observer für FuetternSeite registriert
+2025-11-07 08:02:06,556 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-07 08:02:06,556 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-07 08:02:06,556 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-07 08:02:06,560 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-07 08:02:06,562 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-07 08:02:06,562 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-07 08:02:06,562 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-07 08:02:06,562 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-07 08:02:06,562 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-07 08:02:06,563 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-07 08:02:06,563 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-07 08:02:06,575 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-07 08:02:06,575 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:02:06,575 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-07 08:02:06,596 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-07 08:02:09,423 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-07 08:02:09,423 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:02:09,423 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-07 08:02:14,518 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-07 08:02:14,518 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:02:14,518 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-07 08:02:14,519 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:02:14,519 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:02:14,519 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:02:17,900 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:02:17,900 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:02:17,900 [INFO] views.beladen_seite: Simulation: Beladen auf 58.46 kg
+2025-11-07 08:02:17,900 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 58.46 kg
+2025-11-07 08:02:17,900 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 58.462667402813366, 'nachgeladen': 58.462667402813366, 'futtertyp': 'heu'}
+2025-11-07 08:02:17,900 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:02:17,900 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-07 08:02:17,901 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:02:17,901 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:02:17,901 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:02:25,893 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 60.27922559366017, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:02:25,894 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:02:25,894 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-07 08:02:25,894 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:02:25,894 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:02:25,894 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:02:27,879 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:02:27,879 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:02:27,879 [INFO] views.beladen_seite: Simulation: Beladen auf 94.60 kg
+2025-11-07 08:02:27,879 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 94.60 kg
+2025-11-07 08:02:27,879 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 94.60411082115473, 'nachgeladen': 94.60411082115473, 'futtertyp': 'heu'}
+2025-11-07 08:02:27,879 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:02:27,879 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:02:27,879 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:02:27,879 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:02:29,877 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 95.45290078743703, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:02:29,877 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:02:29,878 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:02:29,878 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:02:29,878 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:02:32,916 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:02:32,916 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:02:32,916 [INFO] views.beladen_seite: Simulation: Beladen auf 128.78 kg
+2025-11-07 08:02:32,916 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 128.78 kg
+2025-11-07 08:02:32,916 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 128.77651523743944, 'nachgeladen': 128.77651523743944, 'futtertyp': 'heu'}
+2025-11-07 08:02:32,916 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:02:32,916 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:02:32,917 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:02:32,917 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:12:52,804 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-07 08:12:52,804 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-07 08:12:52,834 [INFO] __main__: Sensor Manager initialisiert
+2025-11-07 08:12:52,834 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-07 08:12:52,856 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-07 08:12:52,856 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-07 08:12:52,856 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-07 08:12:52,856 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-07 08:12:52,856 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-07 08:12:52,857 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-07 08:12:52,857 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 08:12:52,857 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 08:12:52,857 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 08:12:52,857 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 08:12:52,857 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-07 08:12:52,857 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-07 08:12:52,857 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:12:52,857 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-07 08:12:52,857 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-07 08:12:52,857 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:12:52,857 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-07 08:12:52,857 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-07 08:12:52,857 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-07 08:12:52,858 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-07 08:12:52,858 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:12:52,858 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-07 08:12:52,858 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-07 08:12:52,864 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-07 08:12:52,867 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-07 08:12:52,867 [INFO] views.beladen_seite: 🎯 TimerManager Timer für BeladenSeite registriert
+2025-11-07 08:12:52,867 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-07 08:12:52,867 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-07 08:12:52,873 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-07 08:12:52,873 [INFO] views.fuettern_seite: FütternSeite verwendet feste Gewichtswerte (kein WeightManager Observer)
+2025-11-07 08:12:52,873 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-07 08:12:52,873 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-07 08:12:52,873 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-07 08:12:52,877 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-07 08:12:52,879 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-07 08:12:52,880 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-07 08:12:52,880 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-07 08:12:52,880 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-07 08:12:52,880 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-07 08:12:52,881 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-07 08:12:52,881 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-07 08:12:52,892 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-07 08:12:52,892 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:12:52,892 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-07 08:12:52,907 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-07 08:12:54,753 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-07 08:12:54,753 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:12:54,753 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-07 08:12:55,963 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-07 08:12:55,964 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:12:55,964 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-07 08:12:55,964 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:12:55,964 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:12:55,964 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:12:59,231 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:12:59,231 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:12:59,232 [INFO] views.beladen_seite: Simulation: Beladen auf 52.00 kg
+2025-11-07 08:12:59,232 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 52.00 kg
+2025-11-07 08:12:59,232 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 52.003006459469425, 'nachgeladen': 52.003006459469425, 'futtertyp': 'heu'}
+2025-11-07 08:12:59,232 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:12:59,232 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-07 08:12:59,232 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:12:59,232 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:12:59,232 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:13:01,905 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 0.0, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:13:01,905 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:01,905 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-07 08:13:01,905 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:13:01,906 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:13:01,906 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:13:03,749 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:13:03,750 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:13:03,750 [INFO] views.beladen_seite: Simulation: Beladen auf 86.36 kg
+2025-11-07 08:13:03,750 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 86.36 kg
+2025-11-07 08:13:03,750 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 86.36215332355084, 'nachgeladen': 86.36215332355084, 'futtertyp': 'heu'}
+2025-11-07 08:13:03,750 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:03,750 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:13:03,750 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:13:03,750 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:13:05,173 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 0.0, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:13:05,173 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:05,174 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:13:05,174 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:13:05,174 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:13:06,666 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:13:06,667 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:13:06,667 [INFO] views.beladen_seite: Simulation: Beladen auf 122.94 kg
+2025-11-07 08:13:06,667 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 122.94 kg
+2025-11-07 08:13:06,667 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 122.94197946227054, 'nachgeladen': 122.94197946227054, 'futtertyp': 'heu'}
+2025-11-07 08:13:06,667 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:06,667 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:13:06,667 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:13:06,667 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:13:16,316 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 0.0, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:13:16,316 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:16,317 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:13:16,317 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:13:16,317 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:13:18,055 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:13:18,055 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:13:18,055 [INFO] views.beladen_seite: Simulation: Beladen auf 157.41 kg
+2025-11-07 08:13:18,055 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 157.41 kg
+2025-11-07 08:13:18,056 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 157.4119858155767, 'nachgeladen': 157.4119858155767, 'futtertyp': 'heu'}
+2025-11-07 08:13:18,056 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:18,056 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:13:18,056 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:13:18,056 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:13:25,424 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:13:25,424 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:13:25,424 [INFO] views.main_window: Wechsel zu Box 2: Delight
+2025-11-07 08:13:25,424 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 2 - Delight, 3 Jahre, 280.0 kg
+2025-11-07 08:13:44,213 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': Pferd(name='Delight', gewicht=280.0, alter=3, box=2, aktiv=True, notizen=''), 'restgewicht': 0.0, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:13:44,213 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:44,213 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:13:44,213 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:13:44,213 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:13:45,775 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:13:45,775 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:13:45,775 [INFO] views.beladen_seite: Simulation: Beladen auf 188.40 kg
+2025-11-07 08:13:45,775 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 188.40 kg
+2025-11-07 08:13:45,775 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 188.4046868589567, 'nachgeladen': 188.4046868589567, 'futtertyp': 'heu'}
+2025-11-07 08:13:45,775 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:13:45,775 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:13:45,775 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:13:45,775 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:18:05,618 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-07 08:18:05,618 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-07 08:18:05,646 [INFO] __main__: Sensor Manager initialisiert
+2025-11-07 08:18:05,646 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-07 08:18:05,670 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-07 08:18:05,670 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-07 08:18:05,670 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-07 08:18:05,670 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-07 08:18:05,670 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-07 08:18:05,671 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-07 08:18:05,671 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 08:18:05,671 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 08:18:05,671 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-07 08:18:05,671 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-07 08:18:05,671 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-07 08:18:05,671 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-07 08:18:05,671 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:18:05,671 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-07 08:18:05,671 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-07 08:18:05,671 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:18:05,671 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-07 08:18:05,671 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-07 08:18:05,671 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-07 08:18:05,671 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-07 08:18:05,671 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-07 08:18:05,671 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-07 08:18:05,671 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-07 08:18:05,678 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-07 08:18:05,680 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-07 08:18:05,680 [INFO] views.beladen_seite: 🎯 TimerManager Timer für BeladenSeite registriert
+2025-11-07 08:18:05,680 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-07 08:18:05,680 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-07 08:18:05,687 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-07 08:18:05,687 [INFO] views.fuettern_seite: FütternSeite verwendet feste Gewichtswerte (kein WeightManager Observer)
+2025-11-07 08:18:05,687 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-07 08:18:05,687 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-07 08:18:05,688 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-07 08:18:05,697 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-07 08:18:05,701 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-07 08:18:05,701 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-07 08:18:05,701 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-07 08:18:05,701 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-07 08:18:05,702 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-07 08:18:05,703 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-07 08:18:05,704 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-07 08:18:05,715 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-07 08:18:05,715 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:18:05,715 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-07 08:18:05,730 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-07 08:18:07,571 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-07 08:18:07,571 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:18:07,571 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-07 08:18:08,579 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-07 08:18:08,579 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-07 08:18:08,579 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-07 08:18:08,579 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:18:08,579 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:18:08,579 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:18:10,738 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:18:10,738 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:18:10,738 [INFO] views.beladen_seite: Simulation: Beladen auf 54.30 kg
+2025-11-07 08:18:10,738 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 54.30 kg
+2025-11-07 08:18:10,738 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 54.301510346944426, 'nachgeladen': 54.301510346944426, 'futtertyp': 'heu'}
+2025-11-07 08:18:10,738 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:10,739 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-07 08:18:10,739 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:18:10,739 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 54.30 kg
+2025-11-07 08:18:10,739 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 54.30 kg
+2025-11-07 08:18:10,739 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 54.30kg
+2025-11-07 08:18:10,739 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:18:10,739 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:18:16,874 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 54.301510346944426, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:18:16,874 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:16,874 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-07 08:18:16,874 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:18:16,874 [INFO] views.beladen_seite: Beladen-Seite: Kontext erhalten - Pferd 1, Restgewicht: 54.30 kg
+2025-11-07 08:18:16,874 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:18:16,874 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:18:18,205 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:18:18,205 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:18:18,205 [INFO] views.beladen_seite: Simulation: Beladen auf 91.27 kg
+2025-11-07 08:18:18,205 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 91.27 kg
+2025-11-07 08:18:18,205 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 54.301510346944426, 'futtertyp': 'heu', 'von_seite': 'fuettern', 'neues_gewicht': 91.27370466543128, 'nachgeladen': 91.27370466543128}
+2025-11-07 08:18:18,205 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:18,205 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:18:18,205 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 91.27 kg
+2025-11-07 08:18:18,205 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 91.27 kg
+2025-11-07 08:18:18,205 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 91.27kg
+2025-11-07 08:18:18,205 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:18:18,205 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:18:20,380 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 91.27370466543128, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:18:20,380 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:20,380 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:18:20,380 [INFO] views.beladen_seite: Beladen-Seite: Kontext erhalten - Pferd 1, Restgewicht: 91.27 kg
+2025-11-07 08:18:20,380 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:18:20,380 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:18:21,375 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:18:21,375 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:18:21,375 [INFO] views.beladen_seite: Simulation: Beladen auf 125.68 kg
+2025-11-07 08:18:21,375 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 125.68 kg
+2025-11-07 08:18:21,375 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 91.27370466543128, 'futtertyp': 'heu', 'von_seite': 'fuettern', 'neues_gewicht': 125.67516808235165, 'nachgeladen': 125.67516808235165}
+2025-11-07 08:18:21,375 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:21,375 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:18:21,375 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 125.68 kg
+2025-11-07 08:18:21,375 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 125.68 kg
+2025-11-07 08:18:21,375 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 125.68kg
+2025-11-07 08:18:21,375 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:18:21,375 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:18:23,164 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 125.67516808235165, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-07 08:18:23,164 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:23,165 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-07 08:18:23,165 [INFO] views.beladen_seite: Beladen-Seite: Kontext erhalten - Pferd 1, Restgewicht: 125.68 kg
+2025-11-07 08:18:23,165 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-07 08:18:23,165 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-07 08:18:24,366 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-07 08:18:24,366 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-07 08:18:24,366 [INFO] views.beladen_seite: Simulation: Beladen auf 162.91 kg
+2025-11-07 08:18:24,366 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 162.91 kg
+2025-11-07 08:18:24,366 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 125.67516808235165, 'futtertyp': 'heu', 'von_seite': 'fuettern', 'neues_gewicht': 162.91200091668645, 'nachgeladen': 162.91200091668645}
+2025-11-07 08:18:24,366 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-07 08:18:24,366 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-07 08:18:24,366 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 162.91 kg
+2025-11-07 08:18:24,366 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 162.91 kg
+2025-11-07 08:18:24,366 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 162.91kg
+2025-11-07 08:18:24,366 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-07 08:18:24,366 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-07 08:18:26,386 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:26,386 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:26,386 [INFO] views.main_window: Wechsel zu Box 2: Delight
+2025-11-07 08:18:26,386 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 2 - Delight, 3 Jahre, 280.0 kg
+2025-11-07 08:18:27,298 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 4.5kg, 1 Pferde)
+2025-11-07 08:18:27,308 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 1
+2025-11-07 08:18:27,308 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:27,308 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:27,308 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:27,308 [INFO] views.main_window: Wechsel zu Box 3: Maverick
+2025-11-07 08:18:27,308 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 3 - Maverick, 5 Jahre, 400.0 kg
+2025-11-07 08:18:27,960 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 9.0kg, 2 Pferde)
+2025-11-07 08:18:27,974 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 2
+2025-11-07 08:18:27,974 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:27,974 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:27,974 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:27,974 [INFO] views.main_window: Wechsel zu Box 4: Rondo
+2025-11-07 08:18:27,974 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 4 - Rondo, 12 Jahre, 520.0 kg
+2025-11-07 08:18:28,517 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 13.5kg, 3 Pferde)
+2025-11-07 08:18:28,528 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 3
+2025-11-07 08:18:28,528 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:28,528 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:28,528 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:28,528 [INFO] views.main_window: Wechsel zu Box 5: Maranello
+2025-11-07 08:18:28,528 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 5 - Maranello, 20 Jahre, 450.0 kg
+2025-11-07 08:18:29,030 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 18.0kg, 4 Pferde)
+2025-11-07 08:18:29,043 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 4
+2025-11-07 08:18:29,043 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:29,043 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:29,043 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:29,043 [INFO] views.main_window: Wechsel zu Box 6: Salute
+2025-11-07 08:18:29,043 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 6 - Salute, 4 Jahre, 300.0 kg
+2025-11-07 08:18:29,600 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 22.5kg, 5 Pferde)
+2025-11-07 08:18:29,610 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 5
+2025-11-07 08:18:29,610 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:29,610 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:29,611 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:29,611 [INFO] views.main_window: Wechsel zu Box 7: Calli
+2025-11-07 08:18:29,611 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 7 - Calli, 10 Jahre, 450.0 kg
+2025-11-07 08:18:30,178 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 27.0kg, 6 Pferde)
+2025-11-07 08:18:30,191 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 6
+2025-11-07 08:18:30,191 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:30,191 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:30,191 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:30,191 [INFO] views.main_window: Wechsel zu Box 8: Karl
+2025-11-07 08:18:30,191 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 8 - Karl, 15 Jahre, 300.0 kg
+2025-11-07 08:18:30,802 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 31.5kg, 7 Pferde)
+2025-11-07 08:18:30,812 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 7
+2025-11-07 08:18:30,812 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:30,812 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:30,812 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:30,812 [INFO] views.main_window: Wechsel zu Box 9: Furore
+2025-11-07 08:18:30,812 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 9 - Furore, 12 Jahre, 500.0 kg
+2025-11-07 08:18:31,404 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 36.0kg, 8 Pferde)
+2025-11-07 08:18:31,413 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 8
+2025-11-07 08:18:31,413 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:31,413 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:31,413 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:31,413 [INFO] views.main_window: Wechsel zu Box 10: Nabo
+2025-11-07 08:18:31,413 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 10 - Nabo, 8 Jahre, 300.0 kg
+2025-11-07 08:18:31,985 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 40.5kg, 9 Pferde)
+2025-11-07 08:18:31,995 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 9
+2025-11-07 08:18:31,995 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:31,995 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:31,995 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:31,995 [INFO] views.main_window: Wechsel zu Box 12: Shadow
+2025-11-07 08:18:31,995 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 12 - Shadow, 10 Jahre, 580.0 kg
+2025-11-07 08:18:34,895 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 45.0kg, 10 Pferde)
+2025-11-07 08:18:34,903 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 10
+2025-11-07 08:18:34,903 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:34,903 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:34,903 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:34,903 [INFO] views.main_window: Wechsel zu Box 13: Devina
+2025-11-07 08:18:34,903 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 13 - Devina, 17 Jahre, 450.0 kg
+2025-11-07 08:18:37,366 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 49.5kg, 11 Pferde)
+2025-11-07 08:18:37,375 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 11
+2025-11-07 08:18:37,375 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:37,375 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:37,375 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:37,375 [INFO] views.main_window: Wechsel zu Box 14: Tajo
+2025-11-07 08:18:37,375 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 14 - Tajo, 3 Jahre, 150.0 kg
+2025-11-07 08:18:38,165 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 54.0kg, 12 Pferde)
+2025-11-07 08:18:38,174 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 12
+2025-11-07 08:18:38,174 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-07 08:18:38,174 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-07 08:18:38,174 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-07 08:18:38,174 [INFO] views.main_window: Wechsel zu Box 16: Saphina
+2025-11-07 08:18:38,174 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 16 - Saphina, 5 Jahre, 200.0 kg
+2025-11-08 06:28:19,958 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-08 06:28:19,959 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-08 06:28:20,032 [INFO] __main__: Sensor Manager initialisiert
+2025-11-08 06:28:20,032 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-08 06:28:20,060 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-08 06:28:20,060 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-08 06:28:20,060 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-08 06:28:20,061 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-08 06:28:20,061 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-08 06:28:20,062 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-08 06:28:20,062 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-08 06:28:20,062 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-08 06:28:20,062 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-08 06:28:20,062 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-08 06:28:20,062 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-08 06:28:20,062 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-08 06:28:20,062 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-08 06:28:20,062 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-08 06:28:20,062 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-08 06:28:20,062 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-08 06:28:20,062 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-08 06:28:20,063 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-08 06:28:20,063 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-08 06:28:20,063 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-08 06:28:20,063 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-08 06:28:20,063 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-08 06:28:20,063 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-08 06:28:20,082 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-08 06:28:20,084 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-08 06:28:20,085 [INFO] views.beladen_seite: 🎯 TimerManager Timer für BeladenSeite registriert
+2025-11-08 06:28:20,085 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-08 06:28:20,085 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-08 06:28:20,091 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-08 06:28:20,091 [INFO] views.fuettern_seite: FütternSeite verwendet feste Gewichtswerte (kein WeightManager Observer)
+2025-11-08 06:28:20,091 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-08 06:28:20,091 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-08 06:28:20,091 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-08 06:28:20,094 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-08 06:28:20,097 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-08 06:28:20,097 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-08 06:28:20,097 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-08 06:28:20,097 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-08 06:28:20,097 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-08 06:28:20,098 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-08 06:28:20,098 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-08 06:28:20,120 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-08 06:28:20,120 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-08 06:28:20,120 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-08 06:28:20,139 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-08 06:28:23,000 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-08 06:28:23,000 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-08 06:28:23,000 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-08 06:28:24,387 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-08 06:28:24,387 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-08 06:28:24,387 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-08 06:28:24,387 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-08 06:28:24,387 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-08 06:28:24,387 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-08 06:28:26,302 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-08 06:28:26,302 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-08 06:28:26,302 [INFO] views.beladen_seite: Simulation: Beladen auf 59.27 kg
+2025-11-08 06:28:26,302 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 59.27 kg
+2025-11-08 06:28:26,302 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 59.26568792181905, 'nachgeladen': 59.26568792181905, 'futtertyp': 'heu'}
+2025-11-08 06:28:26,302 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-08 06:28:26,302 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-08 06:28:26,302 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-08 06:28:26,302 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 59.27 kg
+2025-11-08 06:28:26,302 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 59.27 kg
+2025-11-08 06:28:26,302 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 59.27kg
+2025-11-08 06:28:26,302 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-08 06:28:26,302 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-08 06:28:30,685 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 59.26568792181905, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-08 06:28:30,685 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-08 06:28:30,685 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-08 06:28:30,685 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-08 06:28:30,685 [INFO] views.beladen_seite: Beladen-Seite: Kontext erhalten - Pferd 1, Restgewicht: 59.27 kg
+2025-11-08 06:28:30,685 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-08 06:28:30,685 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-08 06:28:32,122 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-08 06:28:32,122 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-08 06:28:32,122 [INFO] views.beladen_seite: Simulation: Beladen auf 95.85 kg
+2025-11-08 06:28:32,122 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 95.85 kg
+2025-11-08 06:28:32,122 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 59.26568792181905, 'futtertyp': 'heu', 'von_seite': 'fuettern', 'neues_gewicht': 95.84692830244934, 'nachgeladen': 95.84692830244934}
+2025-11-08 06:28:32,123 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-08 06:28:32,123 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-08 06:28:32,123 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 95.85 kg
+2025-11-08 06:28:32,123 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 95.85 kg
+2025-11-08 06:28:32,123 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 95.85kg
+2025-11-08 06:28:32,123 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-08 06:28:32,123 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-08 06:28:38,617 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:38,617 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:38,617 [INFO] views.main_window: Wechsel zu Box 2: Delight
+2025-11-08 06:28:38,617 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 2 - Delight, 3 Jahre, 280.0 kg
+2025-11-08 06:28:44,702 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 4.5kg, 1 Pferde)
+2025-11-08 06:28:44,712 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 13
+2025-11-08 06:28:44,712 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:44,712 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:44,712 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:44,712 [INFO] views.main_window: Wechsel zu Box 3: Maverick
+2025-11-08 06:28:44,712 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 3 - Maverick, 5 Jahre, 400.0 kg
+2025-11-08 06:28:45,210 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 9.0kg, 2 Pferde)
+2025-11-08 06:28:45,220 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 14
+2025-11-08 06:28:45,220 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:45,220 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:45,220 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:45,220 [INFO] views.main_window: Wechsel zu Box 4: Rondo
+2025-11-08 06:28:45,220 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 4 - Rondo, 12 Jahre, 520.0 kg
+2025-11-08 06:28:46,198 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 13.5kg, 3 Pferde)
+2025-11-08 06:28:46,208 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 15
+2025-11-08 06:28:46,208 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:46,208 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:46,208 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:46,208 [INFO] views.main_window: Wechsel zu Box 5: Maranello
+2025-11-08 06:28:46,208 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 5 - Maranello, 20 Jahre, 450.0 kg
+2025-11-08 06:28:47,587 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 18.0kg, 4 Pferde)
+2025-11-08 06:28:47,597 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 16
+2025-11-08 06:28:47,597 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:47,597 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:47,597 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:47,597 [INFO] views.main_window: Wechsel zu Box 6: Salute
+2025-11-08 06:28:47,597 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 6 - Salute, 4 Jahre, 300.0 kg
+2025-11-08 06:28:48,285 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 22.5kg, 5 Pferde)
+2025-11-08 06:28:48,296 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 17
+2025-11-08 06:28:48,296 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:48,296 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:48,296 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:48,296 [INFO] views.main_window: Wechsel zu Box 7: Calli
+2025-11-08 06:28:48,296 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 7 - Calli, 10 Jahre, 450.0 kg
+2025-11-08 06:28:48,991 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 27.0kg, 6 Pferde)
+2025-11-08 06:28:49,000 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 18
+2025-11-08 06:28:49,000 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:49,000 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:49,000 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:49,000 [INFO] views.main_window: Wechsel zu Box 8: Karl
+2025-11-08 06:28:49,000 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 8 - Karl, 15 Jahre, 300.0 kg
+2025-11-08 06:28:50,019 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 31.5kg, 7 Pferde)
+2025-11-08 06:28:50,029 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 19
+2025-11-08 06:28:50,029 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:50,029 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:50,029 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:50,029 [INFO] views.main_window: Wechsel zu Box 9: Furore
+2025-11-08 06:28:50,029 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 9 - Furore, 12 Jahre, 500.0 kg
+2025-11-08 06:28:50,681 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 36.0kg, 8 Pferde)
+2025-11-08 06:28:50,691 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 20
+2025-11-08 06:28:50,691 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:50,691 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:50,691 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:50,691 [INFO] views.main_window: Wechsel zu Box 10: Nabo
+2025-11-08 06:28:50,691 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 10 - Nabo, 8 Jahre, 300.0 kg
+2025-11-08 06:28:54,025 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 40.5kg, 9 Pferde)
+2025-11-08 06:28:54,034 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 21
+2025-11-08 06:28:54,034 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:54,034 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:54,034 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:54,034 [INFO] views.main_window: Wechsel zu Box 12: Shadow
+2025-11-08 06:28:54,035 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 12 - Shadow, 10 Jahre, 580.0 kg
+2025-11-08 06:28:55,703 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 45.0kg, 10 Pferde)
+2025-11-08 06:28:55,713 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 22
+2025-11-08 06:28:55,713 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:55,713 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:55,713 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:55,713 [INFO] views.main_window: Wechsel zu Box 13: Devina
+2025-11-08 06:28:55,713 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 13 - Devina, 17 Jahre, 450.0 kg
+2025-11-08 06:28:56,976 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 49.5kg, 11 Pferde)
+2025-11-08 06:28:56,986 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 23
+2025-11-08 06:28:56,986 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:56,986 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:56,986 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:56,986 [INFO] views.main_window: Wechsel zu Box 14: Tajo
+2025-11-08 06:28:56,986 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 14 - Tajo, 3 Jahre, 150.0 kg
+2025-11-08 06:28:58,265 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 54.0kg, 12 Pferde)
+2025-11-08 06:28:58,275 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 24
+2025-11-08 06:28:58,275 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:58,275 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:58,275 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:58,275 [INFO] views.main_window: Wechsel zu Box 16: Saphina
+2025-11-08 06:28:58,275 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 16 - Saphina, 5 Jahre, 200.0 kg
+2025-11-08 06:28:59,985 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 58.5kg, 13 Pferde)
+2025-11-08 06:28:59,995 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 25
+2025-11-08 06:28:59,995 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:28:59,995 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:28:59,995 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:28:59,995 [INFO] views.main_window: Wechsel zu Box 17: Donna
+2025-11-08 06:28:59,995 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 17 - Donna, 15 Jahre, 450.0 kg
+2025-11-08 06:29:01,055 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 63.0kg, 14 Pferde)
+2025-11-08 06:29:01,065 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 26
+2025-11-08 06:29:01,065 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:29:01,065 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:29:01,065 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:29:01,065 [INFO] views.main_window: Wechsel zu Box 18: Hugo
+2025-11-08 06:29:01,065 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 18 - Hugo, 13 Jahre, 500.0 kg
+2025-11-08 06:29:02,298 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 67.5kg, 15 Pferde)
+2025-11-08 06:29:02,307 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 27
+2025-11-08 06:29:02,307 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:29:02,307 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:29:02,307 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:29:02,307 [INFO] views.main_window: Wechsel zu Box 19: Pippa
+2025-11-08 06:29:02,307 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 19 - Pippa, 18 Jahre, 400.0 kg
+2025-11-08 06:29:05,647 [INFO] views.main_window: Heulage-Fütterung registriert: +4.5kg (Gesamt: 72.0kg, 16 Pferde)
+2025-11-08 06:29:05,667 [INFO] views.main_window: Fütterung in Datenbank gespeichert: ID 28
+2025-11-08 06:29:05,667 [WARNING] views.main_window: Unbekannter Futtertyp für Statistik: heulage
+2025-11-08 06:29:05,667 [INFO] hardware.weight_manager: Simulation: Gewicht um -4.5kg geändert
+2025-11-08 06:29:05,667 [INFO] views.fuettern_seite: WeightManager: 4.5kg automatisch entnommen
+2025-11-08 06:29:05,667 [INFO] views.main_window: Wechsel zu Box 20: Million
+2025-11-08 06:29:05,667 [INFO] views.fuettern_seite: Pferd-Daten angezeigt: Box 20 - Million, 3 Jahre, 280.0 kg
+2025-11-08 06:39:30,686 [INFO] hardware.weight_manager: 🎮 Fallback zu HX711-Simulation aktiviert
+2025-11-08 06:39:30,686 [INFO] hardware.weight_manager: WeightManager initialisiert - Hardware: False, Simulation: True
+2025-11-08 06:39:30,717 [INFO] __main__: Sensor Manager initialisiert
+2025-11-08 06:39:30,717 [INFO] __main__: HX711-Simulation aktiviert
+2025-11-08 06:39:30,728 [INFO] utils.timer_manager: TimerManager initialisiert
+2025-11-08 06:39:30,728 [INFO] utils.settings_manager: Einstellungen geladen aus config/settings.json
+2025-11-08 06:39:30,728 [INFO] utils.settings_manager: SettingsManager initialisiert
+2025-11-08 06:39:30,728 [INFO] utils.database_manager: Datenbank-Schema erfolgreich initialisiert
+2025-11-08 06:39:30,728 [INFO] utils.database_manager: DatabaseManager initialisiert: data/feeding_history.db
+2025-11-08 06:39:30,729 [INFO] utils.csv_validator: CSV-Validierung für pferde.csv: 30 gültige Zeilen, 2 Fehler, 4 Warnungen
+2025-11-08 06:39:30,729 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-08 06:39:30,729 [WARNING] utils.futter_loader: Zeile 12: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-08 06:39:30,729 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Gewicht', Standard verwendet: 500
+2025-11-08 06:39:30,729 [WARNING] utils.futter_loader: Zeile 16: Fehlender Wert für 'Alter', Standard verwendet: 10
+2025-11-08 06:39:30,729 [ERROR] utils.futter_loader: Zeile 12: Pflichtfeld 'Name' fehlt
+2025-11-08 06:39:30,729 [ERROR] utils.futter_loader: Zeile 16: Pflichtfeld 'Name' fehlt
+2025-11-08 06:39:30,729 [INFO] utils.futter_loader: 30 Pferde erfolgreich geladen mit CSV-Validierung
+2025-11-08 06:39:30,729 [INFO] views.main_window: 30 Pferde aus CSV geladen
+2025-11-08 06:39:30,729 [INFO] utils.csv_validator: CSV-Validierung für heu_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 0 Warnungen
+2025-11-08 06:39:30,729 [INFO] utils.futter_loader: 1 Heu-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-08 06:39:30,729 [INFO] views.main_window: Standard-Heu geladen: 1 Einträge
+2025-11-08 06:39:30,730 [INFO] utils.csv_validator: CSV-Validierung für heulage_eigen_2025.csv: 1 gültige Zeilen, 0 Fehler, 2 Warnungen
+2025-11-08 06:39:30,730 [WARNING] utils.futter_loader: Zeile 2: 'Trockensubstanz' zu groß: 71.1 > 70, Standard verwendet: 45
+2025-11-08 06:39:30,730 [WARNING] utils.futter_loader: Zeile 2: 'ME-Pferd' zu klein: 7.4 < 8, Standard verwendet: 10
+2025-11-08 06:39:30,730 [INFO] utils.futter_loader: 1 Heulage-Einträge erfolgreich geladen mit CSV-Validierung
+2025-11-08 06:39:30,730 [INFO] views.main_window: Standard-Heulage geladen: 1 Einträge
+2025-11-08 06:39:30,730 [INFO] views.main_window: MainWindow wird initialisiert mit erweiterten Managern
+2025-11-08 06:39:30,737 [INFO] views.auswahl_seite: AuswahlSeite Buttons verbunden
+2025-11-08 06:39:30,740 [INFO] views.beladen_seite: beladen_seite.ui erfolgreich geladen
+2025-11-08 06:39:30,740 [INFO] views.beladen_seite: 🎯 TimerManager Timer für BeladenSeite registriert
+2025-11-08 06:39:30,740 [INFO] views.beladen_seite: Futter-Button-Gruppe eingerichtet mit 2 Optionen
+2025-11-08 06:39:30,740 [INFO] views.beladen_seite: Back-Button verbunden
+2025-11-08 06:39:30,747 [INFO] views.fuettern_seite: fuettern_seite.ui erfolgreich geladen
+2025-11-08 06:39:30,747 [INFO] views.fuettern_seite: FütternSeite verwendet feste Gewichtswerte (kein WeightManager Observer)
+2025-11-08 06:39:30,747 [INFO] views.fuettern_seite: TimerManager Timer für FuetternSeite registriert
+2025-11-08 06:39:30,747 [INFO] views.fuettern_seite: HEU-Zwischenstopp Button verbunden
+2025-11-08 06:39:30,747 [INFO] views.fuettern_seite: Exit-Button für Tests verbunden
+2025-11-08 06:39:30,751 [INFO] views.einstellungen_seite: EinstellungenSeite initialisiert
+2025-11-08 06:39:30,754 [INFO] views.futter_konfiguration: Heulage-Datei gewählt: heulage_eigen_2025.csv
+2025-11-08 06:39:30,754 [INFO] views.futter_konfiguration: Heu-Datei gewählt: heu_frd_2025.csv
+2025-11-08 06:39:30,754 [INFO] views.futter_konfiguration: Pellet-Datei gewählt: Pellets_deukavallo_Top_E.csv
+2025-11-08 06:39:30,754 [INFO] views.futter_konfiguration: Verfügbare Dateien: 2 Heu, 1 Heulage, 1 Pellets
+2025-11-08 06:39:30,754 [INFO] views.futter_konfiguration: FutterKonfiguration initialisiert
+2025-11-08 06:39:30,755 [INFO] views.fuetterung_abschluss: fuetterung_abschluss.ui erfolgreich geladen
+2025-11-08 06:39:30,755 [INFO] views.main_window: Signal-Verbindungen erfolgreich eingerichtet
+2025-11-08 06:39:30,768 [INFO] views.main_window: Navigation: start mit Kontext: None
+2025-11-08 06:39:30,768 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-08 06:39:30,768 [INFO] views.main_window: Seite gewechselt zu: start
+2025-11-08 06:39:30,785 [INFO] __main__: MainWindow gestartet im Fenster-Modus (1280x720)
+2025-11-08 06:39:33,982 [INFO] views.main_window: Navigation: auswahl mit Kontext: None
+2025-11-08 06:39:33,982 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-08 06:39:33,982 [INFO] views.main_window: Seite gewechselt zu: auswahl
+2025-11-08 06:39:34,923 [INFO] views.main_window: Navigation: beladen mit Kontext: None
+2025-11-08 06:39:34,924 [INFO] utils.timer_manager: Alle Timer gestoppt (0 aktive)
+2025-11-08 06:39:34,924 [INFO] views.main_window: Hauptseite auf Stack: auswahl
+2025-11-08 06:39:34,924 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-08 06:39:34,924 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-08 06:39:34,924 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-08 06:39:37,054 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-08 06:39:37,055 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-08 06:39:37,055 [INFO] views.beladen_seite: Simulation: Beladen auf 50.91 kg
+2025-11-08 06:39:37,055 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 50.91 kg
+2025-11-08 06:39:37,055 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'neues_gewicht': 50.9087601238946, 'nachgeladen': 50.9087601238946, 'futtertyp': 'heu'}
+2025-11-08 06:39:37,055 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-08 06:39:37,055 [INFO] views.main_window: Hauptseite auf Stack: beladen
+2025-11-08 06:39:37,055 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-08 06:39:37,055 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 50.91 kg
+2025-11-08 06:39:37,055 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 50.91 kg
+2025-11-08 06:39:37,055 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 50.91kg
+2025-11-08 06:39:37,055 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-08 06:39:37,055 [INFO] views.main_window: Seite gewechselt zu: fuettern
+2025-11-08 06:39:43,377 [INFO] views.main_window: Navigation: beladen mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 52.604554943490555, 'futtertyp': 'heulage', 'von_seite': 'fuettern'}
+2025-11-08 06:39:43,377 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-08 06:39:43,377 [INFO] views.main_window: Hauptseite auf Stack: fuettern
+2025-11-08 06:39:43,377 [INFO] utils.timer_manager: Aktive Seite gewechselt: BeladenSeite
+2025-11-08 06:39:43,377 [INFO] views.beladen_seite: Beladen-Seite: Kontext erhalten - Pferd 1, Restgewicht: 52.60 kg
+2025-11-08 06:39:43,377 [INFO] views.main_window: Timer für BeladenSeite aktiviert
+2025-11-08 06:39:43,377 [INFO] views.main_window: Seite gewechselt zu: beladen
+2025-11-08 06:39:45,025 [INFO] hardware.weight_manager: Simulation: Gewicht um +35.0kg geändert
+2025-11-08 06:39:45,025 [INFO] views.beladen_seite: WeightManager: Karre automatisch beladen
+2025-11-08 06:39:45,025 [INFO] views.beladen_seite: Simulation: Beladen auf 86.87 kg
+2025-11-08 06:39:45,025 [INFO] views.beladen_seite: Beladen abgeschlossen: Gesamt 86.87 kg
+2025-11-08 06:39:45,025 [INFO] views.main_window: Navigation: fuettern mit Kontext: {'pferd_nummer': 1, 'pferd_objekt': None, 'restgewicht': 52.604554943490555, 'futtertyp': 'heu', 'von_seite': 'fuettern', 'neues_gewicht': 86.86767066018116, 'nachgeladen': 86.86767066018116}
+2025-11-08 06:39:45,025 [INFO] utils.timer_manager: Alle Timer gestoppt (1 aktive)
+2025-11-08 06:39:45,025 [INFO] utils.timer_manager: Aktive Seite gewechselt: FuetternSeite
+2025-11-08 06:39:45,025 [INFO] views.fuettern_seite: Karre-Gewicht von Beladen-Seite übernommen: 86.87 kg
+2025-11-08 06:39:45,025 [INFO] views.fuettern_seite: Kontext wiederhergestellt - Pferd 1, Karre: 86.87 kg
+2025-11-08 06:39:45,025 [INFO] views.main_window: FütternSeite: Kontext wiederhergestellt - 86.87kg
+2025-11-08 06:39:45,025 [INFO] views.main_window: Timer für FuetternSeite aktiviert
+2025-11-08 06:39:45,025 [INFO] views.main_window: Seite gewechselt zu: fuettern

@@ -9,7 +9,7 @@ class AppConfig:
     DEBUG_MODE = True
 
     # Hardware-Einstellungen
-    USE_HARDWARE_SIMULATION = True
+    USE_HARDWARE_ONLY = True
 
     # Logging-Level
     LOG_LEVEL = "INFO"

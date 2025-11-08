@@ -31,19 +31,22 @@ def main():
         sensor_manager = SmartSensorManager()
         logger.info("Sensor Manager initialisiert")
 
-        # 2. Simulation aktivieren für Entwicklung
-        if AppConfig.DEBUG_MODE:
-            import hardware.hx711_sim as hx711_sim
-            hx711_sim.setze_simulation(True)
-            logger.info("HX711-Simulation aktiviert")
-            # DEBUG: Sofort testen
-            print(f"DEBUG: HX711 aktiv? {hx711_sim.ist_simulation_aktiv()}")
+        # 2. Hardware-Modus initialisieren
+        logger.info("Hardware-Modus aktiviert")
 
-        # 3. PyQt-Anwendung starten - OHNE Daten zu laden!
+        # 3. PyQt-Anwendung starten
         app = QApplication(sys.argv)
         window = MainWindow(sensor_manager)
-        window.showFullScreen()
-        logger.info("MainWindow gestartet im Vollbild-Modus (kompletter Bildschirm)")
+        
+        # 4. Fenster-Modus: --window Parameter für Tests
+        if "--window" in sys.argv:
+            window.resize(1280, 720)  # Fenstergröße setzen
+            window.show()  # Normales Fenster
+            logger.info("MainWindow gestartet im Fenster-Modus (1280x720)")
+        else:
+            window.showFullScreen()  # Vollbild für Pi5
+            logger.info("MainWindow gestartet im Vollbild-Modus (kompletter Bildschirm)")
+        
         sys.exit(app.exec_())
     except Exception as e:
         logger.error(f"Kritischer Fehler in main(): {e}")

@@ -184,16 +184,9 @@ class BeladenSeite(QWidget):
             f"Beladen-Seite: Kontext erhalten - Pferd {self.pferd_nummer}, Restgewicht: {self.restgewicht:.2f} kg")
 
     def beladen_fertig(self):
-        """Navigation zurück zur Füttern-Seite mit Simulation-Support und HEU-Zwischenstopp"""
+        """Navigation zurück zur Füttern-Seite"""
         if self.navigation:
             try:
-                # Import hier um Zirkular-Import zu vermeiden
-                import hardware.hx711_sim as hx711_sim
-                
-                # Simulation: Karre automatisch beladen über WeightManager
-                if self.weight_manager.get_status()['is_simulation']:
-                    self.weight_manager.simulate_weight_change(35.0)  # 35kg hinzufügen
-                    logger.info("WeightManager: Karre automatisch beladen")
                 
                 # Aktuelles Gewicht lesen (WeightManager - einheitlich)
                 aktuelles_gewicht = self.weight_manager.read_weight(use_cache=False)
@@ -221,23 +214,15 @@ class BeladenSeite(QWidget):
                     self.navigation.show_status("fuettern", rueckkehr_context)
                     return
 
-                # NORMALER MODUS: Wie bisher
-                # Für Simulation: Immer Neubeladung (35kg)
-                # Für Hardware: Additive Beladung wie bisher
-                if hx711_sim.ist_simulation_aktiv():
-                    gesamtgewicht = aktuelles_gewicht  # Simulation: direkter Wert
+                # HARDWARE: Additive Beladung
+                if self.restgewicht > 0:
+                    gesamtgewicht = self.restgewicht + aktuelles_gewicht
                     nachgeladen = aktuelles_gewicht
-                    logger.info(f"Simulation: Beladen auf {gesamtgewicht:.2f} kg")
+                    logger.info(f"Hardware: Nachladen {self.restgewicht:.2f} + {aktuelles_gewicht:.2f} = {gesamtgewicht:.2f} kg")
                 else:
-                    # HARDWARE: Additive Beladung wie bisher
-                    if self.restgewicht > 0:
-                        gesamtgewicht = self.restgewicht + aktuelles_gewicht
-                        nachgeladen = aktuelles_gewicht
-                        logger.info(f"Hardware: Nachladen {self.restgewicht:.2f} + {aktuelles_gewicht:.2f} = {gesamtgewicht:.2f} kg")
-                    else:
-                        gesamtgewicht = aktuelles_gewicht
-                        nachgeladen = aktuelles_gewicht
-                        logger.info(f"Hardware: Erstmaliges Beladen {gesamtgewicht:.2f} kg")
+                    gesamtgewicht = aktuelles_gewicht
+                    nachgeladen = aktuelles_gewicht
+                    logger.info(f"Hardware: Erstmaliges Beladen {gesamtgewicht:.2f} kg")
 
                 self.context['neues_gewicht'] = gesamtgewicht
                 self.context['nachgeladen'] = nachgeladen
@@ -251,22 +236,9 @@ class BeladenSeite(QWidget):
                 self.navigation.show_status("fuettern", self.context)
 
     def update_weight(self):
-        """Aktualisiert Gewichtsanzeige mit WeightManager - Enhanced Debugging"""
+        """Aktualisiert Gewichtsanzeige mit WeightManager"""
         try:
-            # SIMULATION HACK: Simuliere "Material-auf-Waage" für Live-Demo  
-            import hardware.hx711_sim as hx711_sim
-            if self.weight_manager.get_status()['is_simulation']:
-                # Simuliere dass Material auf die Waage gelegt wird (für BeladenSeite)
-                workflow_sim = hx711_sim.get_workflow_simulation()
-                if not workflow_sim.ist_beladen:
-                    # Simuliere dass 15-25kg Material bereits auf der Waage liegen
-                    import random
-                    basis_gewicht = random.uniform(15.0, 25.0)
-                    workflow_sim.karre_gewicht = basis_gewicht
-                    workflow_sim.ist_beladen = True
-                    print(f"🎯 SIMULATION: Basis-Material simuliert: {basis_gewicht:.1f}kg")
-
-            # WeightManager für einheitliche Gewichtsquelle
+            # WeightManager für Gewichtsquelle
             aktuelles_gewicht = self.weight_manager.read_weight()
             print(f"🔄 UPDATE_WEIGHT AUFGERUFEN: {aktuelles_gewicht:.2f} kg")
 
@@ -318,11 +290,9 @@ class BeladenSeite(QWidget):
 
         self.setLayout(layout)
 
-    def test_simulation(self):
-        """Test-Methode für HX711-Simulation"""
-        import hardware.hx711_sim as hx711_sim
-
-        print(f"Simulation aktiv: {hx711_sim.ist_simulation_aktiv()}")
+    def test_hardware(self):
+        """Test-Methode für Hardware-Sensoren"""
+        print("Hardware-Test gestartet...")
 
         for i in range(5):
             gewicht = self.weight_manager.read_weight()
@@ -330,5 +300,3 @@ class BeladenSeite(QWidget):
 
             if hasattr(self, 'label_karre_gewicht'):
                 self.label_karre_gewicht.setText(f"{gewicht:.2f}")
-
-    # simuliere_fuetterung entfernt - nicht mehr nötig mit vereinfachter Simulation

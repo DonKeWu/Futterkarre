@@ -5,7 +5,7 @@ import views.icons.icons_rc
 from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import QTimer
-import hardware.hx711_sim as hx711_sim
+
 from hardware.weight_manager import get_weight_manager
 
 logger = logging.getLogger(__name__)
@@ -260,17 +260,12 @@ class FuetternSeite(QWidget):
     # Simuliere_fuetterung entfernt - wird jetzt automatisch über btn_next_rgv gehandhabt
 
     def update_gewichts_anzeigen(self):
-        """Aktualisiert alle Gewichts-Anzeigen - HYBRID: Simulation vs Hardware"""
+        """Aktualisiert alle Gewichts-Anzeigen"""
         try:
-            # HYBRID-MODUS: Simulation vs Hardware unterscheiden
-            if self.weight_manager.get_status()['is_simulation']:
-                # SIMULATION: WeightManager-Updates beachten (für realistische Demo)
-                aktuelles_gewicht = self.weight_manager.read_weight()
-                self.karre_gewicht = aktuelles_gewicht
-                print(f"DEBUG: Karre-Gewicht (SIMULATION): {self.karre_gewicht:.2f} kg")
-            else:
-                # HARDWARE: Feste Werte verwenden (Inventar-System)
-                print(f"DEBUG: Karre-Gewicht (HARDWARE-FEST): {self.karre_gewicht:.2f} kg")
+            # Hardware: Aktuelles Gewicht vom WeightManager
+            aktuelles_gewicht = self.weight_manager.read_weight()
+            self.karre_gewicht = aktuelles_gewicht
+            print(f"DEBUG: Karre-Gewicht: {self.karre_gewicht:.2f} kg")
             
             # Karre-Gewicht anzeigen
             if hasattr(self, 'label_karre_gewicht_anzeigen'):
@@ -360,7 +355,7 @@ class FuetternSeite(QWidget):
             self.navigation.show_status("beladen", context)
 
     def naechstes_pferd(self):
-        """Wechselt zum nächsten Pferd und triggert automatische Simulation"""
+        """Wechselt zum nächsten Pferd"""
         # STATISTIK: Fütterung vor Wechsel registrieren
         if self.navigation and hasattr(self.navigation, 'registriere_fuetterung'):
             gefuetterte_menge = getattr(self, 'entnommenes_gewicht', 4.5)
@@ -371,17 +366,12 @@ class FuetternSeite(QWidget):
         self.gewaehlter_futtertyp = "heulage"
         self.update_titel(self.gewaehlter_futtertyp)
         
-        # Simulation: 4.5kg automatisch entnehmen über WeightManager
-        if self.weight_manager.get_status()['is_simulation']:
-            self.weight_manager.simulate_weight_change(-4.5)  # 4.5kg entfernen
-            self.entnommenes_gewicht = 4.5  # Für Anzeige
-            logger.info("WeightManager: 4.5kg automatisch entnommen")
-            
-            # UI wird automatisch über Timer aktualisiert - kein manueller Aufruf nötig
-            
-            # Futter-Analysewerte mit tatsächlicher Menge aktualisieren
-            if self.aktuelle_futter_daten:
-                self.zeige_futter_analysewerte(self.aktuelle_futter_daten, self.entnommenes_gewicht)
+        # Hardware: Gewichtsverlust wird automatisch erkannt
+        # UI wird automatisch über Timer aktualisiert
+        
+        # Futter-Analysewerte mit tatsächlicher Menge aktualisieren
+        if self.aktuelle_futter_daten:
+            self.zeige_futter_analysewerte(self.aktuelle_futter_daten, self.entnommenes_gewicht)
         
         # Zum nächsten Pferd wechseln
         if self.navigation:

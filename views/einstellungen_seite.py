@@ -25,7 +25,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.settings_manager import get_settings_manager, SettingsManager
 from utils.database_manager import get_database_manager
 from utils.timer_manager import get_timer_manager
-import hardware.hx711_sim as hx711_sim
+
 
 logger = logging.getLogger(__name__)
 
@@ -82,10 +82,7 @@ class EinstellungenSeite(QtWidgets.QWidget):
     def setup_legacy_ui(self):
         """Setup für bestehende UI-Komponenten"""
         # Legacy Simulation-Support
-        if hasattr(self, 'btn_simulation_toggle'):
-            self.btn_simulation_toggle.setCheckable(True)
-            self.btn_simulation_toggle.setChecked(True)
-            hx711_sim.setze_simulation(True)
+        # Hardware-only Modus (Simulation entfernt)
         
         # Legacy Timer (nicht verwendet)
         self.timer = QTimer()
@@ -408,11 +405,7 @@ class EinstellungenSeite(QtWidgets.QWidget):
             if hasattr(self, 'simulation_check'):
                 self.settings_manager.hardware.use_simulation = self.simulation_check.isChecked()
             
-            # Legacy Update
-            if hasattr(self, 'btn_simulation_toggle'):
-                use_sim = self.btn_simulation_toggle.isChecked()
-                self.settings_manager.hardware.use_simulation = use_sim
-                hx711_sim.setze_simulation(use_sim)
+            # Hardware-only (Simulation entfernt)
             
             # Feeding Settings
             if hasattr(self, 'default_amount_spin'):
@@ -500,13 +493,10 @@ class EinstellungenSeite(QtWidgets.QWidget):
             logger.error(f"Reset-Fehler: {e}")
             QMessageBox.critical(self, "Fehler", f"Reset fehlgeschlagen: {e}")
     
-    # Legacy Functions (Kompatibilität)
+    # Legacy Functions (Hardware-only)
     def toggle_hx_simulation(self, checked):
-        """Legacy Simulation Toggle"""
-        hx711_sim.setze_simulation(checked)
-        self.settings_manager.hardware.use_simulation = checked
-        self.settings_manager.save_settings()
-        logger.info(f"HX711 Simulation: {'aktiviert' if checked else 'deaktiviert'}")
+        """Legacy Hardware Toggle (Simulation entfernt)"""
+        logger.info("Hardware-Modus aktiv (Simulation entfernt)")
     
     def zurueck_geklickt(self):
         """Legacy Navigation zurück"""

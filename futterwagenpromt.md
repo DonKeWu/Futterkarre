@@ -15,6 +15,11 @@
 - Der Raspberry Pi holt sich das Repository per Befehl direkt aus GitHub (z.B. mit `git clone` oder `git pull`).
 - Änderungen werden immer zuerst auf dem Ubuntu-Rechner gemacht und dann per Git synchronisiert.
 
+**Test-Modi:**
+- **Lokale Tests**: Für schnelle Tests kann die Anwendung auch auf Ubuntu im Fenstermodus laufen (1280x720)
+- **Pi5 Tests**: Vollbild-Modus (1280x720) auf 7" Touch-Display für finale Tests
+- **VNC nicht nötig**: Fenstermodus ist praktischer für Entwicklung und Debugging
+
 **Versionierungs-System (WICHTIG!):**
 - Vor JEDEM Git-Upload muss die Versionsnummer erhöht werden
 - Aktuelle Version: 1.4.0

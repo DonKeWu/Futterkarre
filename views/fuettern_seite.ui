@@ -42,8 +42,8 @@
   <widget class="QLabel" name="label_rgv_name">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>150</y>
+     <x>50</x>
+     <y>190</y>
      <width>400</width>
      <height>101</height>
     </rect>
@@ -69,7 +69,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>50</pointsize>
+     <pointsize>55</pointsize>
     </font>
    </property>
    <property name="text">
@@ -79,8 +79,8 @@
   <widget class="QLabel" name="txt_rgv_name">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>140</y>
+     <x>50</x>
+     <y>460</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -94,7 +94,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>20</pointsize>
+     <pointsize>23</pointsize>
     </font>
    </property>
    <property name="text">
@@ -104,8 +104,8 @@
   <widget class="QLabel" name="txt_rgv_alter">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>240</y>
+     <x>50</x>
+     <y>500</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -125,7 +125,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>20</pointsize>
+     <pointsize>23</pointsize>
     </font>
    </property>
    <property name="text">
@@ -135,8 +135,8 @@
   <widget class="QLabel" name="label_rgv_gewicht">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>270</y>
+     <x>250</x>
+     <y>540</y>
      <width>150</width>
      <height>35</height>
     </rect>
@@ -162,7 +162,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>20</pointsize>
+     <pointsize>23</pointsize>
     </font>
    </property>
    <property name="text">
@@ -172,9 +172,9 @@
   <widget class="QLabel" name="txt_rgv_gewicht">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>270</y>
-     <width>161</width>
+     <x>60</x>
+     <y>540</y>
+     <width>181</width>
      <height>35</height>
     </rect>
    </property>
@@ -199,7 +199,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>20</pointsize>
+     <pointsize>23</pointsize>
     </font>
    </property>
    <property name="text">
@@ -209,8 +209,8 @@
   <widget class="QLabel" name="label_rgv_alter">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>240</y>
+     <x>130</x>
+     <y>500</y>
      <width>181</width>
      <height>30</height>
     </rect>
@@ -230,7 +230,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>20</pointsize>
+     <pointsize>23</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -742,9 +742,9 @@ QPushButton:hover {
   <widget class="QLabel" name="label_fu_entnommen">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>440</x>
      <y>280</y>
-     <width>921</width>
+     <width>681</width>
      <height>341</height>
     </rect>
    </property>
@@ -766,8 +766,8 @@ QPushButton:hover {
   <widget class="QLabel" name="label_box">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>110</y>
+     <x>50</x>
+     <y>140</y>
      <width>101</width>
      <height>31</height>
     </rect>
@@ -793,7 +793,7 @@ QPushButton:hover {
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>20</pointsize>
+     <pointsize>23</pointsize>
     </font>
    </property>
    <property name="text">
@@ -803,8 +803,8 @@ QPushButton:hover {
   <widget class="QPushButton" name="exit">
    <property name="geometry">
     <rect>
-     <x>450</x>
-     <y>150</y>
+     <x>1100</x>
+     <y>590</y>
      <width>120</width>
      <height>90</height>
     </rect>
@@ -956,6 +956,77 @@ QPushButton:hover {
     </size>
    </property>
   </widget>
+  <widget class="QLabel" name="label_rgv_alter_jahre">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>290</y>
+     <width>181</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>23</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_rgv_gewicht_kg">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>330</y>
+     <width>150</width>
+     <height>35</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>100</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>150</width>
+     <height>40</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>23</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
   <zorder>b_heu_fuetterung</zorder>
   <zorder>label_rgv_name</zorder>
   <zorder>txt_rgv_name</zorder>
@@ -983,6 +1054,8 @@ QPushButton:hover {
   <zorder>label_karre_gewicht_anzeigen</zorder>
   <zorder>label_box_2</zorder>
   <zorder>btn_h_extra</zorder>
+  <zorder>label_rgv_alter_jahre</zorder>
+  <zorder>label_rgv_gewicht_kg</zorder>
  </widget>
  <resources>
   <include location="../../Futterwagen/Futterkarre/icons/icons.qrc"/>
