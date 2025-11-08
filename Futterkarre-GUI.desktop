@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Futterkarre (GUI)
+Comment=Startet Futterkarre direkt ohne Terminal
+Exec=/home/daniel/Futterkarre/futterkarre_gui_start.sh
+Icon=/home/daniel/Futterkarre/views/icons/icon.png
+Terminal=false
+Categories=Application;
+StartupNotify=true
+Path=/home/daniel/Futterkarre
+Keywords=futterkarre;pferde;fütterung;gui;
+GenericName=Futterkarre GUI
