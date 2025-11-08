@@ -1,21 +1,31 @@
 #!/usr/bin/env python3
 """
-WeightManager - Zentraler Singleton für HX711 Hardware-Gewichtsverwaltung
-Nur für echte Hardware - keine Simulation
+WeightManager - Zentrale Gewichtsverwaltung (Hardware-Only)
+Singleton Pattern für einheitliche Gewichts-Datenquelle
 
-Funktionen:
-- Einheitliche Gewichtsquelle für alle UI-Komponenten  
-- Direkte HX711-Hardware-Integration
-- Event-basierte Gewichtsupdates für UI
+Version: 1.5.0 (Hardware-Ready)
+- Simulation komplett entfernt
+- Direkte HX711-Hardware Integration
+- Resource-optimiert für Pi5
 """
 
-import time
 import logging
-from typing import Optional, Callable, Dict, Any
-from threading import Lock
+import threading
+import time
+from abc import ABC, abstractmethod
+from typing import Optional, Dict, Callable, Any
 from dataclasses import dataclass, field
+from datetime import datetime
+from threading import Lock
 
 logger = logging.getLogger(__name__)
+
+
+class WeightSensorInterface(ABC):
+    """Abstract Interface für Gewichtssensoren"""
+    @abstractmethod
+    def read_weight(self) -> float:
+        pass
 
 @dataclass
 class WeightState:

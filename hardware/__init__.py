@@ -1,1 +1,1 @@
-from .sensor_interface import WeightSensorInterface
+from .weight_manager import WeightSensorInterface
