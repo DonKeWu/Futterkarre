@@ -65,32 +65,24 @@ else
     echo -e "${YELLOW}⚠️  Git-Update mit Warnungen (wird trotzdem fortgesetzt)${NC}"
 fi
 
-# Schritt 3: Virtual Environment prüfen
-echo -e "\n${YELLOW}🐍 Prüfe Python Virtual Environment...${NC}"
-if [ ! -d "$VENV_PATH" ]; then
-    echo -e "${YELLOW}📦 Erstelle Virtual Environment...${NC}"
-    python3 -m venv .venv
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}✅ Virtual Environment erstellt!${NC}"
-    else
-        echo -e "${RED}❌ Fehler beim Erstellen des Virtual Environment!${NC}"
-        exit 1
-    fi
+# Schritt 3: System-Dependencies prüfen (KEIN Virtual Environment!)
+echo -e "\n${YELLOW}🐍 Prüfe System-Python Dependencies...${NC}"
+
+# PyQt5 über APT installieren (Pi5-optimiert)
+if ! dpkg -l | grep -q python3-pyqt5; then
+    echo -e "${YELLOW}📦 Installiere PyQt5 über APT (Pi5-optimiert)...${NC}"
+    sudo apt update
+    sudo apt install -y python3-pyqt5 python3-pyqt5-dev
+    echo -e "${GREEN}✅ PyQt5 installiert!${NC}"
 else
-    echo -e "${GREEN}✅ Virtual Environment existiert bereits${NC}"
+    echo -e "${GREEN}✅ PyQt5 bereits verfügbar${NC}"
 fi
 
-# Schritt 4: Dependencies installieren/aktualisieren
-echo -e "\n${YELLOW}📚 Installiere/Aktualisiere Dependencies...${NC}"
-source .venv/bin/activate
-pip install --upgrade pip
-pip install PyQt5 RPi.GPIO spidev
+# Hardware-Pakete über pip3 --user
+echo -e "${YELLOW}� Installiere Hardware-Dependencies...${NC}"
+pip3 install --user RPi.GPIO spidev
 
-if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Dependencies erfolgreich installiert!${NC}"
-else
-    echo -e "${YELLOW}⚠️  Einige Dependencies konnten nicht installiert werden (wird trotzdem fortgesetzt)${NC}"
-fi
+echo -e "${GREEN}✅ Alle Dependencies bereit (System-Python)!${NC}"
 
 # Schritt 5: Berechtigungen prüfen
 echo -e "\n${YELLOW}🔐 Prüfe Berechtigungen...${NC}"
@@ -108,14 +100,9 @@ echo -e "${GREEN}🔴 Roter EXIT-Button verfügbar für Notfälle!${NC}"
 echo -e "${YELLOW}📋 Logs werden angezeigt...${NC}"
 echo ""
 
-# Anwendung starten (mit Fallback falls .venv Probleme hat)
-if [ -f "$VENV_PATH/bin/python" ]; then
-    echo -e "${BLUE}🐍 Verwende Virtual Environment Python${NC}"
-    .venv/bin/python main.py
-else
-    echo -e "${YELLOW}🐍 Fallback auf System Python${NC}"
-    python3 main.py
-fi
+# Anwendung mit System-Python starten (KEIN .venv!)
+echo -e "${BLUE}🐍 Starte mit System-Python (einfach & direkt)${NC}"
+python3 main.py
 
 # Schritt 7: Nach dem Beenden
 echo -e "\n${YELLOW}👋 Futterkarre-Anwendung beendet${NC}"
