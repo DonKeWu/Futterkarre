@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=🔧 Git Reparieren
+Comment=Korruptes Git Repository reparieren
+Exec=/home/daniel/Futterkarre/pi5_git_fix.sh
+Icon=applications-system
+Terminal=true
+Type=Application
+Categories=Development;
