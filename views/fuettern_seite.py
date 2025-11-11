@@ -370,12 +370,19 @@ class FuetternSeite(QWidget):
         futtertyp = context.get('futtertyp', 'heu')
         neues_gewicht = context.get('neues_gewicht', 0.0)
 
-        # KRITISCH: Futtertyp aktualisieren (für EXTRA-Heu Rückkehr!)
-        self.gewaehlter_futtertyp = futtertyp
-        logger.info(f"Futtertyp wiederhergestellt: {self.gewaehlter_futtertyp}")
+        # KRITISCH: Zwischenstopp-Logik für EXTRA-Heu!
+        if context.get('zwischenstopp_beendet', False):
+            # Nach EXTRA-Heu: Futtertyp bleibt HEU bis "Weiter" gedrückt wird
+            self.gewaehlter_futtertyp = "heu"
+            self.original_futtertyp = futtertyp  # Ursprünglichen für "Weiter" merken
+            logger.info(f"EXTRA-Heu beendet: Bleibt bei HEU, ursprünglich: {futtertyp}")
+        else:
+            # Normaler Context: Futtertyp direkt setzen
+            self.gewaehlter_futtertyp = futtertyp
+            logger.info(f"Normaler Futtertyp wiederhergestellt: {self.gewaehlter_futtertyp}")
 
         # Titel aktualisieren
-        self.update_titel(futtertyp)
+        self.update_titel(self.gewaehlter_futtertyp)
 
         # Karre-Gewicht setzen
         if neues_gewicht > 0:
@@ -443,11 +450,15 @@ class FuetternSeite(QWidget):
             if gefuetterte_menge > 0:
                 self.navigation.registriere_fuetterung(self.gewaehlter_futtertyp, gefuetterte_menge)
         
-        # WICHTIG: Futtertyp NICHT ändern - bleibt wie vorher!
-        # Heu → bleibt Heu, Heulage → bleibt Heulage  
-        logger.info(f"Nächstes Pferd - Futtertyp bleibt: {self.gewaehlter_futtertyp}")
+        # EXTRA-HEU RÜCKKEHR: Nach EXTRA-Heu zum ursprünglichen Futtertyp zurück
+        if hasattr(self, 'original_futtertyp') and self.original_futtertyp:
+            logger.info(f"EXTRA-Heu beendet: Rückkehr von {self.gewaehlter_futtertyp} zu {self.original_futtertyp}")
+            self.gewaehlter_futtertyp = self.original_futtertyp
+            self.original_futtertyp = None  # Reset für nächste Runde
         
-        # KRITISCH: Header nach EXTRA-Heu Rückkehr aktualisieren!
+        logger.info(f"Nächstes Pferd - Futtertyp: {self.gewaehlter_futtertyp}")
+        
+        # Header aktualisieren
         self.update_titel(self.gewaehlter_futtertyp)
         logger.info(f"Header aktualisiert auf: {self.gewaehlter_futtertyp}")
         
@@ -479,12 +490,14 @@ class FuetternSeite(QWidget):
         """EXTRA-Button: Nachladen (Heu→Heu) oder Notfall-Heu (Heulage→Heu)"""
         logger.info(f"EXTRA-Button gedrückt - Aktueller Futtertyp: {self.gewaehlter_futtertyp}")
         
-        # Intelligente Futtertyp-Logik
+        # Intelligente Futtertyp-Logik mit original_futtertyp für Rückkehr
         if self.gewaehlter_futtertyp == "heu":
-            # Scenario 1: HEU nachladen - Futtertyp bleibt HEU
+            # Scenario 1: HEU nachladen - Futtertyp bleibt HEU, Rückkehr zu HEU
+            original_futtertyp = "heu"  # Zurück zu HEU
             logger.info("HEU-Nachladen: Futtertyp bleibt Heu")
         elif self.gewaehlter_futtertyp == "heulage":
-            # Scenario 2: Notfall-HEU - Wechsel von Heulage zu HEU  
+            # Scenario 2: Notfall-HEU - Wechsel von Heulage zu HEU, Rückkehr zu HEULAGE  
+            original_futtertyp = "heulage"  # Zurück zu HEULAGE
             self.gewaehlter_futtertyp = "heu"
             self.update_titel(self.gewaehlter_futtertyp)
             logger.info("NOTFALL-HEU: Wechsel von Heulage zu Heu (Unverträglichkeit)")
@@ -505,7 +518,7 @@ class FuetternSeite(QWidget):
             'rueckkehr_pferd': getattr(self, 'aktuelles_pferd', None),
             'rueckkehr_seite': 'fuettern',        # Zurück zur Füttern-Seite
             'pferd_name': getattr(self, 'pferd_name', 'Unbekannt'),
-            'original_futtertyp': self.gewaehlter_futtertyp  # Ursprünglicher Futtertyp merken!
+            'original_futtertyp': original_futtertyp  # URSPRÜNGLICHEN Futtertyp verwenden!
         }
         
         logger.info(f"HEU-Zwischenstopp für Pferd: {context['pferd_name']}")
