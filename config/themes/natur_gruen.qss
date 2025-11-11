@@ -115,25 +115,43 @@ QCheckBox::indicator:checked {
 }
 
 /* FÜTTERUNGSSEITE - Spezielle Elemente */
-QLabel[objectName="b_heu_fuetterung"] {
-    background-color: #0d1f0d;  /* Natur-Theme Background-Farbe */
-    color: #90ee90;
+QLabel#b_heu_fuetterung {
+    background-color: #0d1f0d !important;  /* Natur-Theme Background-Farbe */
+    color: #90ee90 !important;
 }
 
-/* Spezielle Buttons auf Fütterungsseite */
-QPushButton[objectName="btn_h_extra"], 
-QPushButton[objectName="btn_h_reload"], 
-QPushButton[objectName="btn_next_rgv"] {
-    background-color: #0d1f0d;  /* Natur-Theme Background-Farbe */
-    color: #90ee90;
-    border: 1px solid #32cd32;
+/* Spezielle Buttons auf Fütterungsseite - Exakte Object-Namen */
+QPushButton#btn_h_extra {
+    background-color: #0d1f0d !important;
+    color: #90ee90 !important;
+    border: 1px solid #32cd32 !important;
 }
 
-QPushButton[objectName="btn_h_extra"]:hover, 
-QPushButton[objectName="btn_h_reload"]:hover, 
-QPushButton[objectName="btn_next_rgv"]:hover {
-    background-color: #32cd32;
-    color: #0d1f0d;
+QPushButton#btn_h_reload {
+    background-color: #0d1f0d !important;
+    color: #90ee90 !important;
+    border: 1px solid #32cd32 !important;
+}
+
+QPushButton#btn_next_rgv {
+    background-color: #0d1f0d !important;
+    color: #90ee90 !important;
+    border: 1px solid #32cd32 !important;
+}
+
+QPushButton#btn_h_extra:hover {
+    background-color: #32cd32 !important;
+    color: #0d1f0d !important;
+}
+
+QPushButton#btn_h_reload:hover {
+    background-color: #32cd32 !important;
+    color: #0d1f0d !important;
+}
+
+QPushButton#btn_next_rgv:hover {
+    background-color: #32cd32 !important;
+    color: #0d1f0d !important;
 }
 
 /* Font-Spezifizierungen für Fütterungsseite */

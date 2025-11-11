@@ -111,25 +111,43 @@ QCheckBox::indicator:checked {
 }
 
 /* FÜTTERUNGSSEITE - Spezielle Elemente */
-QLabel[objectName="b_heu_fuetterung"] {
-    background-color: #fdffe0;  /* Theme Background-Farbe */
-    color: #000000;
+QLabel#b_heu_fuetterung {
+    background-color: #fdffe0 !important;  /* Standard-Theme Background-Farbe */
+    color: #000000 !important;
 }
 
-/* Spezielle Buttons auf Fütterungsseite */
-QPushButton[objectName="btn_h_extra"], 
-QPushButton[objectName="btn_h_reload"], 
-QPushButton[objectName="btn_next_rgv"] {
-    background-color: #fdffe0;  /* Theme Background-Farbe */
-    color: #000000;
-    border: 1px solid #2E672F;
+/* Spezielle Buttons auf Fütterungsseite - Exakte Object-Namen */
+QPushButton#btn_h_extra {
+    background-color: #fdffe0 !important;
+    color: #000000 !important;
+    border: 1px solid #2E672F !important;
 }
 
-QPushButton[objectName="btn_h_extra"]:hover, 
-QPushButton[objectName="btn_h_reload"]:hover, 
-QPushButton[objectName="btn_next_rgv"]:hover {
-    background-color: #2E672F;
-    color: white;
+QPushButton#btn_h_reload {
+    background-color: #fdffe0 !important;
+    color: #000000 !important;
+    border: 1px solid #2E672F !important;
+}
+
+QPushButton#btn_next_rgv {
+    background-color: #fdffe0 !important;
+    color: #000000 !important;
+    border: 1px solid #2E672F !important;
+}
+
+QPushButton#btn_h_extra:hover {
+    background-color: #2E672F !important;
+    color: white !important;
+}
+
+QPushButton#btn_h_reload:hover {
+    background-color: #2E672F !important;
+    color: white !important;
+}
+
+QPushButton#btn_next_rgv:hover {
+    background-color: #2E672F !important;
+    color: white !important;
 }
 
 /* Font-Spezifizierungen für Fütterungsseite */
