@@ -125,7 +125,7 @@ QPushButton#btn_next_rgv {
     border: none !important;
 }
 
-QLabel[objectName*="text"] {
+QLabel[objectName*="text"], QLabel[objectName^="txt_"] {
     color: #90ee90;
 }
 

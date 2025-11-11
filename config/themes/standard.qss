@@ -122,7 +122,8 @@ QPushButton#btn_next_rgv {
     border: none !important;
 }
 
-QLabel[objectName*="text"] {
+QLabel[objectName*="text"], QLabel[objectName^="txt_"] {
+    color: #000000;  /* Schwarzer Text für Standard-Theme */
 }
 
 QLabel[objectName*="zahl"], QLabel[objectName*="gewicht"], QLabel[objectName*="kg"] {
