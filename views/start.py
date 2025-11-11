@@ -34,9 +34,9 @@ class StartSeite(BaseViewWidget):
                 with open(version_path, 'r', encoding='utf-8') as f:
                     version = f.read().strip()
                 
-                # Version-Label suchen und setzen mit "Futterkarre" Text
+                # Version-Label setzen - label_version nur Version, lblVersion mit "Futterkarre"
                 if hasattr(self, 'label_version'):
-                    self.label_version.setText(f"Futterkarre {version}")
+                    self.label_version.setText(version)
                 elif hasattr(self, 'lblVersion'):
                     self.lblVersion.setText(f"Futterkarre {version}")
                 else:
@@ -45,7 +45,7 @@ class StartSeite(BaseViewWidget):
             else:
                 # Fallback wenn VERSION-Datei nicht existiert
                 if hasattr(self, 'label_version'):
-                    self.label_version.setText("Futterkarre - Version unbekannt")
+                    self.label_version.setText("Version unbekannt")
                     
         except Exception as e:
             print(f"Fehler beim Laden der Version: {e}")

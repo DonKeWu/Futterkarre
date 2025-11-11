@@ -8,7 +8,6 @@ QWidget {
 QLabel[objectName*="header"], QLabel[objectName*="titel"] {
     background-color: #1a1a1a;
     color: #666666;
-    font-weight: bold;
     border-radius: 8px;
     padding: 10px;
 }
@@ -17,8 +16,6 @@ QLabel[objectName*="header"], QLabel[objectName*="titel"] {
 QPushButton {
     background-color: #2a2a2a;
     color: #666666;
-    font-size: 18px;
-    font-weight: bold;
     padding: 10px;
     border: none;
 }
@@ -29,7 +26,6 @@ QLineEdit, QComboBox {
     border: 2px solid #404040;
     border-radius: 8px;
     padding: 8px;
-    font-size: 16px;
     color: #666666;
 }
 
@@ -89,7 +85,6 @@ QFrame {
 
 /* CheckBoxes - Sauber */
 QCheckBox {
-    font-size: 16px;
     color: #666666;
 }
 
@@ -129,15 +124,11 @@ QPushButton#btn_next_rgv {
     border: none !important;
 }
 
-/* Font-Spezifizierungen für Fütterungsseite */
 QLabel[objectName*="text"] {
-    font-family: "Droid Sans Fallback";
     color: #666666;
 }
 
 QLabel[objectName*="zahl"], QLabel[objectName*="gewicht"], QLabel[objectName*="kg"] {
-    font-family: "URW Gothic";
-    font-weight: bold;
     color: #666666;
 }
 
@@ -160,8 +151,6 @@ QScrollBar::handle:vertical:hover {
 /* Spezielle Gewichts-Labels */
 QLabel[objectName*="gewicht"] {
     color: #666666;
-    font-weight: bold;
-    font-size: 20px;
 }
 
 /* Status-Bereiche */
