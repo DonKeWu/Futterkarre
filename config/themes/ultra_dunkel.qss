@@ -13,24 +13,14 @@ QLabel[objectName*="header"], QLabel[objectName*="titel"] {
     padding: 10px;
 }
 
-/* Buttons */
+/* Buttons - Nur Background, keine Effekte */
 QPushButton {
     background-color: #2a2a2a;
     color: #666666;
-    border-radius: 15px;
     font-size: 18px;
     font-weight: bold;
     padding: 10px;
-    border: 1px solid #404040;
-}
-
-QPushButton:hover {
-    background-color: #404040;
-    color: #888888;
-}
-
-QPushButton:pressed {
-    background-color: #1a1a1a;
+    border: none;
 }
 
 /* Input-Felder */
@@ -120,38 +110,23 @@ QLabel#b_heu_fuetterung {
     color: #666666 !important;
 }
 
-/* Spezielle Buttons auf Fütterungsseite - Exakte Object-Namen */
+/* Spezielle Buttons auf Fütterungsseite - Nur Background */
 QPushButton#btn_h_extra {
     background-color: #000000 !important;
     color: #666666 !important;
-    border: 1px solid #404040 !important;
+    border: none !important;
 }
 
 QPushButton#btn_h_reload {
     background-color: #000000 !important;
     color: #666666 !important;
-    border: 1px solid #404040 !important;
+    border: none !important;
 }
 
 QPushButton#btn_next_rgv {
     background-color: #000000 !important;
     color: #666666 !important;
-    border: 1px solid #404040 !important;
-}
-
-QPushButton#btn_h_extra:hover {
-    background-color: #404040 !important;
-    color: #888888 !important;
-}
-
-QPushButton#btn_h_reload:hover {
-    background-color: #404040 !important;
-    color: #888888 !important;
-}
-
-QPushButton#btn_next_rgv:hover {
-    background-color: #404040 !important;
-    color: #888888 !important;
+    border: none !important;
 }
 
 /* Font-Spezifizierungen für Fütterungsseite */

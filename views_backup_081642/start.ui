@@ -102,6 +102,8 @@
    <property name="styleSheet">
     <string notr="true">
 QPushButton {
+    background-color: #b0cfa5;
+    color: #ffffff;
     min-width: 300px;
     min-height: 120px;
 }

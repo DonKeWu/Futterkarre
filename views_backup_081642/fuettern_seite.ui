@@ -133,6 +133,9 @@
      <height>60</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2E672F</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -157,6 +160,9 @@
      <height>60</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2E672F</string>
+   </property>
    <property name="text">
     <string/>
    </property>
@@ -180,8 +186,19 @@
      <height>100</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #a30000;
+    color: #ffffff;
+    border-radius: 25px;
+}
+QPushButton:hover {
+    background-color: #8FBC8F;
+    color: #f5f5b5;
+}</string>
+   </property>
    <property name="text">
-    <string>▶</string>
+    <string/>
    </property>
    <property name="icon">
     <iconset resource="../../Futterwagen/Futterkarre/icons/icons.qrc">
@@ -345,6 +362,17 @@
      <width>150</width>
      <height>100</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #b0cfa5;
+    color: #ffffff;
+    border-radius: 25px;
+}
+QPushButton:hover {
+    background-color: #8FBC8F;
+    color: #f5f5b5;
+}</string>
    </property>
    <property name="text">
     <string/>
@@ -592,8 +620,19 @@
      <pointsize>24</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    background-color: #a30000;
+    color: #ffffff;
+    border-radius: 25px;
+}
+QPushButton:hover {
+    background-color: #a30000;
+    color: #f5f5b5;
+}</string>
+   </property>
    <property name="text">
-    <string>→</string>
+    <string>exit</string>
    </property>
    <property name="iconSize">
     <size>

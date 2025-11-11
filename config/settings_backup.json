@@ -3,9 +3,10 @@
     "language": "de",
     "display_timeout": 300,
     "fullscreen": true,
-    "brightness": 98,
+    "brightness": 15,
     "volume": 75,
-    "auto_sleep": true
+    "auto_sleep": true,
+    "auto_night_mode": false
   },
   "calibration": {
     "tare_values": [
@@ -47,7 +48,7 @@
     "debug_mode": false
   },
   "ui": {
-    "theme": "default",
+    "theme": "Nacht (Blau)",
     "font_size": 14,
     "button_size": "large",
     "show_debug_info": false,
@@ -56,7 +57,7 @@
   },
   "metadata": {
     "version": "1.2",
-    "last_saved": "/home/daniel/Dokumente/HOF/Futterwagen/Python/Futterkarre-2",
-    "timestamp": "1762350170.1130059"
+    "last_saved": "/home/daniel/Dokumente/HOF/Futterwagen/Python/Futterkarre",
+    "timestamp": "1762621767.1780775"
   }
 }
