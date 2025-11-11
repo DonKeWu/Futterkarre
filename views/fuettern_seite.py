@@ -432,16 +432,16 @@ class FuetternSeite(QWidget):
             self.navigation.show_status("beladen", context)
 
     def naechstes_pferd(self):
-        """Wechselt zum nächsten Pferd"""
+        """Wechselt zum nächsten Pferd OHNE Futtertyp zu ändern"""
         # STATISTIK: Fütterung vor Wechsel registrieren
         if self.navigation and hasattr(self.navigation, 'registriere_fuetterung'):
             gefuetterte_menge = getattr(self, 'entnommenes_gewicht', 4.5)
             if gefuetterte_menge > 0:
                 self.navigation.registriere_fuetterung(self.gewaehlter_futtertyp, gefuetterte_menge)
         
-        # Zurück zu Heulage und Titel aktualisieren
-        self.gewaehlter_futtertyp = "heulage"
-        self.update_titel(self.gewaehlter_futtertyp)
+        # WICHTIG: Futtertyp NICHT ändern - bleibt wie vorher!
+        # Heu → bleibt Heu, Heulage → bleibt Heulage  
+        logger.info(f"Nächstes Pferd - Futtertyp bleibt: {self.gewaehlter_futtertyp}")
         
         # Hardware: Gewichtsverlust wird automatisch erkannt
         # UI wird automatisch über Timer aktualisiert
@@ -450,7 +450,7 @@ class FuetternSeite(QWidget):
         if self.aktuelle_futter_daten:
             self.zeige_futter_analysewerte(self.aktuelle_futter_daten, self.entnommenes_gewicht)
         
-        # Zum nächsten Pferd wechseln
+        # Zum nächsten Pferd wechseln - Navigation entscheidet über Ende/Heulage-Wechsel
         if self.navigation:
             naechstes_pferd = self.navigation.naechstes_pferd()
             if naechstes_pferd:
@@ -468,12 +468,23 @@ class FuetternSeite(QWidget):
             self.navigation.show_status("einstellungen")
 
     def heu_zwischenstopp(self):
-        """HEU-Zwischenstopp: Beladen-Seite mit HEU-Vorwahl öffnen"""
-        logger.info("HEU-Zwischenstopp gestartet")
+        """EXTRA-Button: Nachladen (Heu→Heu) oder Notfall-Heu (Heulage→Heu)"""
+        logger.info(f"EXTRA-Button gedrückt - Aktueller Futtertyp: {self.gewaehlter_futtertyp}")
         
-        # Auf Heu umschalten und Titel aktualisieren
-        self.gewaehlter_futtertyp = "heu"
-        self.update_titel(self.gewaehlter_futtertyp)
+        # Intelligente Futtertyp-Logik
+        if self.gewaehlter_futtertyp == "heu":
+            # Scenario 1: HEU nachladen - Futtertyp bleibt HEU
+            logger.info("HEU-Nachladen: Futtertyp bleibt Heu")
+        elif self.gewaehlter_futtertyp == "heulage":
+            # Scenario 2: Notfall-HEU - Wechsel von Heulage zu HEU  
+            self.gewaehlter_futtertyp = "heu"
+            self.update_titel(self.gewaehlter_futtertyp)
+            logger.info("NOTFALL-HEU: Wechsel von Heulage zu Heu (Unverträglichkeit)")
+        else:
+            # Fallback: Default auf Heu
+            self.gewaehlter_futtertyp = "heu" 
+            self.update_titel(self.gewaehlter_futtertyp)
+            logger.info(f"Fallback: Unbekannter Futtertyp '{self.gewaehlter_futtertyp}' → Heu")
         
         if not self.navigation:
             logger.error("Navigation nicht verfügbar")

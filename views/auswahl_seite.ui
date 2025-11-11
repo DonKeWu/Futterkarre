@@ -146,9 +146,7 @@ QPushButton {
     <string/>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-color: #fdffe0;
-</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Auswahlmenue</string>

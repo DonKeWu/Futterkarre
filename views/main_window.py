@@ -305,6 +305,8 @@ class MainWindow(QMainWindow):
                 heu_daten = self.heu_liste[0]  # Erstes Heu verwenden
                 # Standard-Futtermenge: 4.5kg (entspricht Simulation)
                 self.fuettern_seite.zeige_futter_analysewerte(heu_daten, 4.5)
+                # WICHTIG: Futtertyp explizit setzen für korrekten Header
+                self.fuettern_seite.update_titel("heu")
                 logger.info(f"Heu-Daten angezeigt: {heu_daten.name} für 4.5kg")
             else:
                 logger.warning("Keine Heu-Daten verfügbar! Bitte Futter-Konfiguration laden.")
@@ -340,6 +342,8 @@ class MainWindow(QMainWindow):
                 heulage_daten = self.heulage_liste[0]  # Erste Heulage verwenden
                 # Standard-Futtermenge: 4.5kg (entspricht Simulation)
                 self.fuettern_seite.zeige_futter_analysewerte(heulage_daten, 4.5)
+                # WICHTIG: Futtertyp explizit setzen für korrekten Header
+                self.fuettern_seite.update_titel("heulage")
                 logger.info(f"Heulage-Daten angezeigt: {heulage_daten.name} für 4.5kg")
             else:
                 logger.warning("Keine Heulage-Daten verfügbar! Bitte Futter-Konfiguration laden.")
