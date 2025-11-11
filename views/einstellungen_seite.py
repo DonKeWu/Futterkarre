@@ -327,6 +327,14 @@ class EinstellungenSeite(QtWidgets.QWidget):
         if hasattr(self, 'btn_back'):
             self.btn_back.clicked.connect(self.zurueck_geklickt)
         
+        # Display-Config Button
+        if hasattr(self, 'btn_display_config'):
+            self.btn_display_config.clicked.connect(self.zu_display_config)
+        
+        # Legacy Futter-Config Button
+        if hasattr(self, 'btn_futter_config'):
+            self.btn_futter_config.clicked.connect(self.zu_futter_config)
+        
         # Legacy-Simulation-Buttons entfernt - Hardware-only Modus aktiv
         
         # Slider-Updates
@@ -537,6 +545,50 @@ class EinstellungenSeite(QtWidgets.QWidget):
         
         logger.debug("EinstellungenSeite angezeigt")
     
+    def zu_display_config(self):
+        """Navigiert zur Display-Konfigurationsseite"""
+        logger.info("Display-Config Button geklickt")
+        
+        if self.navigation:
+            try:
+                self.navigation.show_status("display_config")
+            except Exception as e:
+                logger.error(f"Navigation zu display_config fehlgeschlagen: {e}")
+                # Fallback: Versuche direkten Import und Anzeige
+                self.show_display_config_fallback()
+        else:
+            logger.warning("Navigation nicht verfügbar für display_config")
+            self.show_display_config_fallback()
+    
+    def zu_futter_config(self):
+        """Navigiert zur Futter-Konfigurationsseite"""
+        logger.info("Futter-Config Button geklickt")
+        
+        if self.navigation:
+            self.navigation.show_status("futter_konfiguration")
+        else:
+            logger.warning("Navigation nicht verfügbar für futter_konfiguration")
+    
+    def show_display_config_fallback(self):
+        """Fallback: Display-Config direkt anzeigen"""
+        try:
+            from views.display_config_seite import DisplayConfigSeite
+            
+            # Erstelle Display-Config-Seite
+            self.display_config = DisplayConfigSeite()
+            self.display_config.navigation = self.navigation
+            
+            # Zeige als Modal Dialog oder ersetze aktuelles Widget
+            if hasattr(self.parent(), 'setCentralWidget'):
+                self.parent().setCentralWidget(self.display_config)
+            else:
+                self.display_config.show()
+                
+            logger.info("Display-Config als Fallback geöffnet")
+            
+        except Exception as e:
+            logger.error(f"Display-Config Fallback fehlgeschlagen: {e}")
+
     def zurueck_geklickt(self):
         """Zurück-Button geklickt - sichere Navigation zurück"""
         logger.info("Zurück-Button geklickt - zurück zur vorherigen Seite")

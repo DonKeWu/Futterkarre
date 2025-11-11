@@ -103,6 +103,14 @@ class MainWindow(QMainWindow):
         # NEUE Seiten hinzufügen
         self.futter_konfiguration = FutterKonfiguration()
         self.fuetterung_abschluss = FuetterungAbschluss()
+        
+        # Display-Config Seite importieren und erstellen
+        try:
+            from views.display_config_seite import DisplayConfigSeite
+            self.display_config_seite = DisplayConfigSeite()
+        except Exception as e:
+            logger.error(f"Fehler beim Laden der Display-Config-Seite: {e}")
+            self.display_config_seite = None
 
         # Seiten-Mapping für Navigation
         self.page_widgets = {
@@ -112,7 +120,8 @@ class MainWindow(QMainWindow):
             "fuettern": self.fuettern_seite,
             "einstellungen": self.einstellungen_seite,
             "futter_konfiguration": self.futter_konfiguration,
-            "abschluss": self.fuetterung_abschluss
+            "abschluss": self.fuetterung_abschluss,
+            "display_config": self.display_config_seite
         }
 
         # Signal-Verbindungen für erweiterte Funktionen
@@ -121,8 +130,9 @@ class MainWindow(QMainWindow):
         # Navigation für alle Seiten setzen
         for seite in [self.start_screen, self.auswahl_seite, self.beladen_seite,
                       self.fuettern_seite, self.einstellungen_seite, self.futter_konfiguration, 
-                      self.fuetterung_abschluss]:
-            seite.navigation = self
+                      self.fuetterung_abschluss, self.display_config_seite]:
+            if seite:  # Nur wenn Seite erfolgreich geladen wurde
+                seite.navigation = self
 
         # Seiten zum Stack hinzufügen
         self.stacked_widget.addWidget(self.start_screen)
@@ -132,6 +142,10 @@ class MainWindow(QMainWindow):
         self.stacked_widget.addWidget(self.einstellungen_seite)
         self.stacked_widget.addWidget(self.futter_konfiguration)
         self.stacked_widget.addWidget(self.fuetterung_abschluss)
+        
+        # Display-Config Seite hinzufügen (falls geladen)
+        if self.display_config_seite:
+            self.stacked_widget.addWidget(self.display_config_seite)
 
         self.setCentralWidget(self.stacked_widget)
         self.show_status("start")
