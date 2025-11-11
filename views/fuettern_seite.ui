@@ -158,7 +158,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"></string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -234,7 +234,7 @@
     <rect>
      <x>400</x>
      <y>600</y>
-     <width>111</width>
+     <width>151</width>
      <height>30</height>
     </rect>
    </property>
@@ -259,7 +259,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
@@ -271,7 +271,7 @@
     <rect>
      <x>600</x>
      <y>600</y>
-     <width>111</width>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
@@ -296,7 +296,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
@@ -308,7 +308,7 @@
     <rect>
      <x>810</x>
      <y>600</y>
-     <width>111</width>
+     <width>131</width>
      <height>30</height>
     </rect>
    </property>
@@ -333,7 +333,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
@@ -367,7 +367,7 @@
    <property name="geometry">
     <rect>
      <x>350</x>
-     <y>620</y>
+     <y>630</y>
      <width>150</width>
      <height>60</height>
     </rect>
@@ -412,7 +412,7 @@
    <property name="geometry">
     <rect>
      <x>550</x>
-     <y>620</y>
+     <y>630</y>
      <width>150</width>
      <height>60</height>
     </rect>
@@ -457,7 +457,7 @@
    <property name="geometry">
     <rect>
      <x>750</x>
-     <y>620</y>
+     <y>630</y>
      <width>150</width>
      <height>60</height>
     </rect>
@@ -525,7 +525,7 @@
      <x>440</x>
      <y>290</y>
      <width>681</width>
-     <height>341</height>
+     <height>291</height>
     </rect>
    </property>
    <property name="font">
@@ -547,9 +547,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>150</y>
-     <width>101</width>
-     <height>31</height>
+     <y>140</y>
+     <width>181</width>
+     <height>61</height>
     </rect>
    </property>
    <property name="sizePolicy">
@@ -609,7 +609,7 @@
    <property name="geometry">
     <rect>
      <x>-10</x>
-     <y>620</y>
+     <y>630</y>
      <width>150</width>
      <height>60</height>
     </rect>
@@ -680,7 +680,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
@@ -690,9 +690,9 @@
   <widget class="QPushButton" name="btn_h_extra">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>629</x>
      <y>140</y>
-     <width>150</width>
+     <width>191</width>
      <height>100</height>
     </rect>
    </property>
@@ -720,7 +720,7 @@
      <x>50</x>
      <y>290</y>
      <width>211</width>
-     <height>51</height>
+     <height>60</height>
     </rect>
    </property>
    <property name="minimumSize">
@@ -752,9 +752,9 @@
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>330</y>
+     <y>340</y>
      <width>241</width>
-     <height>61</height>
+     <height>60</height>
     </rect>
    </property>
    <property name="sizePolicy">
