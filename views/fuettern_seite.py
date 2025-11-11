@@ -447,6 +447,10 @@ class FuetternSeite(QWidget):
         # Heu → bleibt Heu, Heulage → bleibt Heulage  
         logger.info(f"Nächstes Pferd - Futtertyp bleibt: {self.gewaehlter_futtertyp}")
         
+        # KRITISCH: Header nach EXTRA-Heu Rückkehr aktualisieren!
+        self.update_titel(self.gewaehlter_futtertyp)
+        logger.info(f"Header aktualisiert auf: {self.gewaehlter_futtertyp}")
+        
         # Hardware: Gewichtsverlust wird automatisch erkannt
         # UI wird automatisch über Timer aktualisiert
         
