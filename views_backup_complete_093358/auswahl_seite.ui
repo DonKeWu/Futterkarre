@@ -14,7 +14,7 @@
    <string>Futterkarre 1.4.0</string>
   </property>
   <property name="styleSheet">
-   <string></string>
+   <string notr="true">background-color: #fdffe0;</string>
   </property>
   <widget class="QPushButton" name="btn_to_side_fu_heulage">
    <property name="geometry">
@@ -146,8 +146,8 @@ QPushButton {
     <string/>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-
+    <string notr="true">background-color: #2E672F;
+color: #fdffe0;
 </string>
    </property>
    <property name="text">
@@ -168,6 +168,9 @@ QPushButton {
      <width>60</width>
      <height>60</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: #2E672F</string>
    </property>
    <property name="text">
     <string/>

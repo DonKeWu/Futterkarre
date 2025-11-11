@@ -158,7 +158,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"></string>
+    <string notr="true">background-color: #2E672F</string>
    </property>
    <property name="text">
     <string/>

@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">QWidget {
     ;
-    
+    color: #D8DEE9;
     font-family: &quot;Segoe UI&quot;, Arial, sans-serif;
 }
 
@@ -26,7 +26,7 @@ QLabel {
 }
 
 QPushButton {
-    
+    background-color: #5E81AC;
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -37,27 +37,27 @@ QPushButton {
 .title-label {
     font-size: 32px;
     font-weight: bold;
-    
+    color: #88C0D0;
     padding: 20px;
 }
 
 .summary-label {
     font-size: 24px;
     font-weight: bold;
-    
+    color: #A3BE8C;
     padding: 16px;
 }
 
 .info-label {
     font-size: 20px;
-    
+    color: #ECEFF4;
     padding: 12px;
 }
 
 .value-label {
     font-size: 22px;
     font-weight: bold;
-    
+    color: #88C0D0;
     padding: 12px;
 }</string>
   </property>
@@ -71,7 +71,7 @@ QPushButton {
     </rect>
    </property>
    <property name="styleSheet">
-    <string>font-size: 32px; font-weight: bold</string>
+    <string>font-size: 32px; font-weight: bold;</string>
    </property>
    <property name="text">
     <string notr="true">Fütterung erfolgreich abgeschlossen!</string>
@@ -90,7 +90,7 @@ QPushButton {
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QFrame { }</string>
+    <string notr="true">QFrame { border: 2px solid #4C566A;}</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Box</enum>
@@ -105,7 +105,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 20px</string>
+     <string>font-size: 20px;</string>
     </property>
     <property name="text">
      <string>Gesamtmenge gefüttert:</string>
@@ -121,7 +121,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 22px; font-weight: bold</string>
+     <string>font-size: 22px; font-weight: bold;</string>
     </property>
     <property name="text">
      <string>135.0 kg</string>
@@ -137,7 +137,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 20px</string>
+     <string>font-size: 20px;</string>
     </property>
     <property name="text">
      <string>Futtertyp:</string>
@@ -153,7 +153,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 22px; font-weight: bold</string>
+     <string>font-size: 22px; font-weight: bold;</string>
     </property>
     <property name="text">
      <string>Heu eigen 2025</string>
@@ -169,7 +169,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 20px</string>
+     <string>font-size: 20px;</string>
     </property>
     <property name="text">
      <string>Pferde gefüttert:</string>
@@ -185,7 +185,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 22px; font-weight: bold</string>
+     <string>font-size: 22px; font-weight: bold;</string>
     </property>
     <property name="text">
      <string>30 von 32 Boxen</string>
@@ -201,7 +201,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 20px</string>
+     <string>font-size: 20px;</string>
     </property>
     <property name="text">
      <string>Fütterungsdauer:</string>
@@ -217,7 +217,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 22px; font-weight: bold</string>
+     <string>font-size: 22px; font-weight: bold;</string>
     </property>
     <property name="text">
      <string>45 Minuten</string>
@@ -233,7 +233,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 20px</string>
+     <string>font-size: 20px;</string>
     </property>
     <property name="text">
      <string>Nächste Fütterung:</string>
@@ -249,7 +249,7 @@ QPushButton {
      </rect>
     </property>
     <property name="styleSheet">
-     <string>font-size: 22px; font-weight: bold</string>
+     <string>font-size: 22px; font-weight: bold;</string>
     </property>
     <property name="text">
      <string>17:30 Uhr</string>
@@ -266,7 +266,7 @@ QPushButton {
     </rect>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string>background-color: #A3BE8C;</string>
    </property>
    <property name="text">
     <string>🔄 Neue Fütterung</string>
@@ -282,7 +282,7 @@ QPushButton {
     </rect>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string>background-color: #5E81AC;</string>
    </property>
    <property name="text">
     <string>🏠 Zum Start</string>

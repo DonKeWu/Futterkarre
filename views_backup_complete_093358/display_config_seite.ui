@@ -37,7 +37,7 @@
    <string>Display-Konfiguration</string>
   </property>
   <property name="styleSheet">
-   <string></string>
+   <string>background-color: #fdffe0;</string>
   </property>
 
   <!-- HEADER -->
@@ -59,7 +59,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string>background-color: #2E672F; color: #fdffe0;</string>
    </property>
    <property name="text">
     <string>Display-Konfiguration</string>
@@ -80,7 +80,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string>background-color: #2E672F;</string>
    </property>
    <property name="text">
     <string/>
@@ -161,7 +161,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string>color: #2E672F;</string>
    </property>
    <property name="text">
     <string>48%</string>
@@ -210,7 +210,7 @@
    <property name="styleSheet">
     <string>QComboBox {
     background-color: white;
-    
+    border: 2px solid #2E672F;
     border-radius: 8px;
     padding: 8px;
 }
@@ -297,8 +297,8 @@ QComboBox::down-arrow {
    </property>
    <property name="styleSheet">
     <string>QFrame {
-    
-    
+    background-color: #fdffe0;
+    border: 3px solid #2E672F;
     border-radius: 15px;
 }</string>
    </property>
@@ -325,7 +325,7 @@ QComboBox::down-arrow {
      </font>
     </property>
     <property name="styleSheet">
-     <string>  padding: 5px</string>
+     <string>background-color: #2E672F; color: #fdffe0; padding: 5px;</string>
     </property>
     <property name="text">
      <string>🐴 Futterkarre Vorschau</string>
@@ -377,7 +377,7 @@ Status: Bereit zum Füttern</string>
     </property>
    <property name="styleSheet">
     <string>QPushButton {
-    
+    background-color: #2E672F;
     color: white;
     padding: 5px;
 }</string>
@@ -406,7 +406,7 @@ Status: Bereit zum Füttern</string>
    </property>
    <property name="styleSheet">
     <string>QPushButton {
-    
+    background-color: #2E672F;
     color: white;
 }</string>
    </property>
@@ -433,7 +433,7 @@ Status: Bereit zum Füttern</string>
    </property>
    <property name="styleSheet">
     <string>QPushButton {
-    
+    background-color: #8B4513;
     color: white;
 }</string>
    </property>

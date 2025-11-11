@@ -40,7 +40,7 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string></string>
+   <string notr="true">background-color: #fdffe0;</string>
   </property>
   <widget class="QLabel" name="label_titel">
    <property name="geometry">
@@ -81,8 +81,8 @@
     <string/>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-
+    <string notr="true">background-color: #2E672F;
+color: #fdffe0;
 </string>
    </property>
    <property name="text">
@@ -106,8 +106,8 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-    
-    
+    background-color: #2E672F;
+    color: #ffffff;
 }</string>
    </property>
    <property name="text">
@@ -136,7 +136,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"></string>
+    <string notr="true">background-color: #2E672F</string>
    </property>
    <property name="text">
     <string/>
@@ -163,8 +163,8 @@
    </property>
    <property name="styleSheet">
     <string notr="true">QPushButton {
-    
-    
+    background-color: #2E672F;
+    color: #ffffff;
 }</string>
    </property>
    <property name="text">

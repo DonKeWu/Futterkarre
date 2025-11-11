@@ -14,7 +14,7 @@
    <string>Futterkarre 1.4.0</string>
   </property>
   <property name="styleSheet">
-   <string></string>
+   <string notr="true">background-color: #fdffe0;</string>
   </property>
   <widget class="QLabel" name="label_title">
    <property name="geometry">

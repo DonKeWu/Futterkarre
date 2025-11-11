@@ -14,7 +14,7 @@
    <string>Futterkarre 1.4.0 - Futter laden</string>
   </property>
   <property name="styleSheet">
-   <string></string>
+   <string notr="true">background-color: #fdffe0;</string>
   </property>
   <widget class="QLabel" name="ub_laden">
    <property name="geometry">
@@ -32,8 +32,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-
+    <string notr="true">background-color: #2E672F;
+color: #fdffe0;
 </string>
    </property>
    <property name="text">
@@ -82,7 +82,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string notr="true">background-color: #2E672F; color: #fdffe0;</string>
    </property>
    <property name="text">
     <string>Beladung bestätigen</string>
@@ -98,7 +98,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"></string>
+    <string notr="true">background-color: #2E672F</string>
    </property>
    <property name="text">
     <string/>
@@ -174,7 +174,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string></string>
+    <string notr="true">background-color: #2E672F; color: #fdffe0;</string>
    </property>
    <property name="text">
     <string>Waage Nullen</string>
@@ -211,7 +211,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"></string>
+    <string notr="true">background-color: #2E672F</string>
    </property>
    <property name="text">
     <string/>
