@@ -5,22 +5,22 @@
 
 /* Basis */
 QWidget {
-    background-color: #2c4a5e;  /* Hintergrund */
-    color: #3a88cf;              /* Basis-Text hellblau */
+    background-color: #1a2633;  /* Viel dunkler für echte Nacht */
+    color: #4a7ba7;              /* Gedämpfteres Blau */
 }
 
 /* Buttons */
 QPushButton {
-    background-color: #1d5a98;  /* Kräftiges Blau */
-    color: #c5d9e8;              /* Sanftes Hellblau statt weiß */
+    background-color: #0f3b5f;  /* Viel dunkler */
+    color: #7db8e8;              /* Etwas heller aber gedämpft */
     padding: 10px;
     border: none;
     border-radius: 4px;
 }
 
 QPushButton:hover {
-    background-color: #2668ab;  /* Etwas heller beim Hover */
-    color: #c5d9e8;
+    background-color: #1a4b7a;  /* Dezent heller beim Hover */
+    color: #7db8e8;
 }
 
 /* Spezial-Buttons */
@@ -34,29 +34,29 @@ QPushButton#btn_next_rgv {
 
 /* Input-Felder */
 QLineEdit, QComboBox {
-    background-color: #1d3d5c;  /* Noch dunkler */
-    color: #3a88cf;              /* Hellblau für Eingaben */
-    border: 1px solid #1d5a98;
+    background-color: #0d1a26;  /* Sehr dunkel */
+    color: #4a7ba7;              /* Gedämpftes Blau für Eingaben */
+    border: 1px solid #0f3b5f;
     padding: 8px;
 }
 
 QComboBox QAbstractItemView {
-    background-color: #1d3d5c;
-    color: #3a88cf;
-    selection-background-color: #1d5a98;
-    selection-color: #c5d9e8;
+    background-color: #0d1a26;
+    color: #4a7ba7;
+    selection-background-color: #0f3b5f;
+    selection-color: #7db8e8;
 }
 
 /* Labels - alle Texte */
 QLabel {
-    color: #3a88cf;              /* Hellblau für alle Texte */
+    color: #4a7ba7;              /* Gedämpftes Blau für alle Texte */
     background-color: transparent;
 }
 
 /* Wichtige Labels/Header */
 QLabel[objectName*="header"] {
-    background-color: #1d3d5c;
-    color: #c5d9e8;              /* Helles Blaugrau für Überschriften */
+    background-color: #0d1a26;
+    color: #7db8e8;              /* Mäßig hell für Überschriften */
     padding: 10px;
     font-weight: bold;
 }
@@ -65,74 +65,76 @@ QLabel[objectName*="header"] {
 QLabel[objectName*="zahl"],
 QLabel[objectName*="gewicht"],
 QLabel[objectName*="kg"] {
-    color: #c5d9e8;              /* Sehr hell für wichtige Zahlen */
+    color: #7db8e8;              /* Hell aber nicht grell für wichtige Zahlen */
     font-weight: bold;
 }
 
 /* Tabellen */
 QTableWidget {
-    background-color: #2c4a5e;
-    color: #3a88cf;
-    gridline-color: #1d5a98;
-    border: 1px solid #1d5a98;
+    background-color: #1a2633;
+    color: #4a7ba7;
+    gridline-color: #0f3b5f;
+    border: 1px solid #0f3b5f;
 }
 
 QTableWidget::item:selected {
-    background-color: #1d5a98;
-    color: #c5d9e8;
+    background-color: #0f3b5f;
+    color: #7db8e8;
 }
 
 QTableWidget QHeaderView::section {
-    background-color: #1d3d5c;
-    color: #c5d9e8;
+    background-color: #0d1a26;
+    color: #7db8e8;
     padding: 5px;
 }
 
 /* Checkboxes */
 QCheckBox {
-    color: #3a88cf;
+    color: #4a7ba7;
 }
 
 QCheckBox::indicator {
-    border: 2px solid #1d5a98;
-    background-color: #1d3d5c;
+    border: 2px solid #0f3b5f;
+    background-color: #0d1a26;
 }
 
 QCheckBox::indicator:checked {
-    background-color: #1d5a98;
+    background-color: #0f3b5f;
 }
 
 /* Slider */
 QSlider::groove:horizontal {
-    background-color: #1d3d5c;
-    height: 8px;
+    background-color: #0d1a26;
+    height: 10px;
 }
 
 QSlider::handle:horizontal {
-    background-color: #3a88cf;
-    width: 20px;
-    height: 20px;
+    background-color: #4a7ba7;
+    width: 32px;                /* Deutlich breiter für Touch */
+    height: 32px;               /* Deutlich höher für Touch */
+    margin: -11px 0;            /* Angepasste Margins */
+    border-radius: 16px;        /* Rund für bessere Optik */
 }
 
 /* Scrollbars */
 QScrollBar:vertical {
-    background-color: #1d3d5c;
+    background-color: #0d1a26;
     width: 12px;
 }
 
 QScrollBar::handle:vertical {
-    background-color: #1d5a98;
+    background-color: #0f3b5f;
     border-radius: 6px;
 }
 
 QScrollBar::handle:vertical:hover {
-    background-color: #3a88cf;
+    background-color: #4a7ba7;
 }
 
 /* Status-Bereiche */
 QLabel[objectName*="status"] {
-    background-color: #1d5a98;
-    color: #c5d9e8;
+    background-color: #0f3b5f;
+    color: #7db8e8;
     padding: 8px;
     border-radius: 4px;
 }
