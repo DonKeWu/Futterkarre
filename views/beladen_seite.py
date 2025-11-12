@@ -6,6 +6,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QButtonGroup
 from PyQt5.QtCore import QTimer
 from hardware.weight_manager import get_weight_manager
+from utils.theme_manager import get_theme_manager
 
 logger = logging.getLogger(__name__)
 
@@ -88,15 +89,55 @@ class BeladenSeite(QWidget):
         
     def update_futter_highlighting(self):
         """Aktualisiert das Highlighting der Futter-Buttons"""
-        # Hellblaues Highlighting für ausgewählten Button
-        selected_style = """
-            QPushButton {
-                background-color: #87CEEB;
-                color: #000000;
-                border: 2px solid #4682B4;
-                border-radius: 8px;
-            }
-        """
+        try:
+            # Theme-Manager für aktuelle Farben
+            theme_manager = get_theme_manager()
+            current_theme = theme_manager.get_current_theme()
+            
+            # Theme-Farben für selected Style verwenden
+            if current_theme == "Ultra-Dunkel":
+                # Grautöne für Ultra-Dunkel
+                selected_bg = "#404040"  # Mittleres Grau
+                selected_fg = "#ffffff"  # Weißer Text
+                selected_border = "#555555"  # Heller Grau-Rand
+            elif current_theme == "Nacht (Blau)":
+                # Blautöne für Nacht-Theme  
+                selected_bg = "#4682b4"  # Steel Blue
+                selected_fg = "#ffffff"  # Weißer Text
+                selected_border = "#87ceeb"  # Sky Blue Rand
+            elif current_theme == "Natur (Grün)":
+                # Grüntöne für Natur-Theme
+                selected_bg = "#2E672F"  # Dunkelgrün
+                selected_fg = "#ffffff"  # Weißer Text  
+                selected_border = "#90ee90"  # Light Green Rand
+            else:
+                # Standard Theme - hellere Farben
+                selected_bg = "#e0e0e0"  # Hellgrau
+                selected_fg = "#000000"  # Schwarzer Text
+                selected_border = "#cccccc"  # Grauer Rand
+            
+            # Dynamischer selected Style mit Theme-Farben
+            selected_style = f"""
+                QPushButton {{
+                    background-color: {selected_bg};
+                    color: {selected_fg};
+                    border: 2px solid {selected_border};
+                    border-radius: 8px;
+                    font-weight: bold;
+                }}
+            """
+            
+        except Exception as e:
+            logger.error(f"Fehler beim Theme-Highlighting: {e}")
+            # Fallback: Standard hellblau
+            selected_style = """
+                QPushButton {
+                    background-color: #87CEEB;
+                    color: #000000;
+                    border: 2px solid #4682B4;
+                    border-radius: 8px;
+                }
+            """
         
         # Standard-Style (vom Theme-Manager kontrolliert)
         default_style = ""

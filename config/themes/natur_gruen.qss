@@ -1,30 +1,30 @@
 /* Natur Theme - Grün-Töne, pferde-freundlich, OHNE störende Rahmen */
 QWidget {
-    background-color: #0d1f0d;
-    color: #90ee90;
+    background-color: #2E672F;
+    color: #ffffff;
 }
 
 /* Header-Bereiche - NUR für echte Header */
 QLabel[objectName*="header"], QLabel[objectName*="lbl_header"] {
-    background-color: #1a4a1a;
-    color: #90ee90;
+    background-color: #2E672F;
+    color: #ffffff;
     padding: 10px;
 }
 
 /* Buttons - Nur Background, keine Effekte */
 QPushButton {
-    background-color: #2d5a2d;
-    color: #90ee90;
+    background-color: #6db86e;
+    color: #ffffff;
     padding: 10px;
     border: none;
 }
 
 /* Input-Felder - Minimale Rahmen */
 QLineEdit, QComboBox {
-    background-color: #1a4a1a;
-    border: 1px solid #4a7a4a;
+    background-color: #6db86e;
+    border: 1px solid #6db86e;
     padding: 8px;
-    color: #90ee90;
+    color: #ffffff;
 }
 
 QComboBox:drop-down {
@@ -32,35 +32,35 @@ QComboBox:drop-down {
 }
 
 QComboBox QAbstractItemView {
-    background-color: #1a4a1a;
-    color: #90ee90;
-    selection-background-color: #4a7a4a;
-    border: 1px solid #4a7a4a;
+    background-color: #6db86e;
+    color: #ffffff;
+    selection-background-color: #2E672F;
+    border: 1px solid #6db86e;
 }
 
 /* Slider - Sauber ohne Rahmen */
 QSlider::groove:horizontal {
-    background-color: #1a4a1a;
+    background-color: #6db86e;
     height: 8px;
 }
 
 QSlider::handle:horizontal {
-    background-color: #4a7a4a;
+    background-color: #6db86e;
     width: 20px;
     height: 20px;
     margin: -6px 0;
 }
 
 QSlider::sub-page:horizontal {
-    background-color: #90ee90;
+    background-color: #ffffff;
 }
 
 /* Tabellen - Nur bei Bedarf */
 QTableWidget {
-    background-color: #1a4a1a;
-    gridline-color: #4a7a4a;
-    border: 1px solid #4a7a4a;
-    color: #90ee90;
+    background-color: #6db86e;
+    gridline-color: #6db86e;
+    border: 1px solid #6db86e;
+    color: #ffffff;
 }
 
 QTableWidget::item {
@@ -69,99 +69,99 @@ QTableWidget::item {
 }
 
 QTableWidget::item:selected {
-    background-color: #4a7a4a;
+    background-color: #2E672F;
     color: white;
 }
 
 /* Frames - NUR minimal für Vorschau-Bereiche */
 QFrame[objectName*="vorschau"] {
-    border: 1px solid #4a7a4a;
-    background-color: #0d1f0d;
+    border: 1px solid #6db86e;
+    background-color: #2E672F;
 }
 
 /* Alle anderen Frames OHNE Rahmen */
 QFrame {
-    background-color: #0d1f0d;
+    background-color: #2E672F;
     border: none;
 }
 
 /* CheckBoxes - Sauber */
 QCheckBox {
-    color: #90ee90;
+    color: #ffffff;
 }
 
 QCheckBox::indicator {
     width: 18px;
     height: 18px;
-    border: 1px solid #4a7a4a;
-    background-color: #1a4a1a;
+    border: 1px solid #6db86e;
+    background-color: #6db86e;
 }
 
 QCheckBox::indicator:checked {
-    background-color: #4a7a4a;
+    background-color: #2E672F;
 }
 
 /* FÜTTERUNGSSEITE - Spezielle Elemente */
 QLabel#b_heu_fuetterung {
-    background-color: #0d1f0d !important;  /* Natur-Theme Background-Farbe */
-    color: #90ee90 !important;
+    background-color: #2E672F !important;  /* Natur-Theme Background-Farbe */
+    color: #ffffff !important;
 }
 
-/* Spezielle Buttons auf Fütterungsseite - DUNKLER GRÜN HINTERGRUND */
+/* Spezielle Buttons auf Fütterungsseite - GRÜN HINTERGRUND */
 QPushButton#btn_h_extra {
-    background-color: #2d5a2d !important;  /* DUNKLER GRÜN wie normale Buttons */
-    color: #90ee90 !important;  /* Heller Text auf dunklem Grund */
+    background-color: #6db86e !important;  /* GRÜN wie normale Buttons */
+    color: #ffffff !important;  /* Weißer Text auf grünem Grund */
     border: none !important;
     font-weight: bold !important;
 }
 
 QPushButton#btn_h_reload {
-    background-color: #2d5a2d !important;  /* DUNKLER GRÜN wie normale Buttons */
-    color: #90ee90 !important;  /* Heller Text auf dunklem Grund */
+    background-color: #6db86e !important;  /* GRÜN wie normale Buttons */
+    color: #ffffff !important;  /* Weißer Text auf grünem Grund */
     border: none !important;
 }
 
 QPushButton#btn_next_rgv {
-    background-color: #2d5a2d !important;  /* DUNKLER GRÜN wie normale Buttons */
-    color: #90ee90 !important;  /* Heller Text auf dunklem Grund */
+    background-color: #6db86e !important;  /* GRÜN wie normale Buttons */
+    color: #ffffff !important;  /* Weißer Text auf grünem Grund */
     border: none !important;
 }
 
 QLabel[objectName*="text"], QLabel[objectName^="txt_"] {
-    color: #90ee90;
+    color: #ffffff;
 }
 
 QLabel[objectName*="zahl"], QLabel[objectName*="gewicht"], QLabel[objectName*="kg"] {
-    color: #90ee90;
+    color: #ffffff;
 }
 
-/* Nährwert-Labels auf Füttern-Seite - HELLGRÜN */
+/* Nährwert-Labels auf Füttern-Seite - WEIß */
 QLabel[objectName^="label_h_"] {
-    color: #90ee90 !important;
+    color: #ffffff !important;
 }
 
 /* Scrollbars - Dezent */
 QScrollBar:vertical {
-    background-color: #1a4a1a;
+    background-color: #6db86e;
     width: 16px;
 }
 
 QScrollBar::handle:vertical {
-    background-color: #4a7a4a;
+    background-color: #2E672F;
 }
 
 QScrollBar::handle:vertical:hover {
-    background-color: #90ee90;
+    background-color: #ffffff;
 }
 
 /* Spezielle Gewichts-Labels für bessere Lesbarkeit */
 QLabel[objectName*="gewicht"] {
-    color: #90ee90;
+    color: #ffffff;
 }
 
 /* Status-Bereiche - Nur bei expliziten Status-Labels */
 QLabel[objectName*="status"] {
-    background-color: #2d5a2d;
-    color: #90ee90;
+    background-color: #6db86e;
+    color: #ffffff;
     padding: 5px;
 }
