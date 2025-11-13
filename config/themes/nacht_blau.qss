@@ -1,9 +1,12 @@
 /* ====================================
-    NACHT THEME - Reine Blau-Palette
-    Farbschema: #1a2633 (dunkel) → #335675 (normal) → #1c72b8 (hell)
-    ==================================== */
-
-/* ===== BASIS-LAYOUT ===== */
+   NACHT THEME - Reine Blau-Palette
+   Farbschema: 
+   - #1a2633 (dunkel)    → Hintergrund, dunkle Bereiche
+   - #335675 (normal)    → Standard-Text, Button-BG, Ränder  
+   - #1c72b8 (hell)      → Akzente, wichtige Zahlen, Slider
+   - #0d1a26 (extra-dunkel) → Eingabefelder, sehr dunkle Bereiche
+   - #cfe8fb (text-hell) → Button-Text, Auswahl-Text
+   ==================================== *//* ===== BASIS-LAYOUT ===== */
 QWidget {
     background-color: #1a2633; /* dunkel */
     color: #335675;           /* normal (Basis-Text) */
@@ -12,7 +15,7 @@ QWidget {
 /* ===== BUTTONS ===== */
 QPushButton {
     background-color: #335675; /* normal */
-    color: #cfe8fb;            /* helles Blau für Text auf Buttons */
+    color: #cfe8fb;            /* text-hell */
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -26,93 +29,93 @@ QPushButton:hover {
 QPushButton#btn_h_extra,
 QPushButton#btn_h_reload,
 QPushButton#btn_next_rgv {
-    background-color: #1c72b8; /* hell / Akzent */
-    color: #1a2633;            /* dunkler Text auf hellem Button */
+    background-color: #1c72b8; /* hell */
+    color: #1a2633;            /* dunkel */
     font-weight: bold;
 }
 
 /* ===== EINGABE-FELDER ===== */
 QLineEdit, QComboBox {
-    background-color: #0d1a26; /* Eingabefeld dunkel */
-    color: #335675;            /* Text in Eingabefeldern = normal */
-    border: 1px solid #335675; /* Rand in normal */
+    background-color: #0d1a26; /* extra-dunkel */
+    color: #335675;            /* normal */
+    border: 1px solid #335675; /* normal */
     padding: 8px;
 }
 
 QComboBox QAbstractItemView {
-    background-color: #0d1a26;
-    color: #335675;
-    selection-background-color: #335675;
-    selection-color: #cfe8fb;  /* helle Auswahlfarbe */
+    background-color: #0d1a26; /* extra-dunkel */
+    color: #335675;            /* normal */
+    selection-background-color: #335675; /* normal */
+    selection-color: #cfe8fb;  /* text-hell */
 }
 
 /* ===== LABELS & TEXT ===== */
 /* Standard-Labels: normale Textfarbe */
 QLabel {
-    color: #335675; /* Standard-Labeltext = normal */
+    color: #335675; /* normal */
     background-color: transparent;
 }
 
 /* Header-Labels: dunkler Hintergrund, helle Schrift */
 QLabel[objectName*="header"] {
-    background-color: #0d1a26;
-    color: #7db8e8;
+    background-color: #0d1a26; /* extra-dunkel */
+    color: #cfe8fb;            /* text-hell */
     padding: 10px;
     font-weight: bold;
 }
 
-/* Gewichts- und Zahlen-Labels: helle Schrift für bessere Lesbarkeit */
+/* Gewichts- und Zahlen-Labels: Akzentfarbe für wichtige Werte */
 QLabel[objectName*="zahl"],
 QLabel[objectName*="gewicht"], 
 QLabel[objectName*="kg"],
 QLabel#txt_kg_2,
 QLabel#label_rgv_gewicht_kg,
 QLabel#label_karre_gewicht_anzeigen {
-    color: #1c72b8; /* wichtige Zahlen / Gewicht = Akzent (hell) */
+    color: #1c72b8; /* hell */
     font-weight: bold;
 }
 
 /* ===== TABELLEN ===== */
 QTableWidget {
-    background-color: #1a2633;
-    color: #335675;
-    gridline-color: #335675;
-    border: 1px solid #335675;
+    background-color: #1a2633; /* dunkel */
+    color: #335675;            /* normal */
+    gridline-color: #335675;   /* normal */
+    border: 1px solid #335675; /* normal */
 }
 
 QTableWidget::item:selected {
-    background-color: #335675;
-    color: #cfe8fb;
+    background-color: #335675; /* normal */
+    color: #cfe8fb;           /* text-hell */
 }
 
 QTableWidget QHeaderView::section {
-    background-color: #0d1a26;
-    color: #cfe8fb;
+    background-color: #0d1a26; /* extra-dunkel */
+    color: #cfe8fb;            /* text-hell */
     padding: 5px;
 }
 
 /* ===== CHECKBOXEN ===== */
 QCheckBox {
-    color: #335675;
+    color: #335675; /* normal */
 }
 
 QCheckBox::indicator {
-    border: 2px solid #335675;
-    background-color: #0d1a26;
+    border: 2px solid #335675; /* normal */
+    background-color: #0d1a26; /* extra-dunkel */
 }
 
 QCheckBox::indicator:checked {
-    background-color: #335675;
+    background-color: #335675; /* normal */
 }
 
 /* ===== SLIDER (Touch-optimiert) ===== */
 QSlider::groove:horizontal {
-    background-color: #0d1a26;
+    background-color: #0d1a26; /* extra-dunkel */
     height: 10px;
 }
 
 QSlider::handle:horizontal {
-    background-color: #1c72b8; /* Akzent */
+    background-color: #1c72b8; /* hell */
     width: 32px;
     height: 32px;
     margin: -11px 0;
@@ -121,23 +124,23 @@ QSlider::handle:horizontal {
 
 /* ===== SCROLLBARS ===== */
 QScrollBar:vertical {
-    background-color: #0d1a26;
+    background-color: #0d1a26; /* extra-dunkel */
     width: 12px;
 }
 
 QScrollBar::handle:vertical {
-    background-color: #335675;
+    background-color: #335675; /* normal */
     border-radius: 6px;
 }
 
 QScrollBar::handle:vertical:hover {
-    background-color: #1c72b8;
+    background-color: #1c72b8; /* hell */
 }
 
 /* ===== STATUS-BEREICHE ===== */
 QLabel[objectName*="status"] {
-    background-color: #335675;
-    color: #cfe8fb;
+    background-color: #335675; /* normal */
+    color: #cfe8fb;            /* text-hell */
     padding: 8px;
     border-radius: 4px;
 }
