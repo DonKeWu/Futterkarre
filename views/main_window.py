@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
         
         # Smart Navigation: Hauptseiten vs. Unterseiten
         self.main_pages = {"auswahl", "fuettern", "einstellungen", "beladen", "start"}
-        self.sub_pages = {"futter_konfiguration", "abschluss"}
+        self.sub_pages = {"futter_konfiguration", "abschluss", "display_config", "waagen_kalibrierung"}
         self.main_page_stack = []  # Stack der Hauptseiten
         self.current_main_page = None
 
@@ -173,6 +173,10 @@ class MainWindow(QMainWindow):
             # EinstellungenSeite Signale
             self.einstellungen_seite.calibration_requested.connect(self.on_calibration_requested)
             
+            # Waagenkalibrierung Signale
+            if self.waagen_kalibrierung:
+                self.waagen_kalibrierung.kalibrierung_abgeschlossen.connect(self.on_kalibrierung_abgeschlossen)
+            
             logger.info("Signal-Verbindungen erfolgreich eingerichtet")
             
         except Exception as e:
@@ -215,6 +219,28 @@ class MainWindow(QMainWindow):
             
         except Exception as e:
             logger.error(f"Fehler bei Kalibrierungs-Anfrage: {e}")
+    
+    def on_kalibrierung_abgeschlossen(self, erfolg: bool):
+        """Callback für abgeschlossene Kalibrierung"""
+        try:
+            logger.info(f"Kalibrierung abgeschlossen: {'Erfolgreich' if erfolg else 'Fehlgeschlagen'}")
+            
+            # Event in Datenbank loggen
+            self.database_manager.log_system_event(
+                "calibration_completed",
+                f"Kalibrierung {'erfolgreich' if erfolg else 'fehlgeschlagen'}",
+                {
+                    "success": erfolg,
+                    "timestamp": datetime.now().isoformat()
+                }
+            )
+            
+            # Zurück zur Einstellungsseite nach erfolgreicher Kalibrierung
+            if erfolg:
+                self.show_status("einstellungen")
+            
+        except Exception as e:
+            logger.error(f"Fehler bei Kalibrierungs-Abschluss: {e}")
 
     def set_futter_daten(self, heu_liste=None, heulage_liste=None, pellet_liste=None):
         """Empfängt Futter-Daten von der Konfigurationsseite"""
