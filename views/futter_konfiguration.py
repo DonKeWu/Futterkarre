@@ -109,7 +109,7 @@ class FutterKonfiguration(QtWidgets.QWidget):
         header_layout = QtWidgets.QHBoxLayout()
         
         title_label = QtWidgets.QLabel("Futter-Konfiguration")
-        title_label.setStyleSheet("font-size: 24px; font-weight: bold; margin: 10px;")
+        # Style-Überschreibung entfernt - Original UI-Design verwenden
         header_layout.addWidget(title_label)
         
         header_layout.addStretch()
@@ -143,7 +143,7 @@ class FutterKonfiguration(QtWidgets.QWidget):
         
         # Info zur gewählten Datei
         self.label_datei_info = QtWidgets.QLabel("Keine Datei gewählt")
-        self.label_datei_info.setStyleSheet("color: gray; margin: 5px;")
+        # Style-Überschreibung entfernt - Theme-Manager übernimmt die Farben
         file_layout.addWidget(self.label_datei_info)
         
         left_panel.addWidget(file_group)
@@ -555,7 +555,7 @@ class FutterKonfiguration(QtWidgets.QWidget):
 
         # Titel
         title = QLabel("Futter-Konfiguration")
-        title.setStyleSheet("font-size: 24px; font-weight: bold; margin: 20px;")
+        # Style-Überschreibung entfernt - Original UI-Design verwenden
         layout.addWidget(title)
 
         # Heu-Auswahl
