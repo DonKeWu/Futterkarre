@@ -24,6 +24,14 @@ QPushButton:pressed {
     background-color: #003366;
 }
 
+/* Spezielle Buttons auf Fütterungsseite - BLAU */
+QPushButton#btn_h_extra,
+QPushButton#btn_h_reload,
+QPushButton#btn_next_rgv {
+    background-color: #4682b4;
+    color: #ffffff;
+}
+
 /* Input-Felder */
 QLineEdit, QComboBox {
     background-color: #2c2c54;
