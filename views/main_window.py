@@ -112,6 +112,14 @@ class MainWindow(QMainWindow):
             logger.error(f"Fehler beim Laden der Display-Config-Seite: {e}")
             self.display_config_seite = None
 
+        # Waagen-Kalibrierung Seite importieren und erstellen
+        try:
+            from views.waagen_kalibrierung import WaagenKalibrierung
+            self.waagen_kalibrierung = WaagenKalibrierung()
+        except Exception as e:
+            logger.error(f"Fehler beim Laden der Waagen-Kalibrierung-Seite: {e}")
+            self.waagen_kalibrierung = None
+
         # Seiten-Mapping für Navigation
         self.page_widgets = {
             "start": self.start_screen,
@@ -121,7 +129,8 @@ class MainWindow(QMainWindow):
             "einstellungen": self.einstellungen_seite,
             "futter_konfiguration": self.futter_konfiguration,
             "abschluss": self.fuetterung_abschluss,
-            "display_config": self.display_config_seite
+            "display_config": self.display_config_seite,
+            "waagen_kalibrierung": self.waagen_kalibrierung
         }
 
         # Signal-Verbindungen für erweiterte Funktionen
@@ -130,7 +139,7 @@ class MainWindow(QMainWindow):
         # Navigation für alle Seiten setzen
         for seite in [self.start_screen, self.auswahl_seite, self.beladen_seite,
                       self.fuettern_seite, self.einstellungen_seite, self.futter_konfiguration, 
-                      self.fuetterung_abschluss, self.display_config_seite]:
+                      self.fuetterung_abschluss, self.display_config_seite, self.waagen_kalibrierung]:
             if seite:  # Nur wenn Seite erfolgreich geladen wurde
                 seite.navigation = self
 
@@ -146,6 +155,10 @@ class MainWindow(QMainWindow):
         # Display-Config Seite hinzufügen (falls geladen)
         if self.display_config_seite:
             self.stacked_widget.addWidget(self.display_config_seite)
+
+        # Waagen-Kalibrierung Seite hinzufügen (falls geladen)
+        if self.waagen_kalibrierung:
+            self.stacked_widget.addWidget(self.waagen_kalibrierung)
 
         self.setCentralWidget(self.stacked_widget)
         self.show_status("start")
