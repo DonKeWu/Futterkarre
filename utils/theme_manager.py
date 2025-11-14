@@ -44,8 +44,10 @@ class ThemeManager(QObject):
         self.available_themes = {
             "Standard": "standard.qss",
             "Nacht (Blau)": "nacht_blau.qss",
+            "Nacht (Blau) v2": "nacht_blau_2.qss",
             "Ultra-Dunkel": "ultra_dunkel.qss", 
-            "Natur (Grün)": "natur_gruen.qss"
+            "Natur (Grün)": "natur_gruen.qss",
+            "Natur (Grün) v2": "natur_gruen_2.qss"
         }
         
         # Aktuelles Theme

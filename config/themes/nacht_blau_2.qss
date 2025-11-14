@@ -1,0 +1,145 @@
+/* Nacht Theme - Blau-Töne, pferde-freundlich, OHNE störende Rahmen */
+QWidget {
+    background-color: #1a1a2e;
+    font-family: "Droid Sans Fallback";
+    color: #87ceeb;
+}
+
+/* Header-Bereiche - NUR für echte Header */
+QLabel[objectName*="header"], QLabel[objectName*="lbl_header"] {
+    background-color: #16213e;
+    color: #87ceeb;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Buttons - Weniger aufdringliche Rahmen */
+QPushButton {
+    background-color: #0f3460;
+    color: #87ceeb;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #4682b4;
+    color: #e6f3ff;
+}
+
+QPushButton:pressed {
+    background-color: #003366;
+}
+
+/* Input-Felder - Minimale Rahmen */
+QLineEdit, QComboBox {
+    background-color: #2c2c54;
+    border: 1px solid #4682b4;
+    padding: 8px;
+    font-size: 16px;
+    color: #87ceeb;
+}
+
+QComboBox:drop-down {
+    border: none;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #2c2c54;
+    color: #87ceeb;
+    selection-background-color: #4682b4;
+    border: 1px solid #4682b4;
+}
+
+/* Slider - Sauber ohne Rahmen */
+QSlider::groove:horizontal {
+    background-color: #2c2c54;
+    height: 8px;
+}
+
+QSlider::handle:horizontal {
+    background-color: #4682b4;
+    width: 20px;
+    height: 20px;
+    margin: -6px 0;
+}
+
+QSlider::sub-page:horizontal {
+    background-color: #87ceeb;
+}
+
+/* Tabellen - Nur bei Bedarf */
+QTableWidget {
+    background-color: #2c2c54;
+    gridline-color: #4682b4;
+    border: 1px solid #4682b4;
+    color: #87ceeb;
+}
+
+QTableWidget::item {
+    padding: 8px;
+    border-bottom: 1px solid #333;
+}
+
+QTableWidget::item:selected {
+    background-color: #4682b4;
+    color: white;
+}
+
+/* Frames - NUR minimal für Vorschau-Bereiche */
+QFrame[objectName*="vorschau"] {
+    border: 1px solid #4682b4;
+    background-color: #1a1a2e;
+}
+
+/* Alle anderen Frames OHNE Rahmen */
+QFrame {
+    background-color: #1a1a2e;
+    border: none;
+}
+
+/* CheckBoxes - Sauber */
+QCheckBox {
+    font-size: 16px;
+    color: #87ceeb;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #4682b4;
+    background-color: #2c2c54;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #4682b4;
+}
+
+/* Scrollbars - Dezent */
+QScrollBar:vertical {
+    background-color: #2c2c54;
+    width: 16px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #4682b4;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #87ceeb;
+}
+
+/* Spezielle Gewichts-Labels für bessere Lesbarkeit */
+QLabel[objectName*="gewicht"] {
+    color: #87ceeb;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Status-Bereiche - Nur bei expliziten Status-Labels */
+QLabel[objectName*="status"] {
+    background-color: #0f3460;
+    color: #87ceeb;
+    padding: 5px;
+}
