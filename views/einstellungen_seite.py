@@ -348,6 +348,8 @@ class EinstellungenSeite(QtWidgets.QWidget):
             self.btn_auto_tare.clicked.connect(self.auto_tare)
         if hasattr(self, 'btn_calibrate'):
             self.btn_calibrate.clicked.connect(self.start_calibration)
+        if hasattr(self, 'btn_kalibrieren'):
+            self.btn_kalibrieren.clicked.connect(self.start_calibration)
         if hasattr(self, 'btn_test_weights'):
             self.btn_test_weights.clicked.connect(self.test_weights)
     
