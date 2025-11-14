@@ -24,12 +24,12 @@ QPushButton:pressed {
     background-color: #003366;
 }
 
-/* Spezielle Buttons auf Fütterungsseite - BLAU */
+/* Spezielle Buttons auf Fütterungsseite - GLEICHES DUNKLES BLAU wie normale Buttons */
 QPushButton#btn_h_extra,
 QPushButton#btn_h_reload,
 QPushButton#btn_next_rgv {
-    background-color: #4682b4;
-    color: #ffffff;
+    background-color: #0f3460;
+    color: #87ceeb;
 }
 
 /* Input-Felder */
