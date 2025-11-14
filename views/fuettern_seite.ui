@@ -115,7 +115,7 @@
     <string/>
    </property>
    <property name="text">
-    <string>Fütterung</string>
+    <string>Heulage Fütterung</string>
    </property>
    <property name="textFormat">
     <enum>Qt::PlainText</enum>
@@ -498,7 +498,7 @@
     <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
    </property>
   </widget>
-  <widget class="QLabel" name="txt_kg_2">
+  <widget class="QLabel" name="txt_kg">
    <property name="geometry">
     <rect>
      <x>1140</x>
@@ -523,7 +523,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>330</y>
+     <y>350</y>
      <width>681</width>
      <height>291</height>
     </rect>
@@ -541,9 +541,6 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-   </property>
-   <property name="styleSheet">
-    <string>background-color: transparent;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_box">
@@ -653,7 +650,7 @@
     <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label_box_2">
+  <widget class="QLabel" name="label_rest">
    <property name="geometry">
     <rect>
      <x>60</x>
@@ -788,6 +785,22 @@
     <string>TextLabel</string>
    </property>
   </widget>
+  <widget class="Line" name="line_3">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>90</y>
+     <width>1200</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <zorder>b_heu_fuetterung</zorder>
   <zorder>label_rgv_name</zorder>
   <zorder>btn_settings</zorder>
@@ -802,15 +815,16 @@
   <zorder>label_h_rohprotein</zorder>
   <zorder>label_h_rohfaser</zorder>
   <zorder>label_h_fruktan</zorder>
-  <zorder>txt_kg_2</zorder>
+  <zorder>txt_kg</zorder>
   <zorder>label_fu_entnommen</zorder>
   <zorder>label_box</zorder>
   <zorder>exit</zorder>
   <zorder>label_karre_gewicht_anzeigen</zorder>
-  <zorder>label_box_2</zorder>
+  <zorder>label_rest</zorder>
   <zorder>btn_h_extra</zorder>
   <zorder>label_rgv_alter_jahre</zorder>
   <zorder>label_rgv_gewicht_kg</zorder>
+  <zorder>line_3</zorder>
  </widget>
  <resources>
   <include location="../../Futterwagen/Futterkarre/icons/icons.qrc"/>
