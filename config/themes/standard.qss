@@ -112,7 +112,6 @@ QPushButton#btn_h_extra {
     background-color: #b8b8b8 !important;  /* GRAU wie normale Buttons */
     color: #1a1a1a !important;  /* Dunkler Text auf hellem Grund */
     border: none !important;
-    font-weight: bold !important;
 }
 
 QPushButton#btn_h_reload {

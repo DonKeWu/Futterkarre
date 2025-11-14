@@ -31,7 +31,6 @@ QPushButton#btn_h_reload,
 QPushButton#btn_next_rgv {
     background-color: #1c72b8; /* hell */
     color: #1a2633;            /* dunkel */
-    font-weight: bold;
 }
 
 /* ===== EINGABE-FELDER ===== */
@@ -61,14 +60,12 @@ QLabel[objectName*="header"] {
     background-color: #0d1a26; /* extra-dunkel */
     color: #cfe8fb;            /* text-hell */
     padding: 10px;
-    font-weight: bold;
 }
 
 /* Zahlen-Labels: Akzentfarbe nur für Karrengewicht */
 QLabel[objectName*="zahl"],
 QLabel#label_karre_gewicht_anzeigen {
     color: #1c72b8; /* hell */
-    font-weight: bold;
 }
 
 /* Pferde-Info-Labels: normale Textfarbe wie andere Labels */
@@ -79,7 +76,6 @@ QLabel#label_rgv_alter_jahre,
 QLabel#label_rest,
 QLabel#txt_kg {
     color: #335675; /* normal */
-    font-weight: normal;
 }
 
 /* ===== TABELLEN ===== */

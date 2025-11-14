@@ -112,7 +112,6 @@ QPushButton#btn_h_extra {
     background-color: #6db86e !important;  /* GRÜN wie normale Buttons */
     color: #ffffff !important;  /* Weißer Text auf grünem Grund */
     border: none !important;
-    font-weight: bold !important;
 }
 
 QPushButton#btn_h_reload {
