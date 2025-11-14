@@ -1,4 +1,4 @@
-/* Natur Theme - Grün-Töne, pferde-freundlich, OHNE störende Rahmen */
+/* Natur Theme v2 - Nur Farben, KEINE Font-Überschreibungen */
 QWidget {
     background-color: #0d1f0d;
     color: #90ee90;
@@ -112,7 +112,6 @@ QPushButton#btn_h_extra {
     background-color: #90ee90 !important;  /* HELLGRÜN für bessere Sichtbarkeit */
     color: #0d1f0d !important;  /* Dunkler Text auf hellem Grund */
     border: none !important;
-    font-weight: bold !important;
 }
 
 QPushButton#btn_h_reload {
