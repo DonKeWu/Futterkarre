@@ -233,8 +233,13 @@ class ESP8266ConfigSeite(BaseViewWidget):
                 self.log_message("❌ ESP8266Discovery nicht verfügbar")
                 return
             
-            # ESP8266 suchen
-            esp_ip = self.discovery.find_esp8266()
+            # ESP8266 suchen (synchron via HTTP-Test)
+            esp_ip = None
+            for i in range(100, 200):
+                test_ip = f"192.168.2.{i}"
+                if self.discovery.test_http_status(test_ip):
+                    esp_ip = test_ip
+                    break
             
             if esp_ip:
                 self.log_message(f"🔗 Verbindung zu ESP8266 {esp_ip} hergestellt")
@@ -281,8 +286,8 @@ class ESP8266ConfigSeite(BaseViewWidget):
             # Kein separates "Status abrufen" Log - wird durch das Ergebnis ersetzt
             
             if self.discovery:
-                status = self.discovery.get_esp8266_status(self.current_esp_ip)
-                if status:
+                status = self.discovery.test_http_status(self.current_esp_ip)
+                if status and isinstance(status, dict):
                     self.update_status_display(status)
                     # Aussagekräftige Status-Info
                     signal = status.get('signal_strength', 'N/A')
