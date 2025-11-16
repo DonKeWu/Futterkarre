@@ -8,13 +8,18 @@ from PyQt5.QtCore import QTimer
 
 from hardware.weight_manager import get_weight_manager
 from utils.ui_utils import UIUtils
+from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
 
 
-class FuetternSeite(QWidget):
+class FuetternSeite(BaseViewWidget):
     def __init__(self, pferd=None, parent=None):
         super().__init__(parent)
+        
+        # BaseViewWidget Konfiguration
+        self.page_name = "fuettern"
+        
         self.navigation = None
         self.main_window = None  # Wird vom MainWindow gesetzt
         
@@ -58,12 +63,12 @@ class FuetternSeite(QWidget):
         self.timer.timeout.connect(self.update_displays)
 
     def load_ui_or_fallback(self):
-        """Lädt UI-Datei oder erstellt Fallback"""
-        ui_path = os.path.join(os.path.dirname(__file__), "fuettern_seite.ui")
-        if os.path.exists(ui_path):
-            uic.loadUi(ui_path, self)
-            logger.info("fuettern_seite.ui erfolgreich geladen")
-        else:
+        """Lädt UI-Datei über BaseViewWidget (mit automatischer Fehlerbehandlung)"""
+        self.ui_file = "views/fuettern_seite.ui"
+        try:
+            self.load_ui()  # BaseViewWidget Methode
+        except Exception:
+            logger.warning("UI-Datei nicht gefunden, erstelle Fallback")
             self.create_ui()
 
     def connect_buttons(self):

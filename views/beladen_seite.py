@@ -7,13 +7,18 @@ from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QButtonGr
 from PyQt5.QtCore import QTimer
 from hardware.weight_manager import get_weight_manager
 from utils.theme_manager import get_theme_manager
+from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
 
 
-class BeladenSeite(QWidget):
+class BeladenSeite(BaseViewWidget):
     def __init__(self, sensor_manager):
         super().__init__()
+        
+        # BaseViewWidget Konfiguration
+        self.page_name = "beladen"
+        
         self.sensor_manager = sensor_manager
         self.navigation = None  # Wird von MainWindow gesetzt
         

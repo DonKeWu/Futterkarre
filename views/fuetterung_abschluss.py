@@ -2,24 +2,23 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5 import uic
 from datetime import datetime, timedelta
 import logging
+from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
 
-class FuetterungAbschluss(QWidget):
+class FuetterungAbschluss(BaseViewWidget):
     def __init__(self, navigation=None):
         super().__init__()
+        
+        # BaseViewWidget Konfiguration
+        self.page_name = "fuetterung_abschluss"
+        
         self.navigation = navigation
         self.fuetterung_start_zeit = None
         
-        # UI laden
-        try:
-            uic.loadUi('views/fuetterung_abschluss.ui', self)
-            logger.info("fuetterung_abschluss.ui erfolgreich geladen")
-        except Exception as e:
-            logger.error(f"Fehler beim Laden der UI: {e}")
-            
-        # Vollbild für PiTouch2 (1280x720) - komplette Display-Nutzung
-        self.setFixedSize(1280, 720)
+        # UI laden über BaseViewWidget (mit automatischer Fehlerbehandlung)
+        self.ui_file = "views/fuetterung_abschluss.ui"
+        self.load_ui()  # BaseViewWidget Methode
         
         # Position: oben links (0,0) - Display vollständig nutzen
         self.move(0, 0)
