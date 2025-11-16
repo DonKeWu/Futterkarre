@@ -1,7 +1,7 @@
 # views/fuettern_seite.py - Mit WeightManager Integration
 import logging
 import os
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QThread, pyqtSignal
 from PyQt5 import uic
 
 from hardware.weight_manager import get_weight_manager
@@ -9,6 +9,50 @@ from utils.ui_utils import UIUtils
 from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
+
+# WiFi Status Check Thread
+class WiFiStatusThread(QThread):
+    """Thread für ESP8266 WiFi Status Check"""
+    wifi_status_changed = pyqtSignal(bool, str)  # (connected, esp8266_ip)
+    
+    def __init__(self):
+        super().__init__()
+        self.running = False
+        self.esp8266_discovery = None
+        
+    def run(self):
+        """Überprüft ESP8266 Verbindung alle 5 Sekunden"""
+        try:
+            from wireless.esp8266_discovery import ESP8266Discovery
+            self.esp8266_discovery = ESP8266Discovery()
+        except ImportError:
+            logger.error("ESP8266Discovery nicht verfügbar - WiFi Status deaktiviert")
+            return
+            
+        self.running = True
+        while self.running:
+            try:
+                esp8266_ip = self.esp8266_discovery.find_esp8266()
+                if esp8266_ip:
+                    self.wifi_status_changed.emit(True, esp8266_ip)
+                    logger.debug(f"ESP8266 gefunden: {esp8266_ip}")
+                else:
+                    self.wifi_status_changed.emit(False, "")
+                    logger.debug("ESP8266 nicht erreichbar")
+                    
+                # 5 Sekunden warten vor nächster Überprüfung
+                self.msleep(5000)
+                
+            except Exception as e:
+                logger.error(f"Fehler beim WiFi Status Check: {e}")
+                self.wifi_status_changed.emit(False, "")
+                self.msleep(5000)
+                
+    def stop(self):
+        """Stoppt den WiFi Status Thread"""
+        self.running = False
+        self.quit()
+        self.wait()
 
 
 class FuetternSeite(BaseViewWidget):
@@ -45,6 +89,11 @@ class FuetternSeite(BaseViewWidget):
         # Futter-Daten Variablen (HINZUGEFÜGT)
         self.aktuelle_futter_daten = None
 
+        # WiFi Status Thread
+        self.wifi_thread = None
+        self.esp8266_connected = False
+        self.esp8266_ip = ""
+
         # UI laden
         self.load_ui_or_fallback()
         
@@ -59,6 +108,9 @@ class FuetternSeite(BaseViewWidget):
         # Timer für Echtzeit-Updates
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_displays)
+        
+        # WiFi Status initialisieren
+        self.init_wifi_status()
 
     def load_ui_or_fallback(self):
         """Lädt UI-Datei über BaseViewWidget (mit automatischer Fehlerbehandlung)"""
@@ -130,9 +182,20 @@ class FuetternSeite(BaseViewWidget):
         # EXIT-Button für Tests und Debugging
         self.exit = QPushButton("🛑 EXIT (Test)")
         self.exit.setStyleSheet("background-color: red; color: white; font-weight: bold;")
+        
+        # WiFi Status Label (Fallback)
+        self.label_wifi_status = QLabel("WiFi")
+        self.label_wifi_status.setStyleSheet(
+            "background-color: transparent; "
+            "border: 2px solid gray; "
+            "border-radius: 8px; "
+            "color: gray; "
+            "font-weight: bold;"
+        )
 
         layout.addWidget(self.label_rgv_name)
         layout.addWidget(self.label_karre_gewicht_anzeigen)
+        layout.addWidget(self.label_wifi_status)  # WiFi Status hinzufügen
         layout.addWidget(self.btn_back)
         layout.addWidget(self.exit)  # EXIT-Button hinzufügen
 
@@ -157,10 +220,10 @@ class FuetternSeite(BaseViewWidget):
                         logger.debug(f"TextLabel ersetzt in {label_name}")
             
             if cleared_count > 0:
-                logger.info(f"✅ {cleared_count} TextLabels beim UI-Laden bereinigt")
+                logger.info(f"ERFOLG: {cleared_count} TextLabels beim UI-Laden bereinigt")
                 
         except Exception as e:
-            logger.error(f"❌ Fehler beim Bereinigen der TextLabels: {e}")
+            logger.error(f"FEHLER: Fehler beim Bereinigen der TextLabels: {e}")
         
     def zeige_pferd_daten(self, pferd):
         """Zeigt echte Pferd-Daten aus Dataclass"""
@@ -210,10 +273,10 @@ class FuetternSeite(BaseViewWidget):
             self.update()
             logger.debug("UI-Refresh nach Pferd-Daten-Update erzwungen")
 
-            logger.info(f"✅ Pferd-Daten erfolgreich angezeigt: Box {pferd.box} - {pferd.name}, {pferd.alter} Jahre, {pferd.gewicht} kg")
+            logger.info(f"ERFOLG: Pferd-Daten erfolgreich angezeigt: Box {pferd.box} - {pferd.name}, {pferd.alter} Jahre, {pferd.gewicht} kg")
 
         except Exception as e:
-            logger.error(f"❌ Fehler beim Anzeigen der Pferd-Daten: {e}")
+            logger.error(f"FEHLER: Fehler beim Anzeigen der Pferd-Daten: {e}")
             import traceback
             logger.error(traceback.format_exc())
 
@@ -407,7 +470,7 @@ class FuetternSeite(BaseViewWidget):
             self.zeige_pferd_daten(self.aktuelles_pferd)
             logger.info("Pferd-Daten im Kontext mit processEvents gesetzt")
         else:
-            logger.error("❌ KEIN Pferd-Objekt verfügbar - UI bleibt leer!")
+            logger.error("FEHLER: KEIN Pferd-Objekt verfügbar - UI bleibt leer!")
 
         logger.info(f"Kontext wiederhergestellt - Pferd {self.aktuelle_pferd_nummer}, Karre: {neues_gewicht:.2f} kg")
 
@@ -568,8 +631,62 @@ class FuetternSeite(BaseViewWidget):
         # FütternSeite = Inventar-System, nicht Live-Waage!
         logger.debug(f"FuetternSeite: WeightManager-Update ignoriert ({new_weight:.2f}kg) - verwende feste Werte")
     
+    def init_wifi_status(self):
+        """Initialisiert WiFi Status Monitoring"""
+        try:
+            # WiFi Status Label initial setzen
+            if hasattr(self, 'label_wifi_status'):
+                self.update_wifi_status(False, "")
+                
+            # WiFi Status Thread starten
+            self.wifi_thread = WiFiStatusThread()
+            self.wifi_thread.wifi_status_changed.connect(self.on_wifi_status_changed)
+            self.wifi_thread.start()
+            logger.info("WiFi Status Monitor gestartet")
+            
+        except Exception as e:
+            logger.error(f"Fehler beim Initialisieren des WiFi Status: {e}")
+            
+    def on_wifi_status_changed(self, connected: bool, esp8266_ip: str):
+        """Callback für WiFi Status Änderungen"""
+        self.esp8266_connected = connected
+        self.esp8266_ip = esp8266_ip
+        self.update_wifi_status(connected, esp8266_ip)
+        
+    def update_wifi_status(self, connected: bool, esp8266_ip: str):
+        """Aktualisiert WiFi Status Icon"""
+        if hasattr(self, 'label_wifi_status'):
+            if connected:
+                # Verbunden: Grüner Rahmen, weißer Text
+                self.label_wifi_status.setStyleSheet(
+                    "background-color: transparent; "
+                    "border: 2px solid green; "
+                    "border-radius: 8px; "
+                    "color: green; "
+                    "font-weight: bold;"
+                )
+                self.label_wifi_status.setText("WiFi")
+                self.label_wifi_status.setToolTip(f"ESP8266 verbunden: {esp8266_ip}")
+                
+            else:
+                # Nicht verbunden: Grauer Rahmen, grauer Text
+                self.label_wifi_status.setStyleSheet(
+                    "background-color: transparent; "
+                    "border: 2px solid gray; "
+                    "border-radius: 8px; "
+                    "color: gray; "
+                    "font-weight: bold;"
+                )
+                self.label_wifi_status.setText("WiFi")
+                self.label_wifi_status.setToolTip("ESP8266 nicht erreichbar")
+
     def closeEvent(self, event):
         """Aufräumen beim Schließen der Seite"""
+        # WiFi Status Thread beenden
+        if hasattr(self, 'wifi_thread') and self.wifi_thread is not None:
+            self.wifi_thread.stop()
+            self.wifi_thread = None
+            
         if self._weight_observer_registered:
             self.weight_manager.unregister_observer("fuettern_seite")
             self._weight_observer_registered = False

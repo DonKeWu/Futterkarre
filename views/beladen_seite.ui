@@ -32,9 +32,7 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-
-</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Futter laden</string>
@@ -55,7 +53,7 @@
    <property name="font">
     <font>
      <family>URW Gothic</family>
-     <pointsize>100</pointsize>
+     <pointsize>130</pointsize>
     </font>
    </property>
    <property name="text">
@@ -68,22 +66,22 @@
   <widget class="QPushButton" name="btn_w_bestaetigen">
    <property name="geometry">
     <rect>
-     <x>720</x>
-     <y>580</y>
-     <width>300</width>
-     <height>70</height>
+     <x>600</x>
+     <y>559</y>
+     <width>561</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>URW Gothic</family>
-     <pointsize>20</pointsize>
+     <pointsize>40</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"> </string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Beladung bestätigen</string>
@@ -119,16 +117,16 @@
   <widget class="QPushButton" name="btn_heu">
    <property name="geometry">
     <rect>
-     <x>370</x>
-     <y>200</y>
-     <width>180</width>
-     <height>80</height>
+     <x>300</x>
+     <y>189</y>
+     <width>271</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>18</pointsize>
+     <pointsize>40</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -140,16 +138,16 @@
   <widget class="QPushButton" name="btn_heulage">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>200</y>
-     <width>180</width>
-     <height>80</height>
+     <x>700</x>
+     <y>189</y>
+     <width>271</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>18</pointsize>
+     <pointsize>40</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -161,22 +159,22 @@
   <widget class="QPushButton" name="btn_wa_nullen">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>580</y>
-     <width>300</width>
-     <height>70</height>
+     <x>90</x>
+     <y>559</y>
+     <width>401</width>
+     <height>91</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>URW Gothic</family>
-     <pointsize>20</pointsize>
+     <pointsize>40</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"> </string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Waage Nullen</string>

@@ -89,9 +89,9 @@ class SingleHX711:
         """Setzt Nullpunkt (Tara)"""
         try:
             self.hx.tare()
-            print(f"✅ {self.config['name']}: Nullpunkt gesetzt")
+            print(f"ERFOLG: {self.config['name']}: Nullpunkt gesetzt")
         except Exception as e:
-            print(f"❌ {self.config['name']}: Tara-Fehler: {e}")
+            print(f"FEHLER: {self.config['name']}: Tara-Fehler: {e}")
             
     def calibrate(self, known_weight):
         """Kalibriert die Wägezelle mit bekanntem Gewicht"""
@@ -103,13 +103,13 @@ class SingleHX711:
             if raw_value != 0:
                 self.scale = known_weight / raw_value
                 self.config['scale'] = self.scale
-                print(f"✅ {self.config['name']} kalibriert: {self.scale:.6f}")
+                print(f"ERFOLG: {self.config['name']} kalibriert: {self.scale:.6f}")
                 return True
             else:
-                print(f"❌ Kalibrierung fehlgeschlagen (raw_value = 0)")
+                print(f"FEHLER: Kalibrierung fehlgeschlagen (raw_value = 0)")
                 return False
         except Exception as e:
-            print(f"❌ Kalibrierungs-Fehler: {e}")
+            print(f"FEHLER: Kalibrierungs-Fehler: {e}")
             return False
 
 # HX711-Instanzen (werden bei Initialisierung erstellt)
@@ -179,7 +179,7 @@ def kalibriere_einzelzelle(sensor_index, bekanntes_gewicht):
 
 def nullpunkt_setzen_alle():
     """Setzt Nullpunkt für alle 4 Wägezellen"""
-    print("🔄 Nullpunkt-Kalibrierung: Karren leeren und Enter drücken...")
+    print("NULLPUNKT-KALIBRIERUNG: Karren leeren und Enter drücken...")
     input()
     
     for sensor in hx_sensors:
@@ -192,9 +192,9 @@ def teste_alle_sensoren():
     for i, sensor in enumerate(hx_sensors):
         try:
             raw_value = sensor.hx.read()
-            print(f"✅ Sensor {i+1} ({sensor.config['name']}): {raw_value}")
+            print(f"ERFOLG: Sensor {i+1} ({sensor.config['name']}): {raw_value}")
         except Exception as e:
-            print(f"❌ Sensor {i+1} ({sensor.config['name']}): Fehler - {e}")
+            print(f"FEHLER: Sensor {i+1} ({sensor.config['name']}): Fehler - {e}")
 
 # Initialisierung beim Import (falls HX711 verfügbar)
 try:
@@ -203,7 +203,7 @@ try:
         print("🔌 HX711 4-Sensor System initialisiert")
     else:
         hx_sensors = []
-        print("⚠️ HX711 Library nicht verfügbar - Simulation verwenden")
+        print("WARNUNG: HX711 Library nicht verfügbar - Simulation verwenden")
 except Exception as e:
-    print(f"⚠️ HX711-Initialisierung fehlgeschlagen: {e}")
+    print(f"WARNUNG: HX711-Initialisierung fehlgeschlagen: {e}")
     hx_sensors = []

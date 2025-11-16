@@ -58,10 +58,10 @@ class DisplayConfigSeite(BaseViewWidget):
             if hasattr(self, 'combo_theme'):
                 self.combo_theme.currentTextChanged.connect(self.on_theme_changed)
             
-            print("✅ Display-Config UI erfolgreich initialisiert")
+            print("ERFOLG: Display-Config UI erfolgreich initialisiert")
             
         except Exception as e:
-            print(f"❌ Fehler beim Setup der Display-Config UI: {e}")
+            print(f"FEHLER: Fehler beim Setup der Display-Config UI: {e}")
 
     def load_current_settings(self):
         """Aktuelle Einstellungen aus settings.json laden"""
@@ -79,10 +79,10 @@ class DisplayConfigSeite(BaseViewWidget):
                 if index >= 0:
                     self.combo_theme.setCurrentIndex(index)
             
-            print(f"✅ Settings geladen: Helligkeit={current_brightness}, Theme={current_theme}")
+            print(f"ERFOLG: Settings geladen: Helligkeit={current_brightness}, Theme={current_theme}")
             
         except Exception as e:
-            print(f"❌ Fehler beim Laden der Display-Settings: {e}")
+            print(f"FEHLER: Fehler beim Laden der Display-Settings: {e}")
 
     def get_hardware_brightness(self):
         """Aktuelle Hardware-Helligkeit vom PiTouch2 lesen"""
@@ -91,10 +91,10 @@ class DisplayConfigSeite(BaseViewWidget):
                 with open(self.brightness_path, 'r') as f:
                     return int(f.read().strip())
             else:
-                print(f"⚠️ Brightness-Pfad nicht gefunden: {self.brightness_path}")
+                print(f"WARNUNG: Brightness-Pfad nicht gefunden: {self.brightness_path}")
                 return 15  # Fallback Mittelwert
         except Exception as e:
-            print(f"❌ Fehler beim Lesen der Hardware-Helligkeit: {e}")
+            print(f"FEHLER: Fehler beim Lesen der Hardware-Helligkeit: {e}")
             return 15
 
     def set_hardware_brightness(self, value):
@@ -107,24 +107,24 @@ class DisplayConfigSeite(BaseViewWidget):
                 # Root-Rechte erforderlich, aber versuchen wir es
                 with open(self.brightness_path, 'w') as f:
                     f.write(str(value))
-                print(f"✅ Hardware-Helligkeit gesetzt: {value}")
+                print(f"ERFOLG: Hardware-Helligkeit gesetzt: {value}")
                 return True
             else:
-                print(f"⚠️ Brightness-Hardware nicht verfügbar: {self.brightness_path}")
+                print(f"WARNUNG: Brightness-Hardware nicht verfügbar: {self.brightness_path}")
                 return False
                 
         except PermissionError:
-            print(f"⚠️ Keine Berechtigung für Hardware-Helligkeit. Sudo erforderlich.")
+            print(f"WARNUNG: Keine Berechtigung für Hardware-Helligkeit. Sudo erforderlich.")
             # Fallback: Über sudo versuchen
             try:
                 os.system(f"echo {value} | sudo tee {self.brightness_path} > /dev/null")
-                print(f"✅ Hardware-Helligkeit per sudo gesetzt: {value}")
+                print(f"ERFOLG: Hardware-Helligkeit per sudo gesetzt: {value}")
                 return True
             except:
-                print(f"❌ Auch sudo-Versuch fehlgeschlagen")
+                print(f"FEHLER: Auch sudo-Versuch fehlgeschlagen")
                 return False
         except Exception as e:
-            print(f"❌ Fehler beim Setzen der Hardware-Helligkeit: {e}")
+            print(f"FEHLER: Fehler beim Setzen der Hardware-Helligkeit: {e}")
             return False
 
     def update_brightness_label(self, value):
@@ -135,7 +135,7 @@ class DisplayConfigSeite(BaseViewWidget):
             if hasattr(self, 'lbl_helligkeit_wert'):
                 self.lbl_helligkeit_wert.setText(f"{percent}%")
         except Exception as e:
-            print(f"❌ Fehler beim Aktualisieren des Helligkeit-Labels: {e}")
+            print(f"FEHLER: Fehler beim Aktualisieren des Helligkeit-Labels: {e}")
 
     def on_brightness_changed(self, value):
         """Helligkeit-Slider wurde bewegt"""
@@ -151,7 +151,7 @@ class DisplayConfigSeite(BaseViewWidget):
             self.brightness_changed.emit(value)
             
         except Exception as e:
-            print(f"❌ Fehler bei Helligkeit-Änderung: {e}")
+            print(f"FEHLER: Fehler bei Helligkeit-Änderung: {e}")
 
     def start_brightness_preview(self):
         """Live-Vorschau für Helligkeit starten"""
@@ -174,9 +174,9 @@ class DisplayConfigSeite(BaseViewWidget):
                 self.theme_changed.emit(theme_name)
                 print(f"🎨 Theme gewechselt zu: {theme_name}")
             else:
-                print(f"❌ Theme konnte nicht angewendet werden: {theme_name}")
+                print(f"FEHLER: Theme konnte nicht angewendet werden: {theme_name}")
         except Exception as e:
-            print(f"❌ Fehler beim Theme-Wechsel: {e}")
+            print(f"FEHLER: Fehler beim Theme-Wechsel: {e}")
 
     def apply_theme_preview(self, theme_name):
         """Theme auf Vorschau-Bereich anwenden"""
@@ -268,7 +268,7 @@ class DisplayConfigSeite(BaseViewWidget):
                     """)
                     
         except Exception as e:
-            print(f"❌ Fehler beim Anwenden des Themes: {e}")
+            print(f"FEHLER: Fehler beim Anwenden des Themes: {e}")
 
 
 
@@ -284,7 +284,7 @@ class DisplayConfigSeite(BaseViewWidget):
                 QTimer.singleShot(1000, lambda: self.btn_vorschau_demo.setText(original_text))
                 
         except Exception as e:
-            print(f"❌ Fehler bei Demo-Animation: {e}")
+            print(f"FEHLER: Fehler bei Demo-Animation: {e}")
 
     def settings_speichern(self):
         """Aktuelle Einstellungen in settings.json speichern"""
@@ -303,11 +303,11 @@ class DisplayConfigSeite(BaseViewWidget):
             # Settings speichern
             self.settings.save_settings()
             
-            print("✅ Display-Einstellungen gespeichert!")
+            print("GESPEICHERT: Display-Einstellungen gespeichert!")
             self.show_success_message("Einstellungen gespeichert!")
             
         except Exception as e:
-            print(f"❌ Fehler beim Speichern der Display-Settings: {e}")
+            print(f"FEHLER: Fehler beim Speichern der Display-Settings: {e}")
             self.show_error_message("Fehler beim Speichern!")
 
     def settings_zuruecksetzen(self):
@@ -325,11 +325,11 @@ class DisplayConfigSeite(BaseViewWidget):
             if hasattr(self, 'chk_auto_nachtmodus'):
                 self.chk_auto_nachtmodus.setChecked(False)
             
-            print("🔄 Display-Einstellungen zurückgesetzt!")
+            print("ZURÜCKGESETZT: Display-Einstellungen zurückgesetzt!")
             self.show_success_message("Einstellungen zurückgesetzt!")
             
         except Exception as e:
-            print(f"❌ Fehler beim Zurücksetzen: {e}")
+            print(f" Fehler beim Zurücksetzen: {e}")
 
     def zurueck_zu_einstellungen(self):
         """Zurück zur Einstellungen-Seite"""
@@ -337,12 +337,12 @@ class DisplayConfigSeite(BaseViewWidget):
             if self.navigation:
                 self.navigation.show_status("einstellungen")
         except Exception as e:
-            print(f"❌ Fehler bei Navigation zurück: {e}")
+            print(f" Fehler bei Navigation zurück: {e}")
 
     def show_success_message(self, message):
         """Erfolgs-Nachricht anzeigen (Fallback)"""
-        print(f"✅ {message}")
+        print(f" {message}")
 
     def show_error_message(self, message):
         """Fehler-Nachricht anzeigen (Fallback)"""
-        print(f"❌ {message}")
+        print(f" {message}")

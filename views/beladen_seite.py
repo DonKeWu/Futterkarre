@@ -3,7 +3,7 @@ import os
 import logging
 
 from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QButtonGroup
+from PyQt5.QtWidgets import QVBoxLayout, QLabel, QPushButton
 from PyQt5.QtCore import QTimer
 from hardware.weight_manager import get_weight_manager
 from utils.theme_manager import get_theme_manager
@@ -63,8 +63,8 @@ class BeladenSeite(BaseViewWidget):
                 self.update_weight
             )
             self._timer_registered = True
-            logger.info("🎯 TimerManager Timer für BeladenSeite registriert")
-            print(f"🎯 BeladenSeite: Timer registriert - ID: beladen_weight_update")
+            logger.info("TIMER: TimerManager Timer für BeladenSeite registriert")
+            print(f"TIMER: BeladenSeite: Timer registriert - ID: beladen_weight_update")
 
         # Legacy Timer erstellen (für Fallback)
         self.timer = QTimer()
@@ -304,7 +304,7 @@ class BeladenSeite(BaseViewWidget):
         try:
             # WeightManager für Gewichtsquelle
             aktuelles_gewicht = self.weight_manager.read_weight()
-            print(f"🔄 UPDATE_WEIGHT AUFGERUFEN: {aktuelles_gewicht:.2f} kg")
+            print(f"UPDATE: UPDATE_WEIGHT AUFGERUFEN: {aktuelles_gewicht:.2f} kg")
 
             # Hauptgewichtsanzeige aktualisieren
             if hasattr(self, 'label_karre_gewicht'):
@@ -317,7 +317,7 @@ class BeladenSeite(BaseViewWidget):
                 self.label_karre_gewicht.repaint()
                 print(f"🖼️ UI REFRESH erzwungen")
             else:
-                print("❌ FEHLER: label_karre_gewicht nicht gefunden!")
+                print("FEHLER: FEHLER: label_karre_gewicht nicht gefunden!")
                 # Debug: Alle verfügbaren Attribute anzeigen
                 print(f"📋 Verfügbare Label-Attribute: {[attr for attr in dir(self) if 'label' in attr.lower()]}")
 

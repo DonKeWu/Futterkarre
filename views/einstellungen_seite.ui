@@ -483,6 +483,83 @@ QPushButton:hover {
     <string>Futter Auswahl</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_esp8266_config">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>540</y>
+     <width>100</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+    
+    color: #ffffff;
+    border-radius: 15px;
+}
+QPushButton:hover {
+    
+    color: #f5f5b5;
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../../Futterwagen_2/views/icons/icons.qrc">
+     <normaloff>:/icons/Wireless.png</normaloff>
+     <normalon>:/icons/Wireless.png</normalon>:/icons/Wireless.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>60</width>
+     <height>60</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QLabel" name="txt_esp8266_config">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>540</y>
+     <width>600</width>
+     <height>70</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>5</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>600</width>
+     <height>70</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>600</width>
+     <height>70</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>30</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
+    background-color: transparent;
+}</string>
+   </property>
+   <property name="text">
+    <string>ESP8266 Wireless Waage</string>
+   </property>
+  </widget>
   <zorder>ub_einstellungen</zorder>
   <zorder>txt_hardware_status</zorder>
   <zorder>txt_kalibrieren</zorder>

@@ -15,14 +15,13 @@ Features:
 
 import sys
 import logging
-from PyQt5 import QtWidgets, QtCore, QtGui, uic
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSignal, QTimer
 from PyQt5.QtWidgets import QMessageBox
 import os
 
 # Logger Setup
 logger = logging.getLogger(__name__)
-from pathlib import Path
 from datetime import datetime
 
 # Projekt-spezifische Imports
@@ -184,7 +183,7 @@ class WaagenKalibrierung(BaseViewWidget):
             self.update_timer.start(1000)  # 1 Sekunde Intervall
             self.update_status("Live-Updates gestartet")
         else:
-            self.update_status("⚠️ Hardware nicht verfügbar - Simulation aktiv")
+            self.update_status("WARNUNG: Hardware nicht verfügbar - Simulation aktiv")
             # Simulierte Werte für Entwicklung
             self.update_timer.start(1000)
     
@@ -242,7 +241,7 @@ class WaagenKalibrierung(BaseViewWidget):
             if reply != QMessageBox.Yes:
                 return
             
-            self.update_status("🔄 Tara wird durchgeführt...")
+            self.update_status("Tara wird durchgeführt...")
             
             # Live-Updates temporär stoppen
             was_running = self.update_timer.isActive()
@@ -266,10 +265,10 @@ class WaagenKalibrierung(BaseViewWidget):
             
             if success:
                 self.kalibrierung_schritt = 1
-                self.update_status("✅ Tara erfolgreich - bereit für Kalibrierung mit Referenzgewicht")
+                self.update_status("ERFOLG: Tara erfolgreich - bereit für Kalibrierung mit Referenzgewicht")
                 QMessageBox.information(self, "Tara", "Nullpunkt erfolgreich gesetzt!")
             else:
-                self.update_status("❌ Tara fehlgeschlagen")
+                self.update_status("FEHLER: Tara fehlgeschlagen")
                 QMessageBox.critical(self, "Fehler", "Tara konnte nicht durchgeführt werden!")
             
             # Live-Updates wieder starten
@@ -310,7 +309,7 @@ class WaagenKalibrierung(BaseViewWidget):
             if reply != QMessageBox.Yes:
                 return
             
-            self.update_status(f"🔄 Kalibrierung mit {self.referenz_gewicht} kg...")
+            self.update_status(f"Kalibrierung mit {self.referenz_gewicht} kg...")
             
             # Live-Updates stoppen
             was_running = self.update_timer.isActive()
@@ -355,10 +354,10 @@ class WaagenKalibrierung(BaseViewWidget):
             
             if success:
                 self.kalibrierung_schritt = 2
-                self.update_status("✅ Kalibrierung erfolgreich - bereit für Test")
+                self.update_status("ERFOLG: Kalibrierung erfolgreich - bereit für Test")
                 QMessageBox.information(self, "Kalibrierung", "Kalibrierung erfolgreich abgeschlossen!")
             else:
-                self.update_status("❌ Kalibrierung fehlgeschlagen")
+                self.update_status("FEHLER: Kalibrierung fehlgeschlagen")
                 QMessageBox.critical(self, "Fehler", "Kalibrierung konnte nicht durchgeführt werden!")
             
             # Live-Updates wieder starten
@@ -421,15 +420,15 @@ Gemessen: {gemessenes_gewicht:.2f} kg
 Abweichung: {abweichung:.3f} kg ({prozent_abweichung:.1f}%)
 Toleranz: ±{self.toleranz:.2f} kg
 
-Status: {'✅ BESTANDEN' if toleranz_ok else '❌ NICHT BESTANDEN'}
+Status: {'BESTANDEN' if toleranz_ok else 'NICHT BESTANDEN'}
 """
             
             if toleranz_ok:
                 self.kalibrierung_schritt = 3
-                self.update_status("✅ Kalibrierung validiert - bereit zum Speichern")
+                self.update_status("ERFOLG: Kalibrierung validiert - bereit zum Speichern")
                 QMessageBox.information(self, "Test erfolgreich", result_text)
             else:
-                self.update_status("⚠️ Test nicht bestanden - Kalibrierung überprüfen")
+                self.update_status("WARNUNG: Test nicht bestanden - Kalibrierung überprüfen")
                 QMessageBox.warning(self, "Test nicht bestanden", result_text + "\n\nBitte Kalibrierung wiederholen.")
             
             self.update_kalibrierungs_buttons()
@@ -459,7 +458,7 @@ Status: {'✅ BESTANDEN' if toleranz_ok else '❌ NICHT BESTANDEN'}
                 
                 # Speichern
                 if self.settings_manager.save_settings():
-                    self.update_status("💾 Kalibrierungswerte erfolgreich gespeichert")
+                    self.update_status("GESPEICHERT: Kalibrierungswerte erfolgreich gespeichert")
                     QMessageBox.information(self, "Gespeichert", "Kalibrierungswerte wurden erfolgreich gespeichert!")
                     
                     # Signal senden
@@ -488,7 +487,7 @@ Status: {'✅ BESTANDEN' if toleranz_ok else '❌ NICHT BESTANDEN'}
                 self.kalibrier_faktoren = [1.0, 1.0, 1.0, 1.0]
                 
                 # UI aktualisieren
-                self.update_status("🔄 Kalibrierung zurückgesetzt - bitte neu durchführen")
+                self.update_status("ZURÜCKGESETZT: Kalibrierung zurückgesetzt - bitte neu durchführen")
                 self.update_kalibrierungs_buttons()
                 
                 QMessageBox.information(self, "Zurückgesetzt", "Kalibrierung wurde zurückgesetzt!")

@@ -4,10 +4,9 @@ Futter-Konfiguration - MINIMAL VERSION
 NUR Original UI-Datei laden - KEINE programmatische UI-Erstellung!
 """
 
-import os
 import logging
 from pathlib import Path
-from PyQt5 import QtWidgets, uic
+from PyQt5 import uic
 from PyQt5.QtCore import pyqtSignal
 from utils.base_ui_widget import BaseViewWidget
 

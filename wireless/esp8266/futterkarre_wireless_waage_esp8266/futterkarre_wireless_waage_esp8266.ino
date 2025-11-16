@@ -41,10 +41,15 @@
 
 // =================== KONFIGURATION ===================
 
-// WiFi-Einstellungen
-const char* WIFI_SSID = "Futterkarre_WiFi";      // TODO: Anpassen
-const char* WIFI_PASSWORD = "FutterWaage2025";   // TODO: Anpassen
+// WiFi-Einstellungen - Hybrid-Modus
+const char* HOME_WIFI_SSID = "IBIMSNOCH1MAL";        // Pi5 Heimnetz
+const char* HOME_WIFI_PASSWORD = "G8pY4B8K56vF";     // Pi5 WiFi Passwort
+const char* AP_SSID = "Futterkarre_WiFi";            // Eigenes Stall-Netz
+const char* AP_PASSWORD = "FutterWaage2025";         // Stall-Netz Passwort
 const char* DEVICE_NAME = "FutterWaage_ESP8266";
+
+// WiFi-Modi - Verwende die ESP8266 Standard-Modi
+int current_wifi_mode; // 0 = AP Mode, 1 = Station Mode
 
 // WebSocket-Server
 WebSocketsServer webSocket = WebSocketsServer(81);
@@ -186,29 +191,52 @@ void setupScales() {
 }
 
 void setupWiFi() {
-  Serial.print("📡 WiFi verbinden... ");
+  Serial.println("📡 WiFi Hybrid-Setup wird gestartet...");
   
+  // Erst versuchen: Heimnetz verbinden
+  Serial.print("🏠 Versuche Heimnetz-Verbindung... ");
   WiFi.mode(WIFI_STA);
   WiFi.hostname(DEVICE_NAME);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(HOME_WIFI_SSID, HOME_WIFI_PASSWORD);
   
-  int timeout = 200; // 20s timeout
+  int timeout = 100; // 10s timeout für Heimnetz
   while (WiFi.status() != WL_CONNECTED && timeout-- > 0) {
     delay(100);
     Serial.print(".");
   }
   
   if (WiFi.status() == WL_CONNECTED) {
+    // Heimnetz erfolgreich
+    current_wifi_mode = 1; // Station Mode
     wifi_connected = true;
     digitalWrite(LED_WIFI, LOW); // WiFi LED an
     
     Serial.println(" OK");
+    Serial.printf("   Heimnetz-Modus aktiv\n");
     Serial.printf("   IP: %s\n", WiFi.localIP().toString().c_str());
     Serial.printf("   RSSI: %d dBm\n", WiFi.RSSI());
     wifi_rssi = WiFi.RSSI();
   } else {
-    Serial.println(" ❌ FEHLER");
-    wifi_connected = false;
+    // Fallback: Access Point Modus (Stall)
+    Serial.println(" Timeout");
+    Serial.print("📡 Starte Access Point Modus... ");
+    
+    WiFi.mode(WIFI_AP);
+    bool ap_started = WiFi.softAP(AP_SSID, AP_PASSWORD);
+    
+    if (ap_started) {
+      current_wifi_mode = 0; // AP Mode
+      wifi_connected = true;
+      digitalWrite(LED_WIFI, LOW); // WiFi LED an
+      
+      Serial.println("OK");
+      Serial.printf("   Stall-Modus aktiv\n");
+      Serial.printf("   AP-SSID: %s\n", AP_SSID);
+      Serial.printf("   AP-IP: %s\n", WiFi.softAPIP().toString().c_str());
+    } else {
+      Serial.println(" ❌ FEHLER");
+      wifi_connected = false;
+    }
   }
 }
 
@@ -289,7 +317,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
 
 void processCommand(uint8_t clientNum, const char* message) {
   // JSON parsen
-  DynamicJsonDocument doc(512);
+  JsonDocument doc;
   DeserializationError error = deserializeJson(doc, message);
   
   if (error) {
@@ -324,7 +352,7 @@ void handleTareCommand(uint8_t clientNum) {
   bool success = performTare();
   
   // Antwort senden
-  DynamicJsonDocument response(256);
+  JsonDocument response;
   response["type"] = "response";
   response["command"] = "tare";
   response["status"] = success ? "success" : "error";
@@ -348,7 +376,7 @@ void handleCalibrateCommand(uint8_t clientNum, float referenceWeight) {
   bool success = performCalibration(referenceWeight);
   
   // Antwort senden
-  DynamicJsonDocument response(256);
+  JsonDocument response;
   response["type"] = "response";
   response["command"] = "calibrate";
   response["status"] = success ? "success" : "error";
@@ -365,7 +393,7 @@ void handleDeepSleepCommand(uint8_t clientNum) {
   Serial.println("😴 Deep Sleep angefordert");
   
   // Bestätigung senden
-  DynamicJsonDocument response(256);
+  JsonDocument response;
   response["type"] = "response";
   response["command"] = "deep_sleep";
   response["status"] = "success";
@@ -380,7 +408,7 @@ void handleDeepSleepCommand(uint8_t clientNum) {
 }
 
 void sendErrorResponse(uint8_t clientNum, const char* command, const char* error) {
-  DynamicJsonDocument response(256);
+  JsonDocument response;
   response["type"] = "response";
   response["command"] = command;
   response["status"] = "error";
@@ -417,12 +445,12 @@ void sendWeightData() {
   if (!wifi_connected) return;
   
   // JSON-Message erstellen
-  DynamicJsonDocument doc(512);
+  JsonDocument doc;
   doc["type"] = "weight_data";
   doc["timestamp"] = millis();
   doc["total_kg"] = round(total_weight * 100) / 100.0; // 2 Dezimalstellen
   
-  JsonArray corners = doc.createNestedArray("corners");
+  JsonArray corners = doc["corners"].to<JsonArray>();
   corners.add(round(weight_1 * 100) / 100.0);
   corners.add(round(weight_2 * 100) / 100.0);
   corners.add(round(weight_3 * 100) / 100.0);
@@ -513,11 +541,12 @@ bool performCalibration(float referenceWeight) {
 // =================== STATUS & MONITORING ===================
 
 void sendStatusMessage(uint8_t clientNum) {
-  DynamicJsonDocument doc(512);
+  JsonDocument doc;
   doc["type"] = "status";
   doc["device"] = DEVICE_NAME;
-  doc["wifi_ssid"] = WIFI_SSID;
-  doc["ip_address"] = WiFi.localIP().toString();
+  doc["wifi_mode"] = (current_wifi_mode == 1) ? "HOME" : "AP";
+  doc["wifi_ssid"] = (current_wifi_mode == 1) ? HOME_WIFI_SSID : AP_SSID;
+  doc["ip_address"] = (current_wifi_mode == 1) ? WiFi.localIP().toString() : WiFi.softAPIP().toString();
   doc["wifi_rssi"] = wifi_rssi;
   doc["battery_v"] = battery_voltage;
   doc["scales_ok"] = scales_initialized;
@@ -565,7 +594,7 @@ void checkBattery() {
     Serial.printf("🔋 Niedrige Akku-Spannung: %.1fV\n", battery_voltage);
     
     // Warnung über WebSocket senden
-    DynamicJsonDocument warning(256);
+    JsonDocument warning;
     warning["type"] = "battery_warning";
     warning["voltage"] = battery_voltage;
     warning["message"] = "Akku schwach - bitte aufladen";
@@ -599,7 +628,7 @@ void enterDeepSleep() {
   Serial.println("😴 Deep Sleep wird aktiviert...");
   
   // Status-Message senden
-  DynamicJsonDocument msg(256);
+  JsonDocument msg;
   msg["type"] = "deep_sleep";
   msg["message"] = "ESP8266 geht in Deep Sleep";
   msg["duration_h"] = DEEP_SLEEP_DURATION / 3600000000;

@@ -13,7 +13,7 @@ Features:
 
 import sys
 import logging
-from PyQt5 import QtWidgets, QtCore, QtGui, uic
+from PyQt5 import QtWidgets, QtCore, uic
 from PyQt5.QtWidgets import QMessageBox, QFileDialog, QTabWidget
 from PyQt5.QtCore import pyqtSignal, QTimer
 import os
@@ -22,7 +22,7 @@ from datetime import datetime
 
 # Projekt-spezifische Imports
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from utils.settings_manager import get_settings_manager, SettingsManager
+from utils.settings_manager import get_settings_manager
 from utils.database_manager import get_database_manager
 from utils.timer_manager import get_timer_manager
 from utils.base_ui_widget import BaseViewWidget
@@ -248,7 +248,7 @@ class EinstellungenSeite(BaseViewWidget):
         self.last_calibration_label = QtWidgets.QLabel("Noch nie")
         status_layout.addRow("Letzte Kalibrierung:", self.last_calibration_label)
         
-        self.calibration_valid_label = QtWidgets.QLabel("❌ Ungültig")
+        self.calibration_valid_label = QtWidgets.QLabel("UNGÜLTIG")
         status_layout.addRow("Status:", self.calibration_valid_label)
         
         layout.addWidget(status_group)
@@ -338,6 +338,10 @@ class EinstellungenSeite(BaseViewWidget):
         # Legacy Futter-Config Button
         if hasattr(self, 'btn_futter_config'):
             self.btn_futter_config.clicked.connect(self.zu_futter_config)
+            
+        # ESP8266 Konfiguration Button
+        if hasattr(self, 'btn_esp8266_config'):
+            self.btn_esp8266_config.clicked.connect(self.zu_esp8266_config)
         
         # Button-Verbindungen abgeschlossen - Hardware-Modus aktiv
         
@@ -595,6 +599,41 @@ class EinstellungenSeite(BaseViewWidget):
             self.navigation.show_status("futter_konfiguration")
         else:
             logger.warning("Navigation nicht verfügbar für futter_konfiguration")
+    
+    def zu_esp8266_config(self):
+        """Navigiert zur ESP8266-Konfigurationsseite"""
+        logger.info("ESP8266-Config Button geklickt")
+        
+        if self.navigation:
+            try:
+                self.navigation.show_status("esp8266_config")
+            except Exception as e:
+                logger.error(f"Navigation zu esp8266_config fehlgeschlagen: {e}")
+                # Fallback: Versuche direkten Import und Anzeige
+                self.show_esp8266_config_fallback()
+        else:
+            logger.warning("Navigation nicht verfügbar für esp8266_config")
+            self.show_esp8266_config_fallback()
+    
+    def show_esp8266_config_fallback(self):
+        """Fallback: ESP8266-Config direkt anzeigen"""
+        try:
+            from views.esp8266_config_seite import ESP8266ConfigSeite
+            
+            # Erstelle ESP8266-Config-Seite
+            self.esp8266_config = ESP8266ConfigSeite()
+            self.esp8266_config.navigation = self.navigation
+            
+            # Zeige als Modal Dialog oder ersetze aktuelles Widget
+            if hasattr(self.parent(), 'setCentralWidget'):
+                self.parent().setCentralWidget(self.esp8266_config)
+            else:
+                self.esp8266_config.show()
+                
+            logger.info("ESP8266-Konfiguration als Fallback geöffnet")
+            
+        except Exception as e:
+            logger.error(f"ESP8266-Config Fallback fehlgeschlagen: {e}")
     
     def show_display_config_fallback(self):
         """Fallback: Display-Config direkt anzeigen"""
