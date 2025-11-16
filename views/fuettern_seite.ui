@@ -151,8 +151,8 @@
   <widget class="QLabel" name="label_wifi_status">
    <property name="geometry">
     <rect>
-     <x>1180</x>
-     <y>15</y>
+     <x>1060</x>
+     <y>30</y>
      <width>90</width>
      <height>40</height>
     </rect>
@@ -846,6 +846,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <zorder>label_wifi_status</zorder>
   <zorder>b_heu_fuetterung</zorder>
   <zorder>label_rgv_name</zorder>
   <zorder>btn_settings</zorder>

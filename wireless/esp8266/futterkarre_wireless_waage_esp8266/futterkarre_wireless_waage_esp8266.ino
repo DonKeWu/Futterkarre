@@ -1,4 +1,4 @@
-/*
+/* ----------------------------------------------
  * ESP8266 Futterkarre Wireless Waage
  * 
  * Hardware: ESP8266 NodeMCU v3 + 4x HX711 + 4x Wägezellen
