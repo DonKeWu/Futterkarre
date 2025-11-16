@@ -32,10 +32,23 @@ class WiFiStatusThread(QThread):
         self.running = True
         while self.running:
             try:
-                esp8266_ip = self.esp8266_discovery.find_esp8266()
-                if esp8266_ip:
-                    self.wifi_status_changed.emit(True, esp8266_ip)
-                    logger.debug(f"ESP8266 gefunden: {esp8266_ip}")
+                # Synchrone get_esp8266_status verwenden statt async find_esp8266
+                status = self.esp8266_discovery.get_esp8266_status()
+                
+                if status and "ESP8266:" in status and "nicht gefunden" not in status:
+                    # Status Format: "ESP8266: 192.168.2.17 (Haus)"
+                    if "192.168." in status:
+                        # IP extrahieren
+                        ip_start = status.find("192.168.")
+                        ip_end = status.find(" ", ip_start)
+                        if ip_end == -1:
+                            ip_end = len(status)
+                        esp8266_ip = status[ip_start:ip_end]
+                        self.wifi_status_changed.emit(True, esp8266_ip)
+                        logger.debug(f"ESP8266 gefunden: {esp8266_ip}")
+                    else:
+                        self.wifi_status_changed.emit(True, "ESP8266")
+                        logger.debug("ESP8266 gefunden (keine IP)")
                 else:
                     self.wifi_status_changed.emit(False, "")
                     logger.debug("ESP8266 nicht erreichbar")
@@ -634,8 +647,11 @@ class FuetternSeite(BaseViewWidget):
     def init_wifi_status(self):
         """Initialisiert WiFi Status Monitoring"""
         try:
-            # WiFi Status Label initial setzen
+            # WiFi Status Label initial setzen und sichtbar machen
             if hasattr(self, 'label_wifi_status'):
+                self.label_wifi_status.setVisible(True)
+                self.label_wifi_status.show()
+                self.label_wifi_status.raise_()
                 self.update_wifi_status(False, "")
                 
             # WiFi Status Thread starten
