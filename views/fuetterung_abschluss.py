@@ -16,9 +16,12 @@ class FuetterungAbschluss(BaseViewWidget):
         self.navigation = navigation
         self.fuetterung_start_zeit = None
         
-        # UI laden über BaseViewWidget (mit automatischer Fehlerbehandlung)
-        self.ui_file = "views/fuetterung_abschluss.ui"
-        self.load_ui()  # BaseViewWidget Methode
+        # UI laden
+        try:
+            uic.loadUi('views/fuetterung_abschluss.ui', self)
+            logger.info("fuetterung_abschluss.ui erfolgreich geladen")
+        except Exception as e:
+            logger.error(f"Fehler beim Laden der UI: {e}")
         
         # Position: oben links (0,0) - Display vollständig nutzen
         self.move(0, 0)

@@ -1,10 +1,8 @@
 # views/fuettern_seite.py - Mit WeightManager Integration
-import os
 import logging
-import views.icons.icons_rc
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget
+import os
 from PyQt5.QtCore import QTimer
+from PyQt5 import uic
 
 from hardware.weight_manager import get_weight_manager
 from utils.ui_utils import UIUtils
@@ -64,11 +62,11 @@ class FuetternSeite(BaseViewWidget):
 
     def load_ui_or_fallback(self):
         """Lädt UI-Datei über BaseViewWidget (mit automatischer Fehlerbehandlung)"""
-        self.ui_file = "views/fuettern_seite.ui"
-        try:
-            self.load_ui()  # BaseViewWidget Methode
-        except Exception:
-            logger.warning("UI-Datei nicht gefunden, erstelle Fallback")
+        ui_path = os.path.join(os.path.dirname(__file__), "fuettern_seite.ui")
+        if os.path.exists(ui_path):
+            uic.loadUi(ui_path, self)
+            logger.info("fuettern_seite.ui erfolgreich geladen")
+        else:
             self.create_ui()
 
     def connect_buttons(self):
