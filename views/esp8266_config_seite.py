@@ -227,7 +227,7 @@ class ESP8266ConfigSeite(BaseViewWidget):
     def test_connection(self):
         """ESP8266 Verbindung testen"""
         try:
-            self.log_message("🔍 Suche ESP8266...")
+            self.log_message("🔍 Scanne Netzwerk nach ESP8266...")
             
             if not self.discovery:
                 self.log_message("❌ ESP8266Discovery nicht verfügbar")
@@ -237,14 +237,14 @@ class ESP8266ConfigSeite(BaseViewWidget):
             esp_ip = self.discovery.find_esp8266()
             
             if esp_ip:
-                self.log_message(f"✅ ESP8266 gefunden: {esp_ip}")
+                self.log_message(f"🔗 Verbindung zu ESP8266 {esp_ip} hergestellt")
                 self.current_esp_ip = esp_ip
                 self.update_connection_status(True, esp_ip)
                 
                 # Status abrufen
                 self.get_esp8266_status()
             else:
-                self.log_message("❌ Kein ESP8266 gefunden")
+                self.log_message("❌ ESP8266 nicht im Netzwerk gefunden - Gerät eingeschaltet?")
                 self.update_connection_status(False, "")
                 
         except Exception as e:
@@ -278,15 +278,19 @@ class ESP8266ConfigSeite(BaseViewWidget):
                 self.log_message("❌ Keine ESP8266 Verbindung")
                 return
             
-            self.log_message("📊 Status abrufen...")
+            # Kein separates "Status abrufen" Log - wird durch das Ergebnis ersetzt
             
             if self.discovery:
                 status = self.discovery.get_esp8266_status(self.current_esp_ip)
                 if status:
                     self.update_status_display(status)
-                    self.log_message("✅ Status erfolgreich abgerufen")
+                    # Aussagekräftige Status-Info
+                    signal = status.get('signal_strength', 'N/A')
+                    battery = status.get('battery_voltage', 0)
+                    uptime = status.get('uptime', 0) // 1000  # ms zu s
+                    self.log_message(f"✅ ESP8266: Signal {signal}dBm, Akku {battery:.1f}V, Laufzeit {uptime}s")
                 else:
-                    self.log_message("❌ Status-Abruf fehlgeschlagen")
+                    self.log_message(f"❌ ESP8266 ({self.current_esp_ip}) nicht erreichbar")
             
         except Exception as e:
             logger.error(f"Fehler beim Status-Abruf: {e}")
