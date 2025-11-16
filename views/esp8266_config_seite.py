@@ -536,6 +536,7 @@ class ESP8266ConfigSeite(BaseViewWidget):
     def update_status_display(self, status_data: dict):
         """ESP8266 Status in UI anzeigen"""
         try:
+            logger.info(f"🎯 UPDATE_STATUS_DISPLAY called with: {status_data}")
             self.current_status = status_data
             
             # RSSI Signal (HTTP API verwendet 'signal_strength')
