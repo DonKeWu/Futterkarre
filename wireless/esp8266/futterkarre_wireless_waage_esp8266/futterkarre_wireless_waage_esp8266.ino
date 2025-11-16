@@ -35,6 +35,7 @@
  */
 
 #include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
 #include <WebSocketsServer.h>
 #include <ArduinoJson.h>
 #include <HX711.h>
@@ -47,12 +48,14 @@ const char* HOME_WIFI_PASSWORD = "G8pY4B8K56vF";     // Pi5 WiFi Passwort
 const char* AP_SSID = "Futterkarre_WiFi";            // Eigenes Stall-Netz
 const char* AP_PASSWORD = "FutterWaage2025";         // Stall-Netz Passwort
 const char* DEVICE_NAME = "FutterWaage_ESP8266";
+const char* FIRMWARE_VERSION = "2.1.0";
 
 // WiFi-Modi - Verwende die ESP8266 Standard-Modi
 int current_wifi_mode; // 0 = AP Mode, 1 = Station Mode
 
 // WebSocket-Server
 WebSocketsServer webSocket = WebSocketsServer(81);
+ESP8266WebServer httpServer(80);
 
 // HX711 Pin-Definitionen (ESP8266 NodeMCU)
 #define HX711_1_CLK  5   // D1
@@ -136,6 +139,11 @@ void setup() {
   
   // WebSocket-Server starten
   setupWebSocket();
+  
+  // HTTP-Server starten
+  setupHTTPRoutes();
+  httpServer.begin();
+  Serial.println("🌐 HTTP-Server gestartet (Port 80)");
   
   // Bereit-Signal
   blinkLED(LED_POWER, 3, 200);
@@ -249,6 +257,47 @@ void setupWebSocket() {
   Serial.printf("OK (Port 81)\n");
 }
 
+void setupHTTPRoutes() {
+  // Status API für Python Discovery
+  httpServer.on("/status", HTTP_GET, []() {
+    JsonDocument statusDoc;
+    
+    statusDoc["device_name"] = DEVICE_NAME;
+    statusDoc["firmware_version"] = FIRMWARE_VERSION;
+    statusDoc["wifi_connected"] = wifi_connected;
+    statusDoc["ip_address"] = WiFi.localIP().toString();
+    statusDoc["ssid"] = WiFi.SSID();
+    statusDoc["signal_strength"] = WiFi.RSSI();
+    statusDoc["battery_voltage"] = battery_voltage;
+    statusDoc["uptime"] = millis();
+    statusDoc["free_heap"] = ESP.getFreeHeap();
+    
+    // Gewichtsdaten wenn verfügbar
+    if (scales_initialized) {
+      statusDoc["weight_available"] = true;
+      statusDoc["current_weight"] = total_weight;
+    } else {
+      statusDoc["weight_available"] = false;
+    }
+    
+    String response;
+    serializeJson(statusDoc, response);
+    
+    httpServer.sendHeader("Access-Control-Allow-Origin", "*");
+    httpServer.send(200, "application/json", response);
+  });
+  
+  // Root endpoint
+  httpServer.on("/", HTTP_GET, []() {
+    httpServer.send(200, "text/plain", "Futterkarre ESP8266 - HTTP API aktiv");
+  });
+  
+  // 404 Handler
+  httpServer.onNotFound([]() {
+    httpServer.send(404, "text/plain", "Endpoint nicht gefunden");
+  });
+}
+
 // =================== MAIN LOOP ===================
 
 void loop() {
@@ -256,6 +305,9 @@ void loop() {
   
   // WebSocket-Server verarbeiten
   webSocket.loop();
+  
+  // HTTP-Server verarbeiten
+  httpServer.handleClient();
   
   // WiFi-Verbindung prüfen
   checkWiFiConnection();
