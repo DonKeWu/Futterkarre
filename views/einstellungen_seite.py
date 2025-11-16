@@ -25,11 +25,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils.settings_manager import get_settings_manager, SettingsManager
 from utils.database_manager import get_database_manager
 from utils.timer_manager import get_timer_manager
+from utils.base_ui_widget import BaseViewWidget
 
 
 logger = logging.getLogger(__name__)
 
-class EinstellungenSeite(QtWidgets.QWidget):
+class EinstellungenSeite(BaseViewWidget):
     """
     Erweiterte Einstellungen-Seite mit persistenter Konfiguration
     
@@ -47,6 +48,9 @@ class EinstellungenSeite(QtWidgets.QWidget):
     
     def __init__(self, sensor_manager=None):
         super().__init__()
+        
+        # BaseViewWidget Konfiguration
+        self.page_name = "einstellungen"
         
         # Kompatibilität mit alter Schnittstelle
         self.sensor_manager = sensor_manager
@@ -561,16 +565,12 @@ class EinstellungenSeite(QtWidgets.QWidget):
         logger.debug(f"Einstellungen geändert: {category}")
     
     def showEvent(self, event):
-        """Wird aufgerufen wenn Seite angezeigt wird"""
+        """Wird aufgerufen wenn Seite angezeigt wird - erweitert BaseViewWidget"""
+        # BaseViewWidget macht bereits: super().showEvent(event) + Timer + Logging
         super().showEvent(event)
         
-        # Timer für diese Seite registrieren
-        self.timer_manager.set_active_page("einstellungen")
-        
-        # Aktuelle Einstellungen neu laden
+        # Spezifische Einstellungen-Seite Aktionen
         self.load_current_settings()
-        
-        logger.debug("EinstellungenSeite angezeigt")
     
     def zu_display_config(self):
         """Navigiert zur Display-Konfigurationsseite"""

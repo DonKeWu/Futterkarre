@@ -9,10 +9,11 @@ import logging
 from pathlib import Path
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import pyqtSignal
+from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
 
-class FutterKonfiguration(QtWidgets.QWidget):
+class FutterKonfiguration(BaseViewWidget):
     """
     Minimal Futter-Konfiguration - verwendet NUR die Original UI-Datei
     
@@ -26,6 +27,9 @@ class FutterKonfiguration(QtWidgets.QWidget):
     
     def __init__(self):
         super().__init__()
+        
+        # BaseViewWidget Konfiguration
+        self.page_name = "futter_konfiguration"
         
         # Navigation (für Kompatibilität)
         self.navigation = None
@@ -155,10 +159,10 @@ class FutterKonfiguration(QtWidgets.QWidget):
             logger.warning("Navigation nicht verfügbar")
     
     def showEvent(self, event):
-        """Wird aufgerufen wenn Seite angezeigt wird"""
+        """Wird aufgerufen wenn Seite angezeigt wird - erweitert BaseViewWidget"""
+        # BaseViewWidget macht bereits: super().showEvent(event) + Timer + Logging  
         super().showEvent(event)
         self.lade_verfuegbare_dateien()
-        logger.debug("FutterKonfiguration angezeigt")
     
     def hideEvent(self, event):
         """Wird aufgerufen wenn Seite versteckt wird"""
