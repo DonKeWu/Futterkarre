@@ -55,7 +55,7 @@ class ESP8266StatusThread(QThread):
                     if esp8266_ip:
                         # Status abrufen
                         status_data = self.discovery.get_esp8266_status(esp8266_ip)
-                        if status_data:
+                        if status_data and isinstance(status_data, dict):
                             self.status_updated.emit(status_data)
                             self.connection_changed.emit(True, esp8266_ip)
                         else:
