@@ -41,7 +41,7 @@ class ESP8266StatusThread(QThread):
         super().__init__()
         self.discovery = discovery_manager
         self.running = False
-        self.check_interval = 5  # 5 Sekunden
+        self.check_interval = 20  # 20 Sekunden für Stabilität
         
     def run(self):
         """Status-Check Loop"""
@@ -69,8 +69,8 @@ class ESP8266StatusThread(QThread):
                 logger.error(f"Fehler im ESP8266 Status Thread: {e}")
                 self.connection_changed.emit(False, "")
             
-            # 5 Sekunden warten
-            for _ in range(50):  # 5s in 0.1s Schritten für responsive stop
+            # 15 Sekunden warten (weniger frequent updates für stabilität)
+            for _ in range(150):  # 15s in 0.1s Schritten für responsive stop
                 if not self.running:
                     break
                 self.msleep(100)
