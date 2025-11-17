@@ -287,6 +287,73 @@ void setupHTTPRoutes() {
     httpServer.send(200, "application/json", response);
   });
   
+  // WiFi-Modus wechseln API
+  httpServer.on("/set_wifi_mode", HTTP_POST, []() {
+    Serial.println("📡 WiFi-Modus-Wechsel-Request empfangen");
+    
+    JsonDocument requestDoc;
+    DeserializationError error = deserializeJson(requestDoc, httpServer.arg("plain"));
+    
+    if (error) {
+      Serial.println("❌ JSON Parse-Fehler");
+      httpServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+      return;
+    }
+    
+    String mode = requestDoc["mode"];
+    Serial.printf("🔄 Angefordert: %s-Modus\n", mode.c_str());
+    
+    JsonDocument response;
+    
+    if (mode == "stall") {
+      // Stall-Modus: Access Point aktivieren
+      Serial.println("🚜 Wechsel zu Stall-Modus (Access Point)");
+      response["success"] = true;
+      response["mode"] = "stall";
+      response["message"] = "Wechsel zu Stall-Modus - ESP startet neu";
+      
+      String responseStr;
+      serializeJson(response, responseStr);
+      httpServer.sendHeader("Access-Control-Allow-Origin", "*");
+      httpServer.send(200, "application/json", responseStr);
+      
+      delay(1000); // Response senden bevor Restart
+      
+      // WiFi-Einstellungen zurücksetzen und zu AP-Modus wechseln
+      WiFi.disconnect();
+      WiFi.mode(WIFI_AP);
+      WiFi.softAP(AP_SSID, AP_PASSWORD);
+      current_wifi_mode = 0; // AP Mode
+      
+    } else if (mode == "home") {
+      // Haus-Modus: Station Mode aktivieren
+      Serial.println("🏠 Wechsel zu Haus-Modus (Station)");
+      response["success"] = true;
+      response["mode"] = "home";
+      response["message"] = "Wechsel zu Haus-Modus - ESP startet neu";
+      
+      String responseStr;
+      serializeJson(response, responseStr);
+      httpServer.sendHeader("Access-Control-Allow-Origin", "*");
+      httpServer.send(200, "application/json", responseStr);
+      
+      delay(1000); // Response senden bevor Restart
+      
+      // WiFi-Station-Modus aktivieren
+      WiFi.mode(WIFI_STA);
+      WiFi.begin(HOME_WIFI_SSID, HOME_WIFI_PASSWORD);
+      current_wifi_mode = 1; // Station Mode
+      
+    } else {
+      response["success"] = false;
+      response["error"] = "Invalid mode (use 'stall' or 'home')";
+      
+      String responseStr;
+      serializeJson(response, responseStr);
+      httpServer.send(400, "application/json", responseStr);
+    }
+  });
+
   // Root endpoint
   httpServer.on("/", HTTP_GET, []() {
     httpServer.send(200, "text/plain", "Futterkarre ESP8266 - HTTP API aktiv");

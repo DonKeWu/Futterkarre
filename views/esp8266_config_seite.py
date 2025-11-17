@@ -140,6 +140,13 @@ class ESP8266ConfigSeite(BaseViewWidget):
             if hasattr(self, 'btn_get_status'):
                 self.btn_get_status.clicked.connect(self.get_esp8266_status)
             
+            # WiFi-Modus Buttons
+            if hasattr(self, 'btn_stall_modus'):
+                self.btn_stall_modus.clicked.connect(self.switch_to_stall_mode)
+            
+            if hasattr(self, 'btn_haus_modus'):
+                self.btn_haus_modus.clicked.connect(self.switch_to_home_mode)
+            
             if hasattr(self, 'btn_deep_sleep'):
                 self.btn_deep_sleep.clicked.connect(self.activate_deep_sleep)
             
@@ -662,6 +669,78 @@ class ESP8266ConfigSeite(BaseViewWidget):
             logger.error(f"Fehler beim CloseEvent: {e}")
         
         super().closeEvent(event)
+    
+    def switch_to_stall_mode(self):
+        """ESP8266 in Stall-Modus (Futterkarre_WiFi) schalten"""
+        try:
+            self.log_message("🚜 Schalte zu Stall-Modus (Futterkarre_WiFi)...")
+            
+            if self.discovery and self.current_esp_ip:
+                # HTTP-Befehl zum Modus-Wechsel senden
+                result = self.send_wifi_mode_command(self.current_esp_ip, "stall")
+                
+                if result:
+                    self.log_message("✅ Stall-Modus aktiviert - ESP8266 startet neu...")
+                    self.log_message("📡 Suche nach 'Futterkarre_WiFi' Netzwerk...")
+                    # Nach 10 Sekunden automatisch nach AP-IP suchen
+                    from PyQt5.QtCore import QTimer
+                    QTimer.singleShot(10000, lambda: self.check_esp8266_status())
+                else:
+                    self.log_message("❌ Fehler beim Stall-Modus-Wechsel")
+            else:
+                self.log_message("❌ Keine ESP8266-Verbindung verfügbar")
+                
+        except Exception as e:
+            logger.error(f"Fehler beim Stall-Modus-Wechsel: {e}")
+            self.log_message(f"❌ Fehler: {str(e)}")
+    
+    def switch_to_home_mode(self):
+        """ESP8266 in Haus-Modus (Heimnetz) schalten"""
+        try:
+            self.log_message("🏠 Schalte zu Haus-Modus (Heimnetz)...")
+            
+            if self.discovery and self.current_esp_ip:
+                # HTTP-Befehl zum Modus-Wechsel senden
+                result = self.send_wifi_mode_command(self.current_esp_ip, "home")
+                
+                if result:
+                    self.log_message("✅ Haus-Modus aktiviert - ESP8266 startet neu...")
+                    self.log_message("📡 Suche nach ESP8266 im Heimnetz...")
+                    # Nach 10 Sekunden automatisch nach Station-IP suchen
+                    from PyQt5.QtCore import QTimer
+                    QTimer.singleShot(10000, lambda: self.check_esp8266_status())
+                else:
+                    self.log_message("❌ Fehler beim Haus-Modus-Wechsel")
+            else:
+                self.log_message("❌ Keine ESP8266-Verbindung verfügbar")
+                
+        except Exception as e:
+            logger.error(f"Fehler beim Haus-Modus-Wechsel: {e}")
+            self.log_message(f"❌ Fehler: {str(e)}")
+    
+    def send_wifi_mode_command(self, ip: str, mode: str) -> bool:
+        """WiFi-Modus-Wechsel-Befehl an ESP8266 senden"""
+        try:
+            import requests
+            
+            # HTTP POST mit Modus-Parameter
+            url = f"http://{ip}/set_wifi_mode"
+            data = {"mode": mode}  # "stall" oder "home"
+            
+            logger.info(f"📡 Sende WiFi-Modus-Befehl: {mode} an {ip}")
+            
+            response = requests.post(url, json=data, timeout=5)
+            
+            if response.status_code == 200:
+                result = response.json()
+                return result.get("success", False)
+            else:
+                logger.error(f"HTTP Error: {response.status_code}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Fehler beim WiFi-Modus-Befehl: {e}")
+            return False
 
 
 if __name__ == "__main__":
