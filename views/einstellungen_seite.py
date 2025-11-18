@@ -578,6 +578,9 @@ class EinstellungenSeite(BaseViewWidget):
         
         # ESP8266-Status aktualisieren
         self.update_esp8266_status()
+        
+        # Pi5-Power-Status aktualisieren
+        self.update_pi5_power_display()
     
     def zu_display_config(self):
         """Navigiert zur Display-Konfigurationsseite"""
@@ -714,6 +717,77 @@ class EinstellungenSeite(BaseViewWidget):
                     
         except Exception as e:
             logger.error(f"ESP8266-Status Update fehlgeschlagen: {e}")
+
+    def get_pi5_power_status(self):
+        """Pi5 interne Stromüberwachung via vcgencmd"""
+        try:
+            import subprocess
+            
+            # Pi5 Spannungen und Temperatur abrufen
+            core_volt = subprocess.check_output(['vcgencmd', 'measure_volts', 'core'], 
+                                              timeout=5).decode().strip()
+            temp = subprocess.check_output(['vcgencmd', 'measure_temp'], 
+                                         timeout=5).decode().strip()
+            throttled = subprocess.check_output(['vcgencmd', 'get_throttled'], 
+                                              timeout=5).decode().strip()
+            
+            # Werte parsen
+            voltage = float(core_volt.split('=')[1].replace('V', ''))
+            temperature = float(temp.split('=')[1].replace('\'C', ''))
+            throttle_status = throttled.split('=')[1]
+            
+            return {
+                'core_voltage': voltage,
+                'temperature': temperature,
+                'throttled': throttle_status != '0x0',
+                'throttle_code': throttle_status
+            }
+            
+        except Exception as e:
+            logger.error(f"Pi5 Power-Status Fehler: {e}")
+            return {
+                'core_voltage': 0.0,
+                'temperature': 0.0,  
+                'throttled': False,
+                'throttle_code': 'unknown'
+            }
+    
+    def update_pi5_power_display(self):
+        """Pi5 Power-Status in UI anzeigen (falls Label existiert)"""
+        try:
+            power_status = self.get_pi5_power_status()
+            
+            # Pi5 Status-Text erstellen
+            status_text = (f"Pi5 Status: {power_status['core_voltage']:.2f}V | "
+                          f"{power_status['temperature']:.1f}°C")
+            
+            # Warnung bei Problemen
+            if power_status['throttled']:
+                status_text += " ⚠️ THROTTLED"
+                color = "#f44336"  # Rot
+            elif power_status['temperature'] > 70.0:
+                status_text += " 🔥 HOT"
+                color = "#FF9800"  # Orange
+            elif power_status['core_voltage'] < 1.0:
+                status_text += " ⚡ LOW VOLTAGE"
+                color = "#FF9800"  # Orange
+            else:
+                status_text += " ✅ OK"
+                color = "#4CAF50"  # Grün
+            
+            # UI Update (falls Pi5-Power Label existiert)
+            if hasattr(self, 'lbl_pi5_power'):
+                self.lbl_pi5_power.setText(status_text)
+                self.lbl_pi5_power.setStyleSheet(f"color: {color}; font-weight: bold;")
+            
+            # Alternativ: In ESP8266-Status integrieren
+            elif hasattr(self, 'txt_fu_sim_toggle'):
+                current_text = self.txt_fu_sim_toggle.text()
+                combined_text = f"{current_text}\nPi5: {status_text}"
+                self.txt_fu_sim_toggle.setText(combined_text)
+                
+        except Exception as e:
+            logger.error(f"Pi5 Power Display Update Fehler: {e}")
 
     def zurueck_geklickt(self):
         """Zurück-Button geklickt - sichere Navigation zurück"""

@@ -617,6 +617,15 @@ class ESP8266ConfigSeite(BaseViewWidget):
                 self.lbl_ap_status.setText("Status: AKTIV")
                 self.lbl_ap_status.setStyleSheet("color: #4CAF50; font-weight: bold;")
             
+            # AP Signal und Power (gleiche Werte wie Station - ESP8266 ist ja dasselbe Gerät!)
+            if hasattr(self, 'lbl_ap_signal_wert'):
+                rssi = status_data.get('signal_strength', 0)
+                self.lbl_ap_signal_wert.setText(f"{rssi} dBm")
+                
+            if hasattr(self, 'lbl_ap_power_wert'):
+                voltage = status_data.get('battery_voltage', 5.0)
+                self.lbl_ap_power_wert.setText(f"{voltage:.2f} V")
+            
             # Station Status Update  
             if hasattr(self, 'lbl_station_ip'):
                 if station_ip != 'N/A' and station_ip != '0.0.0.0':

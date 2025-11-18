@@ -155,7 +155,7 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     <property name="geometry">
      <rect>
       <x>320</x>
-      <y>60</y>
+      <y>30</y>
       <width>240</width>
       <height>30</height>
      </rect>
@@ -170,6 +170,94 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     </property>
     <property name="text">
      <string>Verbundene Geräte: 1</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="lbl_ap_signal_titel">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>60</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Droid Sans Fallback</family>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Signal:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="lbl_ap_signal_wert">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>60</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Droid Sans Fallback</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>-45 dBm</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="lbl_ap_power_titel">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>90</y>
+      <width>80</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Droid Sans Fallback</family>
+      <pointsize>12</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Power:</string>
+    </property>
+   </widget>
+   
+   <widget class="QLabel" name="lbl_ap_power_wert">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>90</y>
+      <width>100</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Droid Sans Fallback</family>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>5.00 V</string>
     </property>
    </widget>
   </widget>
