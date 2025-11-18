@@ -72,10 +72,11 @@ ESP8266WebServer httpServer(80);
 #define LED_WIFI     2   // Built-in LED (blau, LOW = an)
 #define LED_ERROR    2   // Gleiche wie WiFi, blinkt aber schnell
 
-// Akku-Monitoring
+// Stromüberwachung (5V System mit Spannungsteiler 4.7k/10k)
 #define BATTERY_PIN  A0  // ADC für Spannungsmessung
-#define BATTERY_MIN  3.0 // Minimum Spannung (V)
-#define BATTERY_MAX  4.2 // Maximum Spannung (V)
+#define BATTERY_MIN  2.7 // Minimum ADC-Spannung (entspricht ~4V real)
+#define BATTERY_MAX  3.4 // Maximum ADC-Spannung (entspricht ~5V real)
+#define VOLTAGE_DIVIDER_RATIO  1.47  // Umrechnungsfaktor (4.7k+10k)/10k
 
 // HX711 Objekte erstellen
 HX711 scale1, scale2, scale3, scale4;
@@ -280,7 +281,7 @@ void setupHTTPRoutes() {
     
     statusDoc["ssid"] = WiFi.SSID();
     statusDoc["signal_strength"] = WiFi.RSSI();
-    statusDoc["battery_voltage"] = 5.0;  // Step-Down-Wandler (extern gespeist)
+    statusDoc["battery_voltage"] = battery_voltage;  // Echte Messung via Spannungsteiler
     statusDoc["uptime"] = millis();
     statusDoc["free_heap"] = ESP.getFreeHeap();
     
@@ -716,9 +717,10 @@ void checkBattery() {
   // Spannung am A0-Pin berechnen
   float voltage_a0 = (adc_value / 1024.0) * 3.3;
   
-  // Echte Akku-Spannung zurückrechnen (2:1 Spannungsteiler)
-  // 18650 Akku → 10kΩ → A0 → 10kΩ → GND
-  battery_voltage = voltage_a0 * 2.0;
+  // Echte 5V-Spannung zurückrechnen (Spannungsteiler 4.7k/10k)
+  // 5V → 4.7kΩ → A0 → 10kΩ → GND
+  // Faktor = (R1 + R2) / R2 = (4.7k + 10k) / 10k = 1.47
+  battery_voltage = voltage_a0 * VOLTAGE_DIVIDER_RATIO;
   
   // Niedrige Spannung prüfen
   if (battery_voltage < BATTERY_MIN) {

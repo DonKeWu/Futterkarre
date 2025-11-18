@@ -37,34 +37,11 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_back">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>100</y>
-     <width>120</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Droid Sans Fallback</family>
-     <pointsize>18</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>ZURÜCK</string>
-   </property>
-  </widget>
-  
-  <!-- DUAL-MODE STATUS BEREICH -->
   <widget class="QLabel" name="lbl_dual_mode_titel">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>180</y>
+     <y>90</y>
      <width>400</width>
      <height>40</height>
     </rect>
@@ -78,16 +55,14 @@
     </font>
    </property>
    <property name="text">
-    <string>🌐 DUAL-MODE STATUS:</string>
+    <string>DUAL-MODE STATUS:</string>
    </property>
   </widget>
-  
-  <!-- ACCESS POINT VERBINDUNG -->
   <widget class="QGroupBox" name="group_ap_status">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>230</y>
+     <y>160</y>
      <width>580</width>
      <height>150</height>
     </rect>
@@ -100,14 +75,13 @@
      <bold>true</bold>
     </font>
    </property>
-   <property name="title">
-    <string>🚜 ACCESS POINT (Stall-Modus)</string>
-   </property>
    <property name="styleSheet">
-    <string>QGroupBox { border: 3px solid #4CAF50; border-radius: 5px; margin-top: 1ex; background-color: #f8fff8; }
+    <string notr="true">QGroupBox { border: 3px solid #4CAF50; border-radius: 5px; margin-top: 1ex;  }
 QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px; color: #4CAF50; }</string>
    </property>
-   
+   <property name="title">
+    <string>ACCESS POINT (Stall-Modus)</string>
+   </property>
    <widget class="QLabel" name="lbl_ap_status">
     <property name="geometry">
      <rect>
@@ -125,14 +99,13 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
       <bold>true</bold>
      </font>
     </property>
-    <property name="text">
-     <string>Status: AKTIV</string>
-    </property>
     <property name="styleSheet">
      <string>color: #4CAF50;</string>
     </property>
+    <property name="text">
+     <string>Status: AKTIV</string>
+    </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_ap_ssid">
     <property name="geometry">
      <rect>
@@ -154,7 +127,6 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <string>SSID: Futterkarre_WiFi</string>
     </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_ap_ip">
     <property name="geometry">
      <rect>
@@ -172,14 +144,13 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
       <bold>true</bold>
      </font>
     </property>
-    <property name="text">
-     <string>IP: 192.168.4.1</string>
-    </property>
     <property name="styleSheet">
      <string>color: #2196F3;</string>
     </property>
+    <property name="text">
+     <string>IP: 192.168.4.1</string>
+    </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_ap_clients">
     <property name="geometry">
      <rect>
@@ -202,13 +173,11 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     </property>
    </widget>
   </widget>
-  
-  <!-- STATION VERBINDUNG -->
   <widget class="QGroupBox" name="group_station_status">
    <property name="geometry">
     <rect>
      <x>650</x>
-     <y>230</y>
+     <y>160</y>
      <width>580</width>
      <height>150</height>
     </rect>
@@ -221,14 +190,13 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <bold>true</bold>
     </font>
    </property>
-   <property name="title">
-    <string>🏠 STATION (Haus-Modus)</string>
-   </property>
    <property name="styleSheet">
-    <string>QGroupBox { border: 3px solid #2196F3; border-radius: 5px; margin-top: 1ex; background-color: #f8f8ff; }
+    <string notr="true">QGroupBox { border: 3px solid #2196F3; border-radius: 5px; margin-top: 1ex;  }
 QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px; color: #2196F3; }</string>
    </property>
-   
+   <property name="title">
+    <string>STATION (Haus-Modus)</string>
+   </property>
    <widget class="QLabel" name="lbl_station_status">
     <property name="geometry">
      <rect>
@@ -246,14 +214,13 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
       <bold>true</bold>
      </font>
     </property>
-    <property name="text">
-     <string>Status: VERBUNDEN</string>
-    </property>
     <property name="styleSheet">
      <string>color: #4CAF50;</string>
     </property>
+    <property name="text">
+     <string>Status: VERBUNDEN</string>
+    </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_station_ssid">
     <property name="geometry">
      <rect>
@@ -275,7 +242,6 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <string>SSID: IBIMSNOCH1MAL</string>
     </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_station_ip">
     <property name="geometry">
      <rect>
@@ -293,14 +259,13 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
       <bold>true</bold>
      </font>
     </property>
-    <property name="text">
-     <string>IP: 192.168.2.17</string>
-    </property>
     <property name="styleSheet">
      <string>color: #2196F3;</string>
     </property>
+    <property name="text">
+     <string>IP: 192.168.2.17</string>
+    </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_rssi_titel">
     <property name="geometry">
      <rect>
@@ -322,7 +287,6 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <string>Signal:</string>
     </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_rssi_wert">
     <property name="geometry">
      <rect>
@@ -344,7 +308,6 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <string>-57 dBm</string>
     </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_akku_titel">
     <property name="geometry">
      <rect>
@@ -366,7 +329,6 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <string>Power:</string>
     </property>
    </widget>
-   
    <widget class="QLabel" name="lbl_akku_wert">
     <property name="geometry">
      <rect>
@@ -389,14 +351,12 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     </property>
    </widget>
   </widget>
-  
-  <!-- AKTUELLE VERBINDUNG -->
   <widget class="QLabel" name="lbl_current_connection_titel">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>400</y>
-     <width>300</width>
+     <y>340</y>
+     <width>401</width>
      <height>40</height>
     </rect>
    </property>
@@ -409,15 +369,14 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     </font>
    </property>
    <property name="text">
-    <string>📡 AKTUELLE GUI-VERBINDUNG:</string>
+    <string>AKTUELLE GUI-VERBINDUNG:</string>
    </property>
   </widget>
-  
   <widget class="QLabel" name="lbl_wifi_status">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>450</y>
+     <y>390</y>
      <width>400</width>
      <height>60</height>
     </rect>
@@ -440,13 +399,11 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  
-  <!-- MODUS-WECHSEL BUTTONS -->
   <widget class="QLabel" name="lbl_mode_titel">
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>400</y>
+     <y>340</y>
      <width>200</width>
      <height>40</height>
     </rect>
@@ -463,12 +420,11 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
     <string>⚙️ MODUS-WAHL:</string>
    </property>
   </widget>
-  
   <widget class="QPushButton" name="btn_stall_modus">
    <property name="geometry">
     <rect>
      <x>480</x>
-     <y>450</y>
+     <y>390</y>
      <width>200</width>
      <height>60</height>
     </rect>
@@ -480,23 +436,22 @@ QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 10px 0 10px
      <weight>75</weight>
      <bold>true</bold>
     </font>
-   </property>
-   <property name="text">
-    <string>🚜 STALL-MODUS
-(192.168.4.1)</string>
    </property>
    <property name="styleSheet">
     <string>QPushButton { background-color: #4CAF50; color: white; border: 2px solid #45a049; border-radius: 8px; }
 QPushButton:hover { background-color: #45a049; }
 QPushButton:pressed { background-color: #3d8b40; }</string>
    </property>
+   <property name="text">
+    <string>STALL-MODUS
+(192.168.4.1)</string>
+   </property>
   </widget>
-  
   <widget class="QPushButton" name="btn_haus_modus">
    <property name="geometry">
     <rect>
      <x>700</x>
-     <y>450</y>
+     <y>390</y>
      <width>200</width>
      <height>60</height>
     </rect>
@@ -509,23 +464,21 @@ QPushButton:pressed { background-color: #3d8b40; }</string>
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string>🏠 HAUS-MODUS
-(192.168.2.17)</string>
-   </property>
    <property name="styleSheet">
     <string>QPushButton { background-color: #2196F3; color: white; border: 2px solid #0b7dda; border-radius: 8px; }
 QPushButton:hover { background-color: #0b7dda; }
 QPushButton:pressed { background-color: #0a6bc2; }</string>
    </property>
+   <property name="text">
+    <string>HAUS-MODUS
+(192.168.2.17)</string>
+   </property>
   </widget>
-  
-  <!-- AKTIONEN -->
   <widget class="QPushButton" name="btn_test_connection">
    <property name="geometry">
     <rect>
      <x>920</x>
-     <y>450</y>
+     <y>390</y>
      <width>160</width>
      <height>60</height>
     </rect>
@@ -538,21 +491,20 @@ QPushButton:pressed { background-color: #0a6bc2; }</string>
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string>🔍 TEST BEIDE
-VERBINDUNGEN</string>
-   </property>
    <property name="styleSheet">
     <string>QPushButton { background-color: #FF9800; color: white; border: 2px solid #f57c00; border-radius: 8px; }
 QPushButton:hover { background-color: #f57c00; }</string>
    </property>
+   <property name="text">
+    <string>TEST BEIDE
+VERBINDUNGEN</string>
+   </property>
   </widget>
-  
   <widget class="QPushButton" name="btn_get_status">
    <property name="geometry">
     <rect>
      <x>1100</x>
-     <y>450</y>
+     <y>390</y>
      <width>130</width>
      <height>60</height>
     </rect>
@@ -565,22 +517,20 @@ QPushButton:hover { background-color: #f57c00; }</string>
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string>📊 STATUS
-AKTUELL</string>
-   </property>
    <property name="styleSheet">
     <string>QPushButton { background-color: #9C27B0; color: white; border: 2px solid #7b1fa2; border-radius: 8px; }
 QPushButton:hover { background-color: #7b1fa2; }</string>
    </property>
+   <property name="text">
+    <string>STATUS
+AKTUELL</string>
+   </property>
   </widget>
-  
-  <!-- STATUS LOG -->
   <widget class="QLabel" name="lbl_log_titel">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>530</y>
+     <y>470</y>
      <width>200</width>
      <height>30</height>
     </rect>
@@ -594,15 +544,14 @@ QPushButton:hover { background-color: #7b1fa2; }</string>
     </font>
    </property>
    <property name="text">
-    <string>📝 STATUS LOG:</string>
+    <string>STATUS LOG:</string>
    </property>
   </widget>
-  
   <widget class="QCheckBox" name="cb_auto_update">
    <property name="geometry">
     <rect>
      <x>300</x>
-     <y>530</y>
+     <y>470</y>
      <width>200</width>
      <height>30</height>
     </rect>
@@ -622,14 +571,13 @@ QPushButton:hover { background-color: #7b1fa2; }</string>
     <bool>true</bool>
    </property>
   </widget>
-  
   <widget class="QTextEdit" name="text_log">
    <property name="geometry">
     <rect>
      <x>50</x>
-     <y>570</y>
+     <y>509</y>
      <width>1180</width>
-     <height>130</height>
+     <height>191</height>
     </rect>
    </property>
    <property name="font">
@@ -647,8 +595,6 @@ QPushButton:hover { background-color: #7b1fa2; }</string>
     <bool>true</bool>
    </property>
   </widget>
-  
-  <!-- VERSTECKTES IP-WERT LABEL FÜR KOMPATIBILITÄT -->
   <widget class="QLabel" name="lbl_ip_wert">
    <property name="geometry">
     <rect>
@@ -658,14 +604,42 @@ QPushButton:hover { background-color: #7b1fa2; }</string>
      <height>1</height>
     </rect>
    </property>
-   <property name="text">
-    <string>🚜 192.168.4.1 | 🏠 192.168.2.17</string>
-   </property>
    <property name="visible">
     <bool>false</bool>
    </property>
+   <property name="text">
+    <string>🚜 192.168.4.1 | 🏠 192.168.2.17</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_back">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>20</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../../Futterwagen/Futterkarre/icons/icons.qrc">
+     <normaloff>:/icons/Back.png</normaloff>:/icons/Back.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../Futterwagen/Futterkarre/icons/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
