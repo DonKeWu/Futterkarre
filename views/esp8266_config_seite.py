@@ -86,7 +86,7 @@ class ESP8266ConfigSeite(BaseViewWidget):
     """ESP8266 Wireless Konfigurationsseite"""
     
     def __init__(self, parent=None):
-        super().__init__(parent, ui_filename="esp8266_config_seite.ui", page_name="esp8266_config")
+        super().__init__(parent, ui_filename="esp8266_config_seite_dual_mode.ui", page_name="esp8266_config")
         
         # Settings Manager
         self.settings_manager = SettingsManager()
