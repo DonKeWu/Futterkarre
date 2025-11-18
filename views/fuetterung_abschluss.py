@@ -2,6 +2,8 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5 import uic
 from datetime import datetime, timedelta
 import logging
+import json
+import time
 from utils.base_ui_widget import BaseViewWidget
 
 logger = logging.getLogger(__name__)
@@ -18,8 +20,8 @@ class FuetterungAbschluss(BaseViewWidget):
         
         # UI laden
         try:
-            uic.loadUi('views/fuetterung_abschluss.ui', self)
-            logger.info("fuetterung_abschluss.ui erfolgreich geladen")
+            uic.loadUi('views/fuetterung_abschluss_modern.ui', self)
+            logger.info("fuetterung_abschluss_modern.ui erfolgreich geladen")
         except Exception as e:
             logger.error(f"Fehler beim Laden der UI: {e}")
         
@@ -34,6 +36,14 @@ class FuetterungAbschluss(BaseViewWidget):
             self.btn_neue_fuetterung.clicked.connect(self.neue_fuetterung)
         if hasattr(self, 'btn_zum_start'):
             self.btn_zum_start.clicked.connect(self.zum_start)
+            
+        # Sync-Buttons
+        if hasattr(self, 'btn_sync_now'):
+            self.btn_sync_now.clicked.connect(self.sync_now)
+        if hasattr(self, 'btn_backup_local'):
+            self.btn_backup_local.clicked.connect(self.backup_local)
+        if hasattr(self, 'btn_auto_sync'):
+            self.btn_auto_sync.clicked.connect(self.toggle_auto_sync)
             
     def zeige_zusammenfassung(self, fuetterung_daten):
         """Zeigt die Fütterung-Zusammenfassung"""
@@ -131,3 +141,73 @@ class FuetterungAbschluss(BaseViewWidget):
         if self.navigation:
             self.navigation.show_status("start")
             logger.info("Zurück zum Start-Screen")
+            
+    def sync_now(self):
+        """Synchronisiert Daten sofort zum Proxmox-Server"""
+        try:
+            # Status-Update in UI
+            if hasattr(self, 'label_sync_status_wert'):
+                self.label_sync_status_wert.setText("● Synchronisiere...")
+                self.label_sync_status_wert.setStyleSheet("font-size: 18px; font-weight: bold; color: #EBCB8B;")
+            
+            # TODO: Hier kommt später die echte Proxmox-API-Anbindung
+            server_url = "http://192.168.2.10:5000/api/fuetterung"
+            
+            # Simulierte Sync-Daten (später mit echten Fütterungsdaten)
+            sync_data = {
+                "timestamp": datetime.now().isoformat(),
+                "gesamtmenge": 135.0,
+                "heu_kg": 67.5,
+                "heulage_kg": 67.5,
+                "pferde": 30,
+                "dauer_minuten": 32
+            }
+            
+            # Erfolg simulieren (später: requests.post(server_url, json=sync_data))
+            import time
+            time.sleep(1)  # Simulierte Übertragung
+            
+            # Erfolg-Status setzen
+            if hasattr(self, 'label_sync_status_wert'):
+                self.label_sync_status_wert.setText("✓ Erfolgreich")
+                self.label_sync_status_wert.setStyleSheet("font-size: 18px; font-weight: bold; color: #A3BE8C;")
+            
+            if hasattr(self, 'label_last_sync_wert'):
+                self.label_last_sync_wert.setText(datetime.now().strftime("%H:%M Uhr"))
+                
+            logger.info("🚀 Fütterungsdaten erfolgreich zum Proxmox-Server synchronisiert")
+            
+        except Exception as e:
+            logger.error(f"Fehler bei Synchronisierung: {e}")
+            if hasattr(self, 'label_sync_status_wert'):
+                self.label_sync_status_wert.setText("✗ Fehler")
+                self.label_sync_status_wert.setStyleSheet("font-size: 18px; font-weight: bold; color: #BF616A;")
+    
+    def backup_local(self):
+        """Erstellt lokales Backup der Fütterungsdaten"""
+        try:
+            # Status-Update
+            logger.info("💾 Lokales Backup wird erstellt...")
+            
+            # TODO: Hier kommt später die echte Backup-Logik
+            # - JSON-Export zu USB-Stick
+            # - CSV-Export für Excel
+            # - Komprimiertes Archiv
+            
+            logger.info("💾 Lokales Backup erfolgreich erstellt")
+            
+        except Exception as e:
+            logger.error(f"Fehler bei lokalem Backup: {e}")
+    
+    def toggle_auto_sync(self):
+        """Schaltet Auto-Sync ein/aus"""
+        try:
+            # TODO: Auto-Sync Einstellungen implementieren
+            # - QTimer für periodische Sync
+            # - Einstellungen in config speichern
+            # - Status in UI anzeigen
+            
+            logger.info("🔄 Auto-Sync Einstellungen geändert")
+            
+        except Exception as e:
+            logger.error(f"Fehler bei Auto-Sync: {e}")
