@@ -605,19 +605,50 @@ class ESP8266ConfigSeite(BaseViewWidget):
                 
                 self.lbl_akku_wert.setStyleSheet(f"color: {color}; font-weight: bold;")
             
-            # IP-Adressen anzeigen (Dual-Mode)
+            # Dual-Mode UI Update
+            ap_ip = status_data.get('ap_ip', '192.168.4.1')
+            station_ip = status_data.get('station_ip', 'N/A')
+            wifi_connected = status_data.get('wifi_connected', False)
+            
+            # Access Point Status Update
+            if hasattr(self, 'lbl_ap_ip'):
+                self.lbl_ap_ip.setText(f"IP: {ap_ip}")
+            if hasattr(self, 'lbl_ap_status'):
+                self.lbl_ap_status.setText("Status: AKTIV")
+                self.lbl_ap_status.setStyleSheet("color: #4CAF50; font-weight: bold;")
+            
+            # Station Status Update  
+            if hasattr(self, 'lbl_station_ip'):
+                if station_ip != 'N/A' and station_ip != '0.0.0.0':
+                    self.lbl_station_ip.setText(f"IP: {station_ip}")
+                else:
+                    self.lbl_station_ip.setText("IP: Nicht verbunden")
+                    
+            if hasattr(self, 'lbl_station_status'):
+                if wifi_connected and station_ip != 'N/A' and station_ip != '0.0.0.0':
+                    self.lbl_station_status.setText("Status: VERBUNDEN")
+                    self.lbl_station_status.setStyleSheet("color: #4CAF50; font-weight: bold;")
+                else:
+                    self.lbl_station_status.setText("Status: GETRENNT")  
+                    self.lbl_station_status.setStyleSheet("color: #f44336; font-weight: bold;")
+            
+            # Aktuelle Verbindung anzeigen
+            if hasattr(self, 'lbl_wifi_status'):
+                current_ip = self.current_esp_ip if hasattr(self, 'current_esp_ip') else station_ip
+                if current_ip == ap_ip:
+                    self.lbl_wifi_status.setText(f"🚜 Verbunden via {current_ip} (Stall-Modus)")
+                    self.lbl_wifi_status.setStyleSheet("border: 3px solid #4CAF50; padding: 10px; background-color: #f0fff0; border-radius: 5px; color: #4CAF50; font-weight: bold;")
+                else:
+                    self.lbl_wifi_status.setText(f"🏠 Verbunden via {current_ip} (Haus-Modus)")
+                    self.lbl_wifi_status.setStyleSheet("border: 3px solid #2196F3; padding: 10px; background-color: #f0f8ff; border-radius: 5px; color: #2196F3; font-weight: bold;")
+            
+            # Legacy IP-Wert für Kompatibilität
             if hasattr(self, 'lbl_ip_wert'):
-                ap_ip = status_data.get('ap_ip', '192.168.4.1')
-                station_ip = status_data.get('station_ip', 'N/A')
-                
-                # Dual-Mode IP Display: AP IP + Station IP
                 if station_ip != 'N/A' and station_ip != '0.0.0.0':
                     ip_display = f"🚜 {ap_ip} | 🏠 {station_ip}"
                 else:
                     ip_display = f"🚜 {ap_ip} (AP-Only)"
-                
                 self.lbl_ip_wert.setText(ip_display)
-                self.lbl_ip_wert.setStyleSheet("color: #4CAF50; font-weight: bold; font-size: 11px;")
             
             # Status-Log erweitern
             timestamp = datetime.now().strftime("%H:%M:%S")
@@ -688,20 +719,20 @@ class ESP8266ConfigSeite(BaseViewWidget):
         super().closeEvent(event)
     
     def switch_to_stall_mode(self):
-        """ESP8266 in Stall-Modus (Futterkarre_WiFi) schalten"""
+        """ESP8266 Stall-Modus (bevorzuge AP-IP 192.168.4.1) - DUAL-MODE bleibt aktiv"""
         try:
-            self.log_message("🚜 Schalte zu Stall-Modus (Futterkarre_WiFi)...")
+            self.log_message("🚜 Aktiviere Stall-Modus (AP-IP Priorität)...")
             
             if self.discovery and self.current_esp_ip:
-                # HTTP-Befehl zum Modus-Wechsel senden
+                # HTTP-Befehl für Stall-Modus-Präferenz
                 result = self.send_wifi_mode_command(self.current_esp_ip, "stall")
                 
                 if result:
-                    self.log_message("✅ Stall-Modus aktiviert - ESP8266 startet neu...")
-                    self.log_message("📡 Suche nach 'Futterkarre_WiFi' Netzwerk...")
-                    # Nach 10 Sekunden automatisch nach AP-IP suchen
+                    self.log_message("✅ Stall-Modus aktiv - AP-IP 192.168.4.1 bevorzugt")
+                    self.log_message("� Dual-Mode bleibt bestehen - kein Restart nötig")
+                    # Sofort auf AP-IP umschalten und testen
                     from PyQt5.QtCore import QTimer
-                    QTimer.singleShot(10000, lambda: self.check_esp8266_status())
+                    QTimer.singleShot(2000, lambda: self.test_ap_connection())
                 else:
                     self.log_message("❌ Fehler beim Stall-Modus-Wechsel")
             else:
@@ -712,20 +743,20 @@ class ESP8266ConfigSeite(BaseViewWidget):
             self.log_message(f"❌ Fehler: {str(e)}")
     
     def switch_to_home_mode(self):
-        """ESP8266 in Haus-Modus (Heimnetz) schalten"""
+        """ESP8266 Haus-Modus (bevorzuge Station-IP) - DUAL-MODE bleibt aktiv"""
         try:
-            self.log_message("🏠 Schalte zu Haus-Modus (Heimnetz)...")
+            self.log_message("🏠 Aktiviere Haus-Modus (Station-IP Priorität)...")
             
             if self.discovery and self.current_esp_ip:
-                # HTTP-Befehl zum Modus-Wechsel senden
+                # HTTP-Befehl für Haus-Modus-Präferenz  
                 result = self.send_wifi_mode_command(self.current_esp_ip, "home")
                 
                 if result:
-                    self.log_message("✅ Haus-Modus aktiviert - ESP8266 startet neu...")
-                    self.log_message("📡 Suche nach ESP8266 im Heimnetz...")
-                    # Nach 10 Sekunden automatisch nach Station-IP suchen
+                    self.log_message("✅ Haus-Modus aktiv - Station-IP bevorzugt")
+                    self.log_message("� Dual-Mode bleibt bestehen - kein Restart nötig")
+                    # Sofort auf Station-IP umschalten und testen
                     from PyQt5.QtCore import QTimer
-                    QTimer.singleShot(10000, lambda: self.check_esp8266_status())
+                    QTimer.singleShot(2000, lambda: self.test_station_connection())
                 else:
                     self.log_message("❌ Fehler beim Haus-Modus-Wechsel")
             else:
@@ -734,6 +765,40 @@ class ESP8266ConfigSeite(BaseViewWidget):
         except Exception as e:
             logger.error(f"Fehler beim Haus-Modus-Wechsel: {e}")
             self.log_message(f"❌ Fehler: {str(e)}")
+    
+    def test_ap_connection(self):
+        """Test AP-Verbindung (192.168.4.1) für Stall-Modus"""
+        try:
+            ap_ip = "192.168.4.1"
+            self.log_message(f"🔍 Teste AP-Verbindung: {ap_ip}")
+            
+            if self.discovery:
+                status_data = self.discovery.test_http_status(ap_ip)
+                if status_data:
+                    self.log_message("✅ AP-Verbindung erfolgreich - Stall-Modus bereit!")
+                    self.update_status_display(status_data)
+                    self.update_connection_status(True, ap_ip)
+                else:
+                    self.log_message("⚠️ AP-Verbindung nicht verfügbar")
+        except Exception as e:
+            logger.error(f"Fehler beim AP-Test: {e}")
+    
+    def test_station_connection(self):
+        """Test Station-Verbindung (192.168.2.x) für Haus-Modus"""
+        try:
+            station_ip = "192.168.2.17"  # Bekannte Station-IP
+            self.log_message(f"🔍 Teste Station-Verbindung: {station_ip}")
+            
+            if self.discovery:
+                status_data = self.discovery.test_http_status(station_ip)
+                if status_data:
+                    self.log_message("✅ Station-Verbindung erfolgreich - Haus-Modus bereit!")
+                    self.update_status_display(status_data)
+                    self.update_connection_status(True, station_ip)
+                else:
+                    self.log_message("⚠️ Station-Verbindung nicht verfügbar")
+        except Exception as e:
+            logger.error(f"Fehler beim Station-Test: {e}")
     
     def send_wifi_mode_command(self, ip: str, mode: str) -> bool:
         """WiFi-Modus-Wechsel-Befehl an ESP8266 senden"""

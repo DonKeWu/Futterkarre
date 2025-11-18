@@ -250,12 +250,8 @@ void setupWiFi() {
     digitalWrite(LED_WIFI, LOW); // WiFi LED an
     
     Serial.printf("   Stall-Modus aktiv\n");
-      Serial.printf("   AP-SSID: %s\n", AP_SSID);
-      Serial.printf("   AP-IP: %s\n", WiFi.softAPIP().toString().c_str());
-    } else {
-      Serial.println(" ❌ FEHLER");
-      wifi_connected = false;
-    }
+    Serial.printf("   AP-SSID: %s\n", AP_SSID);
+    Serial.printf("   AP-IP: %s\n", WiFi.softAPIP().toString().c_str());
   }
 }
 
@@ -322,43 +318,38 @@ void setupHTTPRoutes() {
     JsonDocument response;
     
     if (mode == "stall") {
-      // Stall-Modus: Access Point aktivieren
-      Serial.println("🚜 Wechsel zu Stall-Modus (Access Point)");
+      // Stall-Modus: Hinweis auf AP-Verbindung (DUAL-MODE bleibt aktiv)
+      Serial.println("🚜 Stall-Modus empfohlen - verwende AP IP: 192.168.4.1");
       response["success"] = true;
       response["mode"] = "stall";
-      response["message"] = "Wechsel zu Stall-Modus - ESP startet neu";
+      response["message"] = "Stall-Modus: Verwende AP-IP 192.168.4.1 - Dual-Mode bleibt aktiv";
+      response["recommended_ip"] = "192.168.4.1";
+      response["wifi_mode"] = "dual";
       
       String responseStr;
       serializeJson(response, responseStr);
       httpServer.sendHeader("Access-Control-Allow-Origin", "*");
       httpServer.send(200, "application/json", responseStr);
       
-      delay(1000); // Response senden bevor Restart
-      
-      // WiFi-Einstellungen zurücksetzen und zu AP-Modus wechseln
-      WiFi.disconnect();
-      WiFi.mode(WIFI_AP);
-      WiFi.softAP(AP_SSID, AP_PASSWORD);
-      current_wifi_mode = 0; // AP Mode
+      // KEIN WiFi-Reset! Dual-Mode bleibt bestehen
+      current_wifi_mode = 0; // AP bevorzugt für GUI
       
     } else if (mode == "home") {
-      // Haus-Modus: Station Mode aktivieren
-      Serial.println("🏠 Wechsel zu Haus-Modus (Station)");
+      // Haus-Modus: Hinweis auf Station-Verbindung (DUAL-MODE bleibt aktiv)
+      Serial.println("🏠 Haus-Modus empfohlen - verwende Station IP: " + WiFi.localIP().toString());
       response["success"] = true;
       response["mode"] = "home";
-      response["message"] = "Wechsel zu Haus-Modus - ESP startet neu";
+      response["message"] = "Haus-Modus: Verwende Station-IP - Dual-Mode bleibt aktiv";
+      response["recommended_ip"] = WiFi.localIP().toString();
+      response["wifi_mode"] = "dual";
       
       String responseStr;
       serializeJson(response, responseStr);
       httpServer.sendHeader("Access-Control-Allow-Origin", "*");
       httpServer.send(200, "application/json", responseStr);
       
-      delay(1000); // Response senden bevor Restart
-      
-      // WiFi-Station-Modus aktivieren
-      WiFi.mode(WIFI_STA);
-      WiFi.begin(HOME_WIFI_SSID, HOME_WIFI_PASSWORD);
-      current_wifi_mode = 1; // Station Mode
+      // KEIN WiFi-Reset! Dual-Mode bleibt bestehen
+      current_wifi_mode = 1; // Station bevorzugt für GUI
       
     } else {
       response["success"] = false;
