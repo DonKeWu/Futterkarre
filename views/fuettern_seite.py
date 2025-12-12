@@ -33,7 +33,7 @@ class WiFiStatusThread(QThread):
         while self.running:
             try:
                 # ESP8266 per HTTP-Status testen
-                known_ips = ["192.168.2.17", "192.168.4.1"]
+                known_ips = ["192.168.2.20", "192.168.4.1"]
                 found_ip = None
                 
                 for test_ip in known_ips:

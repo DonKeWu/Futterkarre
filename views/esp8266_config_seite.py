@@ -242,7 +242,7 @@ class ESP8266ConfigSeite(BaseViewWidget):
             
             # ESP8266 testen (bekannte IP zuerst)
             esp_ip = None
-            known_ips = ["192.168.2.17", "192.168.4.1"]  # Bekannte IPs zuerst
+            known_ips = ["192.168.2.20", "192.168.4.1"]  # Bekannte IPs zuerst
             
             for test_ip in known_ips:
                 if self.discovery.test_http_status(test_ip):
@@ -502,7 +502,7 @@ class ESP8266ConfigSeite(BaseViewWidget):
         try:
             if self.discovery:
                 # Direkt bekannte IPs testen statt async find_esp8266()
-                test_ips = ["192.168.2.17", "192.168.4.1"]  # Bekannte ESP8266 IPs
+                test_ips = ["192.168.2.20", "192.168.4.1"]  # Bekannte ESP8266 IPs
                 
                 for test_ip in test_ips:
                     logger.info(f"🔍 Testing ESP8266 IP: {test_ip}")
@@ -795,7 +795,7 @@ class ESP8266ConfigSeite(BaseViewWidget):
     def test_station_connection(self):
         """Test Station-Verbindung (192.168.2.x) für Haus-Modus"""
         try:
-            station_ip = "192.168.2.17"  # Bekannte Station-IP
+            station_ip = "192.168.2.20"  # Bekannte Station-IP
             self.log_message(f"🔍 Teste Station-Verbindung: {station_ip}")
             
             if self.discovery:

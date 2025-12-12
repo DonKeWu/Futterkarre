@@ -68,7 +68,8 @@ class SimpleESP8266Monitor(QWidget):
         # Test IPs
         test_ips = [
             "192.168.4.1",      # Stall-Modus
-            "192.168.2.100",    # Haus-Modus
+            "192.168.2.20",     # Haus-Modus (aktuell)
+            "192.168.2.100",    # Haus-Modus (backup)
             "192.168.2.101",
             "192.168.2.110"
         ]
