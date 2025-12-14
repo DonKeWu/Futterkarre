@@ -238,7 +238,7 @@ class Pi5SystemTester:
             self.results['tests']['futterkarre_modules'] = {'status': 'ERROR', 'error': str(e)}
     
     def test_hardware_detection(self):
-        """Test Hardware-Erkennung"""
+        """Test Hardware-Erkennung mit detaillierten HX711-Tests"""
         self.log_message("\n⚙️ HARDWARE DETECTION TEST")
         self.log_message("=" * 50)
         
@@ -248,8 +248,16 @@ class Pi5SystemTester:
                 import RPi.GPIO as GPIO
                 self.log_message("✅ RPi.GPIO: Verfügbar")
                 gpio_available = True
+                
+                # GPIO Version Info
+                try:
+                    version = GPIO.VERSION
+                    self.log_message(f"📋 RPi.GPIO Version: {version}")
+                except:
+                    pass
+                    
             except ImportError:
-                self.log_message("❌ RPi.GPIO: Nicht verfügbar")
+                self.log_message("❌ RPi.GPIO: Nicht verfügbar (Simulation/Development)")
                 gpio_available = False
             
             # USB/Serial Ports
@@ -266,25 +274,88 @@ class Pi5SystemTester:
                 usb_ports = []
                 self.log_message("❌ USB Port Erkennung fehlgeschlagen")
             
-            # HX711 Test
+            # I2C Bus Test
             try:
-                from hardware.hx711_real import hx_sensors, lese_gewicht_hx711
-                if hx_sensors:
-                    weight = lese_gewicht_hx711()
-                    self.log_message(f"✅ HX711 Sensoren: {len(hx_sensors)} verfügbar, Gewicht: {weight:.2f}kg")
-                    hx711_ok = True
+                result = subprocess.run(['ls', '/dev/i2c*'], capture_output=True, text=True)
+                if result.returncode == 0:
+                    i2c_devices = result.stdout.strip().split('\n')
+                    self.log_message(f"✅ I2C Devices: {i2c_devices}")
+                    i2c_ok = True
                 else:
-                    self.log_message("❌ HX711 Sensoren: Nicht initialisiert")
-                    hx711_ok = False
+                    self.log_message("⚠️ Keine I2C Devices gefunden")
+                    i2c_ok = False
+            except:
+                self.log_message("❌ I2C Test fehlgeschlagen")
+                i2c_ok = False
+            
+            # HX711 Import Test
+            hx711_import_ok = False
+            try:
+                from hardware.hx711_real import hx_sensors, lese_gewicht_hx711, lese_einzelzellwerte_hx711, HX711_AVAILABLE
+                self.log_message(f"✅ HX711 Module Import: OK")
+                self.log_message(f"📋 HX711_AVAILABLE Flag: {HX711_AVAILABLE}")
+                hx711_import_ok = True
             except Exception as e:
-                self.log_message(f"❌ HX711 Test: {e}")
-                hx711_ok = False
+                self.log_message(f"❌ HX711 Module Import: {e}")
+                hx711_import_ok = False
+            
+            # HX711 Hardware Test
+            hx711_hardware_ok = False
+            if hx711_import_ok:
+                try:
+                    if hx_sensors and len(hx_sensors) > 0:
+                        self.log_message(f"✅ HX711 Sensoren initialisiert: {len(hx_sensors)} Stück")
+                        
+                        # Teste jeden Sensor einzeln
+                        for i, sensor in enumerate(hx_sensors):
+                            try:
+                                sensor_name = sensor.config.get('name', f'Sensor_{i+1}')
+                                raw_weight = sensor.read_weight(samples=1)
+                                self.log_message(f"  📊 {sensor_name}: {raw_weight:.3f}kg")
+                                hx711_hardware_ok = True
+                            except Exception as e:
+                                self.log_message(f"  ❌ {sensor_name}: Fehler - {e}")
+                        
+                        # Gesamtgewicht testen
+                        try:
+                            total_weight = lese_gewicht_hx711()
+                            self.log_message(f"✅ Gesamtgewicht: {total_weight:.2f}kg")
+                        except Exception as e:
+                            self.log_message(f"❌ Gesamtgewicht-Fehler: {e}")
+                            
+                    else:
+                        self.log_message("❌ HX711 Sensoren: Nicht initialisiert oder leer")
+                        hx711_hardware_ok = False
+                        
+                except Exception as e:
+                    self.log_message(f"❌ HX711 Hardware Test: {e}")
+                    hx711_hardware_ok = False
+            
+            # SPI Test (für HX711)
+            spi_ok = False
+            try:
+                result = subprocess.run(['ls', '/dev/spi*'], capture_output=True, text=True)
+                if result.returncode == 0:
+                    spi_devices = result.stdout.strip().split('\n')
+                    self.log_message(f"✅ SPI Devices: {spi_devices}")
+                    spi_ok = True
+                else:
+                    self.log_message("⚠️ Keine SPI Devices gefunden")
+            except:
+                self.log_message("❌ SPI Test fehlgeschlagen")
+            
+            # Zusammenfassung
+            overall_status = 'PASS' if hx711_hardware_ok else ('PARTIAL' if hx711_import_ok else 'FAIL')
             
             self.results['tests']['hardware'] = {
-                'status': 'PASS' if hx711_ok else 'PARTIAL',
+                'status': overall_status,
                 'gpio_available': gpio_available,
                 'usb_ports': usb_ports,
-                'hx711_available': hx711_ok
+                'i2c_available': i2c_ok,
+                'spi_available': spi_ok,
+                'hx711_import_ok': hx711_import_ok,
+                'hx711_hardware_ok': hx711_hardware_ok,
+                'sensor_count': len(hx_sensors) if hx711_import_ok and hx_sensors else 0
             }
             
         except Exception as e:
@@ -951,77 +1022,113 @@ Status: {'BESTANDEN' if toleranz_ok else 'NICHT BESTANDEN'}
             logger.error(f"Navigation-Fehler: {e}")
     
     def setup_pi5_test_area(self):
-        """Erstellt Pi5 Test-Bereich dynamisch falls nicht vorhanden"""
+        """Erstellt Pi5 Test-Bereich - versucht verschiedene Integrationsmethoden"""
         try:
             # Prüfe ob bereits vorhanden
             if hasattr(self, 'test_output_area'):
                 return
-                
-            # Erstelle Test-Bereich dynamisch
-            # Suche nach einem geeigneten Container
-            main_layout = None
             
-            # Versuche verschiedene Layout-Container zu finden
-            for child in self.findChildren(QtWidgets.QWidget):
-                if isinstance(child, (QtWidgets.QVBoxLayout, QtWidgets.QHBoxLayout)):
-                    main_layout = child
-                    break
+            logger.info("📋 Erstelle Pi5 Test-Bereich...")
             
-            # Falls kein Layout gefunden, erstelle einen Test-Bereich im Hauptwidget
-            if not main_layout and hasattr(self, 'centralWidget'):
-                # Erstelle Test-Box
-                test_group = QtWidgets.QGroupBox("🧪 Pi5 System Tests")
-                test_layout = QVBoxLayout(test_group)
-                
-                # Button-Bereich
-                button_layout = QHBoxLayout()
-                
-                self.btn_quick_test = QPushButton("⚡ Quick Test")
-                self.btn_quick_test.setStyleSheet("background-color: #4CAF50; color: white; padding: 10px;")
-                self.btn_quick_test.clicked.connect(self.run_quick_pi5_test)
-                button_layout.addWidget(self.btn_quick_test)
-                
-                self.btn_full_test = QPushButton("🚀 Full Test")
-                self.btn_full_test.setStyleSheet("background-color: #2196F3; color: white; padding: 10px;")
-                self.btn_full_test.clicked.connect(self.run_full_pi5_test)
-                button_layout.addWidget(self.btn_full_test)
-                
-                self.btn_hardware_test = QPushButton("⚙️ Hardware Test")
-                self.btn_hardware_test.setStyleSheet("background-color: #FF9800; color: white; padding: 10px;")
-                self.btn_hardware_test.clicked.connect(self.run_hardware_test)
-                button_layout.addWidget(self.btn_hardware_test)
-                
-                test_layout.addLayout(button_layout)
-                
-                # Test-Output Bereich
-                self.test_output_area = QTextEdit()
-                self.test_output_area.setMinimumHeight(200)
-                self.test_output_area.setMaximumHeight(300)
-                self.test_output_area.setStyleSheet("font-family: monospace; font-size: 11px; background-color: #f5f5f5;")
-                self.test_output_area.setPlainText("🎯 Pi5 System Tests bereit.\n\nKlicke auf einen Test-Button um zu starten...")
-                test_layout.addWidget(self.test_output_area)
-                
-                # Status Label
-                self.test_status_label = QLabel("Bereit für Tests")
-                self.test_status_label.setStyleSheet("font-weight: bold; color: #4CAF50;")
-                test_layout.addWidget(self.test_status_label)
-                
-                # Füge Test-Group zum Hauptlayout hinzu (falls möglich)
+            # Erstelle Test-Box
+            test_group = QtWidgets.QGroupBox("🧪 Pi5 System Tests")
+            test_group.setStyleSheet("QGroupBox { font-weight: bold; border: 2px solid #cccccc; margin: 10px; padding-top: 15px; }")
+            test_layout = QVBoxLayout(test_group)
+            
+            # Button-Bereich
+            button_layout = QHBoxLayout()
+            
+            self.btn_quick_test = QPushButton("⚡ Quick Test")
+            self.btn_quick_test.setStyleSheet("background-color: #4CAF50; color: white; padding: 8px 15px; font-weight: bold; border: none; border-radius: 4px;")
+            self.btn_quick_test.clicked.connect(self.run_quick_pi5_test)
+            button_layout.addWidget(self.btn_quick_test)
+            
+            self.btn_full_test = QPushButton("🚀 Full Test")  
+            self.btn_full_test.setStyleSheet("background-color: #2196F3; color: white; padding: 8px 15px; font-weight: bold; border: none; border-radius: 4px;")
+            self.btn_full_test.clicked.connect(self.run_full_pi5_test)
+            button_layout.addWidget(self.btn_full_test)
+            
+            self.btn_hardware_test = QPushButton("⚙️ HX711 Test")
+            self.btn_hardware_test.setStyleSheet("background-color: #FF9800; color: white; padding: 8px 15px; font-weight: bold; border: none; border-radius: 4px;")
+            self.btn_hardware_test.clicked.connect(self.run_hardware_test)
+            button_layout.addWidget(self.btn_hardware_test)
+            
+            # Clear Button
+            self.btn_clear_tests = QPushButton("🗑️ Clear")
+            self.btn_clear_tests.setStyleSheet("background-color: #757575; color: white; padding: 8px 15px; font-weight: bold; border: none; border-radius: 4px;")
+            self.btn_clear_tests.clicked.connect(lambda: self.test_output_area.clear())
+            button_layout.addWidget(self.btn_clear_tests)
+            
+            test_layout.addLayout(button_layout)
+            
+            # Test-Output Bereich
+            self.test_output_area = QTextEdit()
+            self.test_output_area.setMinimumHeight(250)
+            self.test_output_area.setMaximumHeight(400)
+            self.test_output_area.setStyleSheet("""
+                QTextEdit {
+                    font-family: 'Courier New', monospace; 
+                    font-size: 10px; 
+                    background-color: #f8f8f8;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    padding: 5px;
+                }
+            """)
+            self.test_output_area.setPlainText("🎯 Pi5 System Tests bereit.\n\n📋 Verfügbare Tests:\n⚡ Quick Test - Python, Module, Basis-Hardware\n🚀 Full Test - Komplette System-Diagnose\n⚙️ HX711 Test - Gewichtssensoren & Live-Messungen\n\n👆 Klicke auf einen Test-Button um zu starten...")
+            test_layout.addWidget(self.test_output_area)
+            
+            # Status Label
+            self.test_status_label = QLabel("💚 Bereit für Tests")
+            self.test_status_label.setStyleSheet("font-weight: bold; color: #4CAF50; padding: 5px; background-color: #f0f0f0; border-radius: 3px;")
+            test_layout.addWidget(self.test_status_label)
+            
+            # Versuche Integration in vorhandenes Layout
+            integration_success = False
+            
+            # Methode 1: Versuche main layout zu finden
+            try:
+                if hasattr(self, 'layout') and self.layout():
+                    self.layout().addWidget(test_group)
+                    integration_success = True
+                    logger.info("✅ Test-Bereich in Haupt-Layout integriert")
+            except Exception as e:
+                logger.warning(f"Layout-Integration Methode 1 fehlgeschlagen: {e}")
+            
+            # Methode 2: Suche nach Container-Widget
+            if not integration_success:
                 try:
-                    if hasattr(self, 'layout') and self.layout():
-                        self.layout().addWidget(test_group)
-                    else:
-                        # Als separates Fenster-Element hinzufügen
-                        test_group.setParent(self)
-                        test_group.show()
-                        
+                    # Finde das erste verfügbare Container-Widget
+                    containers = self.findChildren(QtWidgets.QWidget)
+                    for container in containers:
+                        if container.layout() and container.isVisible():
+                            container.layout().addWidget(test_group)
+                            integration_success = True
+                            logger.info(f"✅ Test-Bereich in Container-Widget integriert: {container.objectName()}")
+                            break
                 except Exception as e:
-                    logger.warning(f"Test-Bereich Layout-Warnung: {e}")
-                
-                logger.info("✅ Pi5 Test-Bereich dynamisch erstellt")
+                    logger.warning(f"Layout-Integration Methode 2 fehlgeschlagen: {e}")
+            
+            # Methode 3: Als separates Top-Level Widget
+            if not integration_success:
+                try:
+                    test_group.setParent(self)
+                    test_group.setGeometry(10, 10, 600, 500)
+                    test_group.show()
+                    logger.info("✅ Test-Bereich als separates Widget erstellt")
+                    integration_success = True
+                except Exception as e:
+                    logger.error(f"Test-Bereich Creation fehlgeschlagen: {e}")
+            
+            if integration_success:
+                logger.info("🎯 Pi5 Test-Bereich erfolgreich erstellt und integriert")
+            else:
+                logger.error("❌ Pi5 Test-Bereich konnte nicht erstellt werden")
                 
         except Exception as e:
-            logger.error(f"Pi5 Test-Bereich Setup fehlgeschlagen: {e}")
+            logger.error(f"Pi5 Test-Bereich Setup kritischer Fehler: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
     
     def run_quick_pi5_test(self):
         """Führt schnellen Pi5 System-Test aus"""
@@ -1066,48 +1173,114 @@ Status: {'BESTANDEN' if toleranz_ok else 'NICHT BESTANDEN'}
             logger.error(error_msg)
     
     def run_hardware_test(self):
-        """Führt spezifischen Hardware-Test aus (HX711, Sensoren)"""
+        """Führt detaillierten HX711 Hardware-Test aus"""
         try:
-            self.test_status_label.setText("⚙️ Hardware Test läuft...")
+            self.test_status_label.setText("⚙️ HX711 Hardware Test läuft...")
             self.test_output_area.clear()
             
             # Pi5 Tester initialisieren
             self.pi5_tester = Pi5SystemTester(self.test_output_area)
             
-            # Nur Hardware-Tests
+            # Hardware Detection mit detaillierten HX711-Tests
             self.pi5_tester.test_hardware_detection()
             self.pi5_tester.test_weight_system()
             
-            # Zusätzlicher Gewichts-Live-Test
-            self.pi5_tester.log_message("\n🔄 LIVE WEIGHT TEST")
-            self.pi5_tester.log_message("=" * 50)
+            # Spezieller HX711 Stress-Test
+            self.pi5_tester.log_message("\n🔬 DETAILLIERTER HX711 STRESS-TEST")
+            self.pi5_tester.log_message("=" * 60)
             
-            for i in range(5):
+            # Test verschiedene Datenquellen
+            test_count = 10
+            esp_weights = []
+            local_weights = []
+            
+            for i in range(test_count):
+                self.pi5_tester.log_message(f"\n📊 Messung {i+1}/{test_count}:")
+                
+                # ESP8266 Test (falls verfügbar)
+                if ESP8266_AVAILABLE:
+                    try:
+                        esp_weight = lese_gewicht_hx711()
+                        esp_cells = lese_einzelzellwerte_hx711()
+                        esp_weights.append(esp_weight)
+                        
+                        self.pi5_tester.log_message(f"  📡 ESP8266: {esp_weight:.3f}kg")
+                        self.pi5_tester.log_message(f"    🔍 Zellen: VL={esp_cells[0]:.3f}, VR={esp_cells[1]:.3f}, HL={esp_cells[2]:.3f}, HR={esp_cells[3]:.3f}")
+                        
+                    except Exception as e:
+                        self.pi5_tester.log_message(f"  ❌ ESP8266 Fehler: {e}")
+                
+                # Lokale Hardware Test (falls verfügbar)
                 try:
-                    if ESP8266_AVAILABLE:
-                        weight = lese_gewicht_hx711()
-                        cells = lese_einzelzellwerte_hx711()
-                    else:
-                        # Fallback für lokale Hardware
-                        from hardware.weight_manager import get_weight_manager
-                        wm = get_weight_manager()
-                        weight = wm.read_weight()
-                        cells = wm.read_individual_cells()
+                    from hardware.weight_manager import get_weight_manager
+                    wm = get_weight_manager()
+                    local_weight = wm.read_weight()
+                    local_cells = wm.read_individual_cells()
+                    local_weights.append(local_weight)
                     
-                    self.pi5_tester.log_message(f"📊 Messung {i+1}: Gesamt={weight:.2f}kg, Zellen=[{cells[0]:.2f}, {cells[1]:.2f}, {cells[2]:.2f}, {cells[3]:.2f}]")
-                    time.sleep(0.5)
+                    self.pi5_tester.log_message(f"  🔌 Lokal: {local_weight:.3f}kg")
+                    self.pi5_tester.log_message(f"    🔍 Zellen: VL={local_cells[0]:.3f}, VR={local_cells[1]:.3f}, HL={local_cells[2]:.3f}, HR={local_cells[3]:.3f}")
                     
                 except Exception as e:
-                    self.pi5_tester.log_message(f"❌ Messung {i+1} fehlgeschlagen: {e}")
+                    self.pi5_tester.log_message(f"  ❌ Lokal Fehler: {e}")
+                
+                # Direkte HX711 Test (falls verfügbar) 
+                try:
+                    from hardware.hx711_real import hx_sensors
+                    if hx_sensors:
+                        self.pi5_tester.log_message(f"  🎯 Direkte Sensoren:")
+                        for j, sensor in enumerate(hx_sensors):
+                            raw_val = sensor.read_weight(samples=1)
+                            name = sensor.config.get('name', f'S{j+1}')
+                            self.pi5_tester.log_message(f"    {name}: {raw_val:.3f}kg")
+                            
+                except Exception as e:
+                    self.pi5_tester.log_message(f"  ❌ Direkte Sensoren Fehler: {e}")
+                
+                # Kleine Pause zwischen Messungen
+                time.sleep(0.3)
+                
+                # GUI Update
+                if hasattr(self, 'test_output_area'):
+                    self.test_output_area.repaint()
             
-            self.test_status_label.setText("✅ Hardware Test abgeschlossen")
-            logger.info("Pi5 Hardware Test abgeschlossen")
+            # Statistische Auswertung
+            self.pi5_tester.log_message(f"\n📈 STATISTISCHE AUSWERTUNG")
+            self.pi5_tester.log_message("=" * 50)
+            
+            if esp_weights:
+                avg_esp = sum(esp_weights) / len(esp_weights)
+                min_esp = min(esp_weights)
+                max_esp = max(esp_weights)
+                self.pi5_tester.log_message(f"📡 ESP8266: Avg={avg_esp:.3f}kg, Min={min_esp:.3f}kg, Max={max_esp:.3f}kg")
+                self.pi5_tester.log_message(f"    Schwankung: ±{(max_esp-min_esp)/2:.3f}kg")
+            
+            if local_weights:
+                avg_local = sum(local_weights) / len(local_weights)
+                min_local = min(local_weights)
+                max_local = max(local_weights)
+                self.pi5_tester.log_message(f"🔌 Lokal: Avg={avg_local:.3f}kg, Min={min_local:.3f}kg, Max={max_local:.3f}kg")
+                self.pi5_tester.log_message(f"    Schwankung: ±{(max_local-min_local)/2:.3f}kg")
+            
+            # Kalibrierungs-Status prüfen
+            self.pi5_tester.log_message(f"\n🔧 KALIBRIERUNGS-STATUS")
+            self.pi5_tester.log_message("=" * 50)
+            
+            self.pi5_tester.log_message(f"📋 Kalibrierungs-Schritt: {self.kalibrierung_schritt}")
+            self.pi5_tester.log_message(f"🎯 Tara-Werte: {self.tara_werte}")
+            self.pi5_tester.log_message(f"⚖️ Kalibrier-Faktoren: {self.kalibrier_faktoren}")
+            self.pi5_tester.log_message(f"📏 Referenzgewicht: {self.referenz_gewicht}kg")
+            
+            self.test_status_label.setText("✅ HX711 Hardware Test abgeschlossen")
+            logger.info("Detaillierter HX711 Hardware Test abgeschlossen")
             
         except Exception as e:
-            error_msg = f"❌ Hardware Test fehlgeschlagen: {e}"
+            error_msg = f"❌ HX711 Hardware Test fehlgeschlagen: {e}"
             self.test_output_area.append(error_msg)
             self.test_status_label.setText("❌ Test fehlgeschlagen")
             logger.error(error_msg)
+            import traceback
+            logger.error(traceback.format_exc())
 
     def showEvent(self, event):
         """Wird aufgerufen wenn Seite angezeigt wird"""
