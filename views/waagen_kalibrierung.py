@@ -1131,81 +1131,97 @@ Zellen-Details:
             logger.error(error_msg)
     
     def test_hx711_individual_cells(self):
-        """Testet HX711-Einzelzellen detailliert"""
+        """Testet einzelnen HX711-Sensor detailliert"""
         try:
-            self.update_status("🔍 Teste HX711-Einzelzellen...")
+            self.update_status("🔍 Teste HX711-Sensor...")
             
             # Stoppe Live-Updates temporär
             was_running = self.update_timer.isActive()
             if was_running:
                 self.stop_live_updates()
             
-            cell_measurements = []
-            test_count = 3
+            weight_measurements = []
+            test_count = 5
             
             for i in range(test_count):
                 try:
                     if ESP8266_AVAILABLE:
-                        cells = lese_einzelzellwerte_hx711()
+                        # Gesamtgewicht vom ESP8266 (nur ein HX711)
+                        weight = lese_gewicht_hx711()
                     else:
-                        cells = [0.0, 0.0, 0.0, 0.0]
+                        weight = 0.0
                     
-                    cell_measurements.append(cells)
+                    weight_measurements.append(weight)
+                    logger.info(f"HX711 Messung {i+1}: {weight:.3f}kg")
                     time.sleep(0.3)
                     
                 except Exception as e:
-                    logger.error(f"Einzelzell-Messung {i+1}: {e}")
+                    logger.error(f"HX711-Messung {i+1}: {e}")
             
-            if cell_measurements:
-                # Durchschnitt berechnen
-                avg_cells = [
-                    sum(m[0] for m in cell_measurements) / len(cell_measurements),
-                    sum(m[1] for m in cell_measurements) / len(cell_measurements), 
-                    sum(m[2] for m in cell_measurements) / len(cell_measurements),
-                    sum(m[3] for m in cell_measurements) / len(cell_measurements)
-                ]
+            if weight_measurements:
+                # Statistik berechnen
+                avg_weight = sum(weight_measurements) / len(weight_measurements)
+                min_weight = min(weight_measurements)
+                max_weight = max(weight_measurements)
+                variation = max_weight - min_weight
+                std_dev = (sum((w - avg_weight)**2 for w in weight_measurements) / len(weight_measurements))**0.5
                 
-                # Balance prüfen
-                total_weight = sum(avg_cells)
-                if total_weight > 0:
-                    balance_percentages = [(cell/total_weight)*100 for cell in avg_cells]
+                # Stabilität bewerten
+                if variation < 0.005:  # < 5g Schwankung
+                    stability = "✅ Sehr stabil"
+                elif variation < 0.020:  # < 20g Schwankung  
+                    stability = "⚠️ Leicht schwankend"
                 else:
-                    balance_percentages = [25, 25, 25, 25]  # Gleichverteilung wenn kein Gewicht
+                    stability = "❌ Instabil"
                 
-                result_text = f"""HX711 Einzelzellen-Test:
+                result_text = f"""HX711-Sensor Test:
 
-🔍 Durchschnittswerte ({test_count} Messungen):
-• Vorne Links:  {avg_cells[0]:.3f}kg ({balance_percentages[0]:.1f}%)
-• Vorne Rechts: {avg_cells[1]:.3f}kg ({balance_percentages[1]:.1f}%)
-• Hinten Links: {avg_cells[2]:.3f}kg ({balance_percentages[2]:.1f}%)
-• Hinten Rechts: {avg_cells[3]:.3f}kg ({balance_percentages[3]:.1f}%)
+🔍 Hardware-Konfiguration:
+• Ein HX711-Modul am ESP8266
+• Eine Wägezelle angeschlossen
+• Datenübertragung via WiFi
 
-⚖️ Gesamtgewicht: {total_weight:.3f}kg
+📊 Messergebnisse ({test_count} Messungen):
+• Durchschnitt: {avg_weight:.3f}kg
+• Minimum: {min_weight:.3f}kg
+• Maximum: {max_weight:.3f}kg
+• Schwankung: ±{variation/2:.3f}kg
+• Standardabweichung: {std_dev:.4f}kg
 
-📊 Balance-Analyse:
+📈 Stabilität: {stability}
+
+🔧 Sensor-Bewertung:
 """
                 
-                # Balance-Bewertung
-                max_deviation = max(abs(p - 25) for p in balance_percentages)
-                if max_deviation < 5:
-                    result_text += "✅ Perfekte Balance (< 5% Abweichung)"
-                elif max_deviation < 15:
-                    result_text += "⚠️ Leichte Unbalance (5-15% Abweichung)"
-                else:
-                    result_text += "❌ Starke Unbalance (> 15% Abweichung)"
+                # Einzelmessungen anzeigen
+                for i, weight in enumerate(weight_measurements):
+                    deviation = abs(weight - avg_weight)
+                    result_text += f"Messung {i+1}: {weight:.3f}kg (Δ{deviation:.3f}kg)\n"
                 
-                QMessageBox.information(self, "HX711 Einzelzellen-Test", result_text)
-                self.update_status(f"✅ Einzelzellen-Test: {total_weight:.3f}kg")
+                # Empfehlungen
+                result_text += f"\n💡 Empfehlungen:\n"
+                if avg_weight == 0.0:
+                    result_text += "• Wägezelle und HX711-Verkabelung prüfen\n"
+                    result_text += "• ESP8266-Firmware Status kontrollieren"
+                elif variation > 0.050:  # > 50g Schwankung
+                    result_text += "• Wägezelle stabilisieren (Vibrationen?)\n"
+                    result_text += "• HX711-Kalibrierung durchführen"
+                else:
+                    result_text += "• HX711-System funktioniert korrekt!\n"
+                    result_text += "• Bereit für Kalibrierung"
+                
+                QMessageBox.information(self, "HX711-Sensor Test", result_text)
+                self.update_status(f"✅ HX711-Test: {avg_weight:.3f}kg (±{variation/2:.3f}kg)")
             else:
-                QMessageBox.warning(self, "HX711 Einzelzellen-Test", "❌ Keine Einzelzell-Daten erhalten!")
-                self.update_status("❌ Einzelzellen-Test fehlgeschlagen")
+                QMessageBox.warning(self, "HX711-Sensor Test", "❌ Keine HX711-Daten erhalten!\n\nPrüfe:\n• ESP8266-Verbindung\n• HX711-Verkabelung\n• Wägezelle angeschlossen")
+                self.update_status("❌ HX711-Test fehlgeschlagen")
             
             # Live-Updates wieder starten
             if was_running:
                 self.start_live_updates()
                 
         except Exception as e:
-            error_msg = f"Einzelzellen-Test fehlgeschlagen: {e}"
+            error_msg = f"HX711-Test fehlgeschlagen: {e}"
             self.update_status(f"❌ {error_msg}")
             logger.error(error_msg)
     
@@ -1275,8 +1291,8 @@ Zellen-Details:
                 self.btn_test_hx711_live.clicked.connect(self.test_hx711_live_measurements)
                 test_layout.addWidget(self.btn_test_hx711_live)
                 
-                # HX711 Einzelzellen-Test Button
-                self.btn_test_hx711_cells = QPushButton("🔍 Zellen Test")
+                # HX711 Sensor-Test Button
+                self.btn_test_hx711_cells = QPushButton("🔍 HX711 Test")
                 self.btn_test_hx711_cells.setStyleSheet("""
                     QPushButton {
                         background-color: #FF9800;
