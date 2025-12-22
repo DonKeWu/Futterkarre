@@ -144,28 +144,36 @@
     <rect>
      <x>370</x>
      <y>250</y>
-     <width>25</width>
-     <height>30</height>
+     <width>40</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>🔴</string>
+    <string>●</string>
    </property>
    <property name="toolTip">
     <string>HX711 VL Status</string>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   
   <widget class="QLabel" name="lbl_vl_titel">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>250</y>
+     <x>420</x>
+     <y>255</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -186,8 +194,8 @@
   <widget class="QLabel" name="lbl_vl_wert">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>250</y>
+     <x>550</x>
+     <y>255</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -211,29 +219,37 @@
    <property name="geometry">
     <rect>
      <x>370</x>
-     <y>290</y>
-     <width>25</width>
-     <height>30</height>
+     <y>295</y>
+     <width>40</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>🔴</string>
+    <string>●</string>
    </property>
    <property name="toolTip">
     <string>HX711 VR Status</string>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   
   <widget class="QLabel" name="lbl_vr_titel">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>290</y>
+     <x>420</x>
+     <y>300</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -254,8 +270,8 @@
   <widget class="QLabel" name="lbl_vr_wert">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>290</y>
+     <x>550</x>
+     <y>300</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -280,28 +296,36 @@
     <rect>
      <x>620</x>
      <y>250</y>
-     <width>25</width>
-     <height>30</height>
+     <width>40</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>🔴</string>
+    <string>●</string>
    </property>
    <property name="toolTip">
     <string>HX711 HL Status</string>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   
   <widget class="QLabel" name="lbl_hl_titel">
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>250</y>
+     <x>670</x>
+     <y>255</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -322,8 +346,8 @@
   <widget class="QLabel" name="lbl_hl_wert">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>250</y>
+     <x>800</x>
+     <y>255</y>
      <width>100</width>
      <height>30</height>
     </rect>
@@ -347,29 +371,37 @@
    <property name="geometry">
     <rect>
      <x>620</x>
-     <y>290</y>
-     <width>25</width>
-     <height>30</height>
+     <y>295</y>
+     <width>40</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>16</pointsize>
+     <pointsize>24</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>🔴</string>
+    <string>●</string>
    </property>
    <property name="toolTip">
     <string>HX711 HR Status</string>
+   </property>
+   <property name="styleSheet">
+    <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
   
   <widget class="QLabel" name="lbl_hr_titel">
    <property name="geometry">
     <rect>
-     <x>650</x>
-     <y>290</y>
+     <x>670</x>
+     <y>300</y>
      <width>120</width>
      <height>30</height>
     </rect>
@@ -390,8 +422,8 @@
   <widget class="QLabel" name="lbl_hr_wert">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>290</y>
+     <x>800</x>
+     <y>300</y>
      <width>100</width>
      <height>30</height>
     </rect>

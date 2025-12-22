@@ -1234,22 +1234,22 @@ Status: {'BESTANDEN' if toleranz_ok else 'NICHT BESTANDEN'}
                     led_label = getattr(self, led_label_name)
                     if status:
                         # Grün für "angeschlossen und funktionsfähig"
-                        led_label.setText("🟢")
+                        led_label.setText("●")
                         led_label.setToolTip(f"{name}: HX711 angeschlossen und funktionsfähig")
-                        led_label.setStyleSheet("color: #4CAF50; font-size: 16px;")
+                        led_label.setStyleSheet("background-color: #e8f5e8; border: 2px solid #4CAF50; border-radius: 5px; text-align: center; color: #4CAF50; font-size: 24px; font-weight: bold;")
                     else:
                         # Rot für "nicht angeschlossen"
-                        led_label.setText("🔴")
+                        led_label.setText("●")
                         led_label.setToolTip(f"{name}: HX711 nicht angeschlossen (Raw-Wert = 0)")
-                        led_label.setStyleSheet("color: #f44336; font-size: 16px;")
+                        led_label.setStyleSheet("background-color: #fde8e8; border: 2px solid #f44336; border-radius: 5px; text-align: center; color: #f44336; font-size: 24px; font-weight: bold;")
                 else:
                     # Fallback: Status in den Gewichts-Labels anzeigen
                     gewicht_label_name = f"lbl_gewicht_{i}"
                     if hasattr(self, gewicht_label_name):
                         gewicht_label = getattr(self, gewicht_label_name)
-                        status_symbol = "🟢" if status else "🔴"
+                        status_symbol = "●" if status else "●"  # Gleicher Punkt, unterschiedliche Farbe
                         current_text = gewicht_label.text()
-                        if not current_text.startswith(("🟢", "🔴")):
+                        if not current_text.startswith("●"):
                             gewicht_label.setText(f"{status_symbol} {current_text}")
             
             # Gesamt-Status anzeigen
