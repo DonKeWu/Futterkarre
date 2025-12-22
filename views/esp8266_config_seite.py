@@ -281,18 +281,34 @@ class ESP8266ConfigSeite(BaseViewWidget):
         try:
             self.log_message("🚜 Aktiviere Stall-Modus (AP-IP Priorität)...")
             
-            # ESP8266 testen (bekannte IP zuerst)
-            esp_ip = None
-            known_ips = ["192.168.2.20", "192.168.4.1"]  # Bekannte IPs zuerst
+            # AUTOMATISCH ESP8266 finden und verbinden
+            if not self.current_esp_ip:
+                self.test_connection()  # Nutze den funktionierenden Test!
             
-            for test_ip in known_ips:
-                if self.discovery.test_http_status(test_ip):
-                    esp_ip = test_ip
-                    break
+            if self.current_esp_ip:
+                self.log_message(f"✅ ESP8266 gefunden unter {self.current_esp_ip}")
+                # Hier würde Stall-Modus Kommando gesendet
+            else:
+                self.log_message("❌ Keine ESP8266-Verbindung verfügbar")
+                
+        except Exception as e:
+            logger.error(f"Stall-Modus Fehler: {e}")
+            self.log_message(f"❌ Stall-Modus Fehler: {e}")
+
+    def switch_to_home_mode(self):
+        """In Haus-Modus (Station-Modus) wechseln"""
+        try:
+            self.log_message("🏠 Aktiviere Haus-Modus (Station-IP Priorität)...")
             
-            if esp_ip:
-                self.log_message(f"🔗 Verbindung zu ESP8266 {esp_ip} hergestellt")
-                self.current_esp_ip = esp_ip
+            # AUTOMATISCH ESP8266 finden und verbinden
+            if not self.current_esp_ip:
+                self.test_connection()  # Nutze den funktionierenden Test!
+            
+            if self.current_esp_ip:
+                self.log_message(f"✅ ESP8266 gefunden unter {self.current_esp_ip}")
+                # Hier würde Haus-Modus Kommando gesendet
+            else:
+                self.log_message("❌ Keine ESP8266-Verbindung verfügbar")
                 self.update_connection_status(True, esp_ip)
                 
                 # Status abrufen
