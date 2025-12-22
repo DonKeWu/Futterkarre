@@ -275,8 +275,11 @@ class ESP8266ConfigSeite(BaseViewWidget):
         except Exception as e:
             logger.error(f"Fehler beim Verbindungstest: {e}")
             self.log_message(f"❌ Verbindungstest Fehler: {e}")
-                self.log_message("❌ ESP8266Discovery nicht verfügbar")
-                return
+    
+    def switch_to_stall_mode(self):
+        """In Stall-Modus (AP-Modus) wechseln"""
+        try:
+            self.log_message("🚜 Aktiviere Stall-Modus (AP-IP Priorität)...")
             
             # ESP8266 testen (bekannte IP zuerst)
             esp_ip = None
