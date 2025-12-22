@@ -13,8 +13,6 @@
   <property name="windowTitle">
    <string>Futterkarre - Waagenkalibrierung</string>
   </property>
-  
-  <!-- Header -->
   <widget class="QLabel" name="lbl_header">
    <property name="geometry">
     <rect>
@@ -39,8 +37,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-
-  <!-- Zurück Button -->
   <widget class="QPushButton" name="btn_back">
    <property name="geometry">
     <rect>
@@ -62,8 +58,6 @@
     <string>ZURÜCK</string>
    </property>
   </widget>
-
-  <!-- Gesamtgewicht Anzeige -->
   <widget class="QLabel" name="lbl_gesamtgewicht_titel">
    <property name="geometry">
     <rect>
@@ -85,7 +79,6 @@
     <string>GESAMTGEWICHT:</string>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_gesamtgewicht_wert">
    <property name="geometry">
     <rect>
@@ -103,22 +96,20 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string>border: 2px solid #666; padding: 10px;</string>
+   </property>
    <property name="text">
     <string>0.00 kg</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
-   <property name="styleSheet">
-    <string>border: 2px solid #666; padding: 10px;</string>
-   </property>
   </widget>
-
-  <!-- Einzelzellen Anzeige -->
   <widget class="QLabel" name="lbl_einzelzellen_titel">
    <property name="geometry">
     <rect>
-     <x>400</x>
+     <x>460</x>
      <y>200</y>
      <width>200</width>
      <height>40</height>
@@ -136,13 +127,10 @@
     <string>EINZELZELLEN:</string>
    </property>
   </widget>
-
-  <!-- Vorne Links -->
-  <!-- LED Status für HX711-0 (VL) -->
   <widget class="QLabel" name="lbl_hx711_0_status">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>430</x>
      <y>250</y>
      <width>40</width>
      <height>40</height>
@@ -155,33 +143,32 @@
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string></string>
-   </property>
    <property name="toolTip">
     <string>HX711 VL Status</string>
    </property>
    <property name="styleSheet">
     <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
    </property>
+   <property name="text">
+    <string/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  
   <widget class="QLabel" name="lbl_vl_titel">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>480</x>
      <y>255</y>
-     <width>120</width>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -190,11 +177,10 @@
     <string>Vorne Links:</string>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_vl_wert">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>630</x>
      <y>255</y>
      <width>100</width>
      <height>30</height>
@@ -203,7 +189,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -212,13 +198,10 @@
     <string>0.00 kg</string>
    </property>
   </widget>
-
-  <!-- Vorne Rechts -->
-  <!-- LED Status für HX711-1 (VR) -->
   <widget class="QLabel" name="lbl_hx711_1_status">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>430</x>
      <y>295</y>
      <width>40</width>
      <height>40</height>
@@ -231,33 +214,32 @@
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string></string>
-   </property>
    <property name="toolTip">
     <string>HX711 VR Status</string>
    </property>
    <property name="styleSheet">
     <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
    </property>
+   <property name="text">
+    <string/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  
   <widget class="QLabel" name="lbl_vr_titel">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>480</x>
      <y>300</y>
-     <width>120</width>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -266,11 +248,10 @@
     <string>Vorne Rechts:</string>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_vr_wert">
    <property name="geometry">
     <rect>
-     <x>550</x>
+     <x>630</x>
      <y>300</y>
      <width>100</width>
      <height>30</height>
@@ -279,7 +260,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -288,13 +269,10 @@
     <string>0.00 kg</string>
    </property>
   </widget>
-
-  <!-- Hinten Links -->
-  <!-- LED Status für HX711-2 (HL) -->
   <widget class="QLabel" name="lbl_hx711_2_status">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>730</x>
      <y>250</y>
      <width>40</width>
      <height>40</height>
@@ -307,33 +285,32 @@
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string></string>
-   </property>
    <property name="toolTip">
     <string>HX711 HL Status</string>
    </property>
    <property name="styleSheet">
     <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
    </property>
+   <property name="text">
+    <string/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  
   <widget class="QLabel" name="lbl_hl_titel">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>780</x>
      <y>255</y>
-     <width>120</width>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -342,11 +319,10 @@
     <string>Hinten Links:</string>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_hl_wert">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>930</x>
      <y>255</y>
      <width>100</width>
      <height>30</height>
@@ -355,7 +331,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -364,13 +340,10 @@
     <string>0.00 kg</string>
    </property>
   </widget>
-
-  <!-- Hinten Rechts -->
-  <!-- LED Status für HX711-3 (HR) -->
   <widget class="QLabel" name="lbl_hx711_3_status">
    <property name="geometry">
     <rect>
-     <x>620</x>
+     <x>730</x>
      <y>295</y>
      <width>40</width>
      <height>40</height>
@@ -383,33 +356,32 @@
      <bold>true</bold>
     </font>
    </property>
-   <property name="text">
-    <string></string>
-   </property>
    <property name="toolTip">
     <string>HX711 HR Status</string>
    </property>
    <property name="styleSheet">
     <string>background-color: #ffffff; border: 2px solid #cccccc; border-radius: 5px; text-align: center;</string>
    </property>
+   <property name="text">
+    <string/>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  
   <widget class="QLabel" name="lbl_hr_titel">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>780</x>
      <y>300</y>
-     <width>120</width>
+     <width>141</width>
      <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -418,11 +390,10 @@
     <string>Hinten Rechts:</string>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_hr_wert">
    <property name="geometry">
     <rect>
-     <x>800</x>
+     <x>930</x>
      <y>300</y>
      <width>100</width>
      <height>30</height>
@@ -431,7 +402,7 @@
    <property name="font">
     <font>
      <family>Droid Sans Fallback</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -440,8 +411,6 @@
     <string>0.00 kg</string>
    </property>
   </widget>
-
-  <!-- Kalibrierung Schritte -->
   <widget class="QLabel" name="lbl_schritt_titel">
    <property name="geometry">
     <rect>
@@ -463,8 +432,6 @@
     <string>KALIBRIERUNG:</string>
    </property>
   </widget>
-
-  <!-- Schritt 1: Tara -->
   <widget class="QLabel" name="lbl_schritt1">
    <property name="geometry">
     <rect>
@@ -486,11 +453,10 @@
     <string>1. Karren komplett leeren</string>
    </property>
   </widget>
-
   <widget class="QPushButton" name="btn_tara">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>450</x>
      <y>420</y>
      <width>150</width>
      <height>50</height>
@@ -508,8 +474,6 @@
     <string>TARA</string>
    </property>
   </widget>
-
-  <!-- Schritt 2: Referenzgewicht -->
   <widget class="QLabel" name="lbl_schritt2">
    <property name="geometry">
     <rect>
@@ -531,7 +495,6 @@
     <string>2. Referenzgewicht auflegen:</string>
    </property>
   </widget>
-
   <widget class="QLineEdit" name="input_referenzgewicht">
    <property name="geometry">
     <rect>
@@ -556,7 +519,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_kg">
    <property name="geometry">
     <rect>
@@ -578,7 +540,6 @@
     <string>kg</string>
    </property>
   </widget>
-
   <widget class="QPushButton" name="btn_kalibrieren">
    <property name="geometry">
     <rect>
@@ -600,8 +561,6 @@
     <string>KALIBRIEREN</string>
    </property>
   </widget>
-
-  <!-- Schritt 3: Test -->
   <widget class="QLabel" name="lbl_schritt3">
    <property name="geometry">
     <rect>
@@ -623,13 +582,12 @@
     <string>3. Kalibrierung testen</string>
    </property>
   </widget>
-
   <widget class="QPushButton" name="btn_test">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>449</x>
      <y>540</y>
-     <width>120</width>
+     <width>150</width>
      <height>50</height>
     </rect>
    </property>
@@ -645,8 +603,6 @@
     <string>TEST</string>
    </property>
   </widget>
-
-  <!-- Status und Fortschritt -->
   <widget class="QLabel" name="lbl_status_titel">
    <property name="geometry">
     <rect>
@@ -668,7 +624,6 @@
     <string>STATUS:</string>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_status">
    <property name="geometry">
     <rect>
@@ -686,6 +641,9 @@
      <bold>false</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string>border: 1px solid #666; padding: 8px;</string>
+   </property>
    <property name="text">
     <string>Bereit für Kalibrierung...</string>
    </property>
@@ -695,12 +653,7 @@
    <property name="wordWrap">
     <bool>true</bool>
    </property>
-   <property name="styleSheet">
-    <string>border: 1px solid #666; padding: 8px;</string>
-   </property>
   </widget>
-
-  <!-- Aktions-Buttons unten -->
   <widget class="QPushButton" name="btn_speichern">
    <property name="geometry">
     <rect>
@@ -722,7 +675,6 @@
     <string>SPEICHERN</string>
    </property>
   </widget>
-
   <widget class="QPushButton" name="btn_reset">
    <property name="geometry">
     <rect>
@@ -744,8 +696,6 @@
     <string>RESET</string>
    </property>
   </widget>
-
-  <!-- Live Update Checkbox -->
   <widget class="QCheckBox" name="cb_live_update">
    <property name="geometry">
     <rect>
@@ -770,8 +720,6 @@
     <bool>true</bool>
    </property>
   </widget>
-
-  <!-- Toleranz Einstellung -->
   <widget class="QLabel" name="lbl_toleranz">
    <property name="geometry">
     <rect>
@@ -793,7 +741,6 @@
     <string>Toleranz:</string>
    </property>
   </widget>
-
   <widget class="QLineEdit" name="input_toleranz">
    <property name="geometry">
     <rect>
@@ -818,7 +765,6 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-
   <widget class="QLabel" name="lbl_toleranz_einheit">
    <property name="geometry">
     <rect>
@@ -840,8 +786,35 @@
     <string>kg</string>
    </property>
   </widget>
-
+  <widget class="QPushButton" name="btn_back_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>20</y>
+     <width>60</width>
+     <height>60</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../../Futterwagen/Futterkarre/icons/icons.qrc">
+     <normaloff>:/icons/Back.png</normaloff>:/icons/Back.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>30</width>
+     <height>30</height>
+    </size>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../Futterwagen/Futterkarre/icons/icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
