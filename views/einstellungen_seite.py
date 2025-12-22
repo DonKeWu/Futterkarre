@@ -354,12 +354,20 @@ class EinstellungenSeite(BaseViewWidget):
         # Kalibrierungs-Buttons
         if hasattr(self, 'btn_auto_tare'):
             self.btn_auto_tare.clicked.connect(self.auto_tare)
+            logger.info("btn_auto_tare connected")
         if hasattr(self, 'btn_calibrate'):
             self.btn_calibrate.clicked.connect(self.start_calibration)
+            logger.info("btn_calibrate connected")
         if hasattr(self, 'btn_kalibrieren'):
             self.btn_kalibrieren.clicked.connect(self.start_calibration)
+            logger.info("btn_kalibrieren connected")
         if hasattr(self, 'btn_test_weights'):
             self.btn_test_weights.clicked.connect(self.test_weights)
+            logger.info("btn_test_weights connected")
+        
+        # Debug: Alle verfügbaren Buttons auflisten
+        all_buttons = self.findChildren(QtWidgets.QPushButton)
+        logger.info(f"Verfügbare Buttons: {[btn.objectName() for btn in all_buttons]}")
     
     def load_current_settings(self):
         """Lädt aktuelle Einstellungen in UI"""
@@ -515,19 +523,26 @@ class EinstellungenSeite(BaseViewWidget):
     def start_calibration(self):
         """Startet Kalibrierungs-Prozess - Navigiert zur Waagenkalibrierung"""
         try:
+            logger.info("🎯 KALIBRIERUNGS-BUTTON GEKLICKT!")
+            print("🎯 KALIBRIERUNGS-BUTTON GEKLICKT!")  # Console Debug
+            
             logger.info("Kalibrierungs-Button geklickt - navigiere zur Waagenkalibrierung")
             
             if self.navigation:
+                logger.info("✅ Navigation verfügbar - wechsle zu waagen_kalibrierung")
                 self.navigation.show_status("waagen_kalibrierung")
             else:
-                logger.warning("Navigation nicht verfügbar für waagen_kalibrierung")
+                logger.warning("❌ Navigation nicht verfügbar für waagen_kalibrierung")
+                print("❌ Navigation nicht verfügbar!")
                 self.show_kalibrierung_fallback()
             
             if hasattr(self, 'status_label'):
                 self.status_label.setText("Navigiere zur Waagenkalibrierung...")
             
         except Exception as e:
-            logger.error(f"Kalibrierungs-Navigation-Fehler: {e}")
+            error_msg = f"Kalibrierungs-Navigation-Fehler: {e}"
+            logger.error(error_msg)
+            print(f"❌ {error_msg}")  # Console Debug
             if hasattr(self, 'status_label'):
                 self.status_label.setText(f"Navigation Fehler: {e}")
     
