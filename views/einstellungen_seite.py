@@ -541,34 +541,25 @@ class EinstellungenSeite(BaseViewWidget):
                 self.status_label.setText(f"Auto-Tare Fehler: {e}")
     
     def start_calibration(self):
-        """Startet Kalibrierungs-Prozess - DIREKTE LÖSUNG OHNE NAVIGATION"""
+        """Startet Kalibrierungs-Prozess - Zurück zur Navigation"""
         try:
             logger.info("🎯 KALIBRIERUNGS-BUTTON GEKLICKT!")
             print("🎯 KALIBRIERUNGS-BUTTON GEKLICKT!")  # Console Debug
             
-            # FUCK THE NAVIGATION - DIREKTE LÖSUNG!
-            logger.info("🔥 DIREKTE LÖSUNG: Kalibrierung wird direkt geöffnet")
-            
-            from views.waagen_kalibrierung import WaagenKalibrierung
-            
-            # Neue Kalibrierungsseite erstellen
-            self.kalibrierungs_fenster = WaagenKalibrierung()
-            
-            # Vollbild setzen
-            self.kalibrierungs_fenster.setWindowState(self.kalibrierungs_fenster.windowState() | QtCore.Qt.WindowMaximized)
-            self.kalibrierungs_fenster.show()
-            
-            # Aktuelles Fenster minimieren oder schließen
-            if self.parent():
-                self.parent().hide()
+            # Navigation wieder verwenden (funktioniert jetzt!)
+            if self.navigation:
+                logger.info("✅ Navigation verfügbar - wechsle zu waagen_kalibrierung")
+                self.navigation.show_status("waagen_kalibrierung")
             else:
-                self.hide()
-            
-            logger.info("✅ Kalibrierungsseite direkt geöffnet - FUCK NAVIGATION!")
-            print("✅ Kalibrierungsseite direkt geöffnet!")
+                logger.warning("❌ Navigation nicht verfügbar für waagen_kalibrierung")
+                print("❌ Navigation nicht verfügbar!")
+                
+                # Fallback: MessageBox
+                from PyQt5.QtWidgets import QMessageBox
+                QMessageBox.warning(self, "Navigation-Fehler", "Navigation-System nicht verfügbar!")
             
         except Exception as e:
-            error_msg = f"DIREKTE Kalibrierung-Fehler: {e}"
+            error_msg = f"Kalibrierungs-Navigation-Fehler: {e}"
             logger.error(error_msg)
             print(f"❌ {error_msg}")  # Console Debug
             

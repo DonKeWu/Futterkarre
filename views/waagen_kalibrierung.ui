@@ -138,6 +138,29 @@
   </widget>
 
   <!-- Vorne Links -->
+  <!-- LED Status für HX711-0 (VL) -->
+  <widget class="QLabel" name="lbl_hx711_0_status">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>250</y>
+     <width>25</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>🔴</string>
+   </property>
+   <property name="toolTip">
+    <string>HX711 VL Status</string>
+   </property>
+  </widget>
+  
   <widget class="QLabel" name="lbl_vl_titel">
    <property name="geometry">
     <rect>
@@ -183,6 +206,29 @@
   </widget>
 
   <!-- Vorne Rechts -->
+  <!-- LED Status für HX711-1 (VR) -->
+  <widget class="QLabel" name="lbl_hx711_1_status">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>290</y>
+     <width>25</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>🔴</string>
+   </property>
+   <property name="toolTip">
+    <string>HX711 VR Status</string>
+   </property>
+  </widget>
+  
   <widget class="QLabel" name="lbl_vr_titel">
    <property name="geometry">
     <rect>
@@ -228,6 +274,29 @@
   </widget>
 
   <!-- Hinten Links -->
+  <!-- LED Status für HX711-2 (HL) -->
+  <widget class="QLabel" name="lbl_hx711_2_status">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>250</y>
+     <width>25</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>🔴</string>
+   </property>
+   <property name="toolTip">
+    <string>HX711 HL Status</string>
+   </property>
+  </widget>
+  
   <widget class="QLabel" name="lbl_hl_titel">
    <property name="geometry">
     <rect>
@@ -273,6 +342,29 @@
   </widget>
 
   <!-- Hinten Rechts -->
+  <!-- LED Status für HX711-3 (HR) -->
+  <widget class="QLabel" name="lbl_hx711_3_status">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>290</y>
+     <width>25</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>🔴</string>
+   </property>
+   <property name="toolTip">
+    <string>HX711 HR Status</string>
+   </property>
+  </widget>
+  
   <widget class="QLabel" name="lbl_hr_titel">
    <property name="geometry">
     <rect>

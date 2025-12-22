@@ -667,6 +667,9 @@ class WaagenKalibrierung(BaseViewWidget):
         self.init_ui()
         self.load_kalibrierungs_daten()
         
+        # HX711-Status-Check beim Start
+        self.check_hx711_status()
+        
         # Live-Updates starten wenn aktiviert
         if hasattr(self, 'cb_live_update') and self.cb_live_update.isChecked():
             self.start_live_updates()
@@ -1544,3 +1547,73 @@ Zellen-Details:
         self.stop_live_updates()
         
         logger.debug("WaagenKalibrierung versteckt")
+    
+    def check_hx711_status(self):
+        """Prüft HX711-Status und aktualisiert LED-Anzeigen"""
+        try:
+            logger.info("🔍 Prüfe HX711-Status...")
+            
+            # HX711-Namen für die 4 Zellen
+            zell_namen = ["VL (Vorne Links)", "VR (Vorne Rechts)", "HL (Hinten Links)", "HR (Hinten Rechts)"]
+            
+            # Status für jede Zelle prüfen
+            zell_status = [False, False, False, False]  # Default: nicht gefunden
+            
+            if ESP8266_AVAILABLE:
+                # ESP8266 Einzelzellwerte testen
+                einzelwerte = lese_einzelzellwerte_hx711()
+                
+                if einzelwerte and len(einzelwerte) >= 4:
+                    for i, wert in enumerate(einzelwerte[:4]):
+                        # Zelle als "gefunden" markieren wenn Wert ungleich 0 oder sinnvoll ist
+                        if abs(wert) > 10:  # Mindestens 10 Raw-Units als "aktiv" betrachten
+                            zell_status[i] = True
+                        logger.info(f"HX711-{i} ({zell_namen[i]}): {wert} → {'✅' if zell_status[i] else '❌'}")
+                else:
+                    logger.warning("Keine HX711-Einzelwerte erhalten")
+            else:
+                logger.warning("ESP8266 nicht verfügbar - simuliere HX711-Status")
+                # Simulation: 2 von 4 Zellen "gefunden"
+                zell_status = [True, True, False, False]
+            
+            # UI-Status-LEDs aktualisieren
+            self.update_hx711_status_leds(zell_status, zell_namen)
+            
+        except Exception as e:
+            logger.error(f"HX711-Status-Check Fehler: {e}")
+    
+    def update_hx711_status_leds(self, status_list, namen_list):
+        """Aktualisiert HX711-Status-LED-Anzeigen in der UI"""
+        try:
+            for i, (status, name) in enumerate(zip(status_list, namen_list)):
+                # Dynamisch LED-Labels suchen
+                led_label_name = f"lbl_hx711_{i}_status"
+                
+                if hasattr(self, led_label_name):
+                    led_label = getattr(self, led_label_name)
+                    if status:
+                        # Grün für "gefunden"
+                        led_label.setText("🟢")
+                        led_label.setToolTip(f"{name}: HX711 erkannt und aktiv")
+                        led_label.setStyleSheet("color: #4CAF50; font-size: 16px;")
+                    else:
+                        # Rot für "nicht gefunden"
+                        led_label.setText("🔴")
+                        led_label.setToolTip(f"{name}: HX711 nicht erkannt oder inaktiv")
+                        led_label.setStyleSheet("color: #f44336; font-size: 16px;")
+                else:
+                    # Fallback: Status in den Gewichts-Labels anzeigen
+                    gewicht_label_name = f"lbl_gewicht_{i}"
+                    if hasattr(self, gewicht_label_name):
+                        gewicht_label = getattr(self, gewicht_label_name)
+                        status_symbol = "🟢" if status else "🔴"
+                        current_text = gewicht_label.text()
+                        if not current_text.startswith(("🟢", "🔴")):
+                            gewicht_label.setText(f"{status_symbol} {current_text}")
+            
+            # Gesamt-Status anzeigen
+            gefundene_anzahl = sum(status_list)
+            self.update_status(f"HX711-Status: {gefundene_anzahl}/4 Zellen erkannt")
+            
+        except Exception as e:
+            logger.error(f"LED-Status-Update Fehler: {e}")
