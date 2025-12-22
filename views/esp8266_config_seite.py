@@ -48,21 +48,29 @@ class ESP8266StatusThread(QThread):
         self.running = True
         while self.running:
             try:
-                if self.discovery:
-                    # ESP8266 suchen
-                    esp8266_ip = self.discovery.find_esp8266()
-                    
-                    if esp8266_ip:
-                        # Status abrufen - nutze HTTP Status Funktion für dict
-                        status_data = self.discovery.test_http_status(esp8266_ip)
-                        if status_data and isinstance(status_data, dict):
-                            self.status_updated.emit(status_data)
-                            self.connection_changed.emit(True, esp8266_ip)
-                        else:
-                            self.connection_changed.emit(False, "")
-                    else:
-                        self.connection_changed.emit(False, "")
-                else:
+                # DIREKTE ESP8266-Suche ohne Discovery
+                import urllib.request
+                import json
+                
+                test_ips = ["192.168.2.20", "192.168.4.1"]
+                esp8266_found = False
+                
+                for ip in test_ips:
+                    try:
+                        url = f"http://{ip}/live-values-data"
+                        req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                        
+                        with urllib.request.urlopen(req, timeout=5) as response:
+                            if response.status == 200:
+                                data = json.loads(response.read().decode())
+                                self.connection_changed.emit(True, ip)
+                                esp8266_found = True
+                                break
+                    except:
+                        continue
+                
+                if not esp8266_found:
+                    self.connection_changed.emit(False, "")
                     logger.warning("ESP8266Discovery nicht verfügbar")
                     
             except Exception as e:
@@ -327,12 +335,21 @@ class ESP8266ConfigSeite(BaseViewWidget):
             
             self.log_message("🔄 Tare Kommando senden...")
             
-            if self.discovery:
-                result = self.discovery.send_tare_command(self.current_esp_ip)
-                if result:
-                    self.log_message("✅ Waage erfolgreich getart")
-                else:
-                    self.log_message("❌ Tare fehlgeschlagen")
+            # DIREKTE HTTP-Anfrage für Tare
+            import urllib.request
+            import urllib.parse
+            
+            try:
+                url = f"http://{self.current_esp_ip}/tare"
+                req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    if response.status == 200:
+                        self.log_message("✅ Waage erfolgreich getart")
+                    else:
+                        self.log_message("❌ Tare fehlgeschlagen")
+            except Exception as e:
+                self.log_message(f"❌ Tare Fehler: {e}")
             
         except Exception as e:
             logger.error(f"Fehler beim Taren: {e}")
@@ -341,23 +358,36 @@ class ESP8266ConfigSeite(BaseViewWidget):
     def get_esp8266_status(self):
         """ESP8266 Status abrufen"""
         try:
+            # AUTOMATISCH ESP8266 finden falls nicht verbunden
             if not self.current_esp_ip:
+                self.test_connection()  # Nutze den funktionierenden Test!
+            
+            if self.current_esp_ip:
+                # Status direkt über HTTP abrufen - wie curl
+                import urllib.request
+                import json
+                
+                try:
+                    url = f"http://{self.current_esp_ip}/live-values-data"
+                    req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                    
+                    with urllib.request.urlopen(req, timeout=10) as response:
+                        if response.status == 200:
+                            data = json.loads(response.read().decode())
+                            
+                            # Status anzeigen
+                            hl = data.get('hl_value', '?')
+                            hr = data.get('hr_value', '?')
+                            hl_ready = '✅' if data.get('hl_ready', False) else '❌'
+                            hr_ready = '✅' if data.get('hr_ready', False) else '❌'
+                            
+                            self.log_message(f"📊 ESP8266 Status: HL={hl} {hl_ready}, HR={hr} {hr_ready}")
+                            return
+                            
+                except Exception as e:
+                    self.log_message(f"❌ Status-Abruf fehlgeschlagen: {e}")
+            else:
                 self.log_message("❌ Keine ESP8266 Verbindung")
-                return
-            
-            # Kein separates "Status abrufen" Log - wird durch das Ergebnis ersetzt
-            
-            if self.discovery:
-                status = self.discovery.test_http_status(self.current_esp_ip)
-                if status and isinstance(status, dict):
-                    self.update_status_display(status)
-                    # Aussagekräftige Status-Info
-                    signal = status.get('signal_strength', 'N/A')
-                    battery = status.get('battery_voltage', 0)
-                    uptime = status.get('uptime', 0) // 1000  # ms zu s
-                    self.log_message(f"✅ ESP8266: Signal {signal}dBm, Akku {battery:.1f}V, Laufzeit {uptime}s")
-                else:
-                    self.log_message(f"❌ ESP8266 ({self.current_esp_ip}) nicht erreichbar")
             
         except Exception as e:
             logger.error(f"Fehler beim Status-Abruf: {e}")
@@ -382,12 +412,23 @@ class ESP8266ConfigSeite(BaseViewWidget):
             
             self.log_message(f"🎯 Kalibriere mit {cal_weight} kg...")
             
-            if self.discovery:
-                result = self.discovery.send_calibrate_command(self.current_esp_ip, cal_weight)
-                if result:
-                    self.log_message(f"✅ Kalibrierung mit {cal_weight} kg erfolgreich")
-                else:
-                    self.log_message("❌ Kalibrierung fehlgeschlagen")
+            # DIREKTE HTTP-Anfrage für Kalibrierung
+            import urllib.request
+            import urllib.parse
+            
+            try:
+                # Kalibriergewicht als URL-Parameter
+                params = urllib.parse.urlencode({'weight': cal_weight})
+                url = f"http://{self.current_esp_ip}/calibrate?{params}"
+                req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                
+                with urllib.request.urlopen(req, timeout=15) as response:
+                    if response.status == 200:
+                        self.log_message(f"✅ Kalibrierung mit {cal_weight} kg erfolgreich")
+                    else:
+                        self.log_message("❌ Kalibrierung fehlgeschlagen")
+            except Exception as e:
+                self.log_message(f"❌ Kalibrierung Fehler: {e}")
             
         except Exception as e:
             logger.error(f"Fehler bei Kalibrierung: {e}")
@@ -412,13 +453,21 @@ class ESP8266ConfigSeite(BaseViewWidget):
             if reply == QMessageBox.Yes:
                 self.log_message("😴 Deep Sleep aktivieren...")
                 
-                if self.discovery:
-                    result = self.discovery.send_deep_sleep_command(self.current_esp_ip)
-                    if result:
-                        self.log_message("✅ Deep Sleep aktiviert - ESP8266 schläft 1h")
-                        self.update_connection_status(False, "")
-                    else:
-                        self.log_message("❌ Deep Sleep Aktivierung fehlgeschlagen")
+                # DIREKTE HTTP-Anfrage für Deep Sleep
+                import urllib.request
+                
+                try:
+                    url = f"http://{self.current_esp_ip}/deep-sleep"
+                    req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                    
+                    with urllib.request.urlopen(req, timeout=10) as response:
+                        if response.status == 200:
+                            self.log_message("✅ Deep Sleep aktiviert - ESP8266 schläft 1h")
+                            self.update_connection_status(False, "")
+                        else:
+                            self.log_message("❌ Deep Sleep Aktivierung fehlgeschlagen")
+                except Exception as e:
+                    self.log_message(f"❌ Deep Sleep Fehler: {e}")
             
         except Exception as e:
             logger.error(f"Fehler bei Deep Sleep: {e}")
@@ -554,26 +603,30 @@ class ESP8266ConfigSeite(BaseViewWidget):
     def check_esp8266_status(self):
         """ESP8266 Status prüfen - läuft im Main-Thread"""
         try:
-            if self.discovery:
-                # Direkt bekannte IPs testen statt async find_esp8266()
-                test_ips = ["192.168.2.20", "192.168.4.1"]  # Bekannte ESP8266 IPs
-                
-                for test_ip in test_ips:
-                    logger.info(f"🔍 Testing ESP8266 IP: {test_ip}")
-                    status_data = self.discovery.test_http_status(test_ip)
+            # DIREKTE ESP8266-Prüfung ohne Discovery
+            import urllib.request
+            import json
+            
+            test_ips = ["192.168.2.20", "192.168.4.1"]  # Bekannte ESP8266 IPs
+            
+            for test_ip in test_ips:
+                try:
+                    url = f"http://{test_ip}/live-values-data"
+                    req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
                     
-                    if status_data and isinstance(status_data, dict):
-                        logger.info(f"📊 SUCCESS - Status Data: {status_data}")
-                        logger.info("✅ Calling update_status_display directly")
-                        self.update_status_display(status_data)
-                        self.update_connection_status(True, test_ip)
-                        return  # Success - stop testing other IPs
-                    else:
-                        logger.info(f"❌ No response from {test_ip}")
-                
-                # If we get here, no IP responded
-                logger.warning("❌ No ESP8266 responded")
-                self.update_connection_status(False, "")
+                    with urllib.request.urlopen(req, timeout=3) as response:
+                        if response.status == 200:
+                            data = json.loads(response.read().decode())
+                            # Erfolg - Status updaten
+                            self.current_esp_ip = test_ip
+                            self.update_connection_status(True, test_ip)
+                            return
+                except:
+                    continue
+            
+            # Kein ESP8266 gefunden
+            self.current_esp_ip = None
+            self.update_connection_status(False, "")
         except Exception as e:
             logger.error(f"Fehler bei ESP8266 Status Check: {e}")
     
@@ -835,14 +888,24 @@ class ESP8266ConfigSeite(BaseViewWidget):
             ap_ip = "192.168.4.1"
             self.log_message(f"🔍 Teste AP-Verbindung: {ap_ip}")
             
-            if self.discovery:
-                status_data = self.discovery.test_http_status(ap_ip)
-                if status_data:
-                    self.log_message("✅ AP-Verbindung erfolgreich - Stall-Modus bereit!")
-                    self.update_status_display(status_data)
-                    self.update_connection_status(True, ap_ip)
-                else:
-                    self.log_message("⚠️ AP-Verbindung nicht verfügbar")
+            # DIREKTE HTTP-Prüfung ohne Discovery
+            import urllib.request
+            import json
+            
+            try:
+                url = f"http://{ap_ip}/live-values-data"
+                req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    if response.status == 200:
+                        data = json.loads(response.read().decode())
+                        self.log_message("✅ AP-Verbindung erfolgreich - Stall-Modus bereit!")
+                        self.update_connection_status(True, ap_ip)
+                        return
+            except:
+                pass
+            
+            self.log_message("⚠️ AP-Verbindung nicht verfügbar")
         except Exception as e:
             logger.error(f"Fehler beim AP-Test: {e}")
     
@@ -852,14 +915,24 @@ class ESP8266ConfigSeite(BaseViewWidget):
             station_ip = "192.168.2.20"  # Bekannte Station-IP
             self.log_message(f"🔍 Teste Station-Verbindung: {station_ip}")
             
-            if self.discovery:
-                status_data = self.discovery.test_http_status(station_ip)
-                if status_data:
-                    self.log_message("✅ Station-Verbindung erfolgreich - Haus-Modus bereit!")
-                    self.update_status_display(status_data)
-                    self.update_connection_status(True, station_ip)
-                else:
-                    self.log_message("⚠️ Station-Verbindung nicht verfügbar")
+            # DIREKTE HTTP-Prüfung ohne Discovery
+            import urllib.request
+            import json
+            
+            try:
+                url = f"http://{station_ip}/live-values-data"
+                req = urllib.request.Request(url, headers={'User-Agent': 'Futterkarre-Pi5'})
+                
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    if response.status == 200:
+                        data = json.loads(response.read().decode())
+                        self.log_message("✅ Station-Verbindung erfolgreich - Haus-Modus bereit!")
+                        self.update_connection_status(True, station_ip)
+                        return
+            except:
+                pass
+            
+            self.log_message("⚠️ Station-Verbindung nicht verfügbar")
         except Exception as e:
             logger.error(f"Fehler beim Station-Test: {e}")
     
