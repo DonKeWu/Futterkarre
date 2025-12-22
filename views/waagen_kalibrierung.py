@@ -185,6 +185,17 @@ try:
         except Exception as e:
             logger.error(f"ESP8266 Kalibrierungs-Fehler: {e}")
             return False
+    
+    def nullpunkt_setzen_alle():
+        """Setzt Nullpunkt für alle ESP8266-HX711-Zellen"""
+        try:
+            test_ips = ["192.168.4.1", "192.168.2.20"]
+            
+            for ip in test_ips:
+                try:
+                    url = f"http://{ip}/tare"
+                    req = urllib.request.Request(url, method='POST')
+                    
                     with urllib.request.urlopen(req, timeout=5) as response:
                         if response.status == 200:
                             logger.info(f"✅ ESP8266 Nullpunkt gesetzt: {ip}")
@@ -1237,16 +1248,6 @@ Status: {'BESTANDEN' if toleranz_ok else 'NICHT BESTANDEN'}
             logger.error(f"ESP8266-Integration-Test Fehler: {e}")
             self.update_status(f"❌ ESP8266-Test fehlgeschlagen: {e}")
             QMessageBox.critical(self, "ESP8266 Test-Fehler", f"Unerwarteter Fehler:\n{e}")
-                self.update_status(f"✅ ESP8266 verbunden: {working_ips[0]}")
-                QMessageBox.information(self, "ESP8266 Test", 
-                    f"✅ ESP8266 erfolgreich gefunden!\n\nIP: {working_ips[0]}\nHX711-Daten verfügbar")
-            else:
-                self.update_status("❌ ESP8266 nicht erreichbar")
-                QMessageBox.warning(self, "ESP8266 Test",
-                    "❌ ESP8266 nicht gefunden!\n\nPrüfe:\n- ESP8266 eingeschaltet?\n- WiFi-Verbindung?\n- IP-Adresse korrekt?")
-            
-        except Exception as e:
-            error_msg = f"ESP8266-Test fehlgeschlagen: {e}"
             self.update_status(f"❌ {error_msg}")
             logger.error(error_msg)
     
